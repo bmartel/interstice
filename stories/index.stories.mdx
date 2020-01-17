@@ -1,0 +1,55 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import '../tailwind-wc.js';
+
+<Meta 
+  title="TailwindWc"
+  parameters={{
+    component: "tailwind-wc",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# TailwindWc
+
+A component for...
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add tailwind-wc
+```
+
+```js
+import 'tailwind-wc/tailwind-wc.js';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <tailwind-wc></tailwind-wc>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="tailwind-wc" />
+
+## Variations
+
+###### Custom Title
+
+<Story name="Custom Title">
+  {html`
+    <tailwind-wc .title=${'Hello World'}></tailwind-wc>
+  `}
+</Story>
