@@ -1,13 +1,13 @@
 import { html, css, LitElement } from 'lit-element';
 
-export class TailwindWc extends LitElement {
+export class Demo extends LitElement {
   static get styles() {
     return css`
       :host {
-        --twc-color: #eee;
+        --t-color: #eee;
         display: block;
-        padding: var(--twc-padding);
-        color: var(--twc-color);
+        padding: var(--t-padding);
+        color: var(--t-color);
       }
     `;
   }
@@ -36,3 +36,5 @@ export class TailwindWc extends LitElement {
     `;
   }
 }
+
+window.customElements.define('t-demo', Demo);

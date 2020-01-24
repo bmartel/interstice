@@ -1,1 +1,1 @@
-export { TailwindWc } from './src/TailwindWc.js';
+export { TextField } from './src/elements/text-field.js';

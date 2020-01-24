@@ -1,18 +1,18 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import '../tailwind-wc.js';
+import { TextField } from '../../index.js';
 
 <Meta 
-  title="TailwindWc"
+  title="TextField"
   parameters={{
-    component: "tailwind-wc",
+    component: "t-text-field",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
 
-# TailwindWc
+# TextField
 
-A component for...
+A form component for displaying a text input in a form with some styling and behaviour improvements.
 
 ## Features:
 
@@ -25,31 +25,31 @@ A component for...
 ### Installation
 
 ```bash
-yarn add tailwind-wc
+yarn add tailwind-elements
 ```
 
 ```js
-import 'tailwind-wc/tailwind-wc.js';
+import { TextField } from 'tailwind-elements';
 ```
 
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <tailwind-wc></tailwind-wc>
+      <t-text-field></t-text-field>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="tailwind-wc" />
+<Props of="t-text-field" />
 
 ## Variations
 
-###### Custom Title
+###### Full Width
 
-<Story name="Custom Title">
+<Story name="Wide Text Input">
   {html`
-    <tailwind-wc .title=${'Hello World'}></tailwind-wc>
+    <t-text-field .width=${true}></t-text-field>
   `}
 </Story>

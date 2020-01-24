@@ -312,11 +312,14 @@
 
 body {
   --t-theme: 'light';
-  --t-font-style: var(--t-font-sans);
+  --t-font-size: var(--t-text-base);
+  --t-font-family: var(--t-font-sans);
+  --t-margin: var(--t-m-3);
   --t-margin-top: var(--t-m-3);
   --t-margin-right: var(--t-m-3);
   --t-margin-bottom: var(--t-m-3);
   --t-margin-left: var(--t-m-3);
+  --t-padding: var(--t-p-3);
   --t-padding-top: var(--t-p-3);
   --t-padding-right: var(--t-p-3);
   --t-padding-bottom: var(--t-p-3);

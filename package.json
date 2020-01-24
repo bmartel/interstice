@@ -1,12 +1,23 @@
 {
   "name": "tailwind-elements",
   "version": "0.0.0",
-  "description": "Webcomponent tailwind-wc following open-wc recommendations",
+  "description": "A collection of Webcomponents following open-wc recommendations",
   "author": "Brandon Martel <brandonmartel@gmail.com>",
   "license": "MIT",
   "main": "index.js",
   "module": "index.js",
+  "directories": {
+    "lib": "src"
+  },
+  "files": [
+    "src",
+    "index.js",
+    "custom-elements.json",
+    "LICENSE"
+  ],
   "scripts": {
+    "analyze": "wca \"src/elements/**/*.js\" --format json --outFile custom-elements.json",
+    "css": "node config/css-vars.js",
     "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
@@ -30,6 +41,7 @@
     "tailwindcss": "^1.1.4"
   },
   "devDependencies": {
+    "@open-wc/building-rollup": "^0.15.1",
     "@open-wc/demoing-storybook": "^1.0.1",
     "@open-wc/eslint-config": "^2.0.0",
     "@open-wc/prettier-config": "^0.1.10",
@@ -41,9 +53,11 @@
     "eslint": "^6.1.0",
     "husky": "^1.0.0",
     "lint-staged": "^8.0.0",
-    "@open-wc/building-rollup": "^0.15.1",
+    "lodash": "^4.17.15",
     "rimraf": "^2.6.3",
-    "rollup": "^1.15.4"
+    "rollup": "^1.15.4",
+    "rollup-plugin-postcss": "^2.0.4",
+    "web-component-analyzer": "^1.0.2"
   },
   "eslintConfig": {
     "extends": [
