@@ -25,6 +25,7 @@ module.exports = (customVariableNames = {}, opts = {}) => {
     boxShadow: 'shadow',
     zIndex: 'z',
     opacity: 'opacity',
+    transition: 'transition',
     ...customVariableNames,
   };
 

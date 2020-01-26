@@ -35,7 +35,7 @@ import { TextField } from 'tailwind-elements';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-text-field></t-text-field>
+      <t-text-field id="simple"></t-text-field>
     `}
   </Story>
 </Preview>
@@ -46,10 +46,34 @@ import { TextField } from 'tailwind-elements';
 
 ## Variations
 
-###### Full Width
+###### Wide
 
-<Story name="Wide Text Input">
+<Story name="Wide">
   {html`
-    <t-text-field .width=${true}></t-text-field>
+    <t-text-field id="wide" wide></t-text-field>
+  `}
+</Story>
+
+###### Label
+
+<Story name="Label">
+  {html`
+    <t-text-field id="label" label="Name"></t-text-field>
+  `}
+</Story>
+
+###### Inline Label
+
+<Story name="Inline Label">
+  {html`
+    <t-text-field id="inline-label" label="Name" inline></t-text-field>
+  `}
+</Story>
+
+###### Error
+
+<Story name="Error">
+  {html`
+    <t-text-field id="error" label="Name" error></t-text-field>
   `}
 </Story>

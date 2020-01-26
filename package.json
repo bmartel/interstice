@@ -4,12 +4,13 @@
   "description": "A collection of Webcomponents following open-wc recommendations",
   "author": "Brandon Martel <brandonmartel@gmail.com>",
   "license": "MIT",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "directories": {
-    "lib": "src"
+    "lib": "dist"
   },
   "files": [
+    "dist",
     "src",
     "index.js",
     "custom-elements.json",
@@ -36,6 +37,7 @@
     "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "dependencies": {
+    "@open-wc/lit-helpers": "^0.2.6",
     "lit-element": "^2.2.1",
     "lit-html": "^1.1.2",
     "tailwindcss": "^1.1.4"

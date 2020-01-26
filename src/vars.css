@@ -92,6 +92,9 @@
   --t-color-pink-700: #b83280;
   --t-color-pink-800: #97266d;
   --t-color-pink-900: #702459;
+  --t-color-primary: #9f7aea;
+  --t-color-accent: #38b2ac;
+  --t-color-error: #f56565;
   --t-sm: 640px;
   --t-md: 768px;
   --t-lg: 1024px;
@@ -308,6 +311,12 @@
   --t-opacity-50: 0.5;
   --t-opacity-75: 0.75;
   --t-opacity-100: 1;
+  --t-transition-all: 0.25s all ease-in-out;
+  --t-transition-opacity: 0.25s opacity ease-in-out;
+  --t-transition-color: 0.25s color ease-in-out;
+  --t-transition-shadow: 0.25s box-shadow ease-in-out;
+  --t-transition-border: 0.25s border ease-in-out;
+  --t-transition-bg: 0.25s background ease-in-out;
 }
 
 body {
@@ -320,14 +329,17 @@ body {
   --t-margin-bottom: var(--t-m-3);
   --t-margin-left: var(--t-m-3);
   --t-padding: var(--t-p-3);
+  --t-gap: var(--t-p-1);
   --t-padding-top: var(--t-p-3);
   --t-padding-right: var(--t-p-3);
   --t-padding-bottom: var(--t-p-3);
   --t-padding-left: var(--t-p-3);
   --t-border-size: var(--t-border);
-  --t-border-color: var(--t-color-transparent);
+  --t-border-color: var(--t-color-gray-500);
+  --t-outline-size: var(--t-border-2);
   --t-background-color: var(--t-color-white);
   --t-color: var(--t-color-black);
+  --t-transition: var(--t-transition-all);
 }
 
 body.dark {

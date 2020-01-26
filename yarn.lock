@@ -1317,6 +1317,11 @@
     portfinder "^1.0.21"
     request "^2.88.0"
 
+"@open-wc/lit-helpers@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@open-wc/lit-helpers/-/lit-helpers-0.2.6.tgz#c090f1228b5487a2fc345b421ccb1217092846a3"
+  integrity sha512-RJlxvkjpFPwuMhPvuOUHVmDEwEFC4OdD1cjKrnQDg7qTsA065UPRjWP8eqxdTNr0WKwUF9kZE7NYg0VavD2ZJA==
+
 "@open-wc/prettier-config@^0.1.10":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@open-wc/prettier-config/-/prettier-config-0.1.13.tgz#019143384cb88f35767a59f85c62efb5796f7d6d"
