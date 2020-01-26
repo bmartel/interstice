@@ -76,10 +76,9 @@
     }
   },
   "lint-staged": {
-    "{src,test,config,stories}/**/*.js": [
+    "*.js": [
       "eslint --fix",
       "prettier --write",
-      "npm run storybook:build",
       "git add"
     ]
   }
