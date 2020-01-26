@@ -1,6 +1,6 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { TextField } from '../../index.js';
+import { TextField } from '../index.js';
 
 <Meta 
   title="TextField"
@@ -70,10 +70,27 @@ import { TextField } from 'tailwind-elements';
   `}
 </Story>
 
+
+###### Messages
+
+<Story name="Messages">
+  {html`
+    <t-text-field id="messages" label="Name" .messages=${['This is a message']}></t-text-field>
+  `}
+</Story>
+
 ###### Error
 
 <Story name="Error">
   {html`
-    <t-text-field id="error" label="Name" error></t-text-field>
+    <t-text-field id="error" label="Name" status="error"></t-text-field>
+  `}
+</Story>
+
+###### Success 
+
+<Story name="Success">
+  {html`
+    <t-text-field id="success" label="Name" status="success"></t-text-field>
   `}
 </Story>

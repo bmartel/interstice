@@ -10,10 +10,12 @@ export const fontStyles = html`
 
 export const fullWidthInput = html`
   <style>
-    :host,
-    .input-wrapper,
-    .input {
-      width: var(--t-w-full);
+    @media (min-width: 640px) {
+      :host,
+      .input-wrapper,
+      .input {
+        width: var(--t-w-full) !important;
+      }
     }
   </style>
 `;
@@ -35,11 +37,22 @@ export const inputStyles = html`
     }
     .label {
       grid-area: l;
+      font-size: var(--t-label-size);
+      color: var(--t-label-color);
     }
     .messages {
+      font-size: var(--t-message-size);
+      color: var(--t-message-color);
+      margin: 0;
+      padding: 0;
+      list-style: none;
       grid-area: m;
       display: grid;
-      grid-gap: var(--t-gap);
+    }
+    :host,
+    .input-wrapper,
+    .input {
+      width: var(--t-w-full);
     }
     :host,
     .input-wrapper,
@@ -80,6 +93,23 @@ export const inputStyles = html`
     .input-wrapper.error .input {
       border-color: var(--t-color-error);
       box-shadow: var(--t-color-error) 0 0 0 var(--t-outline-size);
+    }
+    .input-wrapper.success .input::selection {
+      background-color: var(--t-color-success);
+    }
+    .input-wrapper.success .label, .input-wrapper.success .messages {
+      color: var(--t-color-success);
+    }
+    .input-wrapper.success .input {
+      border-color: var(--t-color-success);
+      box-shadow: var(--t-color-success) 0 0 0 var(--t-outline-size);
+    }
+    @media (min-width: 640px) {
+      :host,
+      .input-wrapper,
+      .input {
+        width: initial;
+      }
     }
   </style>
 `;

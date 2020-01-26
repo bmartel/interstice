@@ -16,6 +16,10 @@ import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
  * @cssprop --t-color-error
  * @cssprop --t-border-color
  * @cssprop --t-border-size
+ * @cssprop --t-label-color
+ * @cssprop --t-label-size
+ * @cssprop --t-message-color
+ * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */
 export class TextField extends LitElement {
@@ -26,7 +30,7 @@ export class TextField extends LitElement {
       messages: { type: Array },
       wide: { type: Boolean },
       inline: { type: Boolean },
-      error: { type: Boolean },
+      status: { type: String },
     };
   }
 
@@ -36,8 +40,16 @@ export class TextField extends LitElement {
     this.label = '';
     this.messages = [];
     this.wide = false;
-    this.error = false;
+    this.status = '';
     this.inline = false;
+  }
+
+  error() {
+    return this.status === 'error'
+  }
+
+  success() {
+    return this.status === 'success'
   }
 
   labelId() {
@@ -47,10 +59,7 @@ export class TextField extends LitElement {
   render() {
     return html`
       ${fontStyles} ${inputStyles} ${this.wide ? fullWidthInput : null}
-      <label
-        .for=${this.id}
-        class=${classMap({ 'input-wrapper': true, inline: this.inline, error: this.error })}
-      >
+      <label class=${classMap({ 'input-wrapper': true, inline: this.inline, error: this.error(), success: this.success() })}>
         <span class="label" .id=${this.labelId()}>${this.label}</span>
         <input
           class="input"

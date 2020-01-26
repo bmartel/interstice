@@ -11,6 +11,7 @@
   },
   "files": [
     "dist",
+    "storybook",
     "src",
     "index.js",
     "custom-elements.json",
@@ -59,6 +60,7 @@
     "rimraf": "^2.6.3",
     "rollup": "^1.15.4",
     "rollup-plugin-postcss": "^2.0.4",
+    "storybook-addon-themes": "^5.2.0",
     "web-component-analyzer": "^1.0.2"
   },
   "eslintConfig": {
@@ -74,9 +76,10 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "{src,test,config,stories}/**/*.js": [
       "eslint --fix",
       "prettier --write",
+      "npm run storybook:build",
       "git add"
     ]
   }

@@ -1,0 +1,128 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "t-text-field",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-color"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        }
+      ]
+    }
+  ]
+}

@@ -28,6 +28,10 @@ async function run() {
     docs: {
       iframeHeight: '200px',
     },
+    themes: [
+      { name: 'light', class: 'light', color: '#00aced', default: true },
+      { name: 'dark', class: 'dark', color: '#3b5998' },
+    ],
   });
 }
 

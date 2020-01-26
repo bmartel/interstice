@@ -11,13 +11,7 @@ const config = {
 
   tailwind: {
     theme: {
-      extend: {
-        colors: {
-          primary: colors.purple['500'],
-          accent: colors.teal['500'],
-          error: colors.red['500'],
-        },
-      },
+      extend: {},
       transition: {
         all: '0.25s all ease-in-out',
         opacity: '0.25s opacity ease-in-out',
@@ -48,12 +42,26 @@ const config = {
     'outline-size': 'border-2',
     'background-color': 'color-white',
     color: 'color-black',
+    'color-primary': 'color-purple-500',
+    'color-accent': 'color-teal-500',
+    'color-success': 'color-green-500',
+    'color-error': 'color-red-500',
+    'label-color': 'color-gray-900',
+    'label-size': 'text-base',
+    'message-color': 'color-gray-700',
+    'message-size': 'text-sm',
     transition: 'transition-all',
   },
 
   componentsDark: {
     'background-color': 'color-black',
     color: 'color-white',
+    'color-primary': 'color-purple-300',
+    'color-accent': 'color-teal-300',
+    'color-success': 'color-green-300',
+    'color-error': 'color-red-300',
+    'label-color': 'color-gray-100',
+    'message-color': 'color-gray-300',
   },
 };
 

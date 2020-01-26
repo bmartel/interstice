@@ -92,9 +92,6 @@
   --t-color-pink-700: #b83280;
   --t-color-pink-800: #97266d;
   --t-color-pink-900: #702459;
-  --t-color-primary: #9f7aea;
-  --t-color-accent: #38b2ac;
-  --t-color-error: #f56565;
   --t-sm: 640px;
   --t-md: 768px;
   --t-lg: 1024px;
@@ -339,6 +336,14 @@ body {
   --t-outline-size: var(--t-border-2);
   --t-background-color: var(--t-color-white);
   --t-color: var(--t-color-black);
+  --t-color-primary: var(--t-color-purple-500);
+  --t-color-accent: var(--t-color-teal-500);
+  --t-color-success: var(--t-color-green-500);
+  --t-color-error: var(--t-color-red-500);
+  --t-label-color: var(--t-color-gray-900);
+  --t-label-size: var(--t-text-base);
+  --t-message-color: var(--t-color-gray-700);
+  --t-message-size: var(--t-text-sm);
   --t-transition: var(--t-transition-all);
 }
 
@@ -346,4 +351,10 @@ body.dark {
   --t-theme: 'dark';
   --t-background-color: var(--t-color-black);
   --t-color: var(--t-color-white);
+  --t-color-primary: var(--t-color-purple-300);
+  --t-color-accent: var(--t-color-teal-300);
+  --t-color-success: var(--t-color-green-300);
+  --t-color-error: var(--t-color-red-300);
+  --t-label-color: var(--t-color-gray-100);
+  --t-message-color: var(--t-color-gray-300);
 }
