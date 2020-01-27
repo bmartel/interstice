@@ -46,8 +46,10 @@ const config = {
     'color-accent': 'color-teal-500',
     'color-success': 'color-green-500',
     'color-error': 'color-red-500',
-    'label-color': 'color-gray-900',
+    'label-color': 'color-gray-800',
     'label-size': 'text-base',
+    'input-color': 'color-gray-900',
+    'input-bg-color': 'color-white',
     'message-color': 'color-gray-700',
     'message-size': 'text-sm',
     transition: 'transition-all',
@@ -56,12 +58,10 @@ const config = {
   componentsDark: {
     'background-color': 'color-black',
     color: 'color-white',
-    'color-primary': 'color-purple-300',
-    'color-accent': 'color-teal-300',
-    'color-success': 'color-green-300',
-    'color-error': 'color-red-300',
     'label-color': 'color-gray-100',
     'message-color': 'color-gray-300',
+    'input-color': 'color-white',
+    'input-bg-color': 'color-gray-900',
   },
 };
 

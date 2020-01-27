@@ -71,7 +71,8 @@ export const inputStyles = html`
       font-size: var(--t-font-size);
       font-family: var(--t-font-family);
       padding: var(--t-padding);
-      color: var(--t-color);
+      color: var(--t-input-color);
+      background-color: var(--t-input-bg-color);
       border: var(--t-border-size) solid var(--t-border-color);
       border-radius: var(--t-round);
     }

@@ -14,6 +14,8 @@ import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
  * @cssprop --t-color-primary
  * @cssprop --t-color-accent
  * @cssprop --t-color-error
+ * @cssprop --t-input-color
+ * @cssprop --t-input-bg-color
  * @cssprop --t-border-color
  * @cssprop --t-border-size
  * @cssprop --t-label-color
@@ -26,6 +28,7 @@ export class TextField extends LitElement {
   static get properties() {
     return {
       id: { type: String },
+      type: { type: String },
       label: { type: String },
       messages: { type: Array },
       wide: { type: Boolean },
@@ -37,6 +40,7 @@ export class TextField extends LitElement {
   constructor() {
     super();
     this.id = '';
+    this.type = 'text';
     this.label = '';
     this.messages = [];
     this.wide = false;
@@ -63,7 +67,7 @@ export class TextField extends LitElement {
         <span class="label" .id=${this.labelId()}>${this.label}</span>
         <input
           class="input"
-          type="text"
+          .type=${this.type}
           .id=${this.id}
           .name=${this.id}
           .aria-labelledby=${this.labelId()}

@@ -1,29 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
-<head>
-  <meta charset="utf-8">
-  <style>
-    body {
-      background: #fafafa;
-    }
-  </style>
-</head>
-<body>
-  <div id="demo"></div>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../src/vars.css" />
+    <style>
+      body {
+        font-size: var(--t-text-base);
+        font-family: var(--t-font-sans);
+        color: var(--t-color);
+        background-color: var(--t-background-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demo"></div>
 
-  <script type="module">
-    import { html, render } from 'lit-html';
-    import '../tailwind-wc.js';
+    <script type="module">
+      import { render } from 'lit-html';
+      import { html, LitElement } from 'lit-element';
+      import '../index.js';
 
-    const title = 'Hello owc World!';
-    render(
-      html`
-        <tailwind-wc .title=${title}>
-          some more light-dom
-        </tailwind-wc>
-      `,
-      document.querySelector('#demo')
-    );
-  </script>
-</body>
+      class ThemeSwitcher extends LitElement {
+        static get properties() {
+          return {
+            theme: { type: String },
+          };
+        }
+        constructor() {
+          super();
+          this.theme = 'light';
+        }
+
+        toggleTheme() {
+          const makeDark = this.theme === 'light';
+          this.theme = makeDark ? 'dark' : 'light';
+          document.body.classList.toggle('dark', makeDark);
+        }
+
+        render() {
+          return html`
+            <button @click=${this.toggleTheme}>Switch Theme: ${this.theme}</button>
+          `;
+        }
+      }
+
+      window.customElements.define('theme-switcher', ThemeSwitcher);
+
+      render(
+        html`
+          <div style="width: 100%;max-width: 900px; margin: 0 auto;">
+            <theme-switcher></theme-switcher>
+
+
+            <div style="display: grid; grid-gap: var(--t-p-3); max-width: 320px; margin: 0 auto;">
+              <h2>Login</h2>
+              <t-text-field type="email" id="email" label="Email" wide></t-text-field>
+              <t-text-field type="password" id="password" label="Password" wide></t-text-field>
+            </div>
+          </div>
+        `,
+        document.querySelector('#demo'),
+      );
+    </script>
+  </body>
 </html>
