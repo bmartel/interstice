@@ -32,7 +32,7 @@ const config = {
     'margin-bottom': 'm-3',
     'margin-left': 'm-3',
     padding: 'p-3',
-    gap: 'p-1',
+    gap: 'p-2',
     'padding-top': 'p-3',
     'padding-right': 'p-3',
     'padding-bottom': 'p-3',

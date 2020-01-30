@@ -1,6 +1,5 @@
-import { html, LitElement } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
-import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
+import { html } from 'lit-element';
+import {FormInput} from './FormInput.js';
 
 /**
  * @element t-text-field
@@ -24,62 +23,28 @@ import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
  * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */
-export class TextField extends LitElement {
+export class TextField extends FormInput {
   static get properties() {
     return {
-      id: { type: String },
+      ...FormInput.properties,
       type: { type: String },
-      label: { type: String },
-      messages: { type: Array },
-      wide: { type: Boolean },
-      inline: { type: Boolean },
-      status: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.id = '';
     this.type = 'text';
-    this.label = '';
-    this.messages = [];
-    this.wide = false;
-    this.status = '';
-    this.inline = false;
   }
 
-  error() {
-    return this.status === 'error'
-  }
-
-  success() {
-    return this.status === 'success'
-  }
-
-  labelId() {
-    return `lbl-${this.id}`;
-  }
-
-  render() {
+  renderInput() {
     return html`
-      ${fontStyles} ${inputStyles} ${this.wide ? fullWidthInput : null}
-      <label class=${classMap({ 'input-wrapper': true, inline: this.inline, error: this.error(), success: this.success() })}>
-        <span class="label" .id=${this.labelId()}>${this.label}</span>
-        <input
-          class="input"
-          .type=${this.type}
-          .id=${this.id}
-          .name=${this.id}
-          .aria-labelledby=${this.labelId()}
-        />
-        ${this.messages.length
-          ? html`
-              <ul class="messages">
-                ${this.messages.map(msg => html`<li>${msg}</li></ul>`)}
-              </ul>
-            `
-          : null}
-      </label>
+      <input
+        class="input"
+        .id=${this.id}
+        .type=${this.type}
+        .name=${this.id}
+        .aria-labelledby=${this.labelId()}
+      />
     `;
   }
 }

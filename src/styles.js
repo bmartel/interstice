@@ -13,7 +13,7 @@ export const fullWidthInput = html`
     @media (min-width: 640px) {
       :host,
       .input-wrapper,
-      .input {
+      .input:not(.check) {
         width: var(--t-w-full) !important;
       }
     }
@@ -32,6 +32,21 @@ export const inputStyles = html`
                            "i i i"
                            "m m m";
     }
+    .check {
+      color: var(--t-color-primary);
+      cursor: pointer;
+      stroke: currentColor;
+      stroke-width: 4px;
+      width: 24px;
+      height: 24px;
+    }
+    .hidden {
+      opacity: 0;
+      -moz-appearance: none;
+      width: 0;
+      height: 0;
+      cursor: pointer;
+    }
     .input {
       grid-area: i;
     }
@@ -39,6 +54,7 @@ export const inputStyles = html`
       grid-area: l;
       font-size: var(--t-label-size);
       color: var(--t-label-color);
+      font-weight: var(--t-label-font-weight, 600);
     }
     .messages {
       font-size: var(--t-message-size);
@@ -51,13 +67,14 @@ export const inputStyles = html`
     }
     :host,
     .input-wrapper,
-    .input {
+    .input:not(.check) {
       width: var(--t-w-full);
     }
     :host,
     .input-wrapper,
     .label,
     .messages,
+    .check,
     .input {
       box-sizing: border-box;
       transition: var(--t-transition);
@@ -88,7 +105,7 @@ export const inputStyles = html`
     .input-wrapper.error .input::selection {
       background-color: var(--t-color-error);
     }
-    .input-wrapper.error .label, .input-wrapper.error .messages {
+    .input-wrapper.error .label, .input-wrapper.error .check, .input-wrapper.error .messages {
       color: var(--t-color-error);
     }
     .input-wrapper.error .input {
@@ -98,7 +115,7 @@ export const inputStyles = html`
     .input-wrapper.success .input::selection {
       background-color: var(--t-color-success);
     }
-    .input-wrapper.success .label, .input-wrapper.success .messages {
+    .input-wrapper.success .label, .input-wrapper.success .check, .input-wrapper.success .messages {
       color: var(--t-color-success);
     }
     .input-wrapper.success .input {
@@ -108,7 +125,7 @@ export const inputStyles = html`
     @media (min-width: 640px) {
       :host,
       .input-wrapper,
-      .input {
+      .input:not(.check) {
         width: initial;
       }
     }

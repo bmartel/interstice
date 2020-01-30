@@ -1,0 +1,96 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import { CheckBox } from '../index.js';
+
+<Meta 
+  title="CheckBox"
+  parameters={{
+    component: "t-check-box",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# CheckBox
+
+A form component for displaying a checkbox input in a form with some styling and behaviour improvements.
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add tailwind-elements
+```
+
+```js
+import { CheckBox } from 'tailwind-elements';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <t-check-box id="simple"></t-check-box>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="t-check-box" />
+
+## Variations
+
+###### Wide
+
+<Story name="Wide">
+  {html`
+    <t-check-box id="wide" wide></t-check-box>
+  `}
+</Story>
+
+###### Label
+
+<Story name="Label">
+  {html`
+    <t-check-box id="label" label="Name"></t-check-box>
+  `}
+</Story>
+
+###### Inline Label
+
+<Story name="Inline Label">
+  {html`
+    <t-check-box id="inline-label" label="Name" inline></t-check-box>
+  `}
+</Story>
+
+
+###### Messages
+
+<Story name="Messages">
+  {html`
+    <t-check-box id="messages" label="Name" .messages=${['This is a message']}></t-check-box>
+  `}
+</Story>
+
+###### Error
+
+<Story name="Error">
+  {html`
+    <t-check-box id="error" label="Name" status="error"></t-check-box>
+  `}
+</Story>
+
+###### Success 
+
+<Story name="Success">
+  {html`
+    <t-check-box id="success" label="Name" status="success"></t-check-box>
+  `}
+</Story>

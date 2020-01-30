@@ -326,7 +326,7 @@ body {
   --t-margin-bottom: var(--t-m-3);
   --t-margin-left: var(--t-m-3);
   --t-padding: var(--t-p-3);
-  --t-gap: var(--t-p-1);
+  --t-gap: var(--t-p-2);
   --t-padding-top: var(--t-p-3);
   --t-padding-right: var(--t-p-3);
   --t-padding-bottom: var(--t-p-3);
