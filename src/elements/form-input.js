@@ -28,10 +28,12 @@ export class FormInput extends LitElement {
   static get properties() {
     return {
       id: { type: String },
+      value: { type: String },
       label: { type: String },
       messages: { type: Array },
       wide: { type: Boolean },
       inline: { type: Boolean },
+      reversed: { type: Boolean },
       status: { type: String },
     };
   }
@@ -39,11 +41,13 @@ export class FormInput extends LitElement {
   constructor() {
     super();
     this.id = '';
+    this.value = null;
     this.label = '';
     this.messages = [];
     this.wide = false;
     this.status = '';
     this.inline = false;
+    this.reversed = false;
   }
 
   error() {
@@ -63,6 +67,7 @@ export class FormInput extends LitElement {
       <input
         class="input"
         .id=${this.id}
+        .value=${this.value}
         .name=${this.id}
         .aria-labelledby=${this.labelId()}
       />
@@ -72,7 +77,7 @@ export class FormInput extends LitElement {
   render() {
     return html`
       ${fontStyles} ${inputStyles} ${this.wide ? fullWidthInput : null}
-      <label class=${classMap({ 'input-wrapper': true, inline: this.inline, error: this.error(), success: this.success() })}>
+      <label class=${classMap({ 'input-wrapper': true, inline: this.inline, reversed: this.reversed, error: this.error(), success: this.success() })}>
         <span class="label" .id=${this.labelId()}>${this.label}</span>
         ${this.renderInput()}
         ${this.messages.length

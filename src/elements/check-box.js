@@ -1,7 +1,7 @@
 
 import { html } from 'lit-element';
 import { styleMap } from 'lit-html/directives/style-map';
-import {FormInput} from './FormInput.js';
+import {FormInput} from './form-input.js';
 
 /**
  * @element t-check-box
@@ -35,6 +35,7 @@ export class CheckBox extends FormInput {
 
   constructor() {
     super();
+    this.inline = true;
     this.checked = false;
   }
 
@@ -70,11 +71,13 @@ export class CheckBox extends FormInput {
         class="hidden"
         type="checkbox"
         .id=${this.id}
+        .value=${this.value}
+        .checked=${this.checked}
         .name=${this.id}
         .aria-labelledby=${this.labelId()}
         @click=${this.inputUpdate}
       />
-        <div class="input check" style="padding: 0;">
+      <div class="input check" style="padding: 0;">
         ${this.renderCheck()}
       </div>
     `;

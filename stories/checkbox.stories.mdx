@@ -62,11 +62,19 @@ import { CheckBox } from 'tailwind-elements';
   `}
 </Story>
 
-###### Inline Label
+###### Reversed Label 
 
-<Story name="Inline Label">
+<Story name="Reversed Label">
   {html`
-    <t-check-box id="inline-label" label="Name" inline></t-check-box>
+    <t-check-box id="label" label="Name" reversed></t-check-box>
+  `}
+</Story>
+
+###### Stacked Label
+
+<Story name="Stacked Label">
+  {html`
+    <t-check-box id="stacked-label" label="Name" .inline=${false}></t-check-box>
   `}
 </Story>
 
@@ -83,7 +91,7 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Error">
   {html`
-    <t-check-box id="error" label="Name" status="error"></t-check-box>
+    <t-check-box id="error" label="Name" status="error" .checked=${true}></t-check-box>
   `}
 </Story>
 
@@ -91,6 +99,6 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Success">
   {html`
-    <t-check-box id="success" label="Name" status="success"></t-check-box>
+    <t-check-box id="success" label="Name" status="success" .checked=${true}></t-check-box>
   `}
 </Story>

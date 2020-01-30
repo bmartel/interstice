@@ -1,5 +1,5 @@
 import { html } from 'lit-element';
-import {FormInput} from './FormInput.js';
+import {FormInput} from './form-input.js';
 
 /**
  * @element t-text-field
@@ -41,6 +41,7 @@ export class TextField extends FormInput {
       <input
         class="input"
         .id=${this.id}
+        .value=${this.value}
         .type=${this.type}
         .name=${this.id}
         .aria-labelledby=${this.labelId()}

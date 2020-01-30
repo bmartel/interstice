@@ -32,13 +32,22 @@ export const inputStyles = html`
                            "i i i"
                            "m m m";
     }
+      .input-wrapper:not(.error):not(.success) .check {
+      color: var(--t-color-white);
+    }
+    .input-wrapper:not(.error):not(.success) input:checked + .check {
+      background-color: var(--t-color-primary);
+    }
     .check {
-      color: var(--t-color-primary);
+      overflow: hidden;
       cursor: pointer;
       stroke: currentColor;
       stroke-width: 4px;
       width: 24px;
       height: 24px;
+    }
+    input:checked + .check {
+      border-color: var(--t-color-primary);
     }
     .hidden {
       opacity: 0;
@@ -83,6 +92,10 @@ export const inputStyles = html`
       grid-template-areas: "l i i"
                            ". m m";
       align-items: center;
+    }
+    .input-wrapper.inline.reversed {
+      grid-template-areas: "i i l"
+                           "m m .";
     }
     .input {
       font-size: var(--t-font-size);
