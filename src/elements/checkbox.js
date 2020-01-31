@@ -1,10 +1,10 @@
-
 import { html } from 'lit-element';
-import { styleMap } from 'lit-html/directives/style-map';
-import {FormInput} from './form-input.js';
+import {FormInput} from './forminput.js';
+import {checkboxStyles} from '../styles.js';
+import {classMap} from 'lit-html/directives/class-map';
 
 /**
- * @element t-check-box
+ * @element t-checkbox
  *
  * @cssprop --t-font-size
  * @cssprop --t-font-family
@@ -37,17 +37,7 @@ export class CheckBox extends FormInput {
     super();
     this.inline = true;
     this.checked = false;
-  }
-
-  renderCheck() {
-    if (this.checked) {
-      return html`
-        <svg class="check" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
-          <path fill="none" d="M6,11.3 L10.3,16 L18,6.2"></path>
-        </svg>
-      `;
-    }
-    return null;
+    this.type = 'checkbox'
   }
 
   inputStyles() {
@@ -65,23 +55,36 @@ export class CheckBox extends FormInput {
     this.checked = e.target.checked;
   }
 
+  renderCheck() {
+    if (this.checked) {
+      return html`
+        <svg class="check" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+          <path fill="none" d="M6,11.3 L10.3,16 L18,6.2"></path>
+        </svg>
+      `;
+    }
+    return null;
+  }
+
   renderInput() {
     return html`
+      ${checkboxStyles}
       <input
         class="hidden"
-        type="checkbox"
+        .type=${this.type}
         .id=${this.id}
         .value=${this.value}
         .checked=${this.checked}
         .name=${this.id}
+        .disabled=${this.disabled}
         .aria-labelledby=${this.labelId()}
         @click=${this.inputUpdate}
       />
-      <div class="input check" style="padding: 0;">
+      <div class=${classMap({input: true, check: true, [this.type]: true })} style="padding: 0;">
         ${this.renderCheck()}
       </div>
     `;
   }
 }
 
-window.customElements.define('t-check-box', CheckBox);
+window.customElements.define('t-checkbox', CheckBox);

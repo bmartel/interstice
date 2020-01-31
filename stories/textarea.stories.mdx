@@ -1,16 +1,16 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { TextField } from '../index.js';
+import { TextArea } from '../index.js';
 
 <Meta 
-  title="TextField"
+  title="TextArea"
   parameters={{
-    component: "t-textfield",
+    component: "t-textarea",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
 
-# TextField
+# TextArea
 
 A form component for displaying a text input in a form with some styling and behaviour improvements.
 
@@ -29,20 +29,20 @@ yarn add tailwind-elements
 ```
 
 ```js
-import { TextField } from 'tailwind-elements';
+import { TextArea } from 'tailwind-elements';
 ```
 
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-textfield id="simple"></t-textfield>
+      <t-textarea id="simple"></t-textarea>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-textfield" />
+<Props of="t-textarea" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Wide">
   {html`
-    <t-textfield id="wide" wide></t-textfield>
+    <t-textarea id="wide" wide></t-textarea>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Label">
   {html`
-    <t-textfield id="label" label="Name"></t-textfield>
+    <t-textarea id="label" label="Name"></t-textarea>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Inline Label">
   {html`
-    <t-textfield id="inline-label" label="Name" inline></t-textfield>
+    <t-textarea id="inline-label" label="Name" inline></t-textarea>
   `}
 </Story>
 
@@ -75,7 +75,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Messages">
   {html`
-    <t-textfield id="messages" label="Name" .messages=${['This is a message']}></t-textfield>
+    <t-textarea id="messages" label="Name" .messages=${['This is a message']}></t-textarea>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Error">
   {html`
-    <t-textfield id="error" label="Name" status="error"></t-textfield>
+    <t-textarea id="error" label="Name" status="error"></t-textarea>
   `}
 </Story>
 
@@ -91,6 +91,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Success">
   {html`
-    <t-textfield id="success" label="Name" status="success"></t-textfield>
+    <t-textarea id="success" label="Name" status="success"></t-textarea>
   `}
 </Story>
+

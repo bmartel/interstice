@@ -1,8 +1,8 @@
 import { html } from 'lit-element';
-import {FormInput} from './form-input.js';
+import {FormInput} from './forminput.js';
 
 /**
- * @element t-text-field
+ * @element t-text-area
  *
  * @cssprop --t-font-size
  * @cssprop --t-font-family
@@ -23,31 +23,32 @@ import {FormInput} from './form-input.js';
  * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */
-export class TextField extends FormInput {
+export class TextArea extends FormInput {
   static get properties() {
     return {
       ...FormInput.properties,
-      type: { type: String },
+      readonly: { type: Boolean },
     };
   }
 
   constructor() {
     super();
-    this.type = 'text';
+    this.readonly = false;
   }
 
   renderInput() {
     return html`
-      <input
+      <textarea
         class="input"
         .id=${this.id}
         .value=${this.value}
-        .type=${this.type}
         .name=${this.id}
+        .disabled=${this.disabled}
+        .readonly=${this.readonly}
         .aria-labelledby=${this.labelId()}
-      />
+      >${this.value}</textarea>
     `;
   }
 }
 
-window.customElements.define('t-text-field', TextField);
+window.customElements.define('t-textarea', TextArea);

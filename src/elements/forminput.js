@@ -3,7 +3,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
 
 /**
- * @element t-form-input
+ * @element t-forminput
  *
  * @cssprop --t-font-size
  * @cssprop --t-font-family
@@ -34,6 +34,7 @@ export class FormInput extends LitElement {
       wide: { type: Boolean },
       inline: { type: Boolean },
       reversed: { type: Boolean },
+      disabled: { type: Boolean },
       status: { type: String },
     };
   }
@@ -48,6 +49,7 @@ export class FormInput extends LitElement {
     this.status = '';
     this.inline = false;
     this.reversed = false;
+    this.disabled = false;
   }
 
   error() {
@@ -62,6 +64,15 @@ export class FormInput extends LitElement {
     return `lbl-${this.id}`;
   }
 
+  renderLabel() {
+    if (this.label) {
+      return html`
+        <span class="label" .id=${this.labelId()}>${this.label}</span>
+      `;
+    }
+    return null;
+  }
+
   renderInput() {
     return html`
       <input
@@ -69,24 +80,30 @@ export class FormInput extends LitElement {
         .id=${this.id}
         .value=${this.value}
         .name=${this.id}
+        .disabled=${this.disabled}
         .aria-labelledby=${this.labelId()}
       />
     `;
   }
 
+  renderMessages() {
+    if (this.messages.length) {
+      return html`
+        <ul class="messages">
+          ${this.messages.map(msg => html`<li>${msg}</li></ul>`)}
+        </ul>
+      `;
+    }
+    return null;
+  }
+
   render() {
     return html`
       ${fontStyles} ${inputStyles} ${this.wide ? fullWidthInput : null}
-      <label class=${classMap({ 'input-wrapper': true, inline: this.inline, reversed: this.reversed, error: this.error(), success: this.success() })}>
-        <span class="label" .id=${this.labelId()}>${this.label}</span>
+      <label class=${classMap({ 'input-wrapper': true, inline: this.inline, reversed: this.reversed, disabled: this.disabled, error: this.error(), success: this.success() })}>
+        ${this.renderLabel()}
         ${this.renderInput()}
-        ${this.messages.length
-          ? html`
-              <ul class="messages">
-                ${this.messages.map(msg => html`<li>${msg}</li></ul>`)}
-              </ul>
-            `
-          : null}
+        ${this.renderMessages()}
       </label>
     `;
   }

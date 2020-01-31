@@ -1,18 +1,18 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { CheckBox } from '../index.js';
+import { Radio } from '../index.js';
 
 <Meta 
-  title="CheckBox"
+  title="Radio"
   parameters={{
-    component: "t-checkbox",
+    component: "t-radio",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
 
-# CheckBox
+# Radio
 
-A form component for displaying a checkbox input in a form with some styling and behaviour improvements.
+A form component for displaying a radio input in a form with some styling and behaviour improvements.
 
 ## Features:
 
@@ -29,20 +29,20 @@ yarn add tailwind-elements
 ```
 
 ```js
-import { CheckBox } from 'tailwind-elements';
+import { Radio } from 'tailwind-elements';
 ```
 
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-checkbox id="simple"></t-checkbox>
+      <t-radio id="simple"></t-radio>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-checkbox" />
+<Props of="t-radio" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Wide">
   {html`
-    <t-checkbox id="wide" wide></t-checkbox>
+    <t-radio id="wide" wide></t-radio>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Label">
   {html`
-    <t-checkbox id="label" label="Name"></t-checkbox>
+    <t-radio id="label" label="Name"></t-radio>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Reversed Label">
   {html`
-    <t-checkbox id="label" label="Name" reversed></t-checkbox>
+    <t-radio id="label" label="Name" reversed></t-radio>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Stacked Label">
   {html`
-    <t-checkbox id="stacked-label" label="Name" .inline=${false}></t-checkbox>
+    <t-radio id="stacked-label" label="Name" .inline=${false}></t-radio>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Messages">
   {html`
-    <t-checkbox id="messages" label="Name" .messages=${['This is a message']}></t-checkbox>
+    <t-radio id="messages" label="Name" .messages=${['This is a message']}></t-radio>
   `}
 </Story>
 
@@ -91,7 +91,7 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Error">
   {html`
-    <t-checkbox id="error" label="Name" status="error" .checked=${true}></t-checkbox>
+    <t-radio id="error" label="Name" status="error" .checked=${true}></t-radio>
   `}
 </Story>
 
@@ -99,6 +99,7 @@ import { CheckBox } from 'tailwind-elements';
 
 <Story name="Success">
   {html`
-    <t-checkbox id="success" label="Name" status="success" .checked=${true}></t-checkbox>
+    <t-radio id="success" label="Name" status="success" .checked=${true}></t-radio>
   `}
 </Story>
+

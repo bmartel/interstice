@@ -1,2 +1,4 @@
-export { TextField } from './src/elements/text-field.js';
-export { CheckBox } from './src/elements/check-box.js';
+export { TextField } from './src/elements/textfield.js';
+export { TextArea } from './src/elements/textarea.js';
+export { CheckBox } from './src/elements/checkbox.js';
+export { Radio } from './src/elements/radio.js';

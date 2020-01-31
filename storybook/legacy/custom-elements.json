@@ -2,7 +2,7 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "t-text-field",
+      "name": "t-textfield",
       "attributes": [
         {
           "name": "id",

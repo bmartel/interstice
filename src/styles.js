@@ -32,30 +32,6 @@ export const inputStyles = html`
                            "i i i"
                            "m m m";
     }
-      .input-wrapper:not(.error):not(.success) .check {
-      color: var(--t-color-white);
-    }
-    .input-wrapper:not(.error):not(.success) input:checked + .check {
-      background-color: var(--t-color-primary);
-    }
-    .check {
-      overflow: hidden;
-      cursor: pointer;
-      stroke: currentColor;
-      stroke-width: 4px;
-      width: 24px;
-      height: 24px;
-    }
-    input:checked + .check {
-      border-color: var(--t-color-primary);
-    }
-    .hidden {
-      opacity: 0;
-      -moz-appearance: none;
-      width: 0;
-      height: 0;
-      cursor: pointer;
-    }
     .input {
       grid-area: i;
     }
@@ -87,6 +63,9 @@ export const inputStyles = html`
     .input {
       box-sizing: border-box;
       transition: var(--t-transition);
+    }
+    .input-wrapper.disabled {
+      opacity: 0.6;
     }
     .input-wrapper.inline {
       grid-template-areas: "l i i"
@@ -141,6 +120,44 @@ export const inputStyles = html`
       .input:not(.check) {
         width: initial;
       }
+    }
+  </style>
+`;
+
+export const checkboxStyles = html`
+  <style>
+    .input {
+      color: var(--t-color-primary);
+    }
+    .input-wrapper:not(.error):not(.success) .check:not(.input):not(.radio) {
+      color: var(--t-color-white);
+    }
+    .input-wrapper:not(.error):not(.success) input:checked + .check {
+      background-color: var(--t-color-primary);
+    }
+    .input-wrapper:not(.error):not(.success) input:checked + .radio {
+      background-color: var(--t-input-bg-color);
+    }
+    .input.check {
+      cursor: pointer;
+      stroke: currentColor;
+      stroke-width: 4px;
+      width: 26px;
+      height: 26px;
+    }
+    .radio {
+      fill: currentColor;
+      border-radius: var(--t-round-full);
+    }
+    input:checked + .check {
+      border-color: var(--t-color-primary);
+    }
+    .hidden {
+      opacity: 0;
+      -moz-appearance: none;
+      width: 0;
+      height: 0;
+      cursor: pointer;
     }
   </style>
 `;
