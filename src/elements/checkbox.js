@@ -8,6 +8,7 @@ import {checkboxStyles} from '../styles.js';
  *
  * @cssprop --t-font-size
  * @cssprop --t-font-family
+ * @cssprop --t-leading
  * @cssprop --t-padding
  * @cssprop --t-gap
  * @cssprop --t-transition
@@ -28,7 +29,6 @@ import {checkboxStyles} from '../styles.js';
 export class CheckBox extends FormInput {
   static get properties() {
     return {
-      ...FormInput.properties,
       checked: { type: Boolean },
     };
   }
@@ -74,10 +74,10 @@ export class CheckBox extends FormInput {
         .type=${this.type}
         .id=${this.id}
         .value=${this.value}
-        .checked=${this.checked}
         .name=${this.id}
-        .disabled=${this.disabled}
         .aria-labelledby=${this.labelId()}
+        ?checked=${this.checked}
+        ?disabled=${this.disabled}
         @click=${this.inputUpdate}
       />
       <div class=${classMap({input: true, check: true, [this.type]: true })} style="padding: 0;">

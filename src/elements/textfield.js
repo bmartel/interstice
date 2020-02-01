@@ -26,7 +26,6 @@ import { FormInput } from './forminput.js';
 export class TextField extends FormInput {
   static get properties() {
     return {
-      ...FormInput.properties,
       type: { type: String },
       readonly: { type: Boolean },
     };
@@ -46,8 +45,8 @@ export class TextField extends FormInput {
         .value=${this.value}
         .type=${this.type}
         .name=${this.id}
-        .disabled=${this.disabled}
-        .readonly=${this.readonly}
+        ?disabled=${this.disabled}
+        ?readonly=${this.readonly}
         .aria-labelledby=${this.labelId()}
       />
     `;

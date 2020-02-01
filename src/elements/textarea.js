@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html, css } from 'lit-element';
 import { FormInput } from './forminput.js';
 
 /**
@@ -6,6 +6,7 @@ import { FormInput } from './forminput.js';
  *
  * @cssprop --t-font-size
  * @cssprop --t-font-family
+ * @cssprop --t-leading
  * @cssprop --t-padding
  * @cssprop --t-gap
  * @cssprop --t-transition
@@ -26,14 +27,23 @@ import { FormInput } from './forminput.js';
 export class TextArea extends FormInput {
   static get properties() {
     return {
-      ...FormInput.properties,
       readonly: { type: Boolean },
+      rows: { type: Number },
     };
+  }
+
+  static get styles() {
+    return css`
+      textarea {
+        min-height: calc(var(--t-font-size) * 4);
+      }
+    `;
   }
 
   constructor() {
     super();
     this.readonly = false;
+    this.rows = 4;
   }
 
   renderInput() {
@@ -43,9 +53,10 @@ export class TextArea extends FormInput {
         .id=${this.id}
         .value=${this.value}
         .name=${this.id}
-        .disabled=${this.disabled}
-        .readonly=${this.readonly}
+        .rows=${this.rows}
         .aria-labelledby=${this.labelId()}
+        ?disabled=${this.disabled}
+        ?readonly=${this.readonly}
       >
         ${this.value}
       </textarea>

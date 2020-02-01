@@ -320,6 +320,7 @@ body {
   --t-theme: 'light';
   --t-font-size: var(--t-text-base);
   --t-font-family: var(--t-font-sans);
+  --t-leading: var(--t-leading-normal);
   --t-margin: var(--t-m-3);
   --t-margin-top: var(--t-m-3);
   --t-margin-right: var(--t-m-3);

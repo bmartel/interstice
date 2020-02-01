@@ -112,6 +112,9 @@
           "name": "--t-font-family"
         },
         {
+          "name": "--t-leading"
+        },
+        {
           "name": "--t-padding"
         },
         {
@@ -286,6 +289,9 @@
         },
         {
           "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
         },
         {
           "name": "--t-padding"
@@ -464,6 +470,9 @@
           "name": "--t-font-family"
         },
         {
+          "name": "--t-leading"
+        },
+        {
           "name": "--t-padding"
         },
         {
@@ -522,6 +531,11 @@
           "default": "false"
         },
         {
+          "name": "rows",
+          "type": "number",
+          "default": "4"
+        },
+        {
           "name": "id",
           "type": "string",
           "default": "\"\""
@@ -572,6 +586,12 @@
           "attribute": "readonly",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "rows",
+          "attribute": "rows",
+          "type": "number",
+          "default": "4"
         },
         {
           "name": "id",
@@ -633,6 +653,9 @@
         },
         {
           "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
         },
         {
           "name": "--t-padding"
@@ -693,6 +716,11 @@
           "default": "false"
         },
         {
+          "name": "rows",
+          "type": "number",
+          "default": "4"
+        },
+        {
           "name": "id",
           "type": "string",
           "default": "\"\""
@@ -743,6 +771,12 @@
           "attribute": "readonly",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "rows",
+          "attribute": "rows",
+          "type": "number",
+          "default": "4"
         },
         {
           "name": "id",
@@ -804,6 +838,9 @@
         },
         {
           "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
         },
         {
           "name": "--t-padding"
@@ -1034,6 +1071,9 @@
         },
         {
           "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-leading"
         }
       ]
     }

@@ -26,6 +26,7 @@ const config = {
   components: {
     'font-size': 'text-base',
     'font-family': 'font-sans',
+    leading: 'leading-normal',
     margin: 'm-3',
     'margin-top': 'm-3',
     'margin-right': 'm-3',
