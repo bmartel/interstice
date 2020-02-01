@@ -91,7 +91,18 @@ export const inputStyles = html`
     .input:focus {
       outline: 0;
       border-color: var(--t-color-primary);
-      box-shadow: var(--t-color-primary) 0 0 0 var(--t-outline-size);
+    }
+    .input:hover {
+      border-color: var(--t-color-primary);
+      box-shadow: var(--t-color-primary) 0 0 var(--t-outline-size);
+    }
+    .input-wrapper.error .input:hover {
+      border-color: var(--t-color-error);
+      box-shadow: var(--t-color-error) 0 0 var(--t-outline-size);
+    }
+    .input-wrapper.success .input:hover {
+      border-color: var(--t-color-success);
+      box-shadow: var(--t-color-success) 0 0 var(--t-outline-size);
     }
     .input::selection {
       color: var(--t-color-white);
@@ -107,7 +118,6 @@ export const inputStyles = html`
     }
     .input-wrapper.error .input {
       border-color: var(--t-color-error);
-      box-shadow: var(--t-color-error) 0 0 0 var(--t-outline-size);
     }
     .input-wrapper.success .input::selection {
       background-color: var(--t-color-success);
@@ -119,7 +129,6 @@ export const inputStyles = html`
     }
     .input-wrapper.success .input {
       border-color: var(--t-color-success);
-      box-shadow: var(--t-color-success) 0 0 0 var(--t-outline-size);
     }
     @media (min-width: 640px) {
       :host,

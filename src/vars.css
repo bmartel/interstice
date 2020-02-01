@@ -308,12 +308,12 @@
   --t-opacity-50: 0.5;
   --t-opacity-75: 0.75;
   --t-opacity-100: 1;
-  --t-transition-all: 0.25s all ease-in-out;
-  --t-transition-opacity: 0.25s opacity ease-in-out;
-  --t-transition-color: 0.25s color ease-in-out;
-  --t-transition-shadow: 0.25s box-shadow ease-in-out;
-  --t-transition-border: 0.25s border ease-in-out;
-  --t-transition-bg: 0.25s background ease-in-out;
+  --t-transition-all: 0.2s all ease-in-out;
+  --t-transition-opacity: 0.2s opacity ease-in-out;
+  --t-transition-color: 0.2s color ease-in-out;
+  --t-transition-shadow: 0.2s box-shadow ease-in-out;
+  --t-transition-border: 0.2s border ease-in-out;
+  --t-transition-bg: 0.2s background ease-in-out;
 }
 
 body {
@@ -326,7 +326,7 @@ body {
   --t-margin-bottom: var(--t-m-3);
   --t-margin-left: var(--t-m-3);
   --t-padding: var(--t-p-3);
-  --t-gap: var(--t-p-2);
+  --t-gap: var(--t-p-1);
   --t-padding-top: var(--t-p-3);
   --t-padding-right: var(--t-p-3);
   --t-padding-bottom: var(--t-p-3);
