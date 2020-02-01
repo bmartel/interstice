@@ -1,7 +1,7 @@
 import { html } from 'lit-element';
+import {classMap} from 'lit-html/directives/class-map';
 import {FormInput} from './forminput.js';
 import {checkboxStyles} from '../styles.js';
-import {classMap} from 'lit-html/directives/class-map';
 
 /**
  * @element t-checkbox

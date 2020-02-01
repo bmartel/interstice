@@ -1,5 +1,5 @@
 import { html } from 'lit-element';
-import {FormInput} from './forminput.js';
+import { FormInput } from './forminput.js';
 
 /**
  * @element t-textfield

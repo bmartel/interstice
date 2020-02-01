@@ -28,9 +28,10 @@ export const inputStyles = html`
     .input-wrapper {
       display: grid;
       grid-gap: var(--t-gap);
-      grid-template-areas: "l l l"
-                           "i i i"
-                           "m m m";
+      grid-template-areas:
+        'l l l'
+        'i i i'
+        'm m m';
     }
     .input {
       grid-area: i;
@@ -68,13 +69,15 @@ export const inputStyles = html`
       opacity: 0.6;
     }
     .input-wrapper.inline {
-      grid-template-areas: "l i i"
-                           ". m m";
+      grid-template-areas:
+        'l i i'
+        '. m m';
       align-items: center;
     }
     .input-wrapper.inline.reversed {
-      grid-template-areas: "i i l"
-                           "m m .";
+      grid-template-areas:
+        'i i l'
+        'm m .';
     }
     .input {
       font-size: var(--t-font-size);
@@ -97,7 +100,9 @@ export const inputStyles = html`
     .input-wrapper.error .input::selection {
       background-color: var(--t-color-error);
     }
-    .input-wrapper.error .label, .input-wrapper.error .check, .input-wrapper.error .messages {
+    .input-wrapper.error .label,
+    .input-wrapper.error .check,
+    .input-wrapper.error .messages {
       color: var(--t-color-error);
     }
     .input-wrapper.error .input {
@@ -107,7 +112,9 @@ export const inputStyles = html`
     .input-wrapper.success .input::selection {
       background-color: var(--t-color-success);
     }
-    .input-wrapper.success .label, .input-wrapper.success .check, .input-wrapper.success .messages {
+    .input-wrapper.success .label,
+    .input-wrapper.success .check,
+    .input-wrapper.success .messages {
       color: var(--t-color-success);
     }
     .input-wrapper.success .input {

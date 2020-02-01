@@ -53,11 +53,11 @@ export class FormInput extends LitElement {
   }
 
   error() {
-    return this.status === 'error'
+    return this.status === 'error';
   }
 
   success() {
-    return this.status === 'success'
+    return this.status === 'success';
   }
 
   labelId() {
@@ -100,10 +100,17 @@ export class FormInput extends LitElement {
   render() {
     return html`
       ${fontStyles} ${inputStyles} ${this.wide ? fullWidthInput : null}
-      <label class=${classMap({ 'input-wrapper': true, inline: this.inline, reversed: this.reversed, disabled: this.disabled, error: this.error(), success: this.success() })}>
-        ${this.renderLabel()}
-        ${this.renderInput()}
-        ${this.renderMessages()}
+      <label
+        class=${classMap({
+          'input-wrapper': true,
+          inline: this.inline,
+          reversed: this.reversed,
+          disabled: this.disabled,
+          error: this.error(),
+          success: this.success(),
+        })}
+      >
+        ${this.renderLabel()} ${this.renderInput()} ${this.renderMessages()}
       </label>
     `;
   }

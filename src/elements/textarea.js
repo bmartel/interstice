@@ -1,5 +1,5 @@
 import { html } from 'lit-element';
-import {FormInput} from './forminput.js';
+import { FormInput } from './forminput.js';
 
 /**
  * @element t-text-area
@@ -46,7 +46,9 @@ export class TextArea extends FormInput {
         .disabled=${this.disabled}
         .readonly=${this.readonly}
         .aria-labelledby=${this.labelId()}
-      >${this.value}</textarea>
+      >
+        ${this.value}
+      </textarea>
     `;
   }
 }
