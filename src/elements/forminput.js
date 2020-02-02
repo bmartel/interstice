@@ -135,6 +135,7 @@ export class FormInput extends LitElement {
         background-color: var(--t-input-bg-color);
         border: var(--t-border-size) solid var(--t-border-color);
         border-radius: var(--t-round);
+        outline-color: var(--t-outline-color);
       }
       .input::placeholder {
         color: var(--t-input-placeholder-color);
