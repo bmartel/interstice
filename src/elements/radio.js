@@ -20,7 +20,6 @@ import { CheckBox } from './checkbox.js';
  * @cssprop --t-border-size
  * @cssprop --t-label-color
  * @cssprop --t-label-size
- * @cssprop --t-message-color
  * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */

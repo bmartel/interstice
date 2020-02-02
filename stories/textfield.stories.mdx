@@ -1,16 +1,16 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { TextArea } from '../index.js';
+import { TextField } from '../index.js';
 
 <Meta 
-  title="TextArea"
+  title="TextField"
   parameters={{
-    component: "t-textarea",
+    component: "t-textfield",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
 
-# TextArea
+# TextField
 
 A form component for displaying a text input in a form with some styling and behaviour improvements.
 
@@ -29,20 +29,20 @@ yarn add tailwind-elements
 ```
 
 ```js
-import { TextArea } from 'tailwind-elements';
+import { TextField } from 'tailwind-elements';
 ```
 
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-textarea id="simple"></t-textarea>
+      <t-textfield id="simple"></t-textfield>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-textarea" />
+<Props of="t-textfield" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { TextArea } from 'tailwind-elements';
 
 <Story name="Wide">
   {html`
-    <t-textarea id="wide" wide></t-textarea>
+    <t-textfield id="wide" wide></t-textfield>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { TextArea } from 'tailwind-elements';
 
 <Story name="Label">
   {html`
-    <t-textarea id="label" label="Description"></t-textarea>
+    <t-textfield id="label" label="Name"></t-textfield>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { TextArea } from 'tailwind-elements';
 
 <Story name="Hint">
   {html`
-    <t-textarea id="hint" label="Description" hint="maximum 144 characters"></t-textarea>
+    <t-textfield id="hint" label="Name" hint="Enter a unique username"></t-textfield>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { TextArea } from 'tailwind-elements';
 
 <Story name="Inline Label">
   {html`
-    <t-textarea id="inline-label" label="Description" inline></t-textarea>
+    <t-textfield id="inline-label" label="Name" hint="Enter a unique username" inline></t-textfield>
   `}
 </Story>
 
@@ -82,7 +82,7 @@ import { TextArea } from 'tailwind-elements';
 
 <Story name="Placeholder">
   {html`
-    <t-textarea id="placeholder" label="Description" hint="maximum 144 characters" placeholder="important text goes here ..."></t-textarea>
+    <t-textfield id="placeholder" label="Name" hint="Enter a unique username" placeholder="Bobby Tables"></t-textfield>
   `}
 </Story>
 
@@ -90,7 +90,7 @@ import { TextArea } from 'tailwind-elements';
 
 <Story name="Messages">
   {html`
-    <t-textarea id="messages" label="Description" .messages=${['This is a message']}></t-textarea>
+    <t-textfield id="messages" label="Name" .messages=${['This is a message']}></t-textfield>
   `}
 </Story>
 
@@ -98,7 +98,7 @@ import { TextArea } from 'tailwind-elements';
 
 <Story name="Error">
   {html`
-    <t-textarea id="error" label="Description" status="error"></t-textarea>
+    <t-textfield id="error" label="Name" status="error"></t-textfield>
   `}
 </Story>
 
@@ -106,7 +106,7 @@ import { TextArea } from 'tailwind-elements';
 
 <Story name="Success">
   {html`
-    <t-textarea id="success" label="Description" status="success"></t-textarea>
+    <t-textfield id="success" label="Name" status="success"></t-textfield>
   `}
 </Story>
 

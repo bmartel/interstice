@@ -5,6 +5,10 @@
       "name": "t-forminput",
       "attributes": [
         {
+          "name": "type",
+          "type": "string"
+        },
+        {
           "name": "id",
           "type": "string",
           "default": "\"\""
@@ -57,9 +61,19 @@
           "name": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
+        },
         {
           "name": "id",
           "attribute": "id",
@@ -124,6 +138,12 @@
           "attribute": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "cssProperties": [
@@ -164,6 +184,9 @@
           "name": "--t-input-bg-color"
         },
         {
+          "name": "--t-input-placeholder-color"
+        },
+        {
           "name": "--t-border-color"
         },
         {
@@ -174,9 +197,6 @@
         },
         {
           "name": "--t-label-size"
-        },
-        {
-          "name": "--t-message-color"
         },
         {
           "name": "--t-message-size"
@@ -193,6 +213,11 @@
           "name": "checked",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "\"checkbox\""
         },
         {
           "name": "id",
@@ -247,6 +272,11 @@
           "name": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
@@ -257,7 +287,11 @@
           "default": "false"
         },
         {
+          "name": "inputUpdate"
+        },
+        {
           "name": "type",
+          "attribute": "type",
           "type": "string",
           "default": "\"checkbox\""
         },
@@ -325,6 +359,12 @@
           "attribute": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "cssProperties": [
@@ -377,13 +417,13 @@
           "name": "--t-label-size"
         },
         {
-          "name": "--t-message-color"
-        },
-        {
           "name": "--t-message-size"
         },
         {
           "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
         }
       ]
     },
@@ -394,6 +434,11 @@
           "name": "checked",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "\"radio\""
         },
         {
           "name": "id",
@@ -448,6 +493,11 @@
           "name": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
@@ -458,7 +508,11 @@
           "default": "false"
         },
         {
+          "name": "inputUpdate"
+        },
+        {
           "name": "type",
+          "attribute": "type",
           "type": "string",
           "default": "\"radio\""
         },
@@ -526,6 +580,12 @@
           "attribute": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "cssProperties": [
@@ -578,13 +638,13 @@
           "name": "--t-label-size"
         },
         {
-          "name": "--t-message-color"
-        },
-        {
           "name": "--t-message-size"
         },
         {
           "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
         }
       ]
     },
@@ -592,14 +652,13 @@
       "name": "t-text-area",
       "attributes": [
         {
-          "name": "readonly",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
           "name": "rows",
           "type": "number",
           "default": "4"
+        },
+        {
+          "name": "type",
+          "type": "string"
         },
         {
           "name": "id",
@@ -654,20 +713,24 @@
           "name": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
-        {
-          "name": "readonly",
-          "attribute": "readonly",
-          "type": "boolean",
-          "default": "false"
-        },
         {
           "name": "rows",
           "attribute": "rows",
           "type": "number",
           "default": "4"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
         },
         {
           "name": "id",
@@ -733,6 +796,12 @@
           "attribute": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "cssProperties": [
@@ -785,13 +854,13 @@
           "name": "--t-label-size"
         },
         {
-          "name": "--t-message-color"
-        },
-        {
           "name": "--t-message-size"
         },
         {
           "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
         }
       ]
     },
@@ -799,14 +868,13 @@
       "name": "t-textarea",
       "attributes": [
         {
-          "name": "readonly",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
           "name": "rows",
           "type": "number",
           "default": "4"
+        },
+        {
+          "name": "type",
+          "type": "string"
         },
         {
           "name": "id",
@@ -861,20 +929,24 @@
           "name": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
-        {
-          "name": "readonly",
-          "attribute": "readonly",
-          "type": "boolean",
-          "default": "false"
-        },
         {
           "name": "rows",
           "attribute": "rows",
           "type": "number",
           "default": "4"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
         },
         {
           "name": "id",
@@ -940,6 +1012,12 @@
           "attribute": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "cssProperties": [
@@ -992,13 +1070,13 @@
           "name": "--t-label-size"
         },
         {
-          "name": "--t-message-color"
-        },
-        {
           "name": "--t-message-size"
         },
         {
           "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
         }
       ]
     },
@@ -1011,11 +1089,6 @@
           "default": "\"text\""
         },
         {
-          "name": "readonly",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
           "name": "id",
           "type": "string",
           "default": "\"\""
@@ -1068,6 +1141,11 @@
           "name": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
@@ -1076,12 +1154,6 @@
           "attribute": "type",
           "type": "string",
           "default": "\"text\""
-        },
-        {
-          "name": "readonly",
-          "attribute": "readonly",
-          "type": "boolean",
-          "default": "false"
         },
         {
           "name": "id",
@@ -1147,6 +1219,12 @@
           "attribute": "disabled",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "cssProperties": [
@@ -1196,9 +1274,6 @@
           "name": "--t-label-size"
         },
         {
-          "name": "--t-message-color"
-        },
-        {
           "name": "--t-message-size"
         },
         {
@@ -1206,6 +1281,9 @@
         },
         {
           "name": "--t-leading"
+        },
+        {
+          "name": "--t-input-placeholder-color"
         }
       ]
     }

@@ -51,7 +51,7 @@ const config = {
     'label-size': 'text-base',
     'input-color': 'color-gray-900',
     'input-bg-color': 'color-white',
-    'message-color': 'color-gray-700',
+    'input-placeholder-color': 'color-gray-600',
     'message-size': 'text-sm',
     transition: 'transition-all',
   },

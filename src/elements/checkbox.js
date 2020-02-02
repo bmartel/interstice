@@ -22,7 +22,6 @@ import {checkboxStyles} from '../styles.js';
  * @cssprop --t-border-size
  * @cssprop --t-label-color
  * @cssprop --t-label-size
- * @cssprop --t-message-color
  * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */
@@ -38,6 +37,7 @@ export class CheckBox extends FormInput {
     this.inline = true;
     this.checked = false;
     this.type = 'checkbox'
+    this.inputUpdate = this.inputUpdate.bind(this);
   }
 
   inputStyles() {
@@ -69,17 +69,7 @@ export class CheckBox extends FormInput {
   renderInput() {
     return html`
       ${checkboxStyles}
-      <input
-        class="hidden"
-        .type=${this.type}
-        .id=${this.id}
-        .value=${this.value}
-        .name=${this.id}
-        .aria-labelledby=${this.labelId()}
-        ?checked=${this.checked}
-        ?disabled=${this.disabled}
-        @click=${this.inputUpdate}
-      />
+      ${super.renderInput({ 'class': "hidden", '?checked': this.checked, '@click': this.inputUpdate })}
       <div class=${classMap({input: true, check: true, [this.type]: true })} style="padding: 0;">
         ${this.renderCheck()}
       </div>

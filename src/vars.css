@@ -345,7 +345,7 @@ body {
   --t-label-size: var(--t-text-base);
   --t-input-color: var(--t-color-gray-900);
   --t-input-bg-color: var(--t-color-white);
-  --t-message-color: var(--t-color-gray-700);
+  --t-input-placeholder-color: var(--t-color-gray-600);
   --t-message-size: var(--t-text-sm);
   --t-transition: var(--t-transition-all);
 }

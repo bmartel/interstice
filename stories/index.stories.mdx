@@ -1,18 +1,18 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { TextField } from '../index.js';
+import { FormInput } from '../index.js';
 
 <Meta 
-  title="TextField"
+  title="FormInput"
   parameters={{
-    component: "t-textfield",
+    component: "t-forminput",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
 
-# TextField
+# FormInput
 
-A form component for displaying a text input in a form with some styling and behaviour improvements.
+A form component for displaying a basic input in a form with some styling and behaviour improvements.
 
 ## Features:
 
@@ -29,20 +29,20 @@ yarn add tailwind-elements
 ```
 
 ```js
-import { TextField } from 'tailwind-elements';
+import { FormInput } from 'tailwind-elements';
 ```
 
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-textfield id="simple"></t-textfield>
+      <t-forminput id="simple"></t-forminput>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-textfield" />
+<Props of="t-forminput" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Wide">
   {html`
-    <t-textfield id="wide" wide></t-textfield>
+    <t-forminput id="wide" wide></t-forminput>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Label">
   {html`
-    <t-textfield id="label" label="Name"></t-textfield>
+    <t-forminput id="label" label="Name"></t-forminput>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Hint">
   {html`
-    <t-textfield id="label" label="Name" hint="Enter a unique username"></t-textfield>
+    <t-forminput id="label" label="Name" hint="Enter a unique username"></t-forminput>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Inline Label">
   {html`
-    <t-textfield id="inline-label" label="Name" hint="Enter a unique username" inline></t-textfield>
+    <t-forminput id="inline-label" label="Name" hint="Enter a unique username" inline></t-forminput>
   `}
 </Story>
 
@@ -82,7 +82,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Messages">
   {html`
-    <t-textfield id="messages" label="Name" .messages=${['This is a message']}></t-textfield>
+    <t-forminput id="messages" label="Name" .messages=${['This is a message']}></t-forminput>
   `}
 </Story>
 
@@ -90,7 +90,7 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Error">
   {html`
-    <t-textfield id="error" label="Name" status="error"></t-textfield>
+    <t-forminput id="error" label="Name" status="error"></t-forminput>
   `}
 </Story>
 
@@ -98,6 +98,6 @@ import { TextField } from 'tailwind-elements';
 
 <Story name="Success">
   {html`
-    <t-textfield id="success" label="Name" status="success"></t-textfield>
+    <t-forminput id="success" label="Name" status="success"></t-forminput>
   `}
 </Story>

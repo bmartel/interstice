@@ -1,4 +1,3 @@
-import { html } from 'lit-element';
 import { FormInput } from './forminput.js';
 
 /**
@@ -19,39 +18,13 @@ import { FormInput } from './forminput.js';
  * @cssprop --t-border-size
  * @cssprop --t-label-color
  * @cssprop --t-label-size
- * @cssprop --t-message-color
  * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */
 export class TextField extends FormInput {
-  static get properties() {
-    return {
-      type: { type: String },
-      readonly: { type: Boolean },
-    };
-  }
-
   constructor() {
     super();
     this.type = 'text';
-    this.readonly = false;
-  }
-
-  renderInput() {
-    return html`
-      <input
-        class="input"
-        .id=${this.id}
-        .value=${this.value}
-        .type=${this.type}
-        .name=${this.id}
-        .placeholder=${this.placeholder}
-        .aria-labelledby=${this.labelId()}
-        .aria-describedby=${this.hintId()}
-        ?disabled=${this.disabled}
-        ?readonly=${this.readonly}
-      />
-    `;
   }
 }
 

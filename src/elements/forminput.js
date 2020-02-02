@@ -1,5 +1,6 @@
 import { html, LitElement } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+import { spread } from '@open-wc/lit-helpers';
 import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
 
 /**
@@ -17,11 +18,11 @@ import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
  * @cssprop --t-color-error
  * @cssprop --t-input-color
  * @cssprop --t-input-bg-color
+ * @cssprop --t-input-placeholder-color
  * @cssprop --t-border-color
  * @cssprop --t-border-size
  * @cssprop --t-label-color
  * @cssprop --t-label-size
- * @cssprop --t-message-color
  * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */
@@ -29,6 +30,7 @@ export class FormInput extends LitElement {
   static get properties() {
     return {
       id: { type: String },
+      type: { type: String },
       value: { type: String },
       label: { type: String },
       hint: { type: String },
@@ -38,6 +40,7 @@ export class FormInput extends LitElement {
       inline: { type: Boolean },
       reversed: { type: Boolean },
       disabled: { type: Boolean },
+      readonly: { type: Boolean },
       status: { type: String },
     };
   }
@@ -55,6 +58,7 @@ export class FormInput extends LitElement {
     this.inline = false;
     this.reversed = false;
     this.disabled = false;
+    this.readonly = false;
   }
 
   error() {
@@ -91,17 +95,19 @@ export class FormInput extends LitElement {
     return null;
   }
 
-  renderInput() {
+  renderInput(props = { class: 'input' }) {
     return html`
       <input
-        class="input"
         .id=${this.id}
         .value=${this.value}
+        .type=${this.type}
         .name=${this.id}
-        .disabled=${this.disabled}
         .placeholder=${this.placeholder}
         .aria-labelledby=${this.labelId()}
         .aria-describedby=${this.hintId()}
+        ?disabled=${this.disabled}
+        ?readonly=${this.readonly}
+        ...=${spread(props)}
       />
     `;
   }
@@ -130,7 +136,7 @@ export class FormInput extends LitElement {
           success: this.success(),
         })}
       >
-        ${this.renderLabel()} ${this.renderHint()} ${this.renderInput()} ${this.renderMessages()}
+         ${this.renderHint()} ${this.renderLabel()} ${this.renderInput()} ${this.renderMessages()}
       </label>
     `;
   }

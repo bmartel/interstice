@@ -40,7 +40,7 @@ export const inputStyles = html`
     .hint {
       grid-area: h;
       font-size: var(--t-message-size);
-      color: var(--t-message-color);
+      color: var(--t-input-placeholder-color);
       flex: 1;
     }
     .label {
@@ -51,7 +51,6 @@ export const inputStyles = html`
     }
     .messages {
       font-size: var(--t-message-size);
-      color: var(--t-message-color);
       margin: 0;
       padding: 0;
       list-style: none;
@@ -72,19 +71,34 @@ export const inputStyles = html`
       box-sizing: border-box;
       transition: var(--t-transition);
     }
-    .input-wrapper.disabled {
+    .disabled {
       opacity: 0.6;
     }
-    .input-wrapper.inline {
+    .inline {
       grid-template-areas:
         'l i i'
-        'h m m';
+        'h i i'
+        '. m m';
+
+      grid-column-gap: calc(var(--t-gap) * 2.5);
+      grid-row-gap: var(--t-gap);
       align-items: center;
     }
-    .input-wrapper.inline.reversed {
+    .inline .label {
+      grid-row: span 2;
+    }
+    .inline .hint {
+      align-self: start;
+    }
+    .inline .hint + .label {
+      grid-row: span 1;
+      align-self: end;
+    }
+    .inline.reversed {
       grid-template-areas:
         'i i l'
-        'm m h';
+        'i i h'
+        'm m .';
     }
     .input {
       font-size: var(--t-font-size);
@@ -94,6 +108,9 @@ export const inputStyles = html`
       background-color: var(--t-input-bg-color);
       border: var(--t-border-size) solid var(--t-border-color);
       border-radius: var(--t-round);
+    }
+    .input::placeholder {
+      color: var(--t-input-placeholder-color);
     }
     .input:focus {
       outline: 0;
@@ -115,26 +132,26 @@ export const inputStyles = html`
       color: var(--t-color-white);
       background-color: var(--t-color-accent);
     }
-    .input-wrapper.error .input::selection {
+    .error .input::selection {
       background-color: var(--t-color-error);
     }
-    .input-wrapper.error .label,
-    .input-wrapper.error .check,
-    .input-wrapper.error .messages {
+    .error .label,
+    .error .check,
+    .error .messages {
       color: var(--t-color-error);
     }
-    .input-wrapper.error .input {
+    .error .input {
       border-color: var(--t-color-error);
     }
-    .input-wrapper.success .input::selection {
+    .success .input::selection {
       background-color: var(--t-color-success);
     }
-    .input-wrapper.success .label,
-    .input-wrapper.success .check,
-    .input-wrapper.success .messages {
+    .success .label,
+    .success .check,
+    .success .messages {
       color: var(--t-color-success);
     }
-    .input-wrapper.success .input {
+    .success .input {
       border-color: var(--t-color-success);
     }
     @media (min-width: 640px) {

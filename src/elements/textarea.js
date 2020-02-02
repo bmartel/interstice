@@ -20,14 +20,12 @@ import { FormInput } from './forminput.js';
  * @cssprop --t-border-size
  * @cssprop --t-label-color
  * @cssprop --t-label-size
- * @cssprop --t-message-color
  * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */
 export class TextArea extends FormInput {
   static get properties() {
     return {
-      readonly: { type: Boolean },
       rows: { type: Number },
     };
   }
@@ -35,14 +33,13 @@ export class TextArea extends FormInput {
   static get styles() {
     return css`
       textarea {
-        min-height: calc(var(--t-font-size) * 4);
+        min-height: calc(var(--t-font-size) * 7.7);
       }
     `;
   }
 
   constructor() {
     super();
-    this.readonly = false;
     this.rows = 4;
   }
 
