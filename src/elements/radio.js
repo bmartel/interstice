@@ -8,6 +8,7 @@ import { CheckBox } from './checkbox.js';
  * @cssprop --t-font-family
  * @cssprop --t-leading
  * @cssprop --t-padding
+ * @cssprop --t-round
  * @cssprop --t-gap
  * @cssprop --t-transition
  * @cssprop --t-color

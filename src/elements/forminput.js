@@ -1,7 +1,7 @@
-import { html, LitElement } from 'lit-element';
+import { html, LitElement, css } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { spread } from '@open-wc/lit-helpers';
-import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
+import { fontStyles, fullWidthInput } from '../styles.js';
 
 /**
  * @element t-forminput
@@ -11,6 +11,7 @@ import { fontStyles, inputStyles, fullWidthInput } from '../styles.js';
  * @cssprop --t-leading
  * @cssprop --t-padding
  * @cssprop --t-gap
+ * @cssprop --t-round
  * @cssprop --t-transition
  * @cssprop --t-color
  * @cssprop --t-color-primary
@@ -43,6 +44,151 @@ export class FormInput extends LitElement {
       readonly: { type: Boolean },
       status: { type: String },
     };
+  }
+
+  static get styles() {
+    return css`
+      :host {
+        display: inline-flex;
+      }
+      .input-wrapper {
+        display: grid;
+        grid-gap: var(--t-gap);
+        grid-template-areas:
+          'l l l'
+          'h h h'
+          'i i i'
+          'm m m';
+      }
+      .hint {
+        grid-area: h;
+        font-size: var(--t-message-size);
+        color: var(--t-input-placeholder-color);
+        flex: 1;
+      }
+      .label {
+        grid-area: l;
+        font-size: var(--t-label-size);
+        color: var(--t-label-color);
+        font-weight: var(--t-label-font-weight, 600);
+      }
+      .messages {
+        font-size: var(--t-message-size);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        grid-area: m;
+        display: grid;
+      }
+      :host,
+      .input-wrapper,
+      .input:not(.check) {
+        width: var(--t-w-full);
+      }
+      :host,
+      .input-wrapper,
+      .label,
+      .messages,
+      .check,
+      .input {
+        box-sizing: border-box;
+        transition: var(--t-transition);
+      }
+      .disabled {
+        opacity: 0.6;
+      }
+      .inline {
+        grid-template-areas:
+          'l i i'
+          'h i i'
+          '. m m';
+
+        grid-column-gap: calc(var(--t-gap) * 2.5);
+        grid-row-gap: var(--t-gap);
+        align-items: center;
+      }
+      .inline .label {
+        grid-row: span 2;
+      }
+      .inline .hint {
+        align-self: start;
+      }
+      .inline .hint + .label {
+        grid-row: span 1;
+        align-self: end;
+      }
+      .inline.reversed {
+        grid-template-areas:
+          'i i l'
+          'i i h'
+          'm m .';
+      }
+      .input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        grid-area: i;
+        font-size: var(--t-font-size);
+        font-family: var(--t-font-family);
+        padding: var(--t-padding);
+        color: var(--t-input-color);
+        background-color: var(--t-input-bg-color);
+        border: var(--t-border-size) solid var(--t-border-color);
+        border-radius: var(--t-round);
+      }
+      .input::placeholder {
+        color: var(--t-input-placeholder-color);
+      }
+      .input:focus {
+        outline: 0;
+        border-color: var(--t-color-primary);
+      }
+      .input:hover {
+        border-color: var(--t-color-primary);
+        box-shadow: var(--t-color-primary) 0 0 var(--t-outline-size);
+      }
+      .input-wrapper.error .input:hover {
+        border-color: var(--t-color-error);
+        box-shadow: var(--t-color-error) 0 0 var(--t-outline-size);
+      }
+      .input-wrapper.success .input:hover {
+        border-color: var(--t-color-success);
+        box-shadow: var(--t-color-success) 0 0 var(--t-outline-size);
+      }
+      .input::selection {
+        color: var(--t-color-white);
+        background-color: var(--t-color-accent);
+      }
+      .error .input::selection {
+        background-color: var(--t-color-error);
+      }
+      .error .label,
+      .error .check,
+      .error .messages {
+        color: var(--t-color-error);
+      }
+      .error .input {
+        border-color: var(--t-color-error);
+      }
+      .success .input::selection {
+        background-color: var(--t-color-success);
+      }
+      .success .label,
+      .success .check,
+      .success .messages {
+        color: var(--t-color-success);
+      }
+      .success .input {
+        border-color: var(--t-color-success);
+      }
+      @media (min-width: 640px) {
+        :host,
+        .input-wrapper,
+        .input:not(.check) {
+          width: initial;
+        }
+      }
+    `;
   }
 
   constructor() {
@@ -125,7 +271,7 @@ export class FormInput extends LitElement {
 
   render() {
     return html`
-      ${fontStyles} ${inputStyles} ${this.wide ? fullWidthInput : null}
+      ${fontStyles} ${this.wide ? fullWidthInput : null}
       <label
         class=${classMap({
           'input-wrapper': true,
@@ -136,7 +282,7 @@ export class FormInput extends LitElement {
           success: this.success(),
         })}
       >
-         ${this.renderHint()} ${this.renderLabel()} ${this.renderInput()} ${this.renderMessages()}
+        ${this.renderHint()} ${this.renderLabel()} ${this.renderInput()} ${this.renderMessages()}
       </label>
     `;
   }

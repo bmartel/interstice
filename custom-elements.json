@@ -163,6 +163,9 @@
           "name": "--t-gap"
         },
         {
+          "name": "--t-round"
+        },
+        {
           "name": "--t-transition"
         },
         {
@@ -379,6 +382,9 @@
         },
         {
           "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
         },
         {
           "name": "--t-gap"
@@ -602,6 +608,9 @@
           "name": "--t-padding"
         },
         {
+          "name": "--t-round"
+        },
+        {
           "name": "--t-gap"
         },
         {
@@ -649,16 +658,24 @@
       ]
     },
     {
-      "name": "t-text-area",
+      "name": "t-range",
       "attributes": [
         {
-          "name": "rows",
-          "type": "number",
-          "default": "4"
+          "name": "min",
+          "default": "0"
+        },
+        {
+          "name": "max",
+          "default": "100"
+        },
+        {
+          "name": "step",
+          "default": "1"
         },
         {
           "name": "type",
-          "type": "string"
+          "type": "string",
+          "default": "\"range\""
         },
         {
           "name": "id",
@@ -722,15 +739,28 @@
       ],
       "properties": [
         {
-          "name": "rows",
-          "attribute": "rows",
-          "type": "number",
-          "default": "4"
+          "name": "min",
+          "attribute": "min",
+          "default": "0"
+        },
+        {
+          "name": "max",
+          "attribute": "max",
+          "default": "100"
+        },
+        {
+          "name": "step",
+          "attribute": "step",
+          "default": "1"
+        },
+        {
+          "name": "inputUpdate"
         },
         {
           "name": "type",
           "attribute": "type",
-          "type": "string"
+          "type": "string",
+          "default": "\"range\""
         },
         {
           "name": "id",
@@ -816,6 +846,9 @@
         },
         {
           "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
         },
         {
           "name": "--t-gap"
@@ -1034,6 +1067,9 @@
           "name": "--t-padding"
         },
         {
+          "name": "--t-round"
+        },
+        {
           "name": "--t-gap"
         },
         {
@@ -1236,6 +1272,9 @@
         },
         {
           "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
         },
         {
           "name": "--t-gap"

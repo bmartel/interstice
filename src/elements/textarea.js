@@ -2,12 +2,13 @@ import { html, css } from 'lit-element';
 import { FormInput } from './forminput.js';
 
 /**
- * @element t-text-area
+ * @element t-textarea
  *
  * @cssprop --t-font-size
  * @cssprop --t-font-family
  * @cssprop --t-leading
  * @cssprop --t-padding
+ * @cssprop --t-round
  * @cssprop --t-gap
  * @cssprop --t-transition
  * @cssprop --t-color
@@ -32,6 +33,7 @@ export class TextArea extends FormInput {
 
   static get styles() {
     return css`
+      ${FormInput.styles}
       textarea {
         min-height: calc(var(--t-font-size) * 7.7);
       }

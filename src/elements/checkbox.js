@@ -1,7 +1,6 @@
-import { html } from 'lit-element';
-import {classMap} from 'lit-html/directives/class-map';
-import {FormInput} from './forminput.js';
-import {checkboxStyles} from '../styles.js';
+import { html, css } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
+import { FormInput } from './forminput.js';
 
 /**
  * @element t-checkbox
@@ -10,6 +9,7 @@ import {checkboxStyles} from '../styles.js';
  * @cssprop --t-font-family
  * @cssprop --t-leading
  * @cssprop --t-padding
+ * @cssprop --t-round
  * @cssprop --t-gap
  * @cssprop --t-transition
  * @cssprop --t-color
@@ -32,11 +32,58 @@ export class CheckBox extends FormInput {
     };
   }
 
+  static get styles() {
+    return css`
+      ${FormInput.styles}
+      .input {
+        color: var(--t-color-primary);
+      }
+      .check:not(.input):not(.radio) {
+        color: var(--t-color-white);
+      }
+      input:checked + .check {
+        background-color: var(--t-color-primary);
+        border-color: var(--t-color-primary);
+      }
+      .error input:checked + .check {
+        background-color: var(--t-color-error);
+        border-color: var(--t-color-error);
+      }
+      .success input:checked + .check {
+        background-color: var(--t-color-success);
+        border-color: var(--t-color-success);
+      }
+      input:checked + .radio,
+      .error input:checked + .radio,
+      .success input:checked + .radio {
+        background-color: var(--t-input-bg-color);
+      }
+      .input.check {
+        cursor: pointer;
+        stroke: currentColor;
+        stroke-width: 4px;
+        width: 26px;
+        height: 26px;
+      }
+      .radio {
+        fill: currentColor;
+        border-radius: var(--t-round-full);
+      }
+      .hidden {
+        opacity: 0;
+        -moz-appearance: none;
+        width: 0;
+        height: 0;
+        cursor: pointer;
+      }
+    `;
+  }
+
   constructor() {
     super();
     this.inline = true;
     this.checked = false;
-    this.type = 'checkbox'
+    this.type = 'checkbox';
     this.inputUpdate = this.inputUpdate.bind(this);
   }
 
@@ -44,7 +91,7 @@ export class CheckBox extends FormInput {
     const styles = {
       display: 'flex',
       cursor: 'pointer',
-    }
+    };
     if (this.checked) {
       styles.padding = '0';
     }
@@ -68,9 +115,12 @@ export class CheckBox extends FormInput {
 
   renderInput() {
     return html`
-      ${checkboxStyles}
-      ${super.renderInput({ 'class': "hidden", '?checked': this.checked, '@click': this.inputUpdate })}
-      <div class=${classMap({input: true, check: true, [this.type]: true })} style="padding: 0;">
+      ${super.renderInput({
+        class: 'hidden',
+        '?checked': this.checked,
+        '@click': this.inputUpdate,
+      })}
+      <div class=${classMap({ input: true, check: true, [this.type]: true })} style="padding: 0;">
         ${this.renderCheck()}
       </div>
     `;

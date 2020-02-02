@@ -6,6 +6,7 @@ import { FormInput } from './forminput.js';
  * @cssprop --t-font-size
  * @cssprop --t-font-family
  * @cssprop --t-padding
+ * @cssprop --t-round
  * @cssprop --t-gap
  * @cssprop --t-transition
  * @cssprop --t-color

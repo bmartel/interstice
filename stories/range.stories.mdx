@@ -1,0 +1,106 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import { Range } from '../index.js';
+
+<Meta 
+  title="Range"
+  parameters={{
+    component: "t-range",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# Range
+
+A form component for displaying a range input in a form with some styling and behaviour improvements.
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add tailwind-elements
+```
+
+```js
+import { Range } from 'tailwind-elements';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <t-range id="simple"></t-range>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="t-range" />
+
+## Variations
+
+###### Wide
+
+<Story name="Wide">
+  {html`
+    <t-range id="wide" wide></t-range>
+  `}
+</Story>
+
+###### Label
+
+<Story name="Label">
+  {html`
+    <t-range id="label" label="Temperature"></t-range>
+  `}
+</Story>
+
+###### Hint 
+
+<Story name="Hint">
+  {html`
+    <t-range id="hint" label="Temperature" hint="What is the weather like?"></t-range>
+  `}
+</Story>
+
+###### Inline Label
+
+<Story name="Inline Label">
+  {html`
+    <t-range id="inline-label" label="Temperature" inline></t-range>
+  `}
+</Story>
+
+
+###### Messages
+
+<Story name="Messages">
+  {html`
+    <t-range id="messages" label="Temperature" .messages=${['This is a message']}></t-range>
+  `}
+</Story>
+
+###### Error
+
+<Story name="Error">
+  {html`
+    <t-range id="error" label="Temperature" status="error" .checked=${true}></t-range>
+  `}
+</Story>
+
+###### Success 
+
+<Story name="Success">
+  {html`
+    <t-range id="success" label="Temperature" status="success" .checked=${true}></t-range>
+  `}
+</Story>
+
+
