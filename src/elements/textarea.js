@@ -52,9 +52,11 @@ export class TextArea extends FormInput {
         class="input"
         .id=${this.id}
         .value=${this.value}
+        .placeholder=${this.placeholder}
         .name=${this.id}
         .rows=${this.rows}
         .aria-labelledby=${this.labelId()}
+        .aria-describedby=${this.hintId()}
         ?disabled=${this.disabled}
         ?readonly=${this.readonly}
       >

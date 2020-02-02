@@ -19,6 +19,16 @@
           "default": "\"\""
         },
         {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "messages",
           "type": "array",
           "default": "[]"
@@ -64,6 +74,18 @@
         {
           "name": "label",
           "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
           "type": "string",
           "default": "\"\""
         },
@@ -187,6 +209,16 @@
           "default": "\"\""
         },
         {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "messages",
           "type": "array",
           "default": "[]"
@@ -243,6 +275,18 @@
         {
           "name": "label",
           "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
           "type": "string",
           "default": "\"\""
         },
@@ -366,6 +410,16 @@
           "default": "\"\""
         },
         {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "messages",
           "type": "array",
           "default": "[]"
@@ -422,6 +476,18 @@
         {
           "name": "label",
           "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
           "type": "string",
           "default": "\"\""
         },
@@ -550,6 +616,16 @@
           "default": "\"\""
         },
         {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "messages",
           "type": "array",
           "default": "[]"
@@ -607,6 +683,18 @@
         {
           "name": "label",
           "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
           "type": "string",
           "default": "\"\""
         },
@@ -735,6 +823,16 @@
           "default": "\"\""
         },
         {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "messages",
           "type": "array",
           "default": "[]"
@@ -792,6 +890,18 @@
         {
           "name": "label",
           "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
           "type": "string",
           "default": "\"\""
         },
@@ -920,6 +1030,16 @@
           "default": "\"\""
         },
         {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "messages",
           "type": "array",
           "default": "[]"
@@ -977,6 +1097,18 @@
         {
           "name": "label",
           "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
           "type": "string",
           "default": "\"\""
         },

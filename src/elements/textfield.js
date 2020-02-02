@@ -45,9 +45,11 @@ export class TextField extends FormInput {
         .value=${this.value}
         .type=${this.type}
         .name=${this.id}
+        .placeholder=${this.placeholder}
+        .aria-labelledby=${this.labelId()}
+        .aria-describedby=${this.hintId()}
         ?disabled=${this.disabled}
         ?readonly=${this.readonly}
-        .aria-labelledby=${this.labelId()}
       />
     `;
   }

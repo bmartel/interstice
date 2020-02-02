@@ -30,11 +30,18 @@ export const inputStyles = html`
       grid-gap: var(--t-gap);
       grid-template-areas:
         'l l l'
+        'h h h'
         'i i i'
         'm m m';
     }
     .input {
       grid-area: i;
+    }
+    .hint {
+      grid-area: h;
+      font-size: var(--t-message-size);
+      color: var(--t-message-color);
+      flex: 1;
     }
     .label {
       grid-area: l;
@@ -71,13 +78,13 @@ export const inputStyles = html`
     .input-wrapper.inline {
       grid-template-areas:
         'l i i'
-        '. m m';
+        'h m m';
       align-items: center;
     }
     .input-wrapper.inline.reversed {
       grid-template-areas:
         'i i l'
-        'm m .';
+        'm m h';
     }
     .input {
       font-size: var(--t-font-size);

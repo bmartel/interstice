@@ -62,14 +62,21 @@ import { TextField } from 'tailwind-elements';
   `}
 </Story>
 
+###### Hint 
+
+<Story name="Hint">
+  {html`
+    <t-textfield id="label" label="Name" hint="Enter a unique username"></t-textfield>
+  `}
+</Story>
+
 ###### Inline Label
 
 <Story name="Inline Label">
   {html`
-    <t-textfield id="inline-label" label="Name" inline></t-textfield>
+    <t-textfield id="inline-label" label="Name" hint="Enter a unique username" inline></t-textfield>
   `}
 </Story>
-
 
 ###### Messages
 

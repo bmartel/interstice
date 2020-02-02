@@ -31,6 +31,8 @@ export class FormInput extends LitElement {
       id: { type: String },
       value: { type: String },
       label: { type: String },
+      hint: { type: String },
+      placeholder: { type: String },
       messages: { type: Array },
       wide: { type: Boolean },
       inline: { type: Boolean },
@@ -45,6 +47,8 @@ export class FormInput extends LitElement {
     this.id = '';
     this.value = null;
     this.label = '';
+    this.hint = '';
+    this.placeholder = '';
     this.messages = [];
     this.wide = false;
     this.status = '';
@@ -62,13 +66,26 @@ export class FormInput extends LitElement {
   }
 
   labelId() {
-    return `lbl-${this.id}`;
+    return `label-${this.id}`;
+  }
+
+  hintId() {
+    return `hint-${this.id}`;
   }
 
   renderLabel() {
     if (this.label) {
       return html`
         <span class="label" .id=${this.labelId()}>${this.label}</span>
+      `;
+    }
+    return null;
+  }
+
+  renderHint() {
+    if (this.hint) {
+      return html`
+        <span class="hint" .id=${this.hintId()}>${this.hint}</span>
       `;
     }
     return null;
@@ -82,7 +99,9 @@ export class FormInput extends LitElement {
         .value=${this.value}
         .name=${this.id}
         .disabled=${this.disabled}
+        .placeholder=${this.placeholder}
         .aria-labelledby=${this.labelId()}
+        .aria-describedby=${this.hintId()}
       />
     `;
   }
@@ -111,7 +130,7 @@ export class FormInput extends LitElement {
           success: this.success(),
         })}
       >
-        ${this.renderLabel()} ${this.renderInput()} ${this.renderMessages()}
+        ${this.renderLabel()} ${this.renderHint()} ${this.renderInput()} ${this.renderMessages()}
       </label>
     `;
   }
