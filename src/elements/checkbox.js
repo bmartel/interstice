@@ -71,6 +71,7 @@ export class CheckBox extends FormInput {
       }
       .hidden {
         opacity: 0;
+        -webkit-appearance: none;
         -moz-appearance: none;
         width: 0;
         height: 0;

@@ -31,6 +31,7 @@ export class FormInput extends LitElement {
   static get properties() {
     return {
       id: { type: String },
+      name: { type: String },
       type: { type: String },
       value: { type: String },
       label: { type: String },
@@ -195,6 +196,7 @@ export class FormInput extends LitElement {
   constructor() {
     super();
     this.id = '';
+    this.name = '';
     this.value = null;
     this.label = '';
     this.hint = '';
@@ -224,6 +226,10 @@ export class FormInput extends LitElement {
     return `hint-${this.id}`;
   }
 
+  inputName() {
+    return this.name || this.id;
+  }
+
   renderLabel() {
     if (this.label) {
       return html`
@@ -248,7 +254,7 @@ export class FormInput extends LitElement {
         .id=${this.id}
         .value=${this.value}
         .type=${this.type}
-        .name=${this.id}
+        .name=${this.inputName()}
         .placeholder=${this.placeholder}
         .aria-labelledby=${this.labelId()}
         .aria-describedby=${this.hintId()}

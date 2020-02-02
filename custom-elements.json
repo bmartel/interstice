@@ -14,6 +14,11 @@
           "default": "\"\""
         },
         {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "value",
           "type": "string"
         },
@@ -77,6 +82,12 @@
         {
           "name": "id",
           "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
           "type": "string",
           "default": "\"\""
         },
@@ -228,6 +239,11 @@
           "default": "\"\""
         },
         {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "value",
           "type": "string"
         },
@@ -301,6 +317,12 @@
         {
           "name": "id",
           "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
           "type": "string",
           "default": "\"\""
         },
@@ -452,6 +474,11 @@
           "default": "\"\""
         },
         {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "value",
           "type": "string"
         },
@@ -525,6 +552,12 @@
         {
           "name": "id",
           "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
           "type": "string",
           "default": "\"\""
         },
@@ -658,6 +691,239 @@
       ]
     },
     {
+      "name": "t-radiogroup",
+      "attributes": [
+        {
+          "name": "options",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "options",
+          "attribute": "options",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "inputUpdate"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        }
+      ]
+    },
+    {
       "name": "t-range",
       "attributes": [
         {
@@ -679,6 +945,11 @@
         },
         {
           "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
           "type": "string",
           "default": "\"\""
         },
@@ -765,6 +1036,12 @@
         {
           "name": "id",
           "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
           "type": "string",
           "default": "\"\""
         },
@@ -915,6 +1192,11 @@
           "default": "\"\""
         },
         {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "value",
           "type": "string"
         },
@@ -984,6 +1266,12 @@
         {
           "name": "id",
           "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
           "type": "string",
           "default": "\"\""
         },
@@ -1130,6 +1418,11 @@
           "default": "\"\""
         },
         {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "value",
           "type": "string"
         },
@@ -1194,6 +1487,12 @@
         {
           "name": "id",
           "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
           "type": "string",
           "default": "\"\""
         },
