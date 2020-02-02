@@ -169,13 +169,24 @@ export const checkboxStyles = html`
     .input {
       color: var(--t-color-primary);
     }
-    .input-wrapper:not(.error):not(.success) .check:not(.input):not(.radio) {
+    .check:not(.input):not(.radio) {
       color: var(--t-color-white);
     }
-    .input-wrapper:not(.error):not(.success) input:checked + .check {
+    input:checked + .check {
       background-color: var(--t-color-primary);
+      border-color: var(--t-color-primary);
     }
-    .input-wrapper:not(.error):not(.success) input:checked + .radio {
+    .error input:checked + .check {
+      background-color: var(--t-color-error);
+      border-color: var(--t-color-error);
+    }
+    .success input:checked + .check {
+      background-color: var(--t-color-success);
+      border-color: var(--t-color-success);
+    }
+    input:checked + .radio,
+    .error input:checked + .radio,
+    .success input:checked + .radio {
       background-color: var(--t-input-bg-color);
     }
     .input.check {
@@ -188,9 +199,6 @@ export const checkboxStyles = html`
     .radio {
       fill: currentColor;
       border-radius: var(--t-round-full);
-    }
-    input:checked + .check {
-      border-color: var(--t-color-primary);
     }
     .hidden {
       opacity: 0;
