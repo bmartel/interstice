@@ -1,10 +1,10 @@
 import { html } from 'lit-element';
 import { spread } from '@open-wc/lit-helpers';
-import './radio.js';
+import './checkbox.js';
 import {FormSelect} from './formselect.js';
 
 /**
- * @element t-radiogroup
+ * @element t-checkboxgroup
  *
  * @cssprop --t-font-size
  * @cssprop --t-font-family
@@ -26,29 +26,10 @@ import {FormSelect} from './formselect.js';
  * @cssprop --t-message-size
  * @cssprop --t-outline-size
  */
-export class RadioGroup extends FormSelect {
-  static get properties() {
-    return {
-      value: { type: String },
-    }
-  }
-
-  constructor() {
-    super();
-    this.value = '';
-  }
-
-  inputUpdate(e) {
-    this.value = e.target.value;
-  }
-
-  inputSelected(value) {
-    return this.value === this.convertValue(value);
-  }
-
+export class CheckBoxGroup extends FormSelect {
   renderOption(option, index) {
     return html`
-      <t-radio
+      <t-checkbox
         .name=${this.name}
         .id=${this.inputId(index)}
         .label=${this.convertLabel(option)}
@@ -56,12 +37,13 @@ export class RadioGroup extends FormSelect {
         ?wide=${this.wide}
         ?inline=${this.inline}
         ?reversed=${this.reversed}
-        ?checked=${this.inputSelected(option)}
-        @click=${this.inputUpdate}
+        ?checked=${this.inputSelected(option, index)}
+        @click=${e => this.inputUpdate(e, index)}
         ...=${spread(option)}
-      ></t-radio>
+      ></t-checkbox>
     `;
   }
 }
 
-window.customElements.define('t-radiogroup', RadioGroup);
+window.customElements.define('t-checkboxgroup', CheckBoxGroup);
+

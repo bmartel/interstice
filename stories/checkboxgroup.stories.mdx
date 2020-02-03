@@ -1,0 +1,107 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import { CheckBoxGroup } from '../index.js';
+
+<Meta 
+  title="CheckBoxGroup"
+  parameters={{
+    component: "t-checkboxgroup",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# CheckBoxGroup 
+
+A form component for displaying a checkboxgroup input in a form with some styling and behaviour improvements.
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add tailwind-elements
+```
+
+```js
+import { CheckBoxGroup } from 'tailwind-elements';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <t-checkboxgroup id="simple" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></t-checkboxgroup>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="t-checkboxgroup" />
+
+## Variations
+
+###### Wide
+
+<Story name="Wide">
+  {html`
+    <t-checkboxgroup id="wide" wide></t-checkboxgroup>
+  `}
+</Story>
+
+###### Label
+
+<Story name="Label">
+  {html`
+    <t-checkboxgroup id="label" label="Name"></t-checkboxgroup>
+  `}
+</Story>
+
+###### Reversed Label 
+
+<Story name="Reversed Label">
+  {html`
+    <t-checkboxgroup id="label" label="Name" reversed></t-checkboxgroup>
+  `}
+</Story>
+
+###### Stacked Label
+
+<Story name="Stacked Label">
+  {html`
+    <t-checkboxgroup id="stacked-label" label="Name" .inline=${false}></t-checkboxgroup>
+  `}
+</Story>
+
+
+###### Messages
+
+<Story name="Messages">
+  {html`
+    <t-checkboxgroup id="messages" label="Name" .messages=${['This is a message']}></t-checkboxgroup>
+  `}
+</Story>
+
+###### Error
+
+<Story name="Error">
+  {html`
+    <t-checkboxgroup id="error" label="Name" status="error" .checked=${true}></t-checkboxgroup>
+  `}
+</Story>
+
+###### Success 
+
+<Story name="Success">
+  {html`
+    <t-checkboxgroup id="success" label="Name" status="success" .checked=${true}></t-checkboxgroup>
+  `}
+</Story>
+
+
+

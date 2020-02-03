@@ -306,9 +306,6 @@
           "default": "false"
         },
         {
-          "name": "inputUpdate"
-        },
-        {
           "name": "type",
           "attribute": "type",
           "type": "string",
@@ -378,6 +375,304 @@
           "attribute": "reversed",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        }
+      ]
+    },
+    {
+      "name": "t-checkboxgroup",
+      "attributes": [
+        {
+          "name": "options",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "labelKey",
+          "type": "string",
+          "default": "\"label\""
+        },
+        {
+          "name": "valueKey",
+          "type": "string",
+          "default": "\"value\""
+        },
+        {
+          "name": "dependent",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "dependentLabel",
+          "type": "string",
+          "default": "\"All\""
+        },
+        {
+          "name": "dependentValue",
+          "type": "string",
+          "default": "\"_all\""
+        },
+        {
+          "name": "complexValues",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "options",
+          "attribute": "options",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "labelKey",
+          "attribute": "labelKey",
+          "type": "string",
+          "default": "\"label\""
+        },
+        {
+          "name": "valueKey",
+          "attribute": "valueKey",
+          "type": "string",
+          "default": "\"value\""
+        },
+        {
+          "name": "dependent",
+          "attribute": "dependent",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "dependentLabel",
+          "attribute": "dependentLabel",
+          "type": "string",
+          "default": "\"All\""
+        },
+        {
+          "name": "dependentValue",
+          "attribute": "dependentValue",
+          "type": "string",
+          "default": "\"_all\""
+        },
+        {
+          "name": "complexValues",
+          "attribute": "complexValues",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "true"
         },
         {
           "name": "disabled",
@@ -541,9 +836,6 @@
           "default": "false"
         },
         {
-          "name": "inputUpdate"
-        },
-        {
           "name": "type",
           "attribute": "type",
           "type": "string",
@@ -699,6 +991,36 @@
           "default": "[]"
         },
         {
+          "name": "labelKey",
+          "type": "string",
+          "default": "\"label\""
+        },
+        {
+          "name": "valueKey",
+          "type": "string",
+          "default": "\"value\""
+        },
+        {
+          "name": "dependent",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "dependentLabel",
+          "type": "string",
+          "default": "\"All\""
+        },
+        {
+          "name": "dependentValue",
+          "type": "string",
+          "default": "\"_all\""
+        },
+        {
+          "name": "complexValues",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
           "name": "type",
           "type": "string"
         },
@@ -714,7 +1036,8 @@
         },
         {
           "name": "value",
-          "type": "string"
+          "type": "string",
+          "default": "\"\""
         },
         {
           "name": "label",
@@ -754,7 +1077,7 @@
         {
           "name": "reversed",
           "type": "boolean",
-          "default": "false"
+          "default": "true"
         },
         {
           "name": "disabled",
@@ -775,7 +1098,40 @@
           "default": "[]"
         },
         {
-          "name": "inputUpdate"
+          "name": "labelKey",
+          "attribute": "labelKey",
+          "type": "string",
+          "default": "\"label\""
+        },
+        {
+          "name": "valueKey",
+          "attribute": "valueKey",
+          "type": "string",
+          "default": "\"value\""
+        },
+        {
+          "name": "dependent",
+          "attribute": "dependent",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "dependentLabel",
+          "attribute": "dependentLabel",
+          "type": "string",
+          "default": "\"All\""
+        },
+        {
+          "name": "dependentValue",
+          "attribute": "dependentValue",
+          "type": "string",
+          "default": "\"_all\""
+        },
+        {
+          "name": "complexValues",
+          "attribute": "complexValues",
+          "type": "boolean",
+          "default": "false"
         },
         {
           "name": "type",
@@ -797,7 +1153,8 @@
         {
           "name": "value",
           "attribute": "value",
-          "type": "string"
+          "type": "string",
+          "default": "\"\""
         },
         {
           "name": "label",
@@ -845,7 +1202,7 @@
           "name": "reversed",
           "attribute": "reversed",
           "type": "boolean",
-          "default": "false"
+          "default": "true"
         },
         {
           "name": "disabled",
@@ -1023,9 +1380,6 @@
           "name": "step",
           "attribute": "step",
           "default": "1"
-        },
-        {
-          "name": "inputUpdate"
         },
         {
           "name": "type",
