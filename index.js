@@ -6,3 +6,4 @@ export { CheckBoxGroup } from './src/elements/checkboxgroup.js';
 export { Radio } from './src/elements/radio.js';
 export { RadioGroup } from './src/elements/radiogroup.js';
 export { Range } from './src/elements/range.js';
+export { Button } from './src/elements/button.js';

@@ -1,0 +1,79 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import { Button } from '../index.js';
+
+<Meta 
+  title="Button"
+  parameters={{
+    component: "z-button",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# Button 
+
+A component for displaying a button with some styling and behaviour improvements.
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add zephyr-elements
+```
+
+```js
+import { Button } from 'zephyr-elements';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <z-button id="simple">
+          Simple
+      </z-button>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="z-button" />
+
+## Variations
+
+###### Wide
+
+<Story name="Wide">
+  {html`
+    <z-button id="wide" wide>
+        Wide
+    </z-button>
+  `}
+</Story>
+
+###### Icon
+
+<Story name="Icon">
+  {html`
+    <z-button id="icon" icon="check">
+        Saved
+    </z-button>
+  `}
+</Story>
+
+###### Color 
+
+<Story name="Color">
+  {html`
+    <z-button id="color" color="primary">
+        Color
+    </z-button>
+  `}
+</Story>

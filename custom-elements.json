@@ -5,24 +5,46 @@
       "name": "z-button",
       "attributes": [
         {
-          "name": "type",
+          "name": "size",
           "type": "string"
         },
         {
-          "name": "variant",
-          "type": "string"
+          "name": "inverted",
+          "type": "boolean"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "\"button\""
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "\"default\""
         }
       ],
       "properties": [
         {
-          "name": "type",
-          "attribute": "type",
+          "name": "size",
+          "attribute": "size",
           "type": "string"
         },
         {
-          "name": "variant",
-          "attribute": "variant",
-          "type": "string"
+          "name": "inverted",
+          "attribute": "inverted",
+          "type": "boolean"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string",
+          "default": "\"button\""
+        },
+        {
+          "name": "color",
+          "attribute": "color",
+          "type": "string",
+          "default": "\"default\""
         }
       ],
       "cssProperties": [
@@ -31,9 +53,6 @@
         },
         {
           "name": "--z-font-family"
-        },
-        {
-          "name": "--z-leading"
         },
         {
           "name": "--z-padding"
@@ -57,10 +76,10 @@
           "name": "--z-color-error"
         },
         {
-          "name": "--z-input-color"
+          "name": "--z-button-size"
         },
         {
-          "name": "--z-input-bg-color"
+          "name": "--z-button-color"
         },
         {
           "name": "--z-border-color"
@@ -282,7 +301,13 @@
           "name": "--z-label-size"
         },
         {
+          "name": "--z-label-font-weight"
+        },
+        {
           "name": "--z-message-size"
+        },
+        {
+          "name": "--z-message-gap"
         },
         {
           "name": "--z-outline-size"
@@ -521,6 +546,12 @@
         },
         {
           "name": "--z-input-placeholder-color"
+        },
+        {
+          "name": "--z-label-font-weight"
+        },
+        {
+          "name": "--z-message-gap"
         }
       ]
     },
@@ -822,6 +853,12 @@
         },
         {
           "name": "--z-input-placeholder-color"
+        },
+        {
+          "name": "--z-label-font-weight"
+        },
+        {
+          "name": "--z-message-gap"
         }
       ]
     },
@@ -1057,6 +1094,12 @@
         },
         {
           "name": "--z-input-placeholder-color"
+        },
+        {
+          "name": "--z-label-font-weight"
+        },
+        {
+          "name": "--z-message-gap"
         }
       ]
     },
@@ -1358,6 +1401,12 @@
         },
         {
           "name": "--z-input-placeholder-color"
+        },
+        {
+          "name": "--z-label-font-weight"
+        },
+        {
+          "name": "--z-message-gap"
         }
       ]
     },
@@ -1609,6 +1658,12 @@
         },
         {
           "name": "--z-input-placeholder-color"
+        },
+        {
+          "name": "--z-label-font-weight"
+        },
+        {
+          "name": "--z-message-gap"
         }
       ]
     },
@@ -1839,6 +1894,12 @@
         },
         {
           "name": "--z-input-placeholder-color"
+        },
+        {
+          "name": "--z-label-font-weight"
+        },
+        {
+          "name": "--z-message-gap"
         }
       ]
     },
@@ -2060,6 +2121,12 @@
         },
         {
           "name": "--z-input-placeholder-color"
+        },
+        {
+          "name": "--z-label-font-weight"
+        },
+        {
+          "name": "--z-message-gap"
         }
       ]
     }

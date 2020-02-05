@@ -337,10 +337,10 @@ body {
   --z-outline-size: var(--z-border-2);
   --z-background-color: var(--z-color-white);
   --z-color: var(--z-color-black);
-  --z-color-primary: var(--z-color-purple-500);
-  --z-color-accent: var(--z-color-teal-500);
-  --z-color-success: var(--z-color-green-500);
-  --z-color-error: var(--z-color-red-500);
+  --z-color-primary: var(--z-color-purple-600);
+  --z-color-accent: var(--z-color-teal-600);
+  --z-color-success: var(--z-color-green-600);
+  --z-color-error: var(--z-color-red-600);
   --z-label-color: var(--z-color-gray-800);
   --z-label-size: var(--z-text-base);
   --z-input-color: var(--z-color-gray-900);
