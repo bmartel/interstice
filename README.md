@@ -1,19 +1,19 @@
-# \<tailwind-wc>
+# \<zephyr-wc>
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
 ```bash
-npm i tailwind-wc
+npm i zephyr-wc
 ```
 
 ## Usage
 ```html
 <script type="module">
-  import 'tailwind-wc/tailwind-wc.js';
+  import 'zephyr-wc/zephyr-wc.js';
 </script>
 
-<tailwind-wc></tailwind-wc>
+<zephyr-wc></zephyr-wc>
 ```
 
 ## Linting with ESLint, Prettier, and Types

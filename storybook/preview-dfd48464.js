@@ -1,2 +1,0 @@
-import{p as o,a as s,b as e,c as a,d as c,e as t}from"./storybook-preview-c6c9aaee.js";const r={url:new URL("./.storybook/preview.js",document.baseURI).href};!async function(){const n=await(await fetch(new URL("../custom-elements.json",r.url))).json();o(n),s(e),s(a),s(c),t({a11y:{config:{},options:{checks:{"color-contrast":{options:{noScroll:!0}}},restoreScroll:!0}},docs:{iframeHeight:"200px"},themes:[{name:"light",class:"light",color:"#00aced",default:!0},{name:"dark",class:"dark",color:"#3b5998"}]})}();
-//# sourceMappingURL=preview-dfd48464.js.map

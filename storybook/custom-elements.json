@@ -2,15 +2,38 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "t-textfield",
+      "name": "t-forminput",
       "attributes": [
+        {
+          "name": "type",
+          "type": "string"
+        },
         {
           "name": "id",
           "type": "string",
           "default": "\"\""
         },
         {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
           "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
           "type": "string",
           "default": "\"\""
         },
@@ -33,9 +56,29 @@
           "name": "inline",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
+        },
         {
           "name": "id",
           "attribute": "id",
@@ -43,8 +86,31 @@
           "default": "\"\""
         },
         {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string"
+        },
+        {
           "name": "label",
           "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
           "type": "string",
           "default": "\"\""
         },
@@ -71,6 +137,24 @@
           "attribute": "inline",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "cssProperties": [
@@ -81,7 +165,245 @@
           "name": "--t-font-family"
         },
         {
+          "name": "--t-leading"
+        },
+        {
           "name": "--t-padding"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        }
+      ]
+    },
+    {
+      "name": "t-checkbox",
+      "attributes": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "\"checkbox\""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "checked",
+          "attribute": "checked",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string",
+          "default": "\"checkbox\""
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
         },
         {
           "name": "--t-gap"
@@ -102,6 +424,12 @@
           "name": "--t-color-error"
         },
         {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
           "name": "--t-border-color"
         },
         {
@@ -114,13 +442,1540 @@
           "name": "--t-label-size"
         },
         {
-          "name": "--t-message-color"
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        }
+      ]
+    },
+    {
+      "name": "t-checkboxgroup",
+      "attributes": [
+        {
+          "name": "options",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "labelKey",
+          "type": "string",
+          "default": "\"label\""
+        },
+        {
+          "name": "valueKey",
+          "type": "string",
+          "default": "\"value\""
+        },
+        {
+          "name": "dependent",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "dependentLabel",
+          "type": "string",
+          "default": "\"All\""
+        },
+        {
+          "name": "dependentValue",
+          "type": "string",
+          "default": "\"_all\""
+        },
+        {
+          "name": "complexValues",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "options",
+          "attribute": "options",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "labelKey",
+          "attribute": "labelKey",
+          "type": "string",
+          "default": "\"label\""
+        },
+        {
+          "name": "valueKey",
+          "attribute": "valueKey",
+          "type": "string",
+          "default": "\"value\""
+        },
+        {
+          "name": "dependent",
+          "attribute": "dependent",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "dependentLabel",
+          "attribute": "dependentLabel",
+          "type": "string",
+          "default": "\"All\""
+        },
+        {
+          "name": "dependentValue",
+          "attribute": "dependentValue",
+          "type": "string",
+          "default": "\"_all\""
+        },
+        {
+          "name": "complexValues",
+          "attribute": "complexValues",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
         },
         {
           "name": "--t-message-size"
         },
         {
           "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        }
+      ]
+    },
+    {
+      "name": "t-radio",
+      "attributes": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "\"radio\""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "checked",
+          "attribute": "checked",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string",
+          "default": "\"radio\""
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        }
+      ]
+    },
+    {
+      "name": "t-radiogroup",
+      "attributes": [
+        {
+          "name": "options",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "labelKey",
+          "type": "string",
+          "default": "\"label\""
+        },
+        {
+          "name": "valueKey",
+          "type": "string",
+          "default": "\"value\""
+        },
+        {
+          "name": "dependent",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "dependentLabel",
+          "type": "string",
+          "default": "\"All\""
+        },
+        {
+          "name": "dependentValue",
+          "type": "string",
+          "default": "\"_all\""
+        },
+        {
+          "name": "complexValues",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "options",
+          "attribute": "options",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "labelKey",
+          "attribute": "labelKey",
+          "type": "string",
+          "default": "\"label\""
+        },
+        {
+          "name": "valueKey",
+          "attribute": "valueKey",
+          "type": "string",
+          "default": "\"value\""
+        },
+        {
+          "name": "dependent",
+          "attribute": "dependent",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "dependentLabel",
+          "attribute": "dependentLabel",
+          "type": "string",
+          "default": "\"All\""
+        },
+        {
+          "name": "dependentValue",
+          "attribute": "dependentValue",
+          "type": "string",
+          "default": "\"_all\""
+        },
+        {
+          "name": "complexValues",
+          "attribute": "complexValues",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        }
+      ]
+    },
+    {
+      "name": "t-range",
+      "attributes": [
+        {
+          "name": "min",
+          "default": "0"
+        },
+        {
+          "name": "max",
+          "default": "100"
+        },
+        {
+          "name": "step",
+          "default": "1"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "\"range\""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "min",
+          "attribute": "min",
+          "default": "0"
+        },
+        {
+          "name": "max",
+          "attribute": "max",
+          "default": "100"
+        },
+        {
+          "name": "step",
+          "attribute": "step",
+          "default": "1"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string",
+          "default": "\"range\""
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        }
+      ]
+    },
+    {
+      "name": "t-textarea",
+      "attributes": [
+        {
+          "name": "rows",
+          "type": "number",
+          "default": "4"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "rows",
+          "attribute": "rows",
+          "type": "number",
+          "default": "4"
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-input-placeholder-color"
+        }
+      ]
+    },
+    {
+      "name": "t-textfield",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "default": "\"text\""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": "string",
+          "default": "\"text\""
+        },
+        {
+          "name": "id",
+          "attribute": "id",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "messages",
+          "attribute": "messages",
+          "type": "array",
+          "default": "[]"
+        },
+        {
+          "name": "wide",
+          "attribute": "wide",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "attribute": "status",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "inline",
+          "attribute": "inline",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reversed",
+          "attribute": "reversed",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--t-font-size"
+        },
+        {
+          "name": "--t-font-family"
+        },
+        {
+          "name": "--t-padding"
+        },
+        {
+          "name": "--t-round"
+        },
+        {
+          "name": "--t-gap"
+        },
+        {
+          "name": "--t-transition"
+        },
+        {
+          "name": "--t-color"
+        },
+        {
+          "name": "--t-color-primary"
+        },
+        {
+          "name": "--t-color-accent"
+        },
+        {
+          "name": "--t-color-error"
+        },
+        {
+          "name": "--t-input-color"
+        },
+        {
+          "name": "--t-input-bg-color"
+        },
+        {
+          "name": "--t-border-color"
+        },
+        {
+          "name": "--t-border-size"
+        },
+        {
+          "name": "--t-label-color"
+        },
+        {
+          "name": "--t-label-size"
+        },
+        {
+          "name": "--t-message-size"
+        },
+        {
+          "name": "--t-outline-size"
+        },
+        {
+          "name": "--t-leading"
+        },
+        {
+          "name": "--t-input-placeholder-color"
         }
       ]
     }

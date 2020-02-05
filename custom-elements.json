@@ -306,6 +306,9 @@
           "default": "false"
         },
         {
+          "name": "inputUpdate"
+        },
+        {
           "name": "type",
           "attribute": "type",
           "type": "string",
@@ -604,6 +607,9 @@
           "default": "false"
         },
         {
+          "name": "inputUpdate"
+        },
+        {
           "name": "type",
           "attribute": "type",
           "type": "string"
@@ -834,6 +840,9 @@
           "attribute": "checked",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "inputUpdate"
         },
         {
           "name": "type",
@@ -1134,6 +1143,9 @@
           "default": "false"
         },
         {
+          "name": "inputUpdate"
+        },
+        {
           "name": "type",
           "attribute": "type",
           "type": "string"
@@ -1380,6 +1392,9 @@
           "name": "step",
           "attribute": "step",
           "default": "1"
+        },
+        {
+          "name": "inputUpdate"
         },
         {
           "name": "type",
