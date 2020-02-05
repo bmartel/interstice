@@ -5,7 +5,7 @@ import { TextArea } from '../index.js';
 <Meta 
   title="TextArea"
   parameters={{
-    component: "t-textarea",
+    component: "z-textarea",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { TextArea } from 'zephyr-elements';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-textarea id="simple"></t-textarea>
+      <z-textarea id="simple"></z-textarea>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-textarea" />
+<Props of="z-textarea" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { TextArea } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <t-textarea id="wide" wide></t-textarea>
+    <z-textarea id="wide" wide></z-textarea>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { TextArea } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <t-textarea id="label" label="Description"></t-textarea>
+    <z-textarea id="label" label="Description"></z-textarea>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { TextArea } from 'zephyr-elements';
 
 <Story name="Hint">
   {html`
-    <t-textarea id="hint" label="Description" hint="maximum 144 characters"></t-textarea>
+    <z-textarea id="hint" label="Description" hint="maximum 144 characters"></z-textarea>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { TextArea } from 'zephyr-elements';
 
 <Story name="Inline Label">
   {html`
-    <t-textarea id="inline-label" label="Description" inline></t-textarea>
+    <z-textarea id="inline-label" label="Description" inline></z-textarea>
   `}
 </Story>
 
@@ -82,7 +82,7 @@ import { TextArea } from 'zephyr-elements';
 
 <Story name="Placeholder">
   {html`
-    <t-textarea id="placeholder" label="Description" hint="maximum 144 characters" placeholder="important text goes here ..."></t-textarea>
+    <z-textarea id="placeholder" label="Description" hint="maximum 144 characters" placeholder="important text goes here ..."></z-textarea>
   `}
 </Story>
 
@@ -90,7 +90,7 @@ import { TextArea } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <t-textarea id="messages" label="Description" .messages=${['This is a message']}></t-textarea>
+    <z-textarea id="messages" label="Description" .messages=${['This is a message']}></z-textarea>
   `}
 </Story>
 
@@ -98,7 +98,7 @@ import { TextArea } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <t-textarea id="error" label="Description" status="error"></t-textarea>
+    <z-textarea id="error" label="Description" status="error"></z-textarea>
   `}
 </Story>
 
@@ -106,7 +106,7 @@ import { TextArea } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <t-textarea id="success" label="Description" status="success"></t-textarea>
+    <z-textarea id="success" label="Description" status="success"></z-textarea>
   `}
 </Story>
 

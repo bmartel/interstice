@@ -3,7 +3,7 @@ import { html } from 'lit-element';
 export const fontStyles = html`
   <style>
     :host {
-      font-family: var(--t-font-family);
+      font-family: var(--z-font-family);
     }
   </style>
 `;
@@ -14,7 +14,7 @@ export const fullWidthInput = html`
       :host,
       .input-wrapper,
       .input:not(.check) {
-        width: var(--t-w-full) !important;
+        width: var(--z-w-full) !important;
       }
     }
   </style>

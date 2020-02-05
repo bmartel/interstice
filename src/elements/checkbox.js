@@ -3,27 +3,27 @@ import { classMap } from 'lit-html/directives/class-map';
 import { FormInput } from './forminput.js';
 
 /**
- * @element t-checkbox
+ * @element z-checkbox
  *
- * @cssprop --t-font-size
- * @cssprop --t-font-family
- * @cssprop --t-leading
- * @cssprop --t-padding
- * @cssprop --t-round
- * @cssprop --t-gap
- * @cssprop --t-transition
- * @cssprop --t-color
- * @cssprop --t-color-primary
- * @cssprop --t-color-accent
- * @cssprop --t-color-error
- * @cssprop --t-input-color
- * @cssprop --t-input-bg-color
- * @cssprop --t-border-color
- * @cssprop --t-border-size
- * @cssprop --t-label-color
- * @cssprop --t-label-size
- * @cssprop --t-message-size
- * @cssprop --t-outline-size
+ * @cssprop --z-font-size
+ * @cssprop --z-font-family
+ * @cssprop --z-leading
+ * @cssprop --z-padding
+ * @cssprop --z-round
+ * @cssprop --z-gap
+ * @cssprop --z-transition
+ * @cssprop --z-color
+ * @cssprop --z-color-primary
+ * @cssprop --z-color-accent
+ * @cssprop --z-color-error
+ * @cssprop --z-input-color
+ * @cssprop --z-input-bg-color
+ * @cssprop --z-border-color
+ * @cssprop --z-border-size
+ * @cssprop --z-label-color
+ * @cssprop --z-label-size
+ * @cssprop --z-message-size
+ * @cssprop --z-outline-size
  */
 export class CheckBox extends FormInput {
   static get properties() {
@@ -36,27 +36,27 @@ export class CheckBox extends FormInput {
     return css`
       ${FormInput.styles}
       .input {
-        color: var(--t-color-primary);
+        color: var(--z-color-primary);
       }
       .check:not(.input):not(.radio) {
-        color: var(--t-color-white);
+        color: var(--z-color-white);
       }
       input:checked + .check {
-        background-color: var(--t-color-primary);
-        border-color: var(--t-color-primary);
+        background-color: var(--z-color-primary);
+        border-color: var(--z-color-primary);
       }
       .error input:checked + .check {
-        background-color: var(--t-color-error);
-        border-color: var(--t-color-error);
+        background-color: var(--z-color-error);
+        border-color: var(--z-color-error);
       }
       .success input:checked + .check {
-        background-color: var(--t-color-success);
-        border-color: var(--t-color-success);
+        background-color: var(--z-color-success);
+        border-color: var(--z-color-success);
       }
       input:checked + .radio,
       .error input:checked + .radio,
       .success input:checked + .radio {
-        background-color: var(--t-input-bg-color);
+        background-color: var(--z-input-bg-color);
       }
       .input.check {
         cursor: pointer;
@@ -67,7 +67,7 @@ export class CheckBox extends FormInput {
       }
       .radio {
         fill: currentColor;
-        border-radius: var(--t-round-full);
+        border-radius: var(--z-round-full);
       }
       .hidden {
         opacity: 0;
@@ -128,4 +128,4 @@ export class CheckBox extends FormInput {
   }
 }
 
-window.customElements.define('t-checkbox', CheckBox);
+window.customElements.define('z-checkbox', CheckBox);

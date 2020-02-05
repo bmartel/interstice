@@ -7,7 +7,7 @@ const {
 
 const moduleNamesOverride = {};
 const config = {
-  namespace: 't',
+  namespace: 'z',
 
   tailwind: {
     theme: {

@@ -5,7 +5,7 @@ import { RadioGroup } from '../index.js';
 <Meta 
   title="RadioGroup"
   parameters={{
-    component: "t-radiogroup",
+    component: "z-radiogroup",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { RadioGroup } from 'zephyr-elements';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-radiogroup id="simple" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></t-radiogroup>
+      <z-radiogroup id="simple" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></z-radiogroup>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-radiogroup" />
+<Props of="z-radiogroup" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <t-radiogroup id="wide" wide></t-radiogroup>
+    <z-radiogroup id="wide" wide></z-radiogroup>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <t-radiogroup id="label" label="Name"></t-radiogroup>
+    <z-radiogroup id="label" label="Name"></z-radiogroup>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Reversed Label">
   {html`
-    <t-radiogroup id="label" label="Name" reversed></t-radiogroup>
+    <z-radiogroup id="label" label="Name" reversed></z-radiogroup>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Stacked Label">
   {html`
-    <t-radiogroup id="stacked-label" label="Name" .inline=${false}></t-radiogroup>
+    <z-radiogroup id="stacked-label" label="Name" .inline=${false}></z-radiogroup>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <t-radiogroup id="messages" label="Name" .messages=${['This is a message']}></t-radiogroup>
+    <z-radiogroup id="messages" label="Name" .messages=${['This is a message']}></z-radiogroup>
   `}
 </Story>
 
@@ -91,7 +91,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <t-radiogroup id="error" label="Name" status="error" .checked=${true}></t-radiogroup>
+    <z-radiogroup id="error" label="Name" status="error" .checked=${true}></z-radiogroup>
   `}
 </Story>
 
@@ -99,7 +99,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <t-radiogroup id="success" label="Name" status="success" .checked=${true}></t-radiogroup>
+    <z-radiogroup id="success" label="Name" status="success" .checked=${true}></z-radiogroup>
   `}
 </Story>
 

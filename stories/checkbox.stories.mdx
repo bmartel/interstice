@@ -5,7 +5,7 @@ import { CheckBox } from '../index.js';
 <Meta 
   title="CheckBox"
   parameters={{
-    component: "t-checkbox",
+    component: "z-checkbox",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { CheckBox } from 'zephyr-elements';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-checkbox id="simple"></t-checkbox>
+      <z-checkbox id="simple"></z-checkbox>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-checkbox" />
+<Props of="z-checkbox" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { CheckBox } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <t-checkbox id="wide" wide></t-checkbox>
+    <z-checkbox id="wide" wide></z-checkbox>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { CheckBox } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <t-checkbox id="label" label="Name"></t-checkbox>
+    <z-checkbox id="label" label="Name"></z-checkbox>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { CheckBox } from 'zephyr-elements';
 
 <Story name="Reversed Label">
   {html`
-    <t-checkbox id="label" label="Name" reversed></t-checkbox>
+    <z-checkbox id="label" label="Name" reversed></z-checkbox>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { CheckBox } from 'zephyr-elements';
 
 <Story name="Stacked Label">
   {html`
-    <t-checkbox id="stacked-label" label="Name" .inline=${false}></t-checkbox>
+    <z-checkbox id="stacked-label" label="Name" .inline=${false}></z-checkbox>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { CheckBox } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <t-checkbox id="messages" label="Name" .messages=${['This is a message']}></t-checkbox>
+    <z-checkbox id="messages" label="Name" .messages=${['This is a message']}></z-checkbox>
   `}
 </Story>
 
@@ -91,7 +91,7 @@ import { CheckBox } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <t-checkbox id="error" label="Name" status="error" .checked=${true}></t-checkbox>
+    <z-checkbox id="error" label="Name" status="error" .checked=${true}></z-checkbox>
   `}
 </Story>
 
@@ -99,6 +99,6 @@ import { CheckBox } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <t-checkbox id="success" label="Name" status="success" .checked=${true}></t-checkbox>
+    <z-checkbox id="success" label="Name" status="success" .checked=${true}></z-checkbox>
   `}
 </Story>

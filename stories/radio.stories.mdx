@@ -5,7 +5,7 @@ import { Radio } from '../index.js';
 <Meta 
   title="Radio"
   parameters={{
-    component: "t-radio",
+    component: "z-radio",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { Radio } from 'zephyr-elements';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-radio id="simple"></t-radio>
+      <z-radio id="simple"></z-radio>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-radio" />
+<Props of="z-radio" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { Radio } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <t-radio id="wide" wide></t-radio>
+    <z-radio id="wide" wide></z-radio>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { Radio } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <t-radio id="label" label="Name"></t-radio>
+    <z-radio id="label" label="Name"></z-radio>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { Radio } from 'zephyr-elements';
 
 <Story name="Reversed Label">
   {html`
-    <t-radio id="label" label="Name" reversed></t-radio>
+    <z-radio id="label" label="Name" reversed></z-radio>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { Radio } from 'zephyr-elements';
 
 <Story name="Stacked Label">
   {html`
-    <t-radio id="stacked-label" label="Name" .inline=${false}></t-radio>
+    <z-radio id="stacked-label" label="Name" .inline=${false}></z-radio>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { Radio } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <t-radio id="messages" label="Name" .messages=${['This is a message']}></t-radio>
+    <z-radio id="messages" label="Name" .messages=${['This is a message']}></z-radio>
   `}
 </Story>
 
@@ -91,7 +91,7 @@ import { Radio } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <t-radio id="error" label="Name" status="error" .checked=${true}></t-radio>
+    <z-radio id="error" label="Name" status="error" .checked=${true}></z-radio>
   `}
 </Story>
 
@@ -99,7 +99,7 @@ import { Radio } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <t-radio id="success" label="Name" status="success" .checked=${true}></t-radio>
+    <z-radio id="success" label="Name" status="success" .checked=${true}></z-radio>
   `}
 </Story>
 

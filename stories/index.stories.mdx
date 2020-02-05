@@ -5,7 +5,7 @@ import { FormInput } from '../index.js';
 <Meta 
   title="FormInput"
   parameters={{
-    component: "t-forminput",
+    component: "z-forminput",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { FormInput } from 'zephyr-elements';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-forminput id="simple"></t-forminput>
+      <z-forminput id="simple"></z-forminput>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-forminput" />
+<Props of="z-forminput" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { FormInput } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <t-forminput id="wide" wide></t-forminput>
+    <z-forminput id="wide" wide></z-forminput>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { FormInput } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <t-forminput id="label" label="Name"></t-forminput>
+    <z-forminput id="label" label="Name"></z-forminput>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { FormInput } from 'zephyr-elements';
 
 <Story name="Hint">
   {html`
-    <t-forminput id="label" label="Name" hint="Enter a unique username"></t-forminput>
+    <z-forminput id="label" label="Name" hint="Enter a unique username"></z-forminput>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { FormInput } from 'zephyr-elements';
 
 <Story name="Inline Label">
   {html`
-    <t-forminput id="inline-label" label="Name" hint="Enter a unique username" inline></t-forminput>
+    <z-forminput id="inline-label" label="Name" hint="Enter a unique username" inline></z-forminput>
   `}
 </Story>
 
@@ -82,7 +82,7 @@ import { FormInput } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <t-forminput id="messages" label="Name" .messages=${['This is a message']}></t-forminput>
+    <z-forminput id="messages" label="Name" .messages=${['This is a message']}></z-forminput>
   `}
 </Story>
 
@@ -90,7 +90,7 @@ import { FormInput } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <t-forminput id="error" label="Name" status="error"></t-forminput>
+    <z-forminput id="error" label="Name" status="error"></z-forminput>
   `}
 </Story>
 
@@ -98,6 +98,6 @@ import { FormInput } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <t-forminput id="success" label="Name" status="success"></t-forminput>
+    <z-forminput id="success" label="Name" status="success"></z-forminput>
   `}
 </Story>

@@ -5,7 +5,7 @@ import { CheckBoxGroup } from '../index.js';
 <Meta 
   title="CheckBoxGroup"
   parameters={{
-    component: "t-checkboxgroup",
+    component: "z-checkboxgroup",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { CheckBoxGroup } from 'zephyr-elements';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-checkboxgroup id="simple" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></t-checkboxgroup>
+      <z-checkboxgroup id="simple" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></z-checkboxgroup>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-checkboxgroup" />
+<Props of="z-checkboxgroup" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <t-checkboxgroup id="wide" wide></t-checkboxgroup>
+    <z-checkboxgroup id="wide" wide></z-checkboxgroup>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <t-checkboxgroup id="label" label="Name"></t-checkboxgroup>
+    <z-checkboxgroup id="label" label="Name"></z-checkboxgroup>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Reversed Label">
   {html`
-    <t-checkboxgroup id="label" label="Name" reversed></t-checkboxgroup>
+    <z-checkboxgroup id="label" label="Name" reversed></z-checkboxgroup>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Stacked Label">
   {html`
-    <t-checkboxgroup id="stacked-label" label="Name" .inline=${false}></t-checkboxgroup>
+    <z-checkboxgroup id="stacked-label" label="Name" .inline=${false}></z-checkboxgroup>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <t-checkboxgroup id="messages" label="Name" .messages=${['This is a message']}></t-checkboxgroup>
+    <z-checkboxgroup id="messages" label="Name" .messages=${['This is a message']}></z-checkboxgroup>
   `}
 </Story>
 
@@ -91,7 +91,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <t-checkboxgroup id="error" label="Name" status="error" .checked=${true}></t-checkboxgroup>
+    <z-checkboxgroup id="error" label="Name" status="error" .checked=${true}></z-checkboxgroup>
   `}
 </Story>
 
@@ -99,7 +99,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <t-checkboxgroup id="success" label="Name" status="success" .checked=${true}></t-checkboxgroup>
+    <z-checkboxgroup id="success" label="Name" status="success" .checked=${true}></z-checkboxgroup>
   `}
 </Story>
 

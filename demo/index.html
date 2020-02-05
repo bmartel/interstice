@@ -5,10 +5,10 @@
     <link rel="stylesheet" href="../src/vars.css" />
     <style>
       body {
-        font-size: var(--t-text-base);
-        font-family: var(--t-font-sans);
-        color: var(--t-color);
-        background-color: var(--t-background-color);
+        font-size: var(--z-text-base);
+        font-family: var(--z-font-sans);
+        color: var(--z-color);
+        background-color: var(--z-background-color);
       }
     </style>
   </head>
@@ -18,7 +18,8 @@
     <script type="module">
       import { render } from 'lit-html';
       import { html, LitElement } from 'lit-element';
-      import '../index.js';
+      import '../src/elements/textfield.js';
+      import '../src/elements/checkbox.js';
 
       class ThemeSwitcher extends LitElement {
         static get properties() {
@@ -52,11 +53,11 @@
             <theme-switcher></theme-switcher>
 
 
-            <div style="display: grid; grid-gap: var(--t-p-3); max-width: 320px; margin: 0 auto;">
+            <div style="display: grid; grid-gap: var(--z-p-3); max-width: 320px; margin: 0 auto;">
               <h2>Login</h2>
-              <t-textfield type="email" id="email" label="Email" placeholder="bobby@tables.com" wide></t-textfield>
-              <t-textfield type="password" id="password" label="Password" wide></t-textfield>
-              <t-checkbox label="Remember me" reversed></t-checkbox>
+              <z-textfield type="email" id="email" label="Email" placeholder="bobby@tables.com" wide></z-textfield>
+              <z-textfield type="password" id="password" label="Password" wide></z-textfield>
+              <z-checkbox id="remember" label="Remember me" reversed></z-checkbox>
             </div>
           </div>
         `,

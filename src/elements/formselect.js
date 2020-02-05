@@ -23,7 +23,7 @@ export class FormSelect extends FormInput {
       ${FormInput.styles}
       .select-group {
         display: grid;
-        grid-gap: var(--t-gap);
+        grid-gap: var(--z-gap);
       }
     `;
   }

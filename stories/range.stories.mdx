@@ -5,7 +5,7 @@ import { Range } from '../index.js';
 <Meta 
   title="Range"
   parameters={{
-    component: "t-range",
+    component: "z-range",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { Range } from 'zephyr-elements';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <t-range id="simple"></t-range>
+      <z-range id="simple"></z-range>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="t-range" />
+<Props of="z-range" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { Range } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <t-range id="wide" wide></t-range>
+    <z-range id="wide" wide></z-range>
   `}
 </Story>
 
@@ -58,7 +58,7 @@ import { Range } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <t-range id="label" label="Temperature"></t-range>
+    <z-range id="label" label="Temperature"></z-range>
   `}
 </Story>
 
@@ -66,7 +66,7 @@ import { Range } from 'zephyr-elements';
 
 <Story name="Hint">
   {html`
-    <t-range id="hint" label="Temperature" hint="What is the weather like?"></t-range>
+    <z-range id="hint" label="Temperature" hint="What is the weather like?"></z-range>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { Range } from 'zephyr-elements';
 
 <Story name="Inline Label">
   {html`
-    <t-range id="inline-label" label="Temperature" inline></t-range>
+    <z-range id="inline-label" label="Temperature" inline></z-range>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { Range } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <t-range id="messages" label="Temperature" .messages=${['This is a message']}></t-range>
+    <z-range id="messages" label="Temperature" .messages=${['This is a message']}></z-range>
   `}
 </Story>
 
@@ -91,7 +91,7 @@ import { Range } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <t-range id="error" label="Temperature" status="error" .checked=${true}></t-range>
+    <z-range id="error" label="Temperature" status="error" .checked=${true}></z-range>
   `}
 </Story>
 
@@ -99,7 +99,7 @@ import { Range } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <t-range id="success" label="Temperature" status="success" .checked=${true}></t-range>
+    <z-range id="success" label="Temperature" status="success" .checked=${true}></z-range>
   `}
 </Story>
 
