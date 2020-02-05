@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html, css } from 'lit-element';
 import { spread } from '@open-wc/lit-helpers';
 import './checkbox.js';
 import {FormSelect} from './formselect.js';
@@ -27,19 +27,40 @@ import {FormSelect} from './formselect.js';
  * @cssprop --z-outline-size
  */
 export class CheckBoxGroup extends FormSelect {
+
+  static get styles() {
+    return css`
+      ${FormSelect.styles}
+      .messages {
+        --z-gap: 0;
+      }
+      .label, .hint {
+        margin-bottom: var(--z-gap);
+      }
+      .hint + .label {
+        margin-bottom: 0;
+      }
+      .label + .select-group {
+        margin-top: var(--z-gap);
+      }
+      z-checkbox {
+        --z-label-font-weight: var(--z-font-normal)
+      }
+    `;
+  }
+
   renderOption(option, index) {
+    const { inline, reversed, wide, ...optionProps } = option;
     return html`
       <z-checkbox
         .name=${this.name}
         .id=${this.inputId(index)}
         .label=${this.convertLabel(option)}
         .value=${this.convertValue(option)}
-        ?wide=${this.wide}
-        ?inline=${this.inline}
-        ?reversed=${this.reversed}
         ?checked=${this.inputSelected(option, index)}
         @click=${e => this.inputUpdate(e, index)}
-        ...=${spread(option)}
+        reversed
+        ...=${spread(optionProps)}
       ></z-checkbox>
     `;
   }

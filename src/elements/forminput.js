@@ -24,7 +24,9 @@ import { fontStyles, fullWidthInput } from '../styles.js';
  * @cssprop --z-border-size
  * @cssprop --z-label-color
  * @cssprop --z-label-size
+ * @cssprop --z-label-font-weight 
  * @cssprop --z-message-size
+ * @cssprop --z-message-gap
  * @cssprop --z-outline-size
  */
 export class FormInput extends LitElement {
@@ -65,7 +67,8 @@ export class FormInput extends LitElement {
         grid-area: h;
         font-size: var(--z-message-size);
         color: var(--z-input-placeholder-color);
-        flex: 1;
+        flex: 1;      
+        margin-bottom: var(--z-gap);
       }
       .label {
         grid-area: l;
@@ -75,7 +78,7 @@ export class FormInput extends LitElement {
       }
       .messages {
         font-size: var(--z-message-size);
-        margin: 0;
+        margin: var(--z-gap) 0 0 0;
         padding: 0;
         list-style: none;
         grid-area: m;

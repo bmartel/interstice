@@ -50,7 +50,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <z-radiogroup id="wide" wide></z-radiogroup>
+    <z-radiogroup id="wide" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} wide></z-radiogroup>
   `}
 </Story>
 
@@ -58,23 +58,31 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <z-radiogroup id="label" label="Name"></z-radiogroup>
+    <z-radiogroup id="label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit"></z-radiogroup>
   `}
 </Story>
 
-###### Reversed Label 
+###### Hint
+
+<Story name="Hint">
+  {html`
+    <z-radiogroup id="hint" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" hint="my favorite is banana, what is yours?"></z-radiogroup>
+  `}
+</Story>
+
+###### Inline Label 
+
+<Story name="Inline Label">
+  {html`
+    <z-radiogroup id="inline-label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" inline></z-radiogroup>
+  `}
+</Story>
+
+###### Reversed Label
 
 <Story name="Reversed Label">
   {html`
-    <z-radiogroup id="label" label="Name" reversed></z-radiogroup>
-  `}
-</Story>
-
-###### Stacked Label
-
-<Story name="Stacked Label">
-  {html`
-    <z-radiogroup id="stacked-label" label="Name" .inline=${false}></z-radiogroup>
+    <z-radiogroup id="reversed-label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" inline reversed></z-radiogroup>
   `}
 </Story>
 
@@ -83,7 +91,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <z-radiogroup id="messages" label="Name" .messages=${['This is a message']}></z-radiogroup>
+    <z-radiogroup id="messages" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" .messages=${['This is a message']}></z-radiogroup>
   `}
 </Story>
 
@@ -91,7 +99,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <z-radiogroup id="error" label="Name" status="error" .checked=${true}></z-radiogroup>
+    <z-radiogroup id="error" label="Name" status="error" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></z-radiogroup>
   `}
 </Story>
 
@@ -99,7 +107,7 @@ import { RadioGroup } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <z-radiogroup id="success" label="Name" status="success" .checked=${true}></z-radiogroup>
+    <z-radiogroup id="success" label="Name" status="success" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></z-radiogroup>
   `}
 </Story>
 

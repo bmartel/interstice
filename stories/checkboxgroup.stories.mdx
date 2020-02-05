@@ -50,7 +50,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Wide">
   {html`
-    <z-checkboxgroup id="wide" wide></z-checkboxgroup>
+    <z-checkboxgroup id="wide" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} wide></z-checkboxgroup>
   `}
 </Story>
 
@@ -58,23 +58,31 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Label">
   {html`
-    <z-checkboxgroup id="label" label="Name"></z-checkboxgroup>
+    <z-checkboxgroup id="label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit"></z-checkboxgroup>
   `}
 </Story>
 
-###### Reversed Label 
+###### Hint
+
+<Story name="Hint">
+  {html`
+    <z-checkboxgroup id="hint" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" hint="my favorite is banana, what is yours?"></z-checkboxgroup>
+  `}
+</Story>
+
+###### Inline Label 
+
+<Story name="Inline Label">
+  {html`
+    <z-checkboxgroup id="inline-label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" inline></z-checkboxgroup>
+  `}
+</Story>
+
+###### Reversed Label
 
 <Story name="Reversed Label">
   {html`
-    <z-checkboxgroup id="label" label="Name" reversed></z-checkboxgroup>
-  `}
-</Story>
-
-###### Stacked Label
-
-<Story name="Stacked Label">
-  {html`
-    <z-checkboxgroup id="stacked-label" label="Name" .inline=${false}></z-checkboxgroup>
+    <z-checkboxgroup id="reversed-label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" inline reversed></z-checkboxgroup>
   `}
 </Story>
 
@@ -83,7 +91,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Messages">
   {html`
-    <z-checkboxgroup id="messages" label="Name" .messages=${['This is a message']}></z-checkboxgroup>
+    <z-checkboxgroup id="messages" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" .messages=${['This is a message']}></z-checkboxgroup>
   `}
 </Story>
 
@@ -91,7 +99,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Error">
   {html`
-    <z-checkboxgroup id="error" label="Name" status="error" .checked=${true}></z-checkboxgroup>
+    <z-checkboxgroup id="error" label="Name" status="error" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></z-checkboxgroup>
   `}
 </Story>
 
@@ -99,7 +107,7 @@ import { CheckBoxGroup } from 'zephyr-elements';
 
 <Story name="Success">
   {html`
-    <z-checkboxgroup id="success" label="Name" status="success" .checked=${true}></z-checkboxgroup>
+    <z-checkboxgroup id="success" label="Name" status="success" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></z-checkboxgroup>
   `}
 </Story>
 

@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html, css } from 'lit-element';
 import { spread } from '@open-wc/lit-helpers';
 import './radio.js';
 import {FormSelect} from './formselect.js';
@@ -33,6 +33,27 @@ export class RadioGroup extends FormSelect {
     }
   }
 
+  static get styles() {
+    return css`
+      ${FormSelect.styles}
+      .messages {
+        --z-gap: 0;
+      }
+      .label, .hint {
+        margin-bottom: var(--z-gap);
+      }
+      .hint + .label {
+        margin-bottom: 0;
+      }
+      .label + .select-group {
+        margin-top: var(--z-gap);
+      }
+      z-radio {
+        --z-label-font-weight: var(--z-font-normal);
+      }
+    `;
+  }
+
   constructor() {
     super();
     this.value = '';
@@ -47,18 +68,17 @@ export class RadioGroup extends FormSelect {
   }
 
   renderOption(option, index) {
+    const { inline, reversed, wide, ...optionProps } = option;
     return html`
       <z-radio
         .name=${this.name}
         .id=${this.inputId(index)}
         .label=${this.convertLabel(option)}
         .value=${this.convertValue(option)}
-        ?wide=${this.wide}
-        ?inline=${this.inline}
-        ?reversed=${this.reversed}
         ?checked=${this.inputSelected(option)}
         @click=${this.inputUpdate}
-        ...=${spread(option)}
+        reversed
+        ...=${spread(optionProps)}
       ></z-radio>
     `;
   }
