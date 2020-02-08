@@ -47,6 +47,12 @@
           "default": "\"default\""
         }
       ],
+      "slots": [
+        {
+          "name": "",
+          "description": "the default slot"
+        }
+      ],
       "cssProperties": [
         {
           "name": "--z-font-size"
@@ -86,6 +92,9 @@
         },
         {
           "name": "--z-border-size"
+        },
+        {
+          "name": "--z-outline-size"
         }
       ]
     },
@@ -166,6 +175,14 @@
           "name": "type",
           "attribute": "type",
           "type": "string"
+        },
+        {
+          "name": "error",
+          "type": "boolean"
+        },
+        {
+          "name": "success",
+          "type": "boolean"
         },
         {
           "name": "id",
@@ -409,6 +426,14 @@
           "default": "\"checkbox\""
         },
         {
+          "name": "error",
+          "type": "boolean"
+        },
+        {
+          "name": "success",
+          "type": "boolean"
+        },
+        {
           "name": "id",
           "attribute": "id",
           "type": "string",
@@ -484,6 +509,11 @@
           "attribute": "readonly",
           "type": "boolean",
           "default": "false"
+        }
+      ],
+      "events": [
+        {
+          "name": "update"
         }
       ],
       "cssProperties": [
@@ -579,17 +609,12 @@
           "default": "false"
         },
         {
-          "name": "dependentLabel",
-          "type": "string",
-          "default": "\"All\""
+          "name": "dependentOptions",
+          "type": "object",
+          "default": "{\"label\":\"All\",\"value\":\"_all\"}"
         },
         {
-          "name": "dependentValue",
-          "type": "string",
-          "default": "\"_all\""
-        },
-        {
-          "name": "complexValues",
+          "name": "complex",
           "type": "boolean",
           "default": "false"
         },
@@ -665,6 +690,10 @@
       ],
       "properties": [
         {
+          "name": "selectOptions",
+          "type": "array"
+        },
+        {
           "name": "options",
           "attribute": "options",
           "type": "array",
@@ -689,22 +718,19 @@
           "default": "false"
         },
         {
-          "name": "dependentLabel",
-          "attribute": "dependentLabel",
-          "type": "string",
-          "default": "\"All\""
+          "name": "dependentOptions",
+          "attribute": "dependentOptions",
+          "type": "object",
+          "default": "{\"label\":\"All\",\"value\":\"_all\"}"
         },
         {
-          "name": "dependentValue",
-          "attribute": "dependentValue",
-          "type": "string",
-          "default": "\"_all\""
-        },
-        {
-          "name": "complexValues",
-          "attribute": "complexValues",
+          "name": "complex",
+          "attribute": "complex",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "addValue"
         },
         {
           "name": "inputUpdate"
@@ -713,6 +739,14 @@
           "name": "type",
           "attribute": "type",
           "type": "string"
+        },
+        {
+          "name": "error",
+          "type": "boolean"
+        },
+        {
+          "name": "success",
+          "type": "boolean"
         },
         {
           "name": "id",
@@ -957,6 +991,14 @@
           "default": "\"radio\""
         },
         {
+          "name": "error",
+          "type": "boolean"
+        },
+        {
+          "name": "success",
+          "type": "boolean"
+        },
+        {
           "name": "id",
           "attribute": "id",
           "type": "string",
@@ -1032,6 +1074,11 @@
           "attribute": "readonly",
           "type": "boolean",
           "default": "false"
+        }
+      ],
+      "events": [
+        {
+          "name": "update"
         }
       ],
       "cssProperties": [
@@ -1127,17 +1174,12 @@
           "default": "false"
         },
         {
-          "name": "dependentLabel",
-          "type": "string",
-          "default": "\"All\""
+          "name": "dependentOptions",
+          "type": "object",
+          "default": "{\"label\":\"All\",\"value\":\"_all\"}"
         },
         {
-          "name": "dependentValue",
-          "type": "string",
-          "default": "\"_all\""
-        },
-        {
-          "name": "complexValues",
+          "name": "complex",
           "type": "boolean",
           "default": "false"
         },
@@ -1213,6 +1255,10 @@
       ],
       "properties": [
         {
+          "name": "selectOptions",
+          "type": "array"
+        },
+        {
           "name": "options",
           "attribute": "options",
           "type": "array",
@@ -1237,22 +1283,19 @@
           "default": "false"
         },
         {
-          "name": "dependentLabel",
-          "attribute": "dependentLabel",
-          "type": "string",
-          "default": "\"All\""
+          "name": "dependentOptions",
+          "attribute": "dependentOptions",
+          "type": "object",
+          "default": "{\"label\":\"All\",\"value\":\"_all\"}"
         },
         {
-          "name": "dependentValue",
-          "attribute": "dependentValue",
-          "type": "string",
-          "default": "\"_all\""
-        },
-        {
-          "name": "complexValues",
-          "attribute": "complexValues",
+          "name": "complex",
+          "attribute": "complex",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "addValue"
         },
         {
           "name": "inputUpdate"
@@ -1261,6 +1304,14 @@
           "name": "type",
           "attribute": "type",
           "type": "string"
+        },
+        {
+          "name": "error",
+          "type": "boolean"
+        },
+        {
+          "name": "success",
+          "type": "boolean"
         },
         {
           "name": "id",
@@ -1521,6 +1572,14 @@
           "default": "\"range\""
         },
         {
+          "name": "error",
+          "type": "boolean"
+        },
+        {
+          "name": "success",
+          "type": "boolean"
+        },
+        {
           "name": "id",
           "attribute": "id",
           "type": "string",
@@ -1757,6 +1816,14 @@
           "type": "string"
         },
         {
+          "name": "error",
+          "type": "boolean"
+        },
+        {
+          "name": "success",
+          "type": "boolean"
+        },
+        {
           "name": "id",
           "attribute": "id",
           "type": "string",
@@ -1982,6 +2049,14 @@
           "attribute": "type",
           "type": "string",
           "default": "\"text\""
+        },
+        {
+          "name": "error",
+          "type": "boolean"
+        },
+        {
+          "name": "success",
+          "type": "boolean"
         },
         {
           "name": "id",

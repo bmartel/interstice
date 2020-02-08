@@ -25,6 +25,7 @@ import { FormSelect } from './formselect.js';
  * @cssprop --z-label-size
  * @cssprop --z-message-size
  * @cssprop --z-outline-size
+ *
  */
 export class CheckBoxGroup extends FormSelect {
   static get styles() {

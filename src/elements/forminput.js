@@ -217,9 +217,13 @@ export class FormInput extends LitElement {
     return this.status === 'error';
   }
 
+  set error(_) {} // eslint-disable-line
+
   get success() {
     return this.status === 'success';
   }
+
+  set success(_) {} // eslint-disable-line
 
   labelId() {
     return `label-${this.id}`;

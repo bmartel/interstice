@@ -6,8 +6,7 @@ export class FormSelect extends FormInput {
   static get properties() {
     return {
       value: { type: Array },
-      dependent: { type: Boolean },
-      dependentOptions: { type: Object },
+      dependent: { type: Boolean|Object }, // eslint-disable-line no-bitwise
       options: { type: Array },
       inline: { type: Boolean },
       reversed: { type: Boolean },
@@ -35,7 +34,6 @@ export class FormSelect extends FormInput {
     this.valueKey = 'value';
     this.reversed = true;
     this.dependent = false;
-    this.dependentOptions = { label: 'All', value: '_all' };
     this.complex = false;
     this.addValue = this.addValue.bind(this);
     this.inputUpdate = this.inputUpdate.bind(this);
@@ -64,6 +62,18 @@ export class FormSelect extends FormInput {
     return `${this.id}-${index + 1}`;
   }
 
+  get dependentLabel() {
+    return isObject(this.dependent) ? this.dependent.label || 'All' : 'All';
+  }
+
+  set dependentLabel(_) {} // eslint-disable-line
+
+  get dependentValue() {
+    return isObject(this.dependent) ? this.dependent.value || '_all' : '_all';
+  }
+
+  set dependentValue(_) {} // eslint-disable-line
+
   dependentUpdate(e) {
     if (e.target.checked) {
       this.value = this.options.map(this.addValue);
@@ -74,9 +84,9 @@ export class FormSelect extends FormInput {
 
   addDependentOption() {
     return {
-      [this.labelKey]: this.dependentOptions.label,
-      [this.valueKey]: this.dependentOptions.value,
-      name: this.dependentOptions.value,
+      [this.labelKey]: this.dependentLabel,
+      [this.valueKey]: this.dependentValue,
+      name: this.dependentValue,
     };
   }
 
@@ -125,7 +135,9 @@ export class FormSelect extends FormInput {
     return this.options;
   }
 
-  set selectOptions(_) {} // eslint-disable-line
+  set selectOptions(options) {
+    this.options = options;
+  }
 
   // eslint-disable-next-line
   renderOption(option, index) {

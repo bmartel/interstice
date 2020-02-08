@@ -33,6 +33,38 @@ describe('CheckBoxGroup', () => {
     expect(el.value.length).to.equal(2);
   });
 
+  it('renders with a dependent option', async () => {
+    const el = await fixture(html`
+      <z-checkboxgroup
+        .options=${options}
+        .value=${['apple', 'banana', 'orange']}
+        dependent
+      ></z-checkboxgroup>
+    `);
+
+    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+
+    expect(checkboxes[0].label).to.equal('All');
+    expect(checkboxes.length).to.equal(4);
+  });
+
+  it('renders with a custom dependent option', async () => {
+    const el = await fixture(html`
+      <z-checkboxgroup
+        .options=${options}
+        .value=${['apple', 'banana', 'orange']}
+        .dependentOptions=${{ label: 'All Fruits', value: '_all_fruit' }}
+        dependent
+      ></z-checkboxgroup>
+    `);
+
+    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+
+    expect(checkboxes[0].label).to.equal('All Fruits');
+    expect(checkboxes[0].value).to.equal('_all_fruit');
+    expect(checkboxes.length).to.equal(4);
+  });
+
   it('renders with a label and checkboxes some selected', async () => {
     const el = await fixture(html`
       <z-checkboxgroup

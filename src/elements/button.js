@@ -3,6 +3,8 @@ import { html, css, LitElement } from 'lit-element';
 /**
  * @element z-button
  *
+ * @slot - the default slot
+ *
  * @cssprop --z-font-size
  * @cssprop --z-font-family
  * @cssprop --z-padding

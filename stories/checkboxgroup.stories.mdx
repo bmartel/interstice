@@ -119,3 +119,11 @@ import { CheckBoxGroup } from 'zephyr-elements';
   `}
 </Story>
 
+###### Dependent Custom Label + Value
+
+<Story name="DependentCustom">
+  {html`
+    <z-checkboxgroup id="dependent-custom" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" .dependentOptions=${{label: 'All Fruit', value: '_all_fruit'}} dependent></z-checkboxgroup>
+  `}
+</Story>
+
