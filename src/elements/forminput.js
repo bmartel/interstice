@@ -24,7 +24,7 @@ import { fontStyles, fullWidthInput } from '../styles.js';
  * @cssprop --z-border-size
  * @cssprop --z-label-color
  * @cssprop --z-label-size
- * @cssprop --z-label-font-weight 
+ * @cssprop --z-label-font-weight
  * @cssprop --z-message-size
  * @cssprop --z-message-gap
  * @cssprop --z-outline-size
@@ -67,7 +67,7 @@ export class FormInput extends LitElement {
         grid-area: h;
         font-size: var(--z-message-size);
         color: var(--z-input-placeholder-color);
-        flex: 1;      
+        flex: 1;
         margin-bottom: var(--z-gap);
       }
       .label {
@@ -213,11 +213,11 @@ export class FormInput extends LitElement {
     this.readonly = false;
   }
 
-  error() {
+  get error() {
     return this.status === 'error';
   }
 
-  success() {
+  get success() {
     return this.status === 'success';
   }
 
@@ -288,8 +288,8 @@ export class FormInput extends LitElement {
           inline: this.inline,
           reversed: this.reversed,
           disabled: this.disabled,
-          error: this.error(),
-          success: this.success(),
+          error: this.error,
+          success: this.success,
         })}
       >
         ${this.renderHint()} ${this.renderLabel()} ${this.renderInput()} ${this.renderMessages()}

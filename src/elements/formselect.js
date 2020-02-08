@@ -1,6 +1,6 @@
 import { html, css } from 'lit-element';
 import { FormInput } from './forminput.js';
-import {isObject} from '../utils.js';
+import { isObject } from '../utils.js';
 
 export class FormSelect extends FormInput {
   static get properties() {
@@ -39,6 +39,7 @@ export class FormSelect extends FormInput {
     this.dependentLabel = 'All';
     this.dependentValue = '_all';
     this.complexValues = false;
+    this.addValue = this.addValue.bind(this);
     this.inputUpdate = this.inputUpdate.bind(this);
   }
 
@@ -48,14 +49,16 @@ export class FormSelect extends FormInput {
       return;
     }
 
-    const index = this.value.findIndex(selected => this.convertValue(selected) === e.target.value);
-
     if (e.target.checked) {
-      if (index < 0) {
-        this.value.push(this.addValue(this.options.find(v => v === e.target.value)));
-      }
+      this.value = [
+        ...this.value,
+        this.addValue(this.options.find(v => this.convertValue(v) === e.target.value)),
+      ];
     } else {
-      this.value.splice(index, 1);
+      const index = this.value.findIndex(
+        selected => this.convertValue(selected) === e.target.value,
+      );
+      this.value = [...this.value.slice(0, index), ...this.value.slice(index + 1)];
     }
   }
 
@@ -64,7 +67,7 @@ export class FormSelect extends FormInput {
   }
 
   dependentUpdate(e) {
-    if(e.target.checked) {
+    if (e.target.checked) {
       this.value = this.options.map(this.addValue);
     } else {
       this.value = [];
@@ -75,7 +78,7 @@ export class FormSelect extends FormInput {
     return {
       [this.labelKey]: this.dependentLabel,
       [this.valueKey]: this.dependentValue,
-      name: this.dependentValue
+      name: this.dependentValue,
     };
   }
 
@@ -84,7 +87,9 @@ export class FormSelect extends FormInput {
   }
 
   dependentSelected() {
-    return !this.value.some(v => this.options.find(option => this.convertValue(option) !== this.convertValue(v)));
+    return !this.value.some(v =>
+      this.options.find(option => this.convertValue(option) !== this.convertValue(v)),
+    );
   }
 
   addValue(option) {
@@ -93,7 +98,6 @@ export class FormSelect extends FormInput {
     }
     return option[this.valueKey];
   }
-
 
   convertValue(option) {
     if (isObject(option)) {
@@ -110,10 +114,13 @@ export class FormSelect extends FormInput {
   }
 
   inputSelected(value, index) {
-    return this.dependentInput(index) && this.dependentSelected() || this.value.some(selected => this.convertValue(selected) === this.convertValue(value));
+    return (
+      (this.dependentInput(index) && this.dependentSelected()) ||
+      this.value.some(selected => this.convertValue(selected) === this.convertValue(value))
+    );
   }
 
-  selectOptions() {
+  get selectOptions() {
     if (this.dependent) {
       return [this.addDependentOption(), ...this.options];
     }
@@ -126,7 +133,7 @@ export class FormSelect extends FormInput {
   }
 
   renderSelectOptions() {
-    return this.options.map((option, index) => this.renderOption(option, index));
+    return this.selectOptions.map((option, index) => this.renderOption(option, index));
   }
 
   renderInput() {
@@ -137,4 +144,3 @@ export class FormSelect extends FormInput {
     `;
   }
 }
-

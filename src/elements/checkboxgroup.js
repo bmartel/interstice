@@ -1,7 +1,7 @@
 import { html, css } from 'lit-element';
 import { spread } from '@open-wc/lit-helpers';
 import './checkbox.js';
-import {FormSelect} from './formselect.js';
+import { FormSelect } from './formselect.js';
 
 /**
  * @element z-checkboxgroup
@@ -27,14 +27,14 @@ import {FormSelect} from './formselect.js';
  * @cssprop --z-outline-size
  */
 export class CheckBoxGroup extends FormSelect {
-
   static get styles() {
     return css`
       ${FormSelect.styles}
       .messages {
         --z-gap: 0;
       }
-      .label, .hint {
+      .label,
+      .hint {
         margin-bottom: var(--z-gap);
       }
       .hint + .label {
@@ -44,7 +44,7 @@ export class CheckBoxGroup extends FormSelect {
         margin-top: var(--z-gap);
       }
       z-checkbox {
-        --z-label-font-weight: var(--z-font-normal)
+        --z-label-font-weight: var(--z-font-normal);
       }
     `;
   }
@@ -58,7 +58,7 @@ export class CheckBoxGroup extends FormSelect {
         .label=${this.convertLabel(option)}
         .value=${this.convertValue(option)}
         ?checked=${this.inputSelected(option, index)}
-        @click=${e => this.inputUpdate(e, index)}
+        @update=${e => this.inputUpdate(e, index)}
         reversed
         ...=${spread(optionProps)}
       ></z-checkbox>
@@ -67,4 +67,3 @@ export class CheckBoxGroup extends FormSelect {
 }
 
 window.customElements.define('z-checkboxgroup', CheckBoxGroup);
-

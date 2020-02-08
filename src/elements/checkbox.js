@@ -101,6 +101,7 @@ export class CheckBox extends FormInput {
 
   inputUpdate(e) {
     this.checked = e.target.checked;
+    this.dispatchEvent(new CustomEvent('update'));
   }
 
   renderCheck() {
