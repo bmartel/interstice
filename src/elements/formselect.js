@@ -11,9 +11,9 @@ export class FormSelect extends FormInput {
       options: { type: Array },
       inline: { type: Boolean },
       reversed: { type: Boolean },
+      complex: { type: Boolean },
       labelKey: { type: String },
       valueKey: { type: String },
-      complex: { type: Boolean },
     };
   }
 
@@ -36,6 +36,7 @@ export class FormSelect extends FormInput {
     this.reversed = true;
     this.dependent = false;
     this.dependentOptions = { label: 'All', value: '_all' };
+    this.isDependentSelected = false;
     this.complex = false;
     this.addValue = this.addValue.bind(this);
     this.inputUpdate = this.inputUpdate.bind(this);
@@ -46,6 +47,8 @@ export class FormSelect extends FormInput {
       this.dependentUpdate(e);
       return;
     }
+
+    this.resetDependentSelection();
 
     if (e.target.checked) {
       this.value = [
@@ -62,6 +65,13 @@ export class FormSelect extends FormInput {
 
   inputId(index) {
     return `${this.id}-${index + 1}`;
+  }
+
+  resetDependentSelection() {
+    if (this.isDependentSelected) {
+      this.value = [];
+      this.isDependentSelected = false;
+    }
   }
 
   dependentUpdate(e) {
@@ -84,9 +94,13 @@ export class FormSelect extends FormInput {
     return this.dependent && index === 0;
   }
 
-  dependentSelected() {
-    return !this.value.some(v =>
-      this.options.find(option => this.convertValue(option) !== this.convertValue(v)),
+  computeDependent() {
+    if (!this.dependent) {
+      return;
+    }
+
+    this.isDependentSelected = !this.options.some(
+      option => !this.value.some(v => this.convertValue(option) !== this.convertValue(v)),
     );
   }
 
@@ -112,8 +126,10 @@ export class FormSelect extends FormInput {
   }
 
   inputSelected(value, index) {
+    this.computeDependent();
+
     return (
-      (this.dependentInput(index) && this.dependentSelected()) ||
+      (this.dependentInput(index) && this.isDependentSelected) ||
       this.value.some(selected => this.convertValue(selected) === this.convertValue(value))
     );
   }

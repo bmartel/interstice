@@ -28,7 +28,7 @@ import { FormInput } from './forminput.js';
 export class CheckBox extends FormInput {
   static get properties() {
     return {
-      checked: { type: Boolean },
+      checked: { type: Boolean, reflect: true },
     };
   }
 
@@ -41,22 +41,17 @@ export class CheckBox extends FormInput {
       .check:not(.input):not(.radio) {
         color: var(--z-color-white);
       }
-      input:checked + .check {
+      :host([checked]) input + .check {
         background-color: var(--z-color-primary);
         border-color: var(--z-color-primary);
       }
-      .error input:checked + .check {
+      :host([checked]) .error input + .check {
         background-color: var(--z-color-error);
         border-color: var(--z-color-error);
       }
-      .success input:checked + .check {
+      :host([checked]) .success input + .check {
         background-color: var(--z-color-success);
         border-color: var(--z-color-success);
-      }
-      input:checked + .radio,
-      .error input:checked + .radio,
-      .success input:checked + .radio {
-        background-color: var(--z-input-bg-color);
       }
       .input.check {
         cursor: pointer;
@@ -64,10 +59,6 @@ export class CheckBox extends FormInput {
         stroke-width: 4px;
         width: 26px;
         height: 26px;
-      }
-      .radio {
-        fill: currentColor;
-        border-radius: var(--z-round-full);
       }
       .hidden {
         opacity: 0;

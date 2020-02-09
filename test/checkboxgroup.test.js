@@ -105,6 +105,20 @@ describe('CheckBoxGroup', () => {
     expect(el.value.length).to.equal(options.length);
   });
 
+  it('can select a dependent option', async () => {
+    const el = await fixture(html`
+      <z-checkboxgroup .options=${options} .value=${['apple']} dependent></z-checkboxgroup>
+    `);
+
+    const checkbox = el.shadowRoot.querySelector('z-checkbox');
+    checkbox.shadowRoot.querySelector('input').click();
+
+    expect(el.value.length).to.equal(3);
+    el.value.forEach((v, index) => {
+      expect(v).to.equal(options[index].value);
+    });
+  });
+
   it('can deselect an option', async () => {
     const el = await fixture(html`
       <z-checkboxgroup .options=${options} .value=${['apple', 'orange']}></z-checkboxgroup>

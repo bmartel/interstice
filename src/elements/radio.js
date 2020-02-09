@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html, css } from 'lit-element';
 import { CheckBox } from './checkbox.js';
 
 /**
@@ -25,6 +25,21 @@ import { CheckBox } from './checkbox.js';
  * @cssprop --z-outline-size
  */
 export class Radio extends CheckBox {
+  static get styles() {
+    return css`
+      ${CheckBox.styles}
+      .radio {
+        fill: currentColor;
+        border-radius: var(--z-round-full);
+      }
+      :host([checked]) input + .radio,
+      :host([checked]) .error input + .radio,
+      :host([checked]) .success input + .radio {
+        background-color: var(--z-input-bg-color);
+      }
+    `;
+  }
+
   constructor() {
     super();
     this.type = 'radio';
@@ -43,4 +58,3 @@ export class Radio extends CheckBox {
 }
 
 window.customElements.define('z-radio', Radio);
-
