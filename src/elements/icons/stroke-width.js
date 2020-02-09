@@ -1,0 +1,6 @@
+
+import { html } from 'lit-element';
+import { spread } from '@open-wc/lit-helpers';
+
+export default (props = {}) => html`
+  <svg fill="currentColor" ...=${spread(props)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 0h20v5H0V0zm0 7h20v4H0V7zm0 6h20v3H0v-3zm0 5h20v2H0v-2z"/></svg>`

@@ -7,3 +7,4 @@ export { Radio } from './src/elements/radio.js';
 export { RadioGroup } from './src/elements/radiogroup.js';
 export { Range } from './src/elements/range.js';
 export { Button } from './src/elements/button.js';
+export { Icon } from './src/elements/icon.js';

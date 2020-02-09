@@ -902,6 +902,42 @@
       ]
     },
     {
+      "name": "z-icon",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "properties": [
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--z-padding"
+        },
+        {
+          "name": "--z-transition"
+        },
+        {
+          "name": "--z-color"
+        },
+        {
+          "name": "--z-color-primary"
+        },
+        {
+          "name": "--z-color-accent"
+        },
+        {
+          "name": "--z-color-error"
+        }
+      ]
+    },
+    {
       "name": "z-radio",
       "attributes": [
         {

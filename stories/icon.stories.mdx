@@ -1,0 +1,47 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import { Icon } from '../index.js';
+
+<Meta 
+  title="Icon"
+  parameters={{
+    component: "z-icon",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# Icon 
+
+A component for displaying a icon with some styling and behaviour improvements.
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add zephyr-elements
+```
+
+```js
+import { Icon } from 'zephyr-elements';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <z-icon id="simple" name="add-outline"></z-icon>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="z-icon" />
+
+## Variations

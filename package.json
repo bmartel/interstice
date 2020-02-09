@@ -20,6 +20,7 @@
   "scripts": {
     "analyze": "wca \"src/elements/**/*.js\" --format json --outFile custom-elements.json",
     "css": "node config/css-vars.js",
+    "icons": "node config/icons.js",
     "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",

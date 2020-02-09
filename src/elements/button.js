@@ -5,6 +5,8 @@ import { html, css, LitElement } from 'lit-element';
  *
  * @slot - the default slot
  *
+ * @slot - the default slot
+ *
  * @cssprop --z-font-size
  * @cssprop --z-font-family
  * @cssprop --z-padding
@@ -122,7 +124,7 @@ export class Button extends LitElement {
 
   render() {
     return html`
-      <button .type=${this.type}><slot></slot></button>
+      <button .type=${this.type}><slot></slot><slot name="icon"></slot></button>
     `;
   }
 }
