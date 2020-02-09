@@ -724,6 +724,11 @@
           "default": "{\"label\":\"All\",\"value\":\"_all\"}"
         },
         {
+          "name": "isDependentSelected",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
           "name": "complex",
           "attribute": "complex",
           "type": "boolean",
@@ -1287,6 +1292,11 @@
           "attribute": "dependentOptions",
           "type": "object",
           "default": "{\"label\":\"All\",\"value\":\"_all\"}"
+        },
+        {
+          "name": "isDependentSelected",
+          "type": "boolean",
+          "default": "false"
         },
         {
           "name": "complex",
