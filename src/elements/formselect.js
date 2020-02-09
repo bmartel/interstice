@@ -69,12 +69,12 @@ export class FormSelect extends FormInput {
 
   resetDependentSelection() {
     if (this.isDependentSelected) {
-      this.value = [];
       this.isDependentSelected = false;
     }
   }
 
   dependentUpdate(e) {
+    e.preventDefault();
     if (e.target.checked) {
       this.value = this.options.map(this.addValue);
     } else {
@@ -99,9 +99,11 @@ export class FormSelect extends FormInput {
       return;
     }
 
-    this.isDependentSelected = !this.options.some(
-      option => !this.value.some(v => this.convertValue(option) !== this.convertValue(v)),
-    );
+    this.isDependentSelected =
+      this.options.length === this.value.length &&
+      this.options.every(option =>
+        this.value.find(v => this.convertValue(option) === this.convertValue(v)),
+      );
   }
 
   addValue(option) {

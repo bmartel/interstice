@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { html, fixture, expect, waitUntil } from '@open-wc/testing';
 
 import '../src/elements/checkboxgroup.js';
 
@@ -119,6 +119,21 @@ describe('CheckBoxGroup', () => {
     });
   });
 
+  it('will select a dependent option if all others are selected', async () => {
+    const el = await fixture(html`
+      <z-checkboxgroup .options=${options} dependent></z-checkboxgroup>
+    `);
+
+    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+
+    checkboxes.forEach(checkbox => {
+      checkbox.shadowRoot.querySelector('input').click();
+    });
+
+    await waitUntil(() => checkboxes[0].checked === true);
+    expect(checkboxes[0].checked).to.equal(true);
+  });
+
   it('can deselect an option', async () => {
     const el = await fixture(html`
       <z-checkboxgroup .options=${options} .value=${['apple', 'orange']}></z-checkboxgroup>
@@ -149,6 +164,38 @@ describe('CheckBoxGroup', () => {
     });
 
     expect(el.value.length).to.equal(0);
+  });
+
+  it('can deselect a dependent option', async () => {
+    const el = await fixture(html`
+      <z-checkboxgroup
+        .options=${options}
+        .value=${['apple', 'banana', 'orange']}
+        dependent
+      ></z-checkboxgroup>
+    `);
+
+    const checkbox = el.shadowRoot.querySelector('z-checkbox');
+    checkbox.shadowRoot.querySelector('input').click();
+
+    expect(el.value.length).to.equal(0);
+  });
+
+  it('will deselect a dependent option if any others are deselected', async () => {
+    const el = await fixture(html`
+      <z-checkboxgroup
+        .options=${options}
+        .value=${['apple', 'banana', 'orange']}
+        dependent
+      ></z-checkboxgroup>
+    `);
+
+    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+    checkboxes[1].shadowRoot.querySelector('input').click();
+
+    expect(checkboxes[1].checked).to.equal(false);
+    await waitUntil(() => checkboxes[0].checked === false);
+    expect(checkboxes[0].checked).to.equal(false);
   });
 
   it('passes the a11y audit', async () => {
