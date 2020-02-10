@@ -1,7 +1,7 @@
 module.exports = {
   addons: ['storybook-addon-themes/register'],
   // Globs of all the stories in your project
-  stories: ['../stories/*.stories.{js,mdx}'],
+  stories: ['../packages/*/stories/*.stories.{js,mdx}'],
   // Configuration for es-dev-server (start-storybook only)
   esDevServer: {
     nodeResolve: true,

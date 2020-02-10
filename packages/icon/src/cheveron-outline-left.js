@@ -1,0 +1,20 @@
+
+import { html } from 'lit-element';
+import { spread } from '@open-wc/lit-helpers';
+import { Icon as BaseIcon } from './_base.js';
+
+/**
+ * @element z-icon-cheveron-outline-left
+ *
+ * @cssprop --z-icon-color
+ * @cssprop --z-icon-width
+ * @cssprop --z-icon-height
+ */
+
+export class Icon extends BaseIcon {
+  render() {
+    return html`<svg fill="currentColor" ...=${spread(this.iconProps())} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm8-10a8 8 0 1 0-16 0 8 8 0 0 0 16 0zM7.46 9.3L11 5.75l1.41 1.41L9.6 10l2.82 2.83L11 14.24 6.76 10l.7-.7z"/></svg>`;
+  }
+}
+
+customElements.define('z-icon-cheveron-outline-left', Icon);

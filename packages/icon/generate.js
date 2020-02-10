@@ -3,10 +3,10 @@ const path = require('path');
 
 const _ = require('lodash');
 
-const iconsSourcePath = iconFile => path.resolve(__dirname, '..', `icons/${iconFile}`);
-const iconsSourceDir = path.resolve(__dirname, '..', 'icons');
-const iconsTargetPath = iconName => path.resolve(__dirname, '..', `src/elements/icons/${iconName}.js`);
-const iconsStoryPath = path.resolve(__dirname, '..', `stories/icon.stories.mdx`);
+const iconsSourcePath = iconFile => path.resolve(__dirname, `svgs/${iconFile}`);
+const iconsSourceDir = path.resolve(__dirname, 'svgs');
+const iconsTargetPath = iconName => path.resolve(__dirname, `src/${iconName}.js`);
+const iconsStoryPath = path.resolve(__dirname, `stories/icon.stories.mdx`);
 
 
 fs.readdir(iconsSourceDir, (err, files) => {
@@ -140,3 +140,4 @@ return `${`
     });
   });
 })
+

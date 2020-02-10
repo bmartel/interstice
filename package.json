@@ -18,25 +18,23 @@
     "LICENSE"
   ],
   "scripts": {
-    "analyze": "wca \"src/elements/**/*.js\" --format json --outFile custom-elements.json",
+    "analyze": "wca \"packages/*/src/**/*.js\" --format json --outFile custom-elements.json",
     "css": "node config/css-vars.js",
     "icons": "node config/icons.js",
     "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
-    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
-    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "lint:prettier": "prettier \"packages/*/src/**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"packages/*/src/**/*.js\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
-    "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:update-snapshots": "karma start --update-snapshots",
-    "test:prune-snapshots": "karma start --prune-snapshots",
-    "test:bs": "karma start karma.bs.config.js --coverage",
     "storybook": "start-storybook --node-resolve --watch --open",
     "storybook:build": "build-storybook",
     "start:build": "cd dist && es-dev-server --open",
-    "build": "rimraf dist && rollup -c rollup.config.js"
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "publish": "lerna publish from-package --contents pkg",
+    "version": "lerna version"
   },
   "dependencies": {
     "@open-wc/lit-helpers": "^0.2.6",
@@ -56,6 +54,7 @@
     "es-dev-server": "^1.23.0",
     "eslint": "^6.1.0",
     "husky": "^1.0.0",
+    "lerna": "^3.20.2",
     "lint-staged": "^8.0.0",
     "lodash": "^4.17.15",
     "rimraf": "^2.6.3",
@@ -77,7 +76,7 @@
     }
   },
   "lint-staged": {
-    "src/*.js": [
+    "packages/*/src/**/*.js": [
       "eslint --fix",
       "prettier --write",
       "git add"
