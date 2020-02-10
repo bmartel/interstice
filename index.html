@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../src/vars.css" />
+    <style>
+      body {
+        font-size: var(--z-text-base);
+        font-family: var(--z-font-sans);
+        color: var(--z-color);
+        background-color: var(--z-background-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div style="width: 100%;max-width: 900px; margin: 0 auto;">
+
+      <div style="display: grid; grid-gap: var(--z-p-3); max-width: 320px; margin: 0 auto;">
+        <h2>Login</h2>
+        <z-textfield type="email" id="email" label="Email" placeholder="bobby@tables.com" wide></z-textfield>
+        <z-textfield type="password" id="password" label="Password" wide></z-textfield>
+        <z-checkbox id="remember" label="Remember me" reversed></z-checkbox>
+      </div>
+    </div>
+    <script type="module">
+      import '/dist/textfield.js';
+      import '/dist/checkbox.js';
+    </script>
+  </body>
+</html>
+
