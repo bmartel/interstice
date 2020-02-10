@@ -82,7 +82,7 @@ customElements.define('z-icon-${iconName}', Icon);`;
     });
 
 
-    const iconStory = `
+    const iconStory = `${`
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
 import '../src/elements/icons/index.js';
@@ -118,20 +118,20 @@ A component for displaying a icon with some styling and behaviour improvements.
 
 ## Variations
 
-`
-+
+`}${
+
 existingIcons.map(i => {
 
   const IconStoryName = _.startCase(i).replace(/ /g, '');
 
-return `
+return `${`
 ###### ${IconStoryName}
 
 <Story name="${IconStoryName}">
 `
 +
-" {html`\n <z-icon-"+ i +"></z-"+ i +">\n `}\n </Story>";
-}).join('\n')
+" {html`\n <z-icon-"}${ i }></z-${ i }>\n \`}\n </Story>`;
+}).join('\n')}`
 
     fs.writeFile(iconsStoryPath, iconStory, iconStoryErr => {
       if (iconStoryErr) {
