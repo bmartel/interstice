@@ -902,42 +902,6 @@
       ]
     },
     {
-      "name": "z-icon",
-      "attributes": [
-        {
-          "name": "name",
-          "type": "string"
-        }
-      ],
-      "properties": [
-        {
-          "name": "name",
-          "attribute": "name",
-          "type": "string"
-        }
-      ],
-      "cssProperties": [
-        {
-          "name": "--z-padding"
-        },
-        {
-          "name": "--z-transition"
-        },
-        {
-          "name": "--z-color"
-        },
-        {
-          "name": "--z-color-primary"
-        },
-        {
-          "name": "--z-color-accent"
-        },
-        {
-          "name": "--z-color-error"
-        }
-      ]
-    },
-    {
       "name": "z-radio",
       "attributes": [
         {
@@ -2248,6 +2212,4122 @@
         },
         {
           "name": "--z-message-gap"
+        }
+      ]
+    },
+    {
+      "name": "z-icon",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-add-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-add-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-adjust",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-airplane",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-album",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-align-center",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-align-justified",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-align-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-align-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-anchor",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-announcement",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-apparel",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-outline-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-outline-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-outline-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-outline-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-thick-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-thick-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-thick-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-thick-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-thin-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-thin-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-thin-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-thin-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-arrow-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-artist",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-at-symbol",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-attachment",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-backspace",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-backward-step",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-backward",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-badge",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-battery-full",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-battery-half",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-battery-low",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-beverage",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-block",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-bluetooth",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-bolt",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-book-reference",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-bookmark-outline-add",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-bookmark-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-bookmark",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-all",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-bottom",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-horizontal",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-inner",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-none",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-outer",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-top",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-border-vertical",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-box",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-brightness-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-brightness-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-browser-window-new",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-browser-window-open",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-browser-window",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-bug",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-buoy",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-calculator",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-calendar",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-camera",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-chart-bar",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-chart-pie",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-chart",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-chat-bubble-dots",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-checkmark-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-checkmark",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cheveron-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cheveron-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cheveron-outline-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cheveron-outline-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cheveron-outline-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cheveron-outline-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cheveron-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cheveron-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-clipboard",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-close-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-close-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-close",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cloud-upload",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cloud",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-code",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-coffee",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-cog",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-color-palette",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-compose",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-computer-desktop",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-computer-laptop",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-conversation",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-copy",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-credit-card",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-currency-dollar",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-dashboard",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-date-add",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-dial-pad",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-directions",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-document-add",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-document",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-dots-horizontal-double",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-dots-horizontal-triple",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-download",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-duplicate",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-edit-copy",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-edit-crop",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-edit-cut",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-edit-pencil",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-education",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-envelope",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-exclamation-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-exclamation-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-explore",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-factory",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-fast-forward",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-fast-rewind",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-film",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-filter",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-flag",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-flashlight",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-folder-outline-add",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-folder-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-folder",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-format-bold",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-format-font-size",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-format-italic",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-format-text-size",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-format-underline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-forward-step",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-forward",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-gift",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-globe",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-hand-stop",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-hard-drive",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-headphones",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-heart",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-home",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-hot",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-hour-glass",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-inbox-check",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-inbox-download",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-inbox-full",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-inbox",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-indent-decrease",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-indent-increase",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-information-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-information-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-key",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-keyboard",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-layers",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-library",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-light-bulb",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-link",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-list-add",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-list-bullet",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-list",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-load-balancer",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location-current",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location-food",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location-gas-station",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location-hotel",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location-marina",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location-park",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location-restroom",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location-shopping",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-location",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-lock-closed",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-lock-open",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-map",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-menu",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mic",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-minus-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-minus-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mobile-devices",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mood-happy-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mood-happy-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mood-neutral-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mood-neutral-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mood-sad-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mood-sad-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-mouse",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-music-album",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-music-artist",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-music-notes",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-music-playlist",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-navigation-more",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-network",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-news-paper",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-notification",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-notifications-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-notifications",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-paste",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-pause-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-pause-solid",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-pause",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-pen-tool",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-phone",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-photo",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-php-elephant",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-pin",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-play-outline",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-play",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-playlist",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-plugin",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-portfolio",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-printer",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-pylon",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-question",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-queue",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-radar",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-radio",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-refresh",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-reload",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-reply-all",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-reply",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-repost",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-save-disk",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-screen-full",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-search",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-send",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-servers",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-share-01",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-share-alt",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-share",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-shield",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-shopping-cart",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-show-sidebar",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-shuffle",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-stand-by",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-star-full",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-station",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-step-backward",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-step-forward",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-stethoscope",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-store-front",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-stroke-width",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-subdirectory-left",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-subdirectory-right",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-swap",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-tablet",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-tag",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-target",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-text-box",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-text-decoration",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-thermometer",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-thumbs-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-thumbs-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-ticket",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-time",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-timer",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-translate",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-trash",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-travel-bus",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-travel-car",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-travel-case",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-travel-taxi-cab",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-travel-train",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-travel-walk",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-travel",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-trophy",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-tuning",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-upload",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-usb",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-user-add",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-user-group",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-user-solid-circle",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-user-solid-square",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-user",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-vector",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-video-camera",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-view-carousel",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-view-column",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-view-hide",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-view-list",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-view-show",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-view-tile",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-volume-down",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-volume-mute",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-volume-off",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-volume-up",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-wallet",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-watch",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-window-new",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-window-open",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-window",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-wrench",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-yin-yang",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-zoom-in",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
+        }
+      ]
+    },
+    {
+      "name": "z-icon-zoom-out",
+      "cssProperties": [
+        {
+          "name": "--z-icon-color"
+        },
+        {
+          "name": "--z-icon-width"
+        },
+        {
+          "name": "--z-icon-height"
         }
       ]
     }
