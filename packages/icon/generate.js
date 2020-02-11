@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-
 const _ = require('lodash');
 
 const iconsSourcePath = iconFile => path.resolve(__dirname, `svgs/${iconFile}`);
@@ -69,13 +68,13 @@ customElements.define('z-icon-${iconName}', Icon);`;
   Promise.all(availableIcons).then(iconList => {
     const existingIcons = iconList.filter(i => i);
 
-    fs.writeFile(iconsTargetPath('_icons-list'), `export default [${existingIcons.map(i => `'${i}'`).join(',')}];`, iconListErr => {
-      if (iconListErr) {
-        console.log(iconListErr); //eslint-disable-line
-      }
-    });
-    const iconsIndex = `${existingIcons.map(i => `export { Icon as ${_.startCase(i).replace(/ /g, '')}Icon } from './${i}.js';`).join('\n')}`;
-    fs.writeFile(iconsTargetPath('index'), iconsIndex, iconListErr => {
+    // fs.writeFile(iconsTargetPath('_icons-list'), `export default [${existingIcons.map(i => `'${i}'`).join(',')}];`, iconListErr => {
+    //   if (iconListErr) {
+    //     console.log(iconListErr); //eslint-disable-line
+    //   }
+    // });
+    const iconsIndex = `${existingIcons.map(i => `export { Icon as ${_.startCase(i).replace(/ /g, '')}Icon } from './src/${i}.js';`).join('\n')}`;
+    fs.writeFile(path.resolve(__dirname, 'index.js'), iconsIndex, iconListErr => {
       if (iconListErr) {
         console.log(iconListErr); //eslint-disable-line
       }
@@ -85,7 +84,7 @@ customElements.define('z-icon-${iconName}', Icon);`;
     const iconStory = `${`
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import '../src/elements/icons/index.js';
+import '../index.js';
 
 <Meta 
   title="Icon"
