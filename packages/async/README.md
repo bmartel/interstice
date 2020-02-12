@@ -1,11 +1,11 @@
-# `@interstice/icon`
+# `@interstice/async`
 
 > TODO: description
 
 ## Usage
 
 ```
-const icon = require('@interstice/icon');
+const async = require('@interstice/async');
 
 // TODO: DEMONSTRATE API
 ```

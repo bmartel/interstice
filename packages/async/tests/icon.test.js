@@ -2,6 +2,6 @@
 
 const icon = require('..');
 
-describe('@interstice/icon', () => {
+describe('@interstice/async', () => {
     it('needs tests');
 });

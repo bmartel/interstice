@@ -1,20 +1,25 @@
 {
-	"name": "@zephyr-elements/icon",
+	"name": "@interstice/icon",
 	"version": "0.0.0",
 	"description": "A reusable icon component based on tailwindcss design with zondicons",
 	"keywords": [
+		"zephyr",
 		"icon",
 		"webcomponent",
-		"zephyr",
 		"tailwindcss",
 		"zondicons"
 	],
 	"author": "Brandon Martel <brandonmartel@gmail.com>",
-	"homepage": "https://github.com/bmartel/zephyr-elements#readme",
+	"homepage": "https://github.com/bmartel/interstice#readme",
 	"license": "MIT",
   "scripts": {
     "build": "pika build",
-    "generate": "node generate.js"
+    "generate": "node generate.js",
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:update-snapshots": "karma start --update-snapshots",
+    "test:prune-snapshots": "karma start --prune-snapshots",
+    "test:bs": "karma start karma.bs.config.js --coverage"
   },
 	"publishConfig": {
 		"access": "public"
@@ -42,10 +47,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bmartel/zephyr-elements.git"
+		"url": "git+https://github.com/bmartel/interstice.git"
 	},
 	"bugs": {
-		"url": "https://github.com/bmartel/zephyr-elements/issues"
+		"url": "https://github.com/bmartel/interstice/issues"
 	},
 	"devDependencies": {
 		"@open-wc/testing": "^2.5.4",

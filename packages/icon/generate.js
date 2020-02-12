@@ -108,7 +108,7 @@ A component for displaying a icon with some styling and behaviour improvements.
 ### Installation
 `
 +
-"\n```bash\n yarn add zephyr-elements\n```\n\n```js\n  import { Icon } from 'zephyr-elements/icons/${iconName}';\n```"
+"\n```bash\n yarn add interstice\n```\n\n```js\n  import { Icon } from 'interstice/icons/${iconName}';\n```"
 +
 `
 ## API
