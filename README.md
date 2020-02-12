@@ -1,6 +1,6 @@
-# \<zephyr-wc>
+# \<i-component-name>
 
-This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
+These webcomponents follow the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
 ```bash
@@ -10,10 +10,10 @@ npm i zephyr-wc
 ## Usage
 ```html
 <script type="module">
-  import 'zephyr-wc/zephyr-wc.js';
+  import '@interstice/component-name';
 </script>
 
-<zephyr-wc></zephyr-wc>
+<i-component-name></i-component-name>
 ```
 
 ## Linting with ESLint, Prettier, and Types
