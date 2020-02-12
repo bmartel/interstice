@@ -1,9 +1,6 @@
-import {LitElement, html} from "lit-element";
+import { LitElement, html } from 'lit-element';
 
 export class AsyncElement extends LitElement {
-
-  static _loaded = new WeakMap();
-
   static get deps() {
     return [];
   }
@@ -13,43 +10,42 @@ export class AsyncElement extends LitElement {
     this.setup();
   }
 
-  get _loader() {
-    return {
-      loader: this.load,
-      deps: this.deps.map(p => ({ p: this[p] })),
-    }
-  }
-
   _load(changedProps = undefined) {
     this.loader();
     this.resolve(changedProps);
   }
 
   setup() {
-    if (!this.hasOwnProperty('_loadedPromise')) {
+    if (!this._loadedPromise) {
       this._load();
     }
   }
 
   loader() {
+    this._loaded = null;
+    this._errored = null;
     this._loadedPromise = new Promise((resolve, reject) => {
       this._resolveLoaded = resolve;
       this._rejectLoaded = reject;
     });
-    this._loadedPromise.then(data => {
-      this._loaded.set(this._loader, data);
-      this.requestUpdate();
-      return data;
-    })
-    .catch(err => {
-      console.log(err); // eslint-disable-line
-    });
+    this._loadedPromise
+      .then(data => {
+        this._loaded = data;
+        this.requestUpdate();
+        return data;
+      })
+      .catch(err => {
+        this._errored = err;
+        this.requestUpdate();
+      });
   }
 
-  load() { return Promise.reject('Must implement load() in child components');  } //eslint-disable-line
+  load() {
+    return Promise.reject('Must implement load() in child components');
+  } //eslint-disable-line
 
   unload() {
-    this._loaded.delete(this._loader);
+    AsyncElement._loaded.delete(this._loader);
   }
 
   reload() {
@@ -58,32 +54,36 @@ export class AsyncElement extends LitElement {
   }
 
   loaded() {
-    if (this._loaded.has(this._loader)) {
-      return this._loaded.get(this._loader);
+    return this._loaded;
+  }
+
+  errored() {
+    if (this._errored) {
+      return this.erroring(this._errored);
     }
     return null;
   }
-  
+
   async resolve(changedProps = undefined) {
     try {
-      const loaded = this.loaded();
-      if (loaded) {
-        return loaded;
-      }
-
       const data = await this.load(changedProps);
       this._resolveLoaded(data);
       return data;
-    } catch(err) {
+    } catch (err) {
       this._rejectLoaded(err);
       return null;
     }
   }
 
-  loading() { return html``; } // eslint-disable-line
+  erroring(err) {
+    return html``;
+  } // eslint-disable-line
+  loading() {
+    return html``;
+  } // eslint-disable-line
 
   update(changedProps) {
-    if (changedProps.keys().some(k => this.deps.some(k))) {
+    if (AsyncElement.deps.some(k => changedProps.has(k))) {
       this._load(changedProps);
     }
     return super.update(changedProps);
@@ -91,9 +91,15 @@ export class AsyncElement extends LitElement {
 
   render() {
     const loaded = this.loaded();
-    if(loaded) {
-      return loaded();
+    if (loaded) {
+      return loaded;
     }
+
+    const errored = this.errored();
+    if (errored) {
+      return errored;
+    }
+
     return this.loading();
   }
-};
+}
