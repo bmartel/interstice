@@ -23,30 +23,11 @@ fs.readdir(iconsSourceDir, (err, files) => {
       availableIcons.push(new Promise(resolve => {
         fs.readFile(iconsSourcePath(file), {encoding: 'utf-8'}, (fileErr, data) => {
           if (!fileErr) {
-            let svgData = data.replace('<svg', 'html`<svg fill="currentColor" ...=${spread(this.iconProps())}'); //eslint-disable-line
-            svgData = svgData.replace('id="icon-shape"', 'fill="currentColor"');
-            svgData = svgData.replace('</svg>', '</svg>`;');
+            let svgData = data.replace(/(<svg([^>]+)>)/ig, '');
+            svgData = svgData.replace('id="icon-shape"', '');
+            svgData = svgData.replace('</svg>', '');
 
-            const svgIcon = `
-import { html } from 'lit-element';
-import { spread } from '@open-wc/lit-helpers';
-import { Icon as BaseIcon } from './_base.js';
-
-/**
- * @element z-icon-${iconName}
- *
- * @cssprop --z-icon-color
- * @cssprop --z-icon-width
- * @cssprop --z-icon-height
- */
-
-export class Icon extends BaseIcon {
-  render() {
-    return ${svgData}
-  }
-}
-
-customElements.define('z-icon-${iconName}', Icon);`;
+            const svgIcon = `export default '${svgData}';`
 
             fs.writeFile(iconsTargetPath(iconName), svgIcon, fileWriteErr => { 
               if (fileWriteErr) {
@@ -68,13 +49,13 @@ customElements.define('z-icon-${iconName}', Icon);`;
   Promise.all(availableIcons).then(iconList => {
     const existingIcons = iconList.filter(i => i);
 
-    // fs.writeFile(iconsTargetPath('_icons-list'), `export default [${existingIcons.map(i => `'${i}'`).join(',')}];`, iconListErr => {
-    //   if (iconListErr) {
-    //     console.log(iconListErr); //eslint-disable-line
-    //   }
-    // });
-    const iconsIndex = `${existingIcons.map(i => `export { Icon as ${_.startCase(i).replace(/ /g, '')}Icon } from './src/${i}.js';`).join('\n')}`;
-    fs.writeFile(path.resolve(__dirname, 'index.js'), iconsIndex, iconListErr => {
+    fs.writeFile(iconsTargetPath('_icons'), `export default [${existingIcons.map(i => `'${i}'`).join(',')}];`, iconListErr => {
+      if (iconListErr) {
+        console.log(iconListErr); //eslint-disable-line
+      }
+    });
+    const iconsIndex = `${[...existingIcons, 'icon'].map(i => `export { default as ${_.startCase(i).replace(/ /g, '')} } from './${i}.js';`).join('\n')}`;
+    fs.writeFile(path.resolve(__dirname, 'src/index.js'), iconsIndex, iconListErr => {
       if (iconListErr) {
         console.log(iconListErr); //eslint-disable-line
       }
@@ -84,7 +65,7 @@ customElements.define('z-icon-${iconName}', Icon);`;
     const iconStory = `${`
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import '../index.js';
+import '../packages/icon/src/index.js';
 
 <Meta 
   title="Icon"
@@ -113,7 +94,7 @@ A component for displaying a icon with some styling and behaviour improvements.
 `
 ## API
 
-<Props of="z-icon" />
+<Props of="i-icon" />
 
 ## Variations
 
@@ -129,7 +110,7 @@ return `${`
 <Story name="${IconStoryName}">
 `
 +
-" {html`\n <z-icon-"}${ i }></z-${ i }>\n \`}\n </Story>`;
+" {html`\n <i-icon name=\"" + i + "\""}></i-icon>\n \`}\n </Story>`;
 }).join('\n')}`
 
     fs.writeFile(iconsStoryPath, iconStory, iconStoryErr => {

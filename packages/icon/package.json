@@ -12,15 +12,17 @@
 	"author": "Brandon Martel <brandonmartel@gmail.com>",
 	"homepage": "https://github.com/bmartel/interstice#readme",
 	"license": "MIT",
-  "scripts": {
-    "build": "pika build",
-    "generate": "node generate.js",
-    "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:update-snapshots": "karma start --update-snapshots",
-    "test:prune-snapshots": "karma start --prune-snapshots",
-    "test:bs": "karma start karma.bs.config.js --coverage"
-  },
+	"scripts": {
+		"build": "pika build",
+    "prebuild": "npm run generate",
+		"generate": "node generate.js",
+		"test": "karma start --coverage",
+		"test:watch": "karma start --auto-watch=true --single-run=false",
+		"test:update-snapshots": "karma start --update-snapshots",
+		"test:prune-snapshots": "karma start --prune-snapshots",
+		"test:bs": "karma start karma.bs.config.js --coverage",
+    "demo": "es-dev-server --app-index demo/index.html --node-resolve --watch --open"
+	},
 	"publishConfig": {
 		"access": "public"
 	},
@@ -40,9 +42,9 @@
 			[
 				"@pika/plugin-build-web"
 			],
-      [
-        "pika-plugin-minify"
-      ]
+			[
+				"pika-plugin-minify"
+			]
 		]
 	},
 	"repository": {
@@ -66,6 +68,7 @@
 		"pika-plugin-minify": "^0.1.0"
 	},
 	"dependencies": {
+		"@interstice/async": "^0.0.0",
 		"@open-wc/lit-helpers": "^0.2.9",
 		"lit-element": "^2.2.1",
 		"lit-html": "^1.1.2"
