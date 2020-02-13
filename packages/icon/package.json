@@ -1,6 +1,6 @@
 {
 	"name": "@interstice/icon",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "A reusable icon component based on tailwindcss design with zondicons",
 	"keywords": [
 		"interstice",
@@ -68,7 +68,7 @@
 		"pika-plugin-minify": "^0.1.0"
 	},
 	"dependencies": {
-		"@interstice/async": "^0.0.1",
+		"@interstice/async": "^0.0.2",
 		"@open-wc/lit-helpers": "^0.2.9",
 		"lit-element": "^2.2.1",
 		"lit-html": "^1.1.2"
