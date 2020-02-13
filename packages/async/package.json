@@ -1,16 +1,16 @@
 {
-  "name": "@interstice/async",
-  "version": "0.0.0",
-  "description": "An async loadable web component base",
-  "keywords": [
+	"name": "@interstice/async",
+	"version": "0.0.1",
+	"description": "An async loadable web component base",
+	"keywords": [
 		"interstice",
-    "async",
-    "webcomponent",
-    "loadable"
-  ],
-  "author": "Brandon Martel <brandonmartel@gmail.com>",
-  "homepage": "https://github.com/bmartel/interstice#readme",
-  "license": "MIT",
+		"async",
+		"webcomponent",
+		"loadable"
+	],
+	"author": "Brandon Martel <brandonmartel@gmail.com>",
+	"homepage": "https://github.com/bmartel/interstice#readme",
+	"license": "MIT",
 	"@pika/pack": {
 		"pipeline": [
 			[
@@ -27,30 +27,30 @@
 			[
 				"@pika/plugin-build-web"
 			],
-      [
-        "pika-plugin-minify"
-      ]
+			[
+				"pika-plugin-minify"
+			]
 		]
 	},
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bmartel/interstice.git"
-  },
-  "scripts": {
-    "build": "pika build",
-    "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:update-snapshots": "karma start --update-snapshots",
-    "test:prune-snapshots": "karma start --prune-snapshots",
-    "test:bs": "karma start karma.bs.config.js --coverage",
-    "demo": "es-dev-server --app-index demo/index.html --node-resolve --watch --open"
-  },
-  "bugs": {
-    "url": "https://github.com/bmartel/interstice/issues"
-  },
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bmartel/interstice.git"
+	},
+	"scripts": {
+		"build": "pika build",
+		"test": "karma start --coverage",
+		"test:watch": "karma start --auto-watch=true --single-run=false",
+		"test:update-snapshots": "karma start --update-snapshots",
+		"test:prune-snapshots": "karma start --prune-snapshots",
+		"test:bs": "karma start karma.bs.config.js --coverage",
+		"demo": "es-dev-server --app-index demo/index.html --node-resolve --watch --open"
+	},
+	"bugs": {
+		"url": "https://github.com/bmartel/interstice/issues"
+	},
 	"devDependencies": {
 		"@open-wc/testing": "^2.5.4",
 		"@open-wc/testing-karma": "^3.2.42",

@@ -1,6 +1,6 @@
 {
 	"name": "@interstice/icon",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "A reusable icon component based on tailwindcss design with zondicons",
 	"keywords": [
 		"interstice",
@@ -14,14 +14,14 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "pika build",
-    "prebuild": "npm run generate",
+		"prebuild": "npm run generate",
 		"generate": "node generate.js",
 		"test": "karma start --coverage",
 		"test:watch": "karma start --auto-watch=true --single-run=false",
 		"test:update-snapshots": "karma start --update-snapshots",
 		"test:prune-snapshots": "karma start --prune-snapshots",
 		"test:bs": "karma start karma.bs.config.js --coverage",
-    "demo": "es-dev-server --app-index demo/index.html --node-resolve --watch --open"
+		"demo": "es-dev-server --app-index demo/index.html --node-resolve --watch --open"
 	},
 	"publishConfig": {
 		"access": "public"
@@ -68,7 +68,7 @@
 		"pika-plugin-minify": "^0.1.0"
 	},
 	"dependencies": {
-		"@interstice/async": "^0.0.0",
+		"@interstice/async": "^0.0.1",
 		"@open-wc/lit-helpers": "^0.2.9",
 		"lit-element": "^2.2.1",
 		"lit-html": "^1.1.2"
