@@ -1,4 +1,4 @@
-import { AsyncElement } from "/src/index.js";
+import AsyncElement from "/src/index.js";
 import {html} from "lit-html";
 
 class AsyncDemo extends AsyncElement {
