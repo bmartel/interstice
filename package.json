@@ -33,7 +33,7 @@
     "start:build": "cd dist && es-dev-server --open",
     "build": "lerna run build",
     "test": "lerna run test",
-    "publish": "lerna publish from-package --contents pkg",
+    "publish": "lerna publish --contents pkg",
     "version": "lerna version"
   },
   "dependencies": {
