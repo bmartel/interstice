@@ -33,8 +33,7 @@
     "start:build": "cd dist && es-dev-server --open",
     "build": "lerna run build",
     "test": "lerna run test",
-    "publish": "lerna publish from-package --contents pkg",
-    "version": "lerna version"
+    "publish": "lerna publish from-package --contents pkg"
   },
   "dependencies": {
     "@open-wc/lit-helpers": "^0.2.6",
