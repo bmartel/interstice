@@ -1,6 +1,6 @@
 {
   "name": "interstice",
-  "version": "0.0.0",
+	"version": "0.0.2-alpha.0",
   "description": "A collection of Webcomponents following open-wc recommendations",
   "author": "Brandon Martel <brandonmartel@gmail.com>",
   "license": "MIT",

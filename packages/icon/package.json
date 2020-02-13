@@ -72,5 +72,6 @@
 		"@open-wc/lit-helpers": "^0.2.9",
 		"lit-element": "^2.2.1",
 		"lit-html": "^1.1.2"
-	}
+	},
+	"gitHead": "cf52b21a5f5f9e71ce0e38d9dd77e56f748bbbc3"
 }
