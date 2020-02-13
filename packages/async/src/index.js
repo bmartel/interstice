@@ -1,23 +1,13 @@
 import { LitElement, html } from 'lit-element';
 
 export class AsyncElement extends LitElement {
-  static get deps() {
-    return [];
-  }
-
-  constructor() {
-    super();
+  firstUpdated() {
     this.setup();
-  }
-
-  _load(changedProps = undefined) {
-    this.loader();
-    this.resolve(changedProps);
   }
 
   setup() {
     if (!this._loadedPromise) {
-      this._load();
+      this.reload();
     }
   }
 
@@ -30,7 +20,7 @@ export class AsyncElement extends LitElement {
     });
     this._loadedPromise
       .then(data => {
-        this._loaded = data;
+        this._loaded = () => data;
         this.requestUpdate();
         return data;
       })
@@ -40,17 +30,9 @@ export class AsyncElement extends LitElement {
       });
   }
 
-  load() {
-    return Promise.reject('Must implement load() in child components');
-  } //eslint-disable-line
-
-  unload() {
-    AsyncElement._loaded.delete(this._loader);
-  }
-
   reload() {
-    this.unload();
-    this._load();
+    this.loader();
+    this.resolve();
   }
 
   loaded() {
@@ -64,9 +46,9 @@ export class AsyncElement extends LitElement {
     return null;
   }
 
-  async resolve(changedProps = undefined) {
+  async resolve() {
     try {
-      const data = await this.load(changedProps);
+      const data = await this.asyncRender();
       this._resolveLoaded(data);
       return data;
     } catch (err) {
@@ -77,22 +59,20 @@ export class AsyncElement extends LitElement {
 
   erroring(err) {
     return html``;
-  } // eslint-disable-line
+  } 
+
   loading() {
     return html``;
-  } // eslint-disable-line
+  }
 
-  update(changedProps) {
-    if (AsyncElement.deps.some(k => changedProps.has(k))) {
-      this._load(changedProps);
-    }
-    return super.update(changedProps);
+  asyncRender() {
+    return Promise.reject('Must implement asyncRender() in child components');
   }
 
   render() {
     const loaded = this.loaded();
     if (loaded) {
-      return loaded;
+      return loaded();
     }
 
     const errored = this.errored();
