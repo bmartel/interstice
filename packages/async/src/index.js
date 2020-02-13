@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
 
-export default class extends LitElement {
+class AsyncElement extends LitElement {
   firstUpdated() {
     this.setup();
   }
@@ -83,3 +83,4 @@ export default class extends LitElement {
     return this.loading();
   }
 }
+export default AsyncElement;

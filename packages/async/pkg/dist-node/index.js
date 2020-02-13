@@ -95,5 +95,5 @@ class AsyncElement extends litElement.LitElement {
 
 }
 
-exports.AsyncElement = AsyncElement;
+exports.default = AsyncElement;
 //# sourceMappingURL=index.js.map
