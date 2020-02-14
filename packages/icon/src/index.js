@@ -46,7 +46,7 @@ export default class Icon extends AsyncElement {
   }
 
   async asyncRender() {
-    const svg = await import(this.icon());
+    const { default: svg } = await import(this.icon());
     return html`
       <svg>${svg}</svg>
     `;
