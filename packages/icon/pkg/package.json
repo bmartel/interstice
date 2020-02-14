@@ -1,7 +1,7 @@
 {
   "name": "@interstice/icon",
   "description": "A reusable icon component based on tailwindcss design with various sets asynchronously",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "files": [
     "dist-*/",
@@ -24,7 +24,7 @@
     "url": "git+https://github.com/bmartel/interstice.git"
   },
   "dependencies": {
-    "@interstice/async": "^0.0.6",
+    "@interstice/async": "^0.0.7",
     "@open-wc/lit-helpers": "^0.2.9",
     "lit-element": "^2.2.1",
     "lit-html": "git+https://github.com/Polymer/lit-html.git#master"

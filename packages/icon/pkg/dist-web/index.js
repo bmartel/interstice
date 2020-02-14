@@ -24,6 +24,9 @@ class Icon extends AsyncElement {
 
   static get styles() {
     return css`
+      :host {
+        display: inline-block;
+      }
       svg {
         width: var(--i-icon-width, 20px);
         height: var(--i-icon-height, 20px);
@@ -37,7 +40,7 @@ class Icon extends AsyncElement {
     this.name = '';
     this.icons = 'zondicons';
     this.cdn = 'https://unpkg.com';
-    this.version = '0.0.3';
+    this.version = '0.0.7';
     this.url = '';
     this.size = 20;
   }
