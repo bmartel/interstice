@@ -1,4 +1,5 @@
-import { css, html } from 'lit-element';
+import { svg, css } from 'lit-element';
+import { unsafeSVG } from 'lit-html/directives/unsafe-svg';
 import AsyncElement from '@interstice/async';
 /**
  * @element i-icon
@@ -15,7 +16,8 @@ export default class Icon extends AsyncElement {
       icons: String,
       cdn: String,
       version: String,
-      url: String
+      url: String,
+      size: Number
     };
   }
 
@@ -36,6 +38,7 @@ export default class Icon extends AsyncElement {
     this.cdn = 'https://unpkg.com';
     this.version = '0.0.3';
     this.url = '';
+    this.size = 20;
   }
 
   icon() {
@@ -44,10 +47,10 @@ export default class Icon extends AsyncElement {
 
   async asyncRender() {
     const {
-      default: svg
+      default: svgContent
     } = await import(this.icon());
-    return html`
-      <svg>${svg}</svg>
+    return svg`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.size} ${this.size}">${unsafeSVG(svgContent)}</svg>
     `;
   }
 

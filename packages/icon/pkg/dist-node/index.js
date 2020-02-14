@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var litElement = require('lit-element');
+var unsafeSvg = require('lit-html/directives/unsafe-svg');
 var AsyncElement = _interopDefault(require('@interstice/async'));
 
 /**
@@ -22,7 +23,8 @@ class Icon extends AsyncElement {
       icons: String,
       cdn: String,
       version: String,
-      url: String
+      url: String,
+      size: Number
     };
   }
 
@@ -43,6 +45,7 @@ class Icon extends AsyncElement {
     this.cdn = 'https://unpkg.com';
     this.version = '0.0.3';
     this.url = '';
+    this.size = 20;
   }
 
   icon() {
@@ -51,10 +54,10 @@ class Icon extends AsyncElement {
 
   async asyncRender() {
     const {
-      default: svg
+      default: svgContent
     } = await Promise.resolve().then(() => require(`${this.icon()}`));
-    return litElement.html`
-      <svg>${svg}</svg>
+    return litElement.svg`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.size} ${this.size}">${unsafeSvg.unsafeSVG(svgContent)}</svg>
     `;
   }
 
