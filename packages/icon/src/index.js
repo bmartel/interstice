@@ -41,7 +41,7 @@ export default class Icon extends AsyncElement {
     this.name = '';
     this.icons = 'zondicons';
     this.cdn = 'https://unpkg.com';
-    this.version = '0.0.3';
+    this.version = '0.0.7';
     this.url = '';
     this.size = 20;
   }
