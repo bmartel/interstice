@@ -1,27 +1,23 @@
 {
 	"name": "@interstice/icon",
 	"version": "0.0.2",
-	"description": "A reusable icon component based on tailwindcss design with zondicons",
+	"description": "A reusable icon component based on tailwindcss design with various sets asynchronously",
 	"keywords": [
 		"interstice",
 		"icon",
 		"webcomponent",
-		"tailwindcss",
-		"zondicons"
+		"tailwindcss"
 	],
 	"author": "Brandon Martel <brandonmartel@gmail.com>",
 	"homepage": "https://github.com/bmartel/interstice#readme",
 	"license": "MIT",
 	"scripts": {
 		"build": "pika build",
-		"prebuild": "npm run generate",
-		"generate": "node generate.js",
 		"test": "karma start --coverage",
 		"test:watch": "karma start --auto-watch=true --single-run=false",
 		"test:update-snapshots": "karma start --update-snapshots",
 		"test:prune-snapshots": "karma start --prune-snapshots",
-		"test:bs": "karma start karma.bs.config.js --coverage",
-		"demo": "es-dev-server --app-index demo/index.html --node-resolve --watch --open"
+		"test:bs": "karma start karma.bs.config.js --coverage"
 	},
 	"publishConfig": {
 		"access": "public"
