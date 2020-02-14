@@ -1,4 +1,5 @@
-import { css, html, LitElement } from 'lit-element';
+import { css, html } from 'lit-element';
+import AsyncElement from '@interstice/async';
 /**
  * @element i-icon
  *
@@ -7,7 +8,7 @@ import { css, html, LitElement } from 'lit-element';
  * @cssprop --i-icon-height
  */
 
-export default class Icon extends LitElement {
+export default class Icon extends AsyncElement {
   static get properties() {
     return {
       name: String,

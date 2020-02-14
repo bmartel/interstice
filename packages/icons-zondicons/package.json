@@ -21,7 +21,7 @@
 		"test:update-snapshots": "karma start --update-snapshots",
 		"test:prune-snapshots": "karma start --prune-snapshots",
 		"test:bs": "karma start karma.bs.config.js --coverage",
-		"demo": "es-dev-server --app-index demo/index.html --node-resolve --watch --open"
+		"demo": "es-dev-server --app-index demo/index.html --watch --open"
 	},
 	"@pika/pack": {
 		"pipeline": [

@@ -2,7 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
 var litElement = require('lit-element');
+var AsyncElement = _interopDefault(require('@interstice/async'));
 
 /**
  * @element i-icon
@@ -12,7 +15,7 @@ var litElement = require('lit-element');
  * @cssprop --i-icon-height
  */
 
-class Icon extends litElement.LitElement {
+class Icon extends AsyncElement {
   static get properties() {
     return {
       name: String,
