@@ -25,6 +25,9 @@ export default class Icon extends AsyncElement {
 
   static get styles() {
     return css`
+      :host {
+        display: inline-block;
+      }
       svg {
         width: var(--i-icon-width, 20px);
         height: var(--i-icon-height, 20px);
