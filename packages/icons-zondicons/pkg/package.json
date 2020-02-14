@@ -1,7 +1,7 @@
 {
   "name": "@interstice/icons-zondicons",
   "description": "Set of minimal loadable svg paths for zondicons icon set",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "files": [
     "dist-*/",

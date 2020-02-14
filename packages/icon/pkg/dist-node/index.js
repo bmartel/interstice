@@ -50,7 +50,9 @@ class Icon extends AsyncElement {
   }
 
   async asyncRender() {
-    const svg = await Promise.resolve().then(() => require(`${this.icon()}`));
+    const {
+      default: svg
+    } = await Promise.resolve().then(() => require(`${this.icon()}`));
     return litElement.html`
       <svg>${svg}</svg>
     `;
