@@ -43,7 +43,9 @@ export default class Icon extends LitElement {
 
   async asyncRender() {
     const svg = await import(this.icon());
-    return html`<svg>${svg}</svg>`;
+    return html`
+      <svg>${svg}</svg>
+    `;
   }
 
 }

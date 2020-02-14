@@ -66,5 +66,6 @@
 		"deepmerge": "^4.2.2",
 		"lodash": "^4.17.15",
 		"pika-plugin-minify": "^0.1.0"
-	}
+	},
+	"gitHead": "14831d1a0dc090240965e4ba6484a4fc371b0b71"
 }
