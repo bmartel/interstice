@@ -5,8 +5,21 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var litElement = require('lit-element');
 
 class AsyncElement extends litElement.LitElement {
+  constructor() {
+    super();
+    this.deps = [];
+  }
+
   firstUpdated() {
     this.setup();
+  }
+
+  update(changedProps) {
+    if (this.deps.some(k => changedProps.has(k))) {
+      this.reload();
+    }
+
+    return super.update(changedProps);
   }
 
   setup() {

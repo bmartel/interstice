@@ -1,8 +1,21 @@
 import { LitElement, html } from 'lit-element';
 
 class AsyncElement extends LitElement {
+  constructor() {
+    super();
+    this.deps = [];
+  }
+
   firstUpdated() {
     this.setup();
+  }
+
+  update(changedProps) {
+    if (this.deps.some(k => changedProps.has(k))) {
+      this.reload();
+    }
+
+    return super.update(changedProps);
   }
 
   setup() {
