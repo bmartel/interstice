@@ -38,8 +38,10 @@
   "dependencies": {
     "@open-wc/lit-helpers": "^0.2.6",
     "lit-element": "^2.2.1",
-    "lit-html": "^1.1.2",
-    "tailwindcss": "^1.1.4"
+    "lit-html": "git+https://github.com/Polymer/lit-html.git#master",
+    "tailwindcss": "^1.1.4",
+    "@interstice/async": "file:./packages/async/pkg",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@open-wc/demoing-storybook": "^1.0.1",
@@ -54,7 +56,6 @@
     "husky": "^1.0.0",
     "lerna": "^3.20.2",
     "lint-staged": "^8.0.0",
-    "lodash": "^4.17.15",
     "rimraf": "^2.6.3",
     "rollup": "^1.15.4",
     "web-component-analyzer": "^1.0.2"

@@ -1,8 +1,6 @@
-
 import { svg, css } from 'lit-element';
 import { unsafeSVG } from 'lit-html/directives/unsafe-svg';
 import AsyncElement from '@interstice/async';
-
 
 /**
  * @element i-icon
@@ -18,7 +16,7 @@ export default class Icon extends AsyncElement {
       icons: String,
       cdn: String,
       version: String,
-      url: String,
+      path: String,
       size: Number,
     };
   }
@@ -42,21 +40,28 @@ export default class Icon extends AsyncElement {
     this.icons = 'zondicons';
     this.cdn = 'https://unpkg.com';
     this.version = '0.0.7';
-    this.url = '';
+    this.path = '';
     this.size = 20;
   }
 
   icon() {
     return (
-      this.url ||
+      this.path ||
       `${this.cdn}/@interstice/icons-${this.icons}@${this.version}/dist-src/${this.name}.js`
     );
   }
 
-  async asyncRender() {
+  async importIcon() {
     const { default: svgContent } = await import(this.icon());
+    return svgContent;
+  }
+
+  async asyncRender() {
+    const svgContent = await this.importIcon();
     return svg`
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.size} ${this.size}">${unsafeSVG(svgContent)}</svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.size} ${this.size}">${unsafeSVG(
+      svgContent,
+    )}</svg>
     `;
   }
 }

@@ -1,16 +1,17 @@
 
-import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+import { Story, Preview, Meta, Props } from '@open-wc/demoing-storybook';
+import { html } from 'lit-html';
+import Icon from '../../icon/src/index.js';
+customElements.define('i-icon', Icon);
 
-import '../packages/icon/src/index.js';
-
-<Meta 
-  title="Icon"
+<Meta
+  title="Icons - Zondicons"
   parameters={{
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
 
-# Icon 
+# Icon
 
 A component for displaying a icon with some styling and behaviour improvements.
 
@@ -25,11 +26,12 @@ A component for displaying a icon with some styling and behaviour improvements.
 ### Installation
 
 ```bash
- yarn add interstice
+ yarn add @interstice/icon
 ```
 
 ```js
-  import { Icon } from 'interstice/icons/${iconName}';
+  import Icon from '@interstice/icon';
+customElements.define('i-icon', Icon);
 ```
 ## API
 
