@@ -1,6 +1,6 @@
 {
   "name": "@interstice/button",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A button element using tailwindcss css variables",
   "keywords": [
     "interstice",
