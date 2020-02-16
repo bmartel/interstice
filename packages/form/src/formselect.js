@@ -1,6 +1,6 @@
 import { html, css } from 'lit-element';
 import { FormInput } from './forminput.js';
-import { isObject } from '../utils.js';
+import { isObject } from './utils.js';
 
 export class FormSelect extends FormInput {
   static get properties() {

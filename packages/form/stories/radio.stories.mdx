@@ -1,11 +1,11 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { Radio } from '../index.js';
+import { Radio } from '../src/index.js';
 
-<Meta 
+<Meta
   title="Radio"
   parameters={{
-    component: "z-radio",
+    component: "i-radio",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { Radio } from 'interstice';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <z-radio id="simple"></z-radio>
+      <i-radio id="simple"></i-radio>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="z-radio" />
+<Props of="i-radio" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { Radio } from 'interstice';
 
 <Story name="Wide">
   {html`
-    <z-radio id="wide" wide></z-radio>
+    <i-radio id="wide" wide></i-radio>
   `}
 </Story>
 
@@ -58,15 +58,15 @@ import { Radio } from 'interstice';
 
 <Story name="Label">
   {html`
-    <z-radio id="label" label="Name"></z-radio>
+    <i-radio id="label" label="Name"></i-radio>
   `}
 </Story>
 
-###### Reversed Label 
+###### Reversed Label
 
 <Story name="Reversed Label">
   {html`
-    <z-radio id="label" label="Name" reversed></z-radio>
+    <i-radio id="label" label="Name" reversed></i-radio>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { Radio } from 'interstice';
 
 <Story name="Stacked Label">
   {html`
-    <z-radio id="stacked-label" label="Name" .inline=${false}></z-radio>
+    <i-radio id="stacked-label" label="Name" .inline=${false}></i-radio>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { Radio } from 'interstice';
 
 <Story name="Messages">
   {html`
-    <z-radio id="messages" label="Name" .messages=${['This is a message']}></z-radio>
+    <i-radio id="messages" label="Name" .messages=${['This is a message']}></i-radio>
   `}
 </Story>
 
@@ -91,15 +91,15 @@ import { Radio } from 'interstice';
 
 <Story name="Error">
   {html`
-    <z-radio id="error" label="Name" status="error" .checked=${true}></z-radio>
+    <i-radio id="error" label="Name" status="error" .checked=${true}></i-radio>
   `}
 </Story>
 
-###### Success 
+###### Success
 
 <Story name="Success">
   {html`
-    <z-radio id="success" label="Name" status="success" .checked=${true}></z-radio>
+    <i-radio id="success" label="Name" status="success" .checked=${true}></i-radio>
   `}
 </Story>
 

@@ -1,16 +1,16 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { Button } from '../index.js';
+import { Button } from '../src/index.js';
 
-<Meta 
+<Meta
   title="Button"
   parameters={{
-    component: "z-button",
+    component: "i-button",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
 
-# Button 
+# Button
 
 A component for displaying a button with some styling and behaviour improvements.
 
@@ -35,16 +35,16 @@ import { Button } from 'interstice';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <z-button id="simple">
+      <i-button id="simple">
           Simple
-      </z-button>
+      </i-button>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="z-button" />
+<Props of="i-button" />
 
 ## Variations
 
@@ -52,9 +52,9 @@ import { Button } from 'interstice';
 
 <Story name="Wide">
   {html`
-    <z-button id="wide" wide>
+    <i-button id="wide" wide>
         Wide
-    </z-button>
+    </i-button>
   `}
 </Story>
 
@@ -62,18 +62,18 @@ import { Button } from 'interstice';
 
 <Story name="Icon">
   {html`
-    <z-button id="icon" icon="check">
+    <i-button id="icon" icon="check">
         Saved
-    </z-button>
+    </i-button>
   `}
 </Story>
 
-###### Color 
+###### Color
 
 <Story name="Color">
   {html`
-    <z-button id="color" color="primary">
+    <i-button id="color" color="primary">
         Color
-    </z-button>
+    </i-button>
   `}
 </Story>

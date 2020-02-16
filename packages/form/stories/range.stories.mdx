@@ -1,11 +1,11 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { Range } from '../index.js';
+import { Range } from '../src/index.js';
 
-<Meta 
+<Meta
   title="Range"
   parameters={{
-    component: "z-range",
+    component: "i-range",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { Range } from 'interstice';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <z-range id="simple"></z-range>
+      <i-range id="simple"></i-range>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="z-range" />
+<Props of="i-range" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { Range } from 'interstice';
 
 <Story name="Wide">
   {html`
-    <z-range id="wide" wide></z-range>
+    <i-range id="wide" wide></i-range>
   `}
 </Story>
 
@@ -58,15 +58,15 @@ import { Range } from 'interstice';
 
 <Story name="Label">
   {html`
-    <z-range id="label" label="Temperature"></z-range>
+    <i-range id="label" label="Temperature"></i-range>
   `}
 </Story>
 
-###### Hint 
+###### Hint
 
 <Story name="Hint">
   {html`
-    <z-range id="hint" label="Temperature" hint="What is the weather like?"></z-range>
+    <i-range id="hint" label="Temperature" hint="What is the weather like?"></i-range>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { Range } from 'interstice';
 
 <Story name="Inline Label">
   {html`
-    <z-range id="inline-label" label="Temperature" inline></z-range>
+    <i-range id="inline-label" label="Temperature" inline></i-range>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { Range } from 'interstice';
 
 <Story name="Messages">
   {html`
-    <z-range id="messages" label="Temperature" .messages=${['This is a message']}></z-range>
+    <i-range id="messages" label="Temperature" .messages=${['This is a message']}></i-range>
   `}
 </Story>
 
@@ -91,15 +91,15 @@ import { Range } from 'interstice';
 
 <Story name="Error">
   {html`
-    <z-range id="error" label="Temperature" status="error" .checked=${true}></z-range>
+    <i-range id="error" label="Temperature" status="error" .checked=${true}></i-range>
   `}
 </Story>
 
-###### Success 
+###### Success
 
 <Story name="Success">
   {html`
-    <z-range id="success" label="Temperature" status="success" .checked=${true}></z-range>
+    <i-range id="success" label="Temperature" status="success" .checked=${true}></i-range>
   `}
 </Story>
 

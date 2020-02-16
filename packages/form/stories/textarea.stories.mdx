@@ -1,16 +1,16 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { TextField } from '../index.js';
+import { TextArea } from '../src/index.js';
 
-<Meta 
-  title="TextField"
+<Meta
+  title="TextArea"
   parameters={{
-    component: "z-textfield",
+    component: "i-textarea",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
 
-# TextField
+# TextArea
 
 A form component for displaying a text input in a form with some styling and behaviour improvements.
 
@@ -29,20 +29,20 @@ yarn add interstice
 ```
 
 ```js
-import { TextField } from 'interstice';
+import { TextArea } from 'interstice';
 ```
 
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <z-textfield id="simple"></z-textfield>
+      <i-textarea id="simple"></i-textarea>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="z-textfield" />
+<Props of="i-textarea" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { TextField } from 'interstice';
 
 <Story name="Wide">
   {html`
-    <z-textfield id="wide" wide></z-textfield>
+    <i-textarea id="wide" wide></i-textarea>
   `}
 </Story>
 
@@ -58,15 +58,15 @@ import { TextField } from 'interstice';
 
 <Story name="Label">
   {html`
-    <z-textfield id="label" label="Name"></z-textfield>
+    <i-textarea id="label" label="Description"></i-textarea>
   `}
 </Story>
 
-###### Hint 
+###### Hint
 
 <Story name="Hint">
   {html`
-    <z-textfield id="hint" label="Name" hint="Enter a unique username"></z-textfield>
+    <i-textarea id="hint" label="Description" hint="maximum 144 characters"></i-textarea>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { TextField } from 'interstice';
 
 <Story name="Inline Label">
   {html`
-    <z-textfield id="inline-label" label="Name" hint="Enter a unique username" inline></z-textfield>
+    <i-textarea id="inline-label" label="Description" inline></i-textarea>
   `}
 </Story>
 
@@ -82,7 +82,7 @@ import { TextField } from 'interstice';
 
 <Story name="Placeholder">
   {html`
-    <z-textfield id="placeholder" label="Name" hint="Enter a unique username" placeholder="Bobby Tables"></z-textfield>
+    <i-textarea id="placeholder" label="Description" hint="maximum 144 characters" placeholder="important text goes here ..."></i-textarea>
   `}
 </Story>
 
@@ -90,7 +90,7 @@ import { TextField } from 'interstice';
 
 <Story name="Messages">
   {html`
-    <z-textfield id="messages" label="Name" .messages=${['This is a message']}></z-textfield>
+    <i-textarea id="messages" label="Description" .messages=${['This is a message']}></i-textarea>
   `}
 </Story>
 
@@ -98,15 +98,15 @@ import { TextField } from 'interstice';
 
 <Story name="Error">
   {html`
-    <z-textfield id="error" label="Name" status="error"></z-textfield>
+    <i-textarea id="error" label="Description" status="error"></i-textarea>
   `}
 </Story>
 
-###### Success 
+###### Success
 
 <Story name="Success">
   {html`
-    <z-textfield id="success" label="Name" status="success"></z-textfield>
+    <i-textarea id="success" label="Description" status="success"></i-textarea>
   `}
 </Story>
 

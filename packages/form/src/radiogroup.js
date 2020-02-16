@@ -1,55 +1,56 @@
 import { html, css } from 'lit-element';
 import { spread } from '@open-wc/lit-helpers';
 import './radio.js';
-import {FormSelect} from './formselect.js';
+import { FormSelect } from './formselect.js';
 
 /**
- * @element z-radiogroup
+ * @element i-radiogroup
  *
- * @cssprop --z-font-size
- * @cssprop --z-font-family
- * @cssprop --z-leading
- * @cssprop --z-padding
- * @cssprop --z-round
- * @cssprop --z-gap
- * @cssprop --z-transition
- * @cssprop --z-color
- * @cssprop --z-color-primary
- * @cssprop --z-color-accent
- * @cssprop --z-color-error
- * @cssprop --z-input-color
- * @cssprop --z-input-bg-color
- * @cssprop --z-border-color
- * @cssprop --z-border-size
- * @cssprop --z-label-color
- * @cssprop --z-label-size
- * @cssprop --z-message-size
- * @cssprop --z-outline-size
+ * @cssprop --font-size
+ * @cssprop --font-family
+ * @cssprop --leading
+ * @cssprop --padding
+ * @cssprop --round
+ * @cssprop --gap
+ * @cssprop --transition
+ * @cssprop --color
+ * @cssprop --color-primary
+ * @cssprop --color-accent
+ * @cssprop --color-error
+ * @cssprop --input-color
+ * @cssprop --input-background-color
+ * @cssprop --border-color
+ * @cssprop --border-size
+ * @cssprop --label-color
+ * @cssprop --label-size
+ * @cssprop --message-size
+ * @cssprop --outline-size
  */
 export class RadioGroup extends FormSelect {
   static get properties() {
     return {
       value: { type: String },
-    }
+    };
   }
 
   static get styles() {
     return css`
       ${FormSelect.styles}
       .messages {
-        --z-gap: 0;
+        --gap: 0;
       }
-      .label, .hint {
-        margin-bottom: var(--z-gap);
+      .label,
+      .hint {
+        margin-bottom: var(--gap);
       }
       .hint + .label {
         margin-bottom: 0;
       }
       .label + .select-group {
-        margin-top: var(--z-gap);
+        margin-top: var(--gap);
       }
-      z-radio {
-        --z-label-font-weight: var(--z-font-normal);
+      i-radio {
+        --label-font-weight: var(--font-normal);
       }
     `;
   }
@@ -70,7 +71,7 @@ export class RadioGroup extends FormSelect {
   renderOption(option, index) {
     const { inline, reversed, wide, ...optionProps } = option;
     return html`
-      <z-radio
+      <i-radio
         .name=${this.name}
         .id=${this.inputId(index)}
         .label=${this.convertLabel(option)}
@@ -79,9 +80,9 @@ export class RadioGroup extends FormSelect {
         @click=${this.inputUpdate}
         reversed
         ...=${spread(optionProps)}
-      ></z-radio>
+      ></i-radio>
     `;
   }
 }
 
-window.customElements.define('z-radiogroup', RadioGroup);
+customElements.define('i-radiogroup', RadioGroup);

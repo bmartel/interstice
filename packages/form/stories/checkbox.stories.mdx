@@ -1,11 +1,11 @@
 import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
 
-import { CheckBox } from '../index.js';
+import { CheckBox } from '../src/index.js';
 
-<Meta 
+<Meta
   title="CheckBox"
   parameters={{
-    component: "z-checkbox",
+    component: "i-checkbox",
     options: { selectedPanel: "storybookjs/knobs/panel" }
   }}
 />
@@ -35,14 +35,14 @@ import { CheckBox } from 'interstice';
 <Preview withToolbar>
   <Story name="Simple">
     {html`
-      <z-checkbox id="simple"></z-checkbox>
+      <i-checkbox id="simple"></i-checkbox>
     `}
   </Story>
 </Preview>
 
 ## API
 
-<Props of="z-checkbox" />
+<Props of="i-checkbox" />
 
 ## Variations
 
@@ -50,7 +50,7 @@ import { CheckBox } from 'interstice';
 
 <Story name="Wide">
   {html`
-    <z-checkbox id="wide" wide></z-checkbox>
+    <i-checkbox id="wide" wide></i-checkbox>
   `}
 </Story>
 
@@ -58,15 +58,15 @@ import { CheckBox } from 'interstice';
 
 <Story name="Label">
   {html`
-    <z-checkbox id="label" label="Name"></z-checkbox>
+    <i-checkbox id="label" label="Name"></i-checkbox>
   `}
 </Story>
 
-###### Reversed Label 
+###### Reversed Label
 
 <Story name="Reversed Label">
   {html`
-    <z-checkbox id="label" label="Name" reversed></z-checkbox>
+    <i-checkbox id="label" label="Name" reversed></i-checkbox>
   `}
 </Story>
 
@@ -74,7 +74,7 @@ import { CheckBox } from 'interstice';
 
 <Story name="Stacked Label">
   {html`
-    <z-checkbox id="stacked-label" label="Name" .inline=${false}></z-checkbox>
+    <i-checkbox id="stacked-label" label="Name" .inline=${false}></i-checkbox>
   `}
 </Story>
 
@@ -83,7 +83,7 @@ import { CheckBox } from 'interstice';
 
 <Story name="Messages">
   {html`
-    <z-checkbox id="messages" label="Name" .messages=${['This is a message']}></z-checkbox>
+    <i-checkbox id="messages" label="Name" .messages=${['This is a message']}></i-checkbox>
   `}
 </Story>
 
@@ -91,14 +91,14 @@ import { CheckBox } from 'interstice';
 
 <Story name="Error">
   {html`
-    <z-checkbox id="error" label="Name" status="error" .checked=${true}></z-checkbox>
+    <i-checkbox id="error" label="Name" status="error" .checked=${true}></i-checkbox>
   `}
 </Story>
 
-###### Success 
+###### Success
 
 <Story name="Success">
   {html`
-    <z-checkbox id="success" label="Name" status="success" .checked=${true}></z-checkbox>
+    <i-checkbox id="success" label="Name" status="success" .checked=${true}></i-checkbox>
   `}
 </Story>

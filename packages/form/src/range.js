@@ -2,27 +2,27 @@ import { css } from 'lit-element';
 import { FormInput } from './forminput.js';
 
 /**
- * @element z-range
+ * @element i-range
  *
- * @cssprop --z-font-size
- * @cssprop --z-font-family
- * @cssprop --z-leading
- * @cssprop --z-padding
- * @cssprop --z-round
- * @cssprop --z-gap
- * @cssprop --z-transition
- * @cssprop --z-color
- * @cssprop --z-color-primary
- * @cssprop --z-color-accent
- * @cssprop --z-color-error
- * @cssprop --z-input-color
- * @cssprop --z-input-bg-color
- * @cssprop --z-border-color
- * @cssprop --z-border-size
- * @cssprop --z-label-color
- * @cssprop --z-label-size
- * @cssprop --z-message-size
- * @cssprop --z-outline-size
+ * @cssprop --font-size
+ * @cssprop --font-family
+ * @cssprop --leading
+ * @cssprop --padding
+ * @cssprop --round
+ * @cssprop --gap
+ * @cssprop --transition
+ * @cssprop --color
+ * @cssprop --color-primary
+ * @cssprop --color-accent
+ * @cssprop --color-error
+ * @cssprop --input-color
+ * @cssprop --input-background-color
+ * @cssprop --border-color
+ * @cssprop --border-size
+ * @cssprop --label-color
+ * @cssprop --label-size
+ * @cssprop --message-size
+ * @cssprop --outline-size
  */
 export class Range extends FormInput {
   static get properties() {
@@ -44,18 +44,18 @@ export class Range extends FormInput {
       input::-webkit-slider-runnable-track {
         width: 100%;
         cursor: pointer;
-        height: var(--z-outline-size);
-        background: var(--z-border-color);
-        border-radius: var(--z-round);
-        border: var(--z-border-size) solid var(--z-border-color);
+        height: var(--outline-size);
+        background: var(--border-color);
+        border-radius: var(--round);
+        border: var(--border-size) solid var(--border-color);
       }
       input::-ms-track {
         width: 100%;
         cursor: pointer;
-        height: var(--z-outline-size);
-        background: var(--z-border-color);
-        border-radius: var(--z-round);
-        border: var(--z-border-size) solid var(--z-border-color);
+        height: var(--outline-size);
+        background: var(--border-color);
+        border-radius: var(--round);
+        border: var(--border-size) solid var(--border-color);
       }
       input::-webkit-slider-thumb,
       input::-moz-range-thumb {
@@ -64,9 +64,9 @@ export class Range extends FormInput {
         box-sizing: border-box;
         width: 25px;
         height: 25px;
-        border: var(--z-border-size) solid transparent;
-        border-radius: var(--z-round-full);
-        background: var(--z-color-primary);
+        border: var(--border-size) solid transparent;
+        border-radius: var(--round-full);
+        background: var(--color-primary);
         cursor: pointer;
       }
       input::-ms-thumb {
@@ -74,43 +74,43 @@ export class Range extends FormInput {
         box-sizing: border-box;
         width: 26px;
         height: 26px;
-        border-radius: var(--z-round-full);
-        background: var(--z-color-primary);
+        border-radius: var(--round-full);
+        background: var(--color-primary);
         cursor: pointer;
       }
       .error input::-webkit-slider-thumb,
       .error input::-moz-range-thumb {
-        border-color: var(--z-color-error);
-        background: var(--z-color-error);
+        border-color: var(--color-error);
+        background: var(--color-error);
       }
       .error input::-ms-thumb {
-        border-color: var(--z-color-error);
-        background: var(--z-color-error);
+        border-color: var(--color-error);
+        background: var(--color-error);
       }
       .success input::-webkit-slider-thumb,
       .success input::-moz-range-thumb {
-        border-color: var(--z-color-success);
-        background: var(--z-color-success);
+        border-color: var(--color-success);
+        background: var(--color-success);
       }
       .success input::-ms-thumb {
-        border-color: var(--z-color-success);
-        background: var(--z-color-success);
+        border-color: var(--color-success);
+        background: var(--color-success);
       }
       input:focus::-moz-range-track,
       input:focus::-webkit-slider-runnable-track {
-        background: var(--z-color-accent);
+        background: var(--color-accent);
       }
       input::-ms-fill-lower {
-        background: var(--z-color-primary);
+        background: var(--color-primary);
       }
       input::-ms-fill-upper {
-        background: var(--z-border-color);
+        background: var(--border-color);
       }
       input:focus::-ms-fill-lower {
-        background: var(--z-color-accent);
+        background: var(--color-accent);
       }
       input:focus::-ms-fill-upper {
-        background: var(--z-border-color);
+        background: var(--border-color);
       }
     `;
   }
@@ -136,4 +136,4 @@ export class Range extends FormInput {
   }
 }
 
-window.customElements.define('z-range', Range);
+customElements.define('i-range', Range);

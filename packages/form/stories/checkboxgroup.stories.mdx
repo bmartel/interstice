@@ -1,0 +1,129 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import { CheckBoxGroup } from '../src/index.js';
+
+<Meta
+  title="CheckBoxGroup"
+  parameters={{
+    component: "i-checkboxgroup",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# CheckBoxGroup
+
+A form component for displaying a checkboxgroup input in a form with some styling and behaviour improvements.
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add interstice
+```
+
+```js
+import { CheckBoxGroup } from 'interstice';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <i-checkboxgroup id="simple" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></i-checkboxgroup>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="i-checkboxgroup" />
+
+## Variations
+
+###### Wide
+
+<Story name="Wide">
+  {html`
+    <i-checkboxgroup id="wide" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} wide></i-checkboxgroup>
+  `}
+</Story>
+
+###### Label
+
+<Story name="Label">
+  {html`
+    <i-checkboxgroup id="label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit"></i-checkboxgroup>
+  `}
+</Story>
+
+###### Hint
+
+<Story name="Hint">
+  {html`
+    <i-checkboxgroup id="hint" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" hint="my favorite is banana, what is yours?"></i-checkboxgroup>
+  `}
+</Story>
+
+###### Inline Label
+
+<Story name="Inline Label">
+  {html`
+    <i-checkboxgroup id="inline-label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" inline></i-checkboxgroup>
+  `}
+</Story>
+
+###### Reversed Label
+
+<Story name="Reversed Label">
+  {html`
+    <i-checkboxgroup id="reversed-label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" inline reversed></i-checkboxgroup>
+  `}
+</Story>
+
+
+###### Messages
+
+<Story name="Messages">
+  {html`
+    <i-checkboxgroup id="messages" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" .messages=${['This is a message']}></i-checkboxgroup>
+  `}
+</Story>
+
+###### Error
+
+<Story name="Error">
+  {html`
+    <i-checkboxgroup id="error" label="Name" status="error" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></i-checkboxgroup>
+  `}
+</Story>
+
+###### Success
+
+<Story name="Success">
+  {html`
+    <i-checkboxgroup id="success" label="Name" status="success" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></i-checkboxgroup>
+  `}
+</Story>
+
+###### Dependent Value
+
+<Story name="Dependent">
+  {html`
+    <i-checkboxgroup id="dependent" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" dependent></i-checkboxgroup>
+  `}
+</Story>
+
+###### Dependent Custom Label + Value
+
+<Story name="DependentCustom">
+  {html`
+    <i-checkboxgroup id="dependent-custom" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" .dependentOptions=${{label: 'All Fruit', value: '_all_fruit'}} dependent></i-checkboxgroup>
+  `}
+</Story>
+

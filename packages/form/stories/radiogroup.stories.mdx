@@ -1,0 +1,114 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import { RadioGroup } from '../src/index.js';
+
+<Meta
+  title="RadioGroup"
+  parameters={{
+    component: "i-radiogroup",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# RadioGroup
+
+A form component for displaying a radiogroup input in a form with some styling and behaviour improvements.
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add interstice
+```
+
+```js
+import { RadioGroup } from 'interstice';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <i-radiogroup id="simple" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></i-radiogroup>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="i-radiogroup" />
+
+## Variations
+
+###### Wide
+
+<Story name="Wide">
+  {html`
+    <i-radiogroup id="wide" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} wide></i-radiogroup>
+  `}
+</Story>
+
+###### Label
+
+<Story name="Label">
+  {html`
+    <i-radiogroup id="label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit"></i-radiogroup>
+  `}
+</Story>
+
+###### Hint
+
+<Story name="Hint">
+  {html`
+    <i-radiogroup id="hint" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" hint="my favorite is banana, what is yours?"></i-radiogroup>
+  `}
+</Story>
+
+###### Inline Label
+
+<Story name="Inline Label">
+  {html`
+    <i-radiogroup id="inline-label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" inline></i-radiogroup>
+  `}
+</Story>
+
+###### Reversed Label
+
+<Story name="Reversed Label">
+  {html`
+    <i-radiogroup id="reversed-label" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" inline reversed></i-radiogroup>
+  `}
+</Story>
+
+
+###### Messages
+
+<Story name="Messages">
+  {html`
+    <i-radiogroup id="messages" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]} label="Favorite Fruit" .messages=${['This is a message']}></i-radiogroup>
+  `}
+</Story>
+
+###### Error
+
+<Story name="Error">
+  {html`
+    <i-radiogroup id="error" label="Name" status="error" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></i-radiogroup>
+  `}
+</Story>
+
+###### Success
+
+<Story name="Success">
+  {html`
+    <i-radiogroup id="success" label="Name" status="success" .options=${[{label: 'Apple', value: 'apple'},{label: 'Banana', value: 'banana'},{label: 'Orange', value: 'orange'}]}></i-radiogroup>
+  `}
+</Story>
+
+

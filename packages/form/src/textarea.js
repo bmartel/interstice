@@ -2,27 +2,27 @@ import { html, css } from 'lit-element';
 import { FormInput } from './forminput.js';
 
 /**
- * @element z-textarea
+ * @element i-textarea
  *
- * @cssprop --z-font-size
- * @cssprop --z-font-family
- * @cssprop --z-leading
- * @cssprop --z-padding
- * @cssprop --z-round
- * @cssprop --z-gap
- * @cssprop --z-transition
- * @cssprop --z-color
- * @cssprop --z-color-primary
- * @cssprop --z-color-accent
- * @cssprop --z-color-error
- * @cssprop --z-input-color
- * @cssprop --z-input-bg-color
- * @cssprop --z-border-color
- * @cssprop --z-border-size
- * @cssprop --z-label-color
- * @cssprop --z-label-size
- * @cssprop --z-message-size
- * @cssprop --z-outline-size
+ * @cssprop --font-size
+ * @cssprop --font-family
+ * @cssprop --leading
+ * @cssprop --padding
+ * @cssprop --round
+ * @cssprop --gap
+ * @cssprop --transition
+ * @cssprop --color
+ * @cssprop --color-primary
+ * @cssprop --color-accent
+ * @cssprop --color-error
+ * @cssprop --input-color
+ * @cssprop --input-background-color
+ * @cssprop --border-color
+ * @cssprop --border-size
+ * @cssprop --label-color
+ * @cssprop --label-size
+ * @cssprop --message-size
+ * @cssprop --outline-size
  */
 export class TextArea extends FormInput {
   static get properties() {
@@ -35,7 +35,7 @@ export class TextArea extends FormInput {
     return css`
       ${FormInput.styles}
       textarea {
-        min-height: calc(var(--z-font-size) * 7.7);
+        min-height: calc(var(--font-size) * 7.7);
       }
     `;
   }
@@ -60,9 +60,10 @@ export class TextArea extends FormInput {
         ?readonly=${this.readonly}
       >
         ${this.value}
-      </textarea>
+      </textarea
+      >
     `;
   }
 }
 
-window.customElements.define('z-textarea', TextArea);
+customElements.define('i-textarea', TextArea);

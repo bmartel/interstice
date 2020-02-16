@@ -1,33 +1,33 @@
 import { html, LitElement, css } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { spread } from '@open-wc/lit-helpers';
-import { fontStyles, fullWidthInput } from '../styles.js';
+import { fontStyles, fullWidthInput } from './styles.js';
 
 /**
- * @element z-forminput
+ * @element i-forminput
  *
- * @cssprop --z-font-size
- * @cssprop --z-font-family
- * @cssprop --z-leading
- * @cssprop --z-padding
- * @cssprop --z-gap
- * @cssprop --z-round
- * @cssprop --z-transition
- * @cssprop --z-color
- * @cssprop --z-color-primary
- * @cssprop --z-color-accent
- * @cssprop --z-color-error
- * @cssprop --z-input-color
- * @cssprop --z-input-bg-color
- * @cssprop --z-input-placeholder-color
- * @cssprop --z-border-color
- * @cssprop --z-border-size
- * @cssprop --z-label-color
- * @cssprop --z-label-size
- * @cssprop --z-label-font-weight
- * @cssprop --z-message-size
- * @cssprop --z-message-gap
- * @cssprop --z-outline-size
+ * @cssprop --font-size
+ * @cssprop --font-family
+ * @cssprop --leading
+ * @cssprop --padding
+ * @cssprop --gap
+ * @cssprop --round
+ * @cssprop --transition
+ * @cssprop --color
+ * @cssprop --color-primary
+ * @cssprop --color-accent
+ * @cssprop --color-error
+ * @cssprop --input-color
+ * @cssprop --input-background-color
+ * @cssprop --input-placeholder-color
+ * @cssprop --border-color
+ * @cssprop --border-size
+ * @cssprop --label-color
+ * @cssprop --label-size
+ * @cssprop --label-font-weight
+ * @cssprop --message-size
+ * @cssprop --message-gap
+ * @cssprop --outline-size
  */
 export class FormInput extends LitElement {
   static get properties() {
@@ -56,7 +56,7 @@ export class FormInput extends LitElement {
       }
       .input-wrapper {
         display: grid;
-        grid-gap: var(--z-gap);
+        grid-gap: var(--gap);
         grid-template-areas:
           'l l l'
           'h h h'
@@ -65,20 +65,20 @@ export class FormInput extends LitElement {
       }
       .hint {
         grid-area: h;
-        font-size: var(--z-message-size);
-        color: var(--z-input-placeholder-color);
+        font-size: var(--message-size);
+        color: var(--input-placeholder-color);
         flex: 1;
-        margin-bottom: var(--z-gap);
+        margin-bottom: var(--gap);
       }
       .label {
         grid-area: l;
-        font-size: var(--z-label-size);
-        color: var(--z-label-color);
-        font-weight: var(--z-label-font-weight, 600);
+        font-size: var(--label-size);
+        color: var(--label-color);
+        font-weight: var(--label-font-weight, 600);
       }
       .messages {
-        font-size: var(--z-message-size);
-        margin: var(--z-gap) 0 0 0;
+        font-size: var(--message-size);
+        margin: var(--gap) 0 0 0;
         padding: 0;
         list-style: none;
         grid-area: m;
@@ -87,7 +87,7 @@ export class FormInput extends LitElement {
       :host,
       .input-wrapper,
       .input:not(.check) {
-        width: var(--z-w-full);
+        width: var(--w-full);
       }
       :host,
       .input-wrapper,
@@ -96,7 +96,7 @@ export class FormInput extends LitElement {
       .check,
       .input {
         box-sizing: border-box;
-        transition: var(--z-transition);
+        transition: var(--transition);
       }
       .disabled {
         opacity: 0.6;
@@ -107,8 +107,8 @@ export class FormInput extends LitElement {
           'h i i'
           '. m m';
 
-        grid-column-gap: calc(var(--z-gap) * 2.5);
-        grid-row-gap: var(--z-gap);
+        grid-column-gap: calc(var(--gap) * 2.5);
+        grid-row-gap: var(--gap);
         align-items: center;
       }
       .inline .label {
@@ -132,59 +132,59 @@ export class FormInput extends LitElement {
         -moz-appearance: none;
         -ms-appearance: none;
         grid-area: i;
-        font-size: var(--z-font-size);
-        font-family: var(--z-font-family);
-        padding: var(--z-padding);
-        color: var(--z-input-color);
-        background-color: var(--z-input-bg-color);
-        border: var(--z-border-size) solid var(--z-border-color);
-        border-radius: var(--z-round);
-        outline-color: var(--z-outline-color);
+        font-size: var(--font-size);
+        font-family: var(--font-family);
+        padding: var(--padding);
+        color: var(--input-color);
+        background-color: var(--input-background-color);
+        border: var(--border-size) solid var(--border-color);
+        border-radius: var(--round);
+        outline-color: var(--outline-color);
       }
       .input::placeholder {
-        color: var(--z-input-placeholder-color);
+        color: var(--input-placeholder-color);
       }
       .input:focus {
         outline: 0;
-        border-color: var(--z-color-primary);
+        border-color: var(--color-primary);
       }
       .input:hover {
-        border-color: var(--z-color-primary);
-        box-shadow: var(--z-color-primary) 0 0 var(--z-outline-size);
+        border-color: var(--color-primary);
+        box-shadow: var(--color-primary) 0 0 var(--outline-size);
       }
       .input-wrapper.error .input:hover {
-        border-color: var(--z-color-error);
-        box-shadow: var(--z-color-error) 0 0 var(--z-outline-size);
+        border-color: var(--color-error);
+        box-shadow: var(--color-error) 0 0 var(--outline-size);
       }
       .input-wrapper.success .input:hover {
-        border-color: var(--z-color-success);
-        box-shadow: var(--z-color-success) 0 0 var(--z-outline-size);
+        border-color: var(--color-success);
+        box-shadow: var(--color-success) 0 0 var(--outline-size);
       }
       .input::selection {
-        color: var(--z-color-white);
-        background-color: var(--z-color-accent);
+        color: var(--color-white);
+        background-color: var(--color-accent);
       }
       .error .input::selection {
-        background-color: var(--z-color-error);
+        background-color: var(--color-error);
       }
       .error .label,
       .error .check,
       .error .messages {
-        color: var(--z-color-error);
+        color: var(--color-error);
       }
       .error .input {
-        border-color: var(--z-color-error);
+        border-color: var(--color-error);
       }
       .success .input::selection {
-        background-color: var(--z-color-success);
+        background-color: var(--color-success);
       }
       .success .label,
       .success .check,
       .success .messages {
-        color: var(--z-color-success);
+        color: var(--color-success);
       }
       .success .input {
-        border-color: var(--z-color-success);
+        border-color: var(--color-success);
       }
       @media (min-width: 640px) {
         :host,

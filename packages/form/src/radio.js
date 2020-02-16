@@ -2,27 +2,27 @@ import { html, css } from 'lit-element';
 import { CheckBox } from './checkbox.js';
 
 /**
- * @element z-radio
+ * @element i-radio
  *
- * @cssprop --z-font-size
- * @cssprop --z-font-family
- * @cssprop --z-leading
- * @cssprop --z-padding
- * @cssprop --z-round
- * @cssprop --z-gap
- * @cssprop --z-transition
- * @cssprop --z-color
- * @cssprop --z-color-primary
- * @cssprop --z-color-accent
- * @cssprop --z-color-error
- * @cssprop --z-input-color
- * @cssprop --z-input-bg-color
- * @cssprop --z-border-color
- * @cssprop --z-border-size
- * @cssprop --z-label-color
- * @cssprop --z-label-size
- * @cssprop --z-message-size
- * @cssprop --z-outline-size
+ * @cssprop --font-size
+ * @cssprop --font-family
+ * @cssprop --leading
+ * @cssprop --padding
+ * @cssprop --round
+ * @cssprop --gap
+ * @cssprop --transition
+ * @cssprop --color
+ * @cssprop --color-primary
+ * @cssprop --color-accent
+ * @cssprop --color-error
+ * @cssprop --input-color
+ * @cssprop --input-background-color
+ * @cssprop --border-color
+ * @cssprop --border-size
+ * @cssprop --label-color
+ * @cssprop --label-size
+ * @cssprop --message-size
+ * @cssprop --outline-size
  */
 export class Radio extends CheckBox {
   static get styles() {
@@ -30,12 +30,12 @@ export class Radio extends CheckBox {
       ${CheckBox.styles}
       .radio {
         fill: currentColor;
-        border-radius: var(--z-round-full);
+        border-radius: var(--round-full);
       }
       :host([checked]) input + .radio,
       :host([checked]) .error input + .radio,
       :host([checked]) .success input + .radio {
-        background-color: var(--z-input-bg-color);
+        background-color: var(--input-background-color);
       }
     `;
   }
@@ -57,4 +57,4 @@ export class Radio extends CheckBox {
   }
 }
 
-window.customElements.define('z-radio', Radio);
+customElements.define('i-radio', Radio);
