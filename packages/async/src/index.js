@@ -1,8 +1,20 @@
 import { LitElement, html } from 'lit-element';
 
-class AsyncElement extends LitElement {
+export default class AsyncElement extends LitElement {
+  constructor() {
+    super();
+    this.deps = [];
+  }
+
   firstUpdated() {
     this.setup();
+  }
+
+  update(changedProps) {
+    if (this.deps.some(k => changedProps.has(k))) {
+      this.reload();
+    }
+    return super.update(changedProps);
   }
 
   setup() {
@@ -59,7 +71,7 @@ class AsyncElement extends LitElement {
 
   erroring(err) {
     return html``;
-  } 
+  }
 
   loading() {
     return html``;
@@ -83,4 +95,3 @@ class AsyncElement extends LitElement {
     return this.loading();
   }
 }
-export default AsyncElement;
