@@ -54,11 +54,22 @@ export class Emoji extends LitElement {
     return this.value || emojis.find(e => e.n.find(n => n === this.name));
   }
 
+  updateSelection() {
+    const { emoji } = this;
+    this.dispatchEvent(
+      new CustomEvent('selected-emoji', {
+        composed: true,
+        bubbles: true,
+        detail: { emoji },
+      }),
+    );
+  }
+
   render() {
     const { emoji } = this;
 
     return html`
-      <button .title=${emoji.n[0]}>${emoji.e}</button>
+      <button .title=${emoji.n[0]} @click=${this.updateSelection}>${emoji.e}</button>
     `;
   }
 }
