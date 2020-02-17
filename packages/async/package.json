@@ -1,6 +1,6 @@
 {
 	"name": "@interstice/async",
-	"version": "0.0.16",
+	"version": "0.0.17",
 	"description": "An async loadable web component base",
 	"keywords": [
 		"interstice",

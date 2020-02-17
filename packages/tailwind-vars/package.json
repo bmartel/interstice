@@ -1,6 +1,6 @@
 {
   "name": "@interstice/tailwind-vars",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A css variable generator from tailwindcss config",
   "keywords": [
     "interstice",
