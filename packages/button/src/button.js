@@ -17,7 +17,6 @@ import { html, css, LitElement } from 'lit-element';
  * @cssprop --color-accent
  * @cssprop --color-error
  * @cssprop --button-size
- * @cssprop --button-gap
  * @cssprop --button-color
  * @cssprop --button-display
  * @cssprop --button-align-items
@@ -93,9 +92,6 @@ export class Button extends LitElement {
       }
       :host([inverted]):host([color='success']) {
         --button-color: var(--color-success) !important;
-      }
-      :host * + * {
-        margin-left: var(--button-gap, var(--gap));
       }
       button {
         -webkit-appearance: none;
