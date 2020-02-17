@@ -16,12 +16,30 @@ export class Emoji extends LitElement {
   static get styles() {
     return css`
       :host {
+        box-sizing: border-box;
         display: inline-flex;
         align-items: center;
         justify-content: center;
       }
       button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: var(--transition);
+        background-color: none;
+        border: 0;
+        overflow: hidden;
+        border-radius: var(--round);
         font-size: var(--i-emoji-size, 20px);
+      }
+      button:focus {
+        outline: 0;
+        background-color: var(--color-gray-400);
+      }
+      button:hover {
+        border-color: var(--color-primary);
+        background-color: var(--color-gray-300);
       }
     `;
   }
@@ -29,7 +47,7 @@ export class Emoji extends LitElement {
   constructor() {
     super();
     this.name = '';
-    this.value = '';
+    this.value = null;
   }
 
   get emoji() {
@@ -37,8 +55,10 @@ export class Emoji extends LitElement {
   }
 
   render() {
+    const { emoji } = this;
+
     return html`
-      <button>${this.emoji}</button>
+      <button .title=${emoji.n[0]}>${emoji.e}</button>
     `;
   }
 }
