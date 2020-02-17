@@ -1,10 +1,10 @@
 {
-  "name": "@interstice/icon",
+  "name": "@interstice/emoji-selector",
   "version": "0.0.18",
-  "description": "A reusable icon component based on tailwindcss design with various sets asynchronously",
+  "description": "A reusable set of emoji components based on tailwindcss design",
   "keywords": [
     "interstice",
-    "icon",
+    "emoji",
     "webcomponent",
     "tailwindcss"
   ],
