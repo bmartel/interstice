@@ -97,6 +97,12 @@
           "name": "--button-color"
         },
         {
+          "name": "--button-display"
+        },
+        {
+          "name": "--button-align-items"
+        },
+        {
           "name": "--border-color"
         },
         {
@@ -104,6 +110,62 @@
         },
         {
           "name": "--outline-size"
+        }
+      ]
+    },
+    {
+      "name": "i-emoji",
+      "path": "./packages/emoji-selector/src/emoji.js",
+      "attributes": [
+        {
+          "name": "name",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "emoji"
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "default": "\"\""
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--i-emoji-size"
+        }
+      ]
+    },
+    {
+      "name": "i-emoji-selector",
+      "path": "./packages/emoji-selector/src/selector.js",
+      "attributes": [
+        {
+          "name": "query",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "results",
+          "type": "array"
+        },
+        {
+          "name": "query",
+          "attribute": "query",
+          "default": "\"\""
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--i-emoji-size"
         }
       ]
     },

@@ -1,0 +1,47 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import { Emoji, EmojiSelector } from '../src/index.js';
+
+<Meta
+  title="Emoji Selector"
+  parameters={{
+    component: 'i-emoji-selector',
+    options: { selectedPanel: 'storybookjs/knobs/panel' },
+  }}
+/>
+
+# Emoji
+
+A component for displaying a emoji-selector.
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add @interstice/emoji-selector
+```
+
+```js
+import { Emoji, Selector } from '@interstice/emoji-selector';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <i-emoji-selector id="simple"></i-emoji-selector>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="i-emoji-selector" />
+
+## Variations

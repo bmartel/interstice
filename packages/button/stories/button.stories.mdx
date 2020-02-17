@@ -5,8 +5,8 @@ import { Button } from '../src/index.js';
 <Meta
   title="Button"
   parameters={{
-    component: "i-button",
-    options: { selectedPanel: "storybookjs/knobs/panel" }
+    component: 'i-button',
+    options: { selectedPanel: 'storybookjs/knobs/panel' },
   }}
 />
 
@@ -25,7 +25,7 @@ A component for displaying a button with some styling and behaviour improvements
 ### Installation
 
 ```bash
-yarn add interstice
+yarn add @interstice/button
 ```
 
 ```js
@@ -36,7 +36,7 @@ import { Button } from 'interstice';
   <Story name="Simple">
     {html`
       <i-button id="simple">
-          Simple
+        Simple
       </i-button>
     `}
   </Story>
@@ -53,7 +53,7 @@ import { Button } from 'interstice';
 <Story name="Wide">
   {html`
     <i-button id="wide" wide>
-        Wide
+      Wide
     </i-button>
   `}
 </Story>
@@ -63,7 +63,7 @@ import { Button } from 'interstice';
 <Story name="Icon">
   {html`
     <i-button id="icon" icon="check">
-        Saved
+      Saved
     </i-button>
   `}
 </Story>
@@ -73,7 +73,7 @@ import { Button } from 'interstice';
 <Story name="Color">
   {html`
     <i-button id="color" color="primary">
-        Color
+      Color
     </i-button>
   `}
 </Story>
