@@ -1,7 +1,7 @@
 {
   "name": "@interstice/async",
   "description": "An async loadable web component base",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "license": "MIT",
   "files": [
     "dist-*/",
