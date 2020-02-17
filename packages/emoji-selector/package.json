@@ -1,6 +1,6 @@
 {
   "name": "@interstice/emoji-selector",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A reusable set of emoji components based on tailwindcss design",
   "keywords": [
     "interstice",
