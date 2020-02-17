@@ -1,11 +1,6 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var litElement = require('lit-element');
-var unsafeSvg = require('lit-html/directives/unsafe-svg');
-var async = require('@interstice/async');
-
+import { svg, css } from 'lit-element';
+import { unsafeSVG } from 'lit-html/directives/unsafe-svg';
+import { AsyncElement } from '@interstice/async';
 /**
  * @element i-icon
  *
@@ -14,7 +9,7 @@ var async = require('@interstice/async');
  * @cssprop --i-icon-height
  */
 
-class Icon extends async.AsyncElement {
+export class Icon extends AsyncElement {
   static get properties() {
     return {
       name: String,
@@ -27,7 +22,7 @@ class Icon extends async.AsyncElement {
   }
 
   static get styles() {
-    return litElement.css`
+    return css`
       :host {
         display: inline-flex;
       }
@@ -57,19 +52,16 @@ class Icon extends async.AsyncElement {
   async importIcon() {
     const {
       default: svgContent
-    } = await Promise.resolve().then(() => require(`${this.icon()}`));
+    } = await import(this.icon());
     return svgContent;
   }
 
   async asyncRender() {
     const svgContent = await this.importIcon();
-    return litElement.svg`
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.size} ${this.size}">${unsafeSvg.unsafeSVG(svgContent)}</svg>
+    return svg`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${this.size} ${this.size}">${unsafeSVG(svgContent)}</svg>
     `;
   }
 
 }
 customElements.define('i-icon', Icon);
-
-exports.Icon = Icon;
-//# sourceMappingURL=index.js.map

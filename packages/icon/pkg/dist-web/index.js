@@ -1,6 +1,6 @@
 import { css, svg } from 'lit-element';
 import { unsafeSVG } from 'lit-html/directives/unsafe-svg';
-import AsyncElement from '@interstice/async';
+import { AsyncElement } from '@interstice/async';
 
 /**
  * @element i-icon
@@ -65,6 +65,7 @@ class Icon extends AsyncElement {
   }
 
 }
+customElements.define('i-icon', Icon);
 
-export default Icon;
+export { Icon };
 //# sourceMappingURL=index.js.map

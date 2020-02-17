@@ -104,5 +104,5 @@ class AsyncElement extends LitElement {
 
 }
 
-export default AsyncElement;
+export { AsyncElement };
 //# sourceMappingURL=index.js.map

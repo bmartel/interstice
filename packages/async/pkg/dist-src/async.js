@@ -1,10 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var litElement = require('lit-element');
-
-class AsyncElement extends litElement.LitElement {
+import { LitElement, html } from 'lit-element';
+export class AsyncElement extends LitElement {
   constructor() {
     super();
     this.deps = [];
@@ -79,11 +74,11 @@ class AsyncElement extends litElement.LitElement {
   }
 
   erroring(err) {
-    return litElement.html``;
+    return html``;
   }
 
   loading() {
-    return litElement.html``;
+    return html``;
   }
 
   asyncRender() {
@@ -107,6 +102,3 @@ class AsyncElement extends litElement.LitElement {
   }
 
 }
-
-exports.AsyncElement = AsyncElement;
-//# sourceMappingURL=index.js.map
