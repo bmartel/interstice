@@ -112,7 +112,7 @@ export const convert = (customVariableNames = {}, opts = {}) => {
         } else {
           varName = `--${options.namespace !== '' ? `${options.namespace}-` : ''}${
             modulePrefix !== '' ? `${modulePrefix}-` : ''
-          }${name !== 'default' ? `${name.replace('/', '-')}` : ''}`;
+          }${name.replace('/', '-')}`.replace(/-default$/, '');
           value = typeof keyValue[name] === 'string' ? keyValue[name] : keyValue[name].toString();
           rootObj[varName] = value;
         }
