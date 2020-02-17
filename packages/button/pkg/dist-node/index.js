@@ -110,6 +110,9 @@ class Button extends litElement.LitElement {
       :host([inverted]):host([color='success']) {
         --button-color: var(--color-success) !important;
       }
+      :host * + * {
+        margin-left: var(--button-gap, var(--gap));
+      }
       button {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -129,9 +132,6 @@ class Button extends litElement.LitElement {
         outline: none;
         cursor: pointer;
         box-shadow: var(--button-border-color) 0 0 0 var(--outline-size, 2px);
-      }
-      button ::slotted(* + *) {
-        margin-left: var(--button-gap, var(--gap));
       }
     `;
   }
