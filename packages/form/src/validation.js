@@ -22,6 +22,7 @@ export const Validation = base =>
 
     validate() {
       this.messages = this.rules.filter(rule => rule(this.inputValue()));
+      this.status = this.messages.length ? 'error' : '';
       this.dispatchEvent('validation', {
         composed: true,
         bubbles: true,
