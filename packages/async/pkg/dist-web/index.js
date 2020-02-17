@@ -1,4 +1,56 @@
+import { directive } from 'lit-html';
 import { LitElement, html } from 'lit-element';
+
+const PENDING_EVENT = 'pending';
+const pending = promise => new CustomEvent(PENDING_EVENT, {
+  composed: true,
+  bubbles: true,
+  detail: {
+    promise
+  }
+});
+
+const resolved = new WeakSet();
+const lazy = directive((importPromise, value) => part => {
+  if (!resolved.has(part)) {
+    importPromise.then(() => resolved.add(part));
+    part.startNode.parentNode.dispatchEvent(pending(importPromise));
+  }
+
+  part.setValue(value);
+});
+
+const AsyncBoundary = base => class extends base {
+  static get properties() {
+    return {
+      _error: Boolean,
+      _pending: Boolean,
+      _pendingCount: Number
+    };
+  }
+
+  constructor() {
+    super();
+    this._pending = false;
+    this._pendingCount = 0;
+    this.addEventListener(PENDING_EVENT, async e => {
+      this._pending = true;
+      this._pendingCount++; //eslint-disable-line
+
+      try {
+        await e.detail.promise;
+      } catch (err) {
+        this._error = true;
+        this.error(err, e);
+      }
+
+      this._pendingCount--; //eslint-disable-line
+
+      this._pending = this._pendingCount !== 0;
+    });
+  }
+
+};
 
 class AsyncElement extends LitElement {
   constructor() {
@@ -31,6 +83,7 @@ class AsyncElement extends LitElement {
       this._resolveLoaded = resolve;
       this._rejectLoaded = reject;
     });
+    pending(this._loadedPromise);
 
     this._loadedPromise.then(data => {
       this._loaded = () => data;
@@ -104,5 +157,5 @@ class AsyncElement extends LitElement {
 
 }
 
-export { AsyncElement };
+export { AsyncBoundary, AsyncElement, PENDING_EVENT, lazy, pending };
 //# sourceMappingURL=index.js.map

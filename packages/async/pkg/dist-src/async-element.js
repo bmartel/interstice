@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element';
+import { pending } from './events.js';
 export class AsyncElement extends LitElement {
   constructor() {
     super();
@@ -30,6 +31,7 @@ export class AsyncElement extends LitElement {
       this._resolveLoaded = resolve;
       this._rejectLoaded = reject;
     });
+    pending(this._loadedPromise);
 
     this._loadedPromise.then(data => {
       this._loaded = () => data;
