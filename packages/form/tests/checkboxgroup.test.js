@@ -1,6 +1,6 @@
 import { html, fixture, expect, waitUntil } from '@open-wc/testing';
 
-import '../src/elements/checkboxgroup.js';
+import '../src/checkboxgroup.js';
 
 const options = [
   { label: 'Apple', value: 'apple' },
@@ -11,7 +11,7 @@ const options = [
 describe('CheckBoxGroup', () => {
   it('renders a label', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup label="Test Label"></z-checkboxgroup>
+      <i-checkboxgroup label="Test Label"></i-checkboxgroup>
     `);
 
     expect(el.label).to.equal('Test Label');
@@ -19,7 +19,7 @@ describe('CheckBoxGroup', () => {
 
   it('renders with options', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup .options=${options}></z-checkboxgroup>
+      <i-checkboxgroup .options=${options}></i-checkboxgroup>
     `);
 
     expect(el.options).to.equal(options);
@@ -27,7 +27,7 @@ describe('CheckBoxGroup', () => {
 
   it('renders with a value', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup .options=${options} .value=${['apple', 'orange']}></z-checkboxgroup>
+      <i-checkboxgroup .options=${options} .value=${['apple', 'orange']}></i-checkboxgroup>
     `);
 
     expect(el.value.length).to.equal(2);
@@ -35,14 +35,14 @@ describe('CheckBoxGroup', () => {
 
   it('renders with a dependent option', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup
+      <i-checkboxgroup
         .options=${options}
         .value=${['apple', 'banana', 'orange']}
         dependent
-      ></z-checkboxgroup>
+      ></i-checkboxgroup>
     `);
 
-    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+    const checkboxes = el.shadowRoot.querySelectorAll('i-checkbox');
 
     expect(checkboxes[0].label).to.equal('All');
     expect(checkboxes.length).to.equal(4);
@@ -50,15 +50,15 @@ describe('CheckBoxGroup', () => {
 
   it('renders with a custom dependent option', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup
+      <i-checkboxgroup
         .options=${options}
         .value=${['apple', 'banana', 'orange']}
         .dependentOptions=${{ label: 'All Fruits', value: '_all_fruit' }}
         dependent
-      ></z-checkboxgroup>
+      ></i-checkboxgroup>
     `);
 
-    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+    const checkboxes = el.shadowRoot.querySelectorAll('i-checkbox');
 
     expect(checkboxes[0].label).to.equal('All Fruits');
     expect(checkboxes[0].value).to.equal('_all_fruit');
@@ -67,11 +67,11 @@ describe('CheckBoxGroup', () => {
 
   it('renders with a label and checkboxes some selected', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup
+      <i-checkboxgroup
         label="Favorite Fruits"
         .options=${options}
         .value=${['apple', 'orange']}
-      ></z-checkboxgroup>
+      ></i-checkboxgroup>
     `);
 
     expect(el).shadowDom.to.equalSnapshot();
@@ -79,11 +79,11 @@ describe('CheckBoxGroup', () => {
 
   it('can select an option', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup .options=${options}></z-checkboxgroup>
+      <i-checkboxgroup .options=${options}></i-checkboxgroup>
     `);
 
     el.shadowRoot
-      .querySelector('z-checkbox')
+      .querySelector('i-checkbox')
       .shadowRoot.querySelector('input')
       .click();
 
@@ -92,10 +92,10 @@ describe('CheckBoxGroup', () => {
 
   it('can select multiple options', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup .options=${options}></z-checkboxgroup>
+      <i-checkboxgroup .options=${options}></i-checkboxgroup>
     `);
 
-    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+    const checkboxes = el.shadowRoot.querySelectorAll('i-checkbox');
 
     checkboxes.forEach((checkbox, index) => {
       checkbox.shadowRoot.querySelector('input').click();
@@ -107,10 +107,10 @@ describe('CheckBoxGroup', () => {
 
   it('can select a dependent option', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup .options=${options} .value=${['apple']} dependent></z-checkboxgroup>
+      <i-checkboxgroup .options=${options} .value=${['apple']} dependent></i-checkboxgroup>
     `);
 
-    const checkbox = el.shadowRoot.querySelector('z-checkbox');
+    const checkbox = el.shadowRoot.querySelector('i-checkbox');
     checkbox.shadowRoot.querySelector('input').click();
 
     expect(el.value.length).to.equal(3);
@@ -121,10 +121,10 @@ describe('CheckBoxGroup', () => {
 
   it('will select a dependent option if all others are selected', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup .options=${options} dependent></z-checkboxgroup>
+      <i-checkboxgroup .options=${options} dependent></i-checkboxgroup>
     `);
 
-    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+    const checkboxes = el.shadowRoot.querySelectorAll('i-checkbox');
 
     checkboxes.forEach(checkbox => {
       checkbox.shadowRoot.querySelector('input').click();
@@ -136,10 +136,10 @@ describe('CheckBoxGroup', () => {
 
   it('can deselect an option', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup .options=${options} .value=${['apple', 'orange']}></z-checkboxgroup>
+      <i-checkboxgroup .options=${options} .value=${['apple', 'orange']}></i-checkboxgroup>
     `);
 
-    const checkbox = el.shadowRoot.querySelector('z-checkbox');
+    const checkbox = el.shadowRoot.querySelector('i-checkbox');
     checkbox.shadowRoot.querySelector('input').click();
 
     expect(el.value.length).to.equal(1);
@@ -147,13 +147,13 @@ describe('CheckBoxGroup', () => {
 
   it('can deselect multiple options', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup
+      <i-checkboxgroup
         .options=${options}
         .value=${['apple', 'banana', 'orange']}
-      ></z-checkboxgroup>
+      ></i-checkboxgroup>
     `);
 
-    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+    const checkboxes = el.shadowRoot.querySelectorAll('i-checkbox');
 
     let expectedLength = el.value.length;
 
@@ -168,14 +168,14 @@ describe('CheckBoxGroup', () => {
 
   it('can deselect a dependent option', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup
+      <i-checkboxgroup
         .options=${options}
         .value=${['apple', 'banana', 'orange']}
         dependent
-      ></z-checkboxgroup>
+      ></i-checkboxgroup>
     `);
 
-    const checkbox = el.shadowRoot.querySelector('z-checkbox');
+    const checkbox = el.shadowRoot.querySelector('i-checkbox');
     checkbox.shadowRoot.querySelector('input').click();
 
     expect(el.value.length).to.equal(0);
@@ -183,14 +183,14 @@ describe('CheckBoxGroup', () => {
 
   it('will deselect a dependent option if any others are deselected', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup
+      <i-checkboxgroup
         .options=${options}
         .value=${['apple', 'banana', 'orange']}
         dependent
-      ></z-checkboxgroup>
+      ></i-checkboxgroup>
     `);
 
-    const checkboxes = el.shadowRoot.querySelectorAll('z-checkbox');
+    const checkboxes = el.shadowRoot.querySelectorAll('i-checkbox');
     checkboxes[1].shadowRoot.querySelector('input').click();
 
     expect(checkboxes[1].checked).to.equal(false);
@@ -200,7 +200,7 @@ describe('CheckBoxGroup', () => {
 
   it('passes the a11y audit', async () => {
     const el = await fixture(html`
-      <z-checkboxgroup></z-checkboxgroup>
+      <i-checkboxgroup></i-checkboxgroup>
     `);
 
     expect(el).shadowDom.to.be.accessible();
