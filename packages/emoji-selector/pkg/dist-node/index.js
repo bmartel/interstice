@@ -16481,12 +16481,30 @@ class Emoji extends litElement.LitElement {
   static get styles() {
     return litElement.css`
       :host {
+        box-sizing: border-box;
         display: inline-flex;
         align-items: center;
         justify-content: center;
       }
       button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: var(--transition);
+        background-color: none;
+        border: 0;
+        overflow: hidden;
+        border-radius: var(--round);
         font-size: var(--i-emoji-size, 20px);
+      }
+      button:focus {
+        outline: 0;
+        background-color: var(--color-gray-400);
+      }
+      button:hover {
+        border-color: var(--color-primary);
+        background-color: var(--color-gray-300);
       }
     `;
   }
@@ -16494,16 +16512,32 @@ class Emoji extends litElement.LitElement {
   constructor() {
     super();
     this.name = '';
-    this.value = '';
+    this.value = null;
   }
 
   get emoji() {
     return this.value || emojis.find(e => e.n.find(n => n === this.name));
   }
 
+  updateSelection() {
+    const {
+      emoji
+    } = this;
+    this.dispatchEvent(new CustomEvent('selected-emoji', {
+      composed: true,
+      bubbles: true,
+      detail: {
+        emoji
+      }
+    }));
+  }
+
   render() {
+    const {
+      emoji
+    } = this;
     return litElement.html`
-      <button>${this.emoji}</button>
+      <button .title=${emoji.n[0]} @click=${this.updateSelection}>${emoji.e}</button>
     `;
   }
 
@@ -16526,22 +16560,54 @@ class EmojiSelector extends litElement.LitElement {
   static get styles() {
     return litElement.css`
       :host {
+        box-sizing: border-box;
         display: flex;
         width: 100%;
-        flex-direction: row-reverse;
+        flex-direction: column-reverse;
       }
       input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        box-sizing: border-box;
         display: flex;
         width: 100%;
         margin-bottom: var(--gap);
+        font-size: var(--font-size);
+        font-family: var(--font-family);
+        padding: var(--padding);
+        color: var(--input-color);
+        background-color: var(--input-background-color);
+        border: var(--border-size) solid var(--border-color);
+        border-radius: var(--round);
+        outline-color: var(--outline-color);
+      }
+      input::placeholder {
+        color: var(--input-placeholder-color);
+      }
+      input:focus {
+        outline: 0;
+        border-color: var(--color-primary);
+      }
+      input:hover {
+        border-color: var(--color-primary);
+        box-shadow: var(--color-primary) 0 0 var(--outline-size);
       }
       ol {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
         list-style: none;
         width: 100%;
         display: grid;
         grid-gap: var(--gap);
+        grid-template-columns: repeat(7, 1fr);
       }
       li {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 0;
       }
     `;
@@ -16564,7 +16630,7 @@ class EmojiSelector extends litElement.LitElement {
     return litElement.html`
       <ol>
         ${this.results.map(e => litElement.html`
-              <li><i-emoji .value=${e.e}></i-emoji></li>
+              <li><i-emoji .value=${e}></i-emoji></li>
             `)}
       </ol>
     `;
@@ -16573,7 +16639,7 @@ class EmojiSelector extends litElement.LitElement {
   render() {
     return litElement.html`
       ${this.renderResults()}
-      <input @change=${this.updateSearch} .value=${this.query} />
+      <input @keyup=${this.updateSearch} .value=${this.query} />
     `;
   }
 

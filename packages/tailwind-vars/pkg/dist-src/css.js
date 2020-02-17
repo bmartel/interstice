@@ -44,7 +44,7 @@ const config = {
     'label-color': 'color-gray-800',
     'label-size': 'text-base',
     'input-color': 'color-gray-900',
-    'input-bg-color': 'color-white',
+    'input-background-color': 'color-white',
     'input-placeholder-color': 'color-gray-600',
     'message-size': 'text-sm',
     transition: 'transition-all'
@@ -55,7 +55,7 @@ const config = {
     'label-color': 'color-gray-100',
     'message-color': 'color-gray-300',
     'input-color': 'color-white',
-    'input-bg-color': 'color-gray-900'
+    'input-background-color': 'color-gray-900'
   }
 };
 export const generate = async (opts = {}) => {
