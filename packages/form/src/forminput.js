@@ -2,6 +2,7 @@ import { html, LitElement, css } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { spread } from '@open-wc/lit-helpers';
 import { fontStyles, fullWidthInput } from './styles.js';
+import { Validation } from './validation.js';
 
 /**
  * @element i-forminput
@@ -29,7 +30,7 @@ import { fontStyles, fullWidthInput } from './styles.js';
  * @cssprop --message-gap
  * @cssprop --outline-size
  */
-export class FormInput extends LitElement {
+export class FormInput extends Validation(LitElement) {
   static get properties() {
     return {
       id: { type: String },
