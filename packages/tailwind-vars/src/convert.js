@@ -92,8 +92,8 @@ export const convert = (customVariableNames = {}, opts = {}) => {
           const colorObj = keyValue[name];
           Object.keys(colorObj).forEach(colorKey => {
             varName = `--${options.namespace !== '' ? `${options.namespace}-` : ''}${
-              modulePrefix !== '' ? modulePrefix : ''
-            }-${name}-${colorKey}`.replace(/-default$/, '');
+              modulePrefix !== '' ? `${modulePrefix}-` : ''
+            }${name}-${colorKey}`.replace(/-default$/, '');
             value =
               typeof keyValue[name][colorKey] === 'string'
                 ? keyValue[name][colorKey]
@@ -104,17 +104,15 @@ export const convert = (customVariableNames = {}, opts = {}) => {
           const minWEntries = Object.entries(keyValue[name]).filter(e => e[0] === 'min');
 
           minWEntries.forEach(([, screenValue]) => {
-            varName = `--${options.namespace !== '' ? `${options.namespace}` : ''}${
-              modulePrefix !== '' ? modulePrefix : ''
-            }${name !== 'default' ? `-${name.replace('/', '-')}` : ''}`;
+            varName = `--${options.namespace !== '' ? `${options.namespace}-` : ''}${
+              modulePrefix !== '' ? `${modulePrefix}-` : ''
+            }${name.replace('/', '-')}`.replace(/-default$/, '');
             rootObj[varName] = screenValue.toString();
           });
         } else {
-          varName = `--${options.namespace !== '' ? `${options.namespace}` : ''}${
-            key !== 'screens' ? '-' : ''
-          }${modulePrefix !== '' ? modulePrefix : ''}${
-            name !== 'default' ? `-${name.replace('/', '-')}` : ''
-          }`;
+          varName = `--${options.namespace !== '' ? `${options.namespace}-` : ''}${
+            modulePrefix !== '' ? `${modulePrefix}-` : ''
+          }${name !== 'default' ? `${name.replace('/', '-')}` : ''}`;
           value = typeof keyValue[name] === 'string' ? keyValue[name] : keyValue[name].toString();
           rootObj[varName] = value;
         }
@@ -124,17 +122,13 @@ export const convert = (customVariableNames = {}, opts = {}) => {
 
   return `:root {\n${_.map(rootObj, (value, key) => `  ${key}: ${value};`).join(
     '\n',
-  )}\n}\n\nbody {\n  --${
-    options.namespace !== '' ? `${options.namespace}-` : ''
-  }theme: 'light';\n${_.map(
+  )}\n}\n\nbody {\n${_.map(
     options.components,
     (value, key) =>
       `  --${options.namespace !== '' ? `${options.namespace}-` : ''}${key}: var(--${
         options.namespace !== '' ? `${options.namespace}-` : ''
       }${value});`,
-  ).join('\n')}\n}\n\nbody.dark {\n  --${
-    options.namespace !== '' ? `${options.namespace}-` : ''
-  }theme: 'dark';\n${_.map(
+  ).join('\n')}\n}\n\nbody.dark {\n${_.map(
     options.componentsDark,
     (value, key) =>
       `  --${options.namespace !== '' ? `${options.namespace}-` : ''}${key}: var(--${
