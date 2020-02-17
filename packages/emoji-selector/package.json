@@ -14,7 +14,7 @@
   "scripts": {
     "build": "pika build",
     "generate": "node generate.js",
-    "prebuild": "generate",
+    "prebuild": "npm run generate",
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:update-snapshots": "karma start --update-snapshots",
