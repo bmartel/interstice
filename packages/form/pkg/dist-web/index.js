@@ -1,6 +1,136 @@
-import { html, LitElement, css } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { spread } from '@open-wc/lit-helpers';
+
+const Validation = base => class extends base {
+  static get properties() {
+    return {
+      rules: Array,
+      messages: Array
+    };
+  }
+
+  constructor() {
+    super();
+    this.rules = [];
+  }
+
+  inputValue() {
+    return this.value;
+  }
+
+  inputName() {
+    return this.name;
+  }
+
+  validate() {
+    this.messages = this.rules.filter(rule => rule(this.inputValue()));
+    this.status = this.messages.length ? 'error' : '';
+    this.dispatchEvent('validation', {
+      composed: true,
+      bubbles: true,
+      detail: {
+        name: this.inputName(),
+        errors: this.messages
+      }
+    });
+  }
+
+};
+
+class Form extends LitElement {
+  static get properties() {
+    return {
+      valid: Boolean,
+      value: Object,
+      action: String,
+      method: String,
+      enctype: String
+    };
+  }
+
+  constructor() {
+    super();
+    this.value = {};
+    this.valid = false;
+    this.action = '';
+    this.method = 'POST';
+    this.enctype = 'application/json';
+    this.addEventListener('validation', e => {
+      this.valid = e.detail.errors.length < 1;
+    });
+  }
+
+  updateField(e) {
+    this.value[e.target.name] = e.target.value;
+  }
+
+  body() {
+    if (this.enctype !== 'application/json') {
+      const formData = new FormData();
+      Object.keys(this.value).forEach(field => {
+        formData[field] = this.value[field];
+      });
+      return formData;
+    }
+
+    return JSON.stringify(this.value);
+  }
+
+  headers() {
+    if (this.enctype !== 'multipart/form-data') {
+      return {
+        'Content-Type': this.enctype
+      };
+    }
+
+    return {};
+  }
+
+  async submit() {
+    const {
+      action,
+      method,
+      valid
+    } = this;
+
+    if (action && valid) {
+      try {
+        const res = await fetch(action, {
+          method,
+          credentials: 'include',
+          body: this.body(),
+          headers: this.headers()
+        });
+        const data = await res.json();
+        this.dispatchEvent(new CustomEvent('form-update', {
+          composed: true,
+          bubbles: true,
+          detail: { ...data
+          }
+        }));
+      } catch (error) {
+        this.dispatchEvent(new CustomEvent('form-error', {
+          composed: true,
+          bubbles: true,
+          detail: {
+            error
+          }
+        }));
+      }
+    }
+  }
+
+  render() {
+    return html`
+      <form @submit=${this.submit} @change=${this.updateField}>
+        <slot></slot>
+      </form>
+    `;
+  }
+
+}
+customElements.define('i-form', Form);
 
 const fontStyles = html`
   <style>
@@ -48,7 +178,7 @@ const fullWidthInput = html`
  * @cssprop --outline-size
  */
 
-class FormInput extends LitElement {
+class FormInput extends Validation(LitElement) {
   static get properties() {
     return {
       id: {
@@ -1136,5 +1266,5 @@ class RadioGroup extends FormSelect {
 }
 customElements.define('i-radiogroup', RadioGroup);
 
-export { CheckBox, CheckBoxGroup, FormInput, FormSelect, Radio, RadioGroup, Range, TextArea, TextField };
+export { CheckBox, CheckBoxGroup, Form, FormInput, FormSelect, Radio, RadioGroup, Range, TextArea, TextField, Validation };
 //# sourceMappingURL=index.js.map

@@ -6,6 +6,220 @@ var litElement = require('lit-element');
 var classMap = require('lit-html/directives/class-map');
 var litHelpers = require('@open-wc/lit-helpers');
 
+const Validation = base => class extends base {
+  static get properties() {
+    return {
+      rules: Array,
+      messages: Array
+    };
+  }
+
+  constructor() {
+    super();
+    this.rules = [];
+  }
+
+  inputValue() {
+    return this.value;
+  }
+
+  inputName() {
+    return this.name;
+  }
+
+  validate() {
+    this.messages = this.rules.filter(rule => rule(this.inputValue()));
+    this.status = this.messages.length ? 'error' : '';
+    this.dispatchEvent('validation', {
+      composed: true,
+      bubbles: true,
+      detail: {
+        name: this.inputName(),
+        errors: this.messages
+      }
+    });
+  }
+
+};
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+class Form extends litElement.LitElement {
+  static get properties() {
+    return {
+      valid: Boolean,
+      value: Object,
+      action: String,
+      method: String,
+      enctype: String
+    };
+  }
+
+  constructor() {
+    super();
+    this.value = {};
+    this.valid = false;
+    this.action = '';
+    this.method = 'POST';
+    this.enctype = 'application/json';
+    this.addEventListener('validation', e => {
+      this.valid = e.detail.errors.length < 1;
+    });
+  }
+
+  updateField(e) {
+    this.value[e.target.name] = e.target.value;
+  }
+
+  body() {
+    if (this.enctype !== 'application/json') {
+      const formData = new FormData();
+      Object.keys(this.value).forEach(field => {
+        formData[field] = this.value[field];
+      });
+      return formData;
+    }
+
+    return JSON.stringify(this.value);
+  }
+
+  headers() {
+    if (this.enctype !== 'multipart/form-data') {
+      return {
+        'Content-Type': this.enctype
+      };
+    }
+
+    return {};
+  }
+
+  async submit() {
+    const {
+      action,
+      method,
+      valid
+    } = this;
+
+    if (action && valid) {
+      try {
+        const res = await fetch(action, {
+          method,
+          credentials: 'include',
+          body: this.body(),
+          headers: this.headers()
+        });
+        const data = await res.json();
+        this.dispatchEvent(new CustomEvent('form-update', {
+          composed: true,
+          bubbles: true,
+          detail: _objectSpread2({}, data)
+        }));
+      } catch (error) {
+        this.dispatchEvent(new CustomEvent('form-error', {
+          composed: true,
+          bubbles: true,
+          detail: {
+            error
+          }
+        }));
+      }
+    }
+  }
+
+  render() {
+    return litElement.html`
+      <form @submit=${this.submit} @change=${this.updateField}>
+        <slot></slot>
+      </form>
+    `;
+  }
+
+}
+customElements.define('i-form', Form);
+
 const fontStyles = litElement.html`
   <style>
     :host {
@@ -52,7 +266,7 @@ const fullWidthInput = litElement.html`
  * @cssprop --outline-size
  */
 
-class FormInput extends litElement.LitElement {
+class FormInput extends Validation(litElement.LitElement) {
   static get properties() {
     return {
       id: {
@@ -976,42 +1190,6 @@ class Radio extends CheckBox {
 }
 customElements.define('i-radio', Radio);
 
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-
-  var target = _objectWithoutPropertiesLoose(source, excluded);
-
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
 /**
  * @element i-checkboxgroup
  *
@@ -1170,6 +1348,7 @@ customElements.define('i-radiogroup', RadioGroup);
 
 exports.CheckBox = CheckBox;
 exports.CheckBoxGroup = CheckBoxGroup;
+exports.Form = Form;
 exports.FormInput = FormInput;
 exports.FormSelect = FormSelect;
 exports.Radio = Radio;
@@ -1177,4 +1356,5 @@ exports.RadioGroup = RadioGroup;
 exports.Range = Range;
 exports.TextArea = TextArea;
 exports.TextField = TextField;
+exports.Validation = Validation;
 //# sourceMappingURL=index.js.map
