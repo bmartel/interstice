@@ -130,7 +130,7 @@ class Button extends litElement.LitElement {
         cursor: pointer;
         box-shadow: var(--button-border-color) 0 0 0 var(--outline-size, 2px);
       }
-      button * + * {
+      button ::slotted(* + *) {
         margin-left: var(--button-gap, var(--gap));
       }
     `;
