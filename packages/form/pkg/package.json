@@ -1,6 +1,6 @@
 {
-  "name": "@interstice/async",
-  "description": "An async loadable web component base",
+  "name": "@interstice/form",
+  "description": "A collection of form elements using tailwindcss css variables",
   "version": "0.0.11",
   "license": "MIT",
   "files": [
@@ -11,9 +11,9 @@
   "sideEffects": false,
   "keywords": [
     "interstice",
-    "async",
+    "form",
     "webcomponent",
-    "loadable"
+    "tailwindcss"
   ],
   "homepage": "https://github.com/bmartel/interstice#readme",
   "bugs": {

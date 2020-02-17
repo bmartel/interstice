@@ -1,6 +1,6 @@
 {
-  "name": "@interstice/async",
-  "description": "An async loadable web component base",
+  "name": "@interstice/button",
+  "description": "A button element using tailwindcss css variables",
   "version": "0.0.11",
   "license": "MIT",
   "files": [
@@ -11,9 +11,9 @@
   "sideEffects": false,
   "keywords": [
     "interstice",
-    "async",
+    "button",
     "webcomponent",
-    "loadable"
+    "tailwindcss"
   ],
   "homepage": "https://github.com/bmartel/interstice#readme",
   "bugs": {
