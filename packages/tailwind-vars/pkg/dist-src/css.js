@@ -58,14 +58,14 @@ const config = {
     'input-bg-color': 'color-gray-900'
   }
 };
-export const generate = (opts = {}) => {
+export const generate = async (opts = {}) => {
   const options = {
     moduleNamesOverride: { ...moduleNamesOverride,
       ...(opts.moduleNamesOverride || {})
     },
     config,
-    output: path.resolve(__dirname, '..', 'src/vars.css'),
+    output: path.resolve(__dirname, '..', '..', '..', '..', 'vars.css'),
     ...opts
   };
-  fs.writeFileSync(options.output, convert(options.moduleNamesOverride, options.config));
+  await fs.writeFile(options.output, convert(options.moduleNamesOverride, options.config), () => {});
 };

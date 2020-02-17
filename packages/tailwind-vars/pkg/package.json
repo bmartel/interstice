@@ -1,10 +1,10 @@
 {
   "name": "@interstice/tailwind-vars",
   "description": "A css variable generator from tailwindcss config",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "license": "MIT",
   "bin": {
-    "generate": "dist-node/index.bin.js"
+    "tailwindvars": "dist-node/index.bin.js"
   },
   "files": [
     "dist-*/",
@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "tailwindcss": "^1.1.4"
+    "tailwindcss": "^1.1.4",
+    "yargs-parser": "^17.0.0"
   },
   "devDependencies": {
     "@open-wc/testing": "^2.5.4",
