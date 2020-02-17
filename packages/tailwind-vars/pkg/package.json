@@ -1,8 +1,11 @@
 {
-  "name": "@interstice/icon",
-  "description": "A reusable icon component based on tailwindcss design with various sets asynchronously",
+  "name": "@interstice/tailwind-vars",
+  "description": "A css variable generator from tailwindcss config",
   "version": "0.0.13",
   "license": "MIT",
+  "bin": {
+    "generate": "dist-node/index.bin.js"
+  },
   "files": [
     "dist-*/",
     "bin/"
@@ -12,8 +15,9 @@
   "keywords": [
     "interstice",
     "icon",
-    "webcomponent",
-    "tailwindcss"
+    "zondicons",
+    "loadable",
+    "minimal"
   ],
   "homepage": "https://github.com/bmartel/interstice#readme",
   "bugs": {
@@ -24,10 +28,8 @@
     "url": "git+https://github.com/bmartel/interstice.git"
   },
   "dependencies": {
-    "@interstice/async": "^0.0.13",
-    "@open-wc/lit-helpers": "^0.2.9",
-    "lit-element": "^2.2.1",
-    "lit-html": "git+https://github.com/Polymer/lit-html.git#master"
+    "lodash": "^4.17.15",
+    "tailwindcss": "^1.1.4"
   },
   "devDependencies": {
     "@open-wc/testing": "^2.5.4",
@@ -36,16 +38,13 @@
     "@pika/cli": "^0.2.0",
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.8.1",
-    "@pika/plugin-build-web": "^0.8.1",
+    "@pika/plugin-simple-bin": "^0.9.2",
     "@pika/plugin-standard-pkg": "^0.8.1",
-    "deepmerge": "^4.2.2",
-    "lodash": "^4.17.15",
-    "pika-plugin-minify": "^0.1.0"
+    "deepmerge": "^4.2.2"
   },
   "publishConfig": {
     "access": "public"
   },
   "esnext": "dist-src/index.js",
-  "main": "dist-node/index.js",
-  "module": "dist-web/index.js"
+  "main": "dist-node/index.js"
 }
