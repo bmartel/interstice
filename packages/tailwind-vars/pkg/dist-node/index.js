@@ -150,7 +150,7 @@ const convert = (customVariableNames = {}, opts = {}) => {
             rootObj[varName] = screenValue.toString();
           });
         } else {
-          varName = `--${options.namespace !== '' ? `${options.namespace}-` : ''}${modulePrefix !== '' ? `${modulePrefix}-` : ''}${name !== 'default' ? `${name.replace('/', '-')}` : ''}`;
+          varName = `--${options.namespace !== '' ? `${options.namespace}-` : ''}${modulePrefix !== '' ? `${modulePrefix}-` : ''}${name.replace('/', '-')}`.replace(/-default$/, '');
           value = typeof keyValue[name] === 'string' ? keyValue[name] : keyValue[name].toString();
           rootObj[varName] = value;
         }

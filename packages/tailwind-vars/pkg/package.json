@@ -1,7 +1,7 @@
 {
   "name": "@interstice/tailwind-vars",
   "description": "A css variable generator from tailwindcss config",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "license": "MIT",
   "bin": {
     "tailwindvars": "dist-node/index.bin.js"

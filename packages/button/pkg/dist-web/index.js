@@ -17,7 +17,10 @@ import { LitElement, css, html } from 'lit-element';
  * @cssprop --color-accent
  * @cssprop --color-error
  * @cssprop --button-size
+ * @cssprop --button-gap
  * @cssprop --button-color
+ * @cssprop --button-display
+ * @cssprop --button-align-items
  * @cssprop --border-color
  * @cssprop --border-size
  * @cssprop --outline-size
@@ -106,6 +109,8 @@ class Button extends LitElement {
       button {
         -webkit-appearance: none;
         -moz-appearance: none;
+        display: var(--button-display, inline-flex);
+        align-items: var(--button-align-items, center);
         font-family: var(--button-font-family);
         font-size: var(--button-font-size);
         padding: calc(var(--button-padding) / 2) var(--button-padding);
@@ -120,6 +125,9 @@ class Button extends LitElement {
         outline: none;
         cursor: pointer;
         box-shadow: var(--button-border-color) 0 0 0 var(--outline-size, 2px);
+      }
+      button * + * {
+        margin-left: var(--button-gap, var(--gap));
       }
     `;
   }
