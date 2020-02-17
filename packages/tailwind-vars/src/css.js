@@ -1,13 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const convert = require('./convert');
-const {
-  theme: { colors },
-} = require('tailwindcss/defaultConfig');
+import fs from 'fs';
+import path from 'path';
+import { convert } from './convert.js';
 
 const moduleNamesOverride = {};
 const config = {
-  namespace: 'z',
+  namespace: '',
 
   tailwind: {
     theme: {
@@ -66,9 +63,9 @@ const config = {
   },
 };
 
-const processVars = (opts = {}) => {
+export const generate = (opts = {}) => {
   const options = {
-    moduleNamesOverride,
+    moduleNamesOverride: { ...moduleNamesOverride, ...(opts.moduleNamesOverride || {}) },
     config,
     output: path.resolve(__dirname, '..', 'src/vars.css'),
     ...opts,
@@ -76,9 +73,3 @@ const processVars = (opts = {}) => {
 
   fs.writeFileSync(options.output, convert(options.moduleNamesOverride, options.config));
 };
-
-if (process.argv.length > 1) {
-  processVars();
-}
-
-module.exports = processVars;

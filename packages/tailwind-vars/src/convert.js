@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const tailwindConfig = require('tailwindcss/defaultConfig');
-const resolveConfig = require('tailwindcss/resolveConfig');
+import _ from 'lodash';
+import tailwindConfig from 'tailwindcss/defaultConfig';
+import resolveConfig from 'tailwindcss/resolveConfig';
 
-module.exports = (customVariableNames = {}, opts = {}) => {
+export const convert = (customVariableNames = {}, opts = {}) => {
   const varModules = {
     colors: 'color',
     screens: '',

@@ -19,8 +19,6 @@
   ],
   "scripts": {
     "analyze": "wca \"packages/*/src/**/*.js\" --format json --outFile custom-elements.json",
-    "css": "node config/css-vars.js",
-    "icons": "node config/icons.js",
     "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
@@ -39,7 +37,6 @@
     "@open-wc/lit-helpers": "^0.2.6",
     "lit-element": "^2.2.1",
     "lit-html": "git+https://github.com/Polymer/lit-html.git#master",
-    "tailwindcss": "^1.1.4",
     "@interstice/async": "file:./packages/async/pkg",
     "lodash": "^4.17.15"
   },
