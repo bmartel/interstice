@@ -1,6 +1,6 @@
 {
   "name": "@interstice/icon",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "A reusable icon component based on tailwindcss design with various sets asynchronously",
   "keywords": [
     "interstice",
@@ -64,7 +64,7 @@
     "pika-plugin-minify": "^0.1.0"
   },
   "dependencies": {
-    "@interstice/async": "^0.0.21",
+    "@interstice/async": "^0.0.22",
     "@open-wc/lit-helpers": "^0.2.9",
     "lit-element": "^2.2.1",
     "lit-html": "git+https://github.com/Polymer/lit-html.git#master"
