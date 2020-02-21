@@ -114,7 +114,7 @@ export class FormInput extends Validation(LitElement) {
         display: grid;
       }
       :host,
-      .input-wrapper,
+      .input-wrapper:not(.inline),
       .input:not(.check) {
         width: var(--w-full);
       }
@@ -176,6 +176,7 @@ export class FormInput extends Validation(LitElement) {
       .input:focus {
         outline: 0;
         border-color: var(--color-primary);
+        background-color: var(--input-focus-background-color);
       }
       .input:hover {
         border-color: var(--color-primary);

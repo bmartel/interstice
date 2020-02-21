@@ -62,7 +62,11 @@ class Form extends LitElement {
   }
 
   updateField(e) {
-    this.value[e.target.name] = e.target.value;
+    try {
+      this.value[e.target.name] = e.target.value;
+      e.target.validate();
+    } catch (err) {} // eslint-disable-line
+
   }
 
   body() {
@@ -103,7 +107,7 @@ class Form extends LitElement {
           headers: this.headers()
         });
         const data = await res.json();
-        this.dispatchEvent(new CustomEvent('form-update', {
+        this.dispatchEvent(new CustomEvent('form-success', {
           composed: true,
           bubbles: true,
           detail: { ...data
@@ -262,7 +266,7 @@ class FormInput extends Validation(LitElement) {
         display: grid;
       }
       :host,
-      .input-wrapper,
+      .input-wrapper:not(.inline),
       .input:not(.check) {
         width: var(--w-full);
       }
@@ -324,6 +328,7 @@ class FormInput extends Validation(LitElement) {
       .input:focus {
         outline: 0;
         border-color: var(--color-primary);
+        background-color: var(--input-focus-background-color);
       }
       .input:hover {
         border-color: var(--color-primary);
@@ -1141,9 +1146,6 @@ class CheckBoxGroup extends FormSelect {
       .hint + .label {
         margin-bottom: 0;
       }
-      .label + .select-group {
-        margin-top: var(--gap);
-      }
       i-checkbox {
         --label-font-weight: var(--font-normal);
       }
@@ -1219,9 +1221,6 @@ class RadioGroup extends FormSelect {
       }
       .hint + .label {
         margin-bottom: 0;
-      }
-      .label + .select-group {
-        margin-top: var(--gap);
       }
       i-radio {
         --label-font-weight: var(--font-normal);

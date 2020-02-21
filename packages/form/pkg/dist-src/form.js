@@ -23,7 +23,11 @@ export class Form extends LitElement {
   }
 
   updateField(e) {
-    this.value[e.target.name] = e.target.value;
+    try {
+      this.value[e.target.name] = e.target.value;
+      e.target.validate();
+    } catch (err) {} // eslint-disable-line
+
   }
 
   body() {
@@ -64,7 +68,7 @@ export class Form extends LitElement {
           headers: this.headers()
         });
         const data = await res.json();
-        this.dispatchEvent(new CustomEvent('form-update', {
+        this.dispatchEvent(new CustomEvent('form-success', {
           composed: true,
           bubbles: true,
           detail: { ...data
