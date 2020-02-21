@@ -46,9 +46,6 @@ export class RadioGroup extends FormSelect {
       .hint + .label {
         margin-bottom: 0;
       }
-      .label + .select-group {
-        margin-top: var(--gap);
-      }
       i-radio {
         --label-font-weight: var(--font-normal);
       }
