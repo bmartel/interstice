@@ -1,4 +1,10 @@
 {
   "name": "@interstice/jql",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "peerDependencies": {
+    "graphql": ">=15.6.0",
+    "jotai": ">=1.4.0",
+    "react": ">=17.0.0",
+    "urql": ">=2.0.0"
+  }
 }
