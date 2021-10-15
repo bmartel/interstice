@@ -1,7 +1,56 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "jql": {
+      "root": "packages/jql",
+      "sourceRoot": "packages/jql/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/jql",
+            "tsConfig": "packages/jql/tsconfig.lib.json",
+            "project": "packages/jql/package.json",
+            "entryFile": "packages/jql/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "packages/jql/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["packages/jql/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/jql"],
+          "options": {
+            "jestConfig": "packages/jql/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    }
   }
 }
