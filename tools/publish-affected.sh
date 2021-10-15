@@ -23,9 +23,7 @@ for lib in ${LIBS//,/ } ; do
   #   echo "🛑 - Publish ignored"
   # elif [ $IS_AFFECTED -eq 0 ]; then
   echo "✅ - Publishing $lib..."
-  cd ./dist/packages/$lib
-  npm version patch
-  npm publish
-  cd -
+  ls -al
+  cd ./dist/packages/$lib && npm version patch && npm publish && cd -
   # fi
 done
