@@ -34,6 +34,7 @@ export const deleteEntity = <Value extends { id: string }>(
       if (typeof deleteSource !== 'boolean' && deleteSource) {
         return get(deleteSource)
       }
+      return undefined
     },
     (get, set, value: { index?: number; entity: Value }) => {
       const { index, entity } = value
