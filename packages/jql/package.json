@@ -1,6 +1,7 @@
 {
   "name": "@interstice/jql",
   "version": "0.0.1",
+  "publicAccess": true,
   "peerDependencies": {
     "graphql": ">=15.6.0",
     "jotai": ">=1.4.0",
