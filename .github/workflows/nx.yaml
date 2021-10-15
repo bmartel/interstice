@@ -51,31 +51,30 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'release' }}
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.release.target_commitish }}
-        fetch-depth: 0
-    - name: Derive appropriate SHAs for base and head for `nx affected` commands
-      uses: nrwl/nx-set-shas@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
-        registry-url: https://registry.npmjs.org/
-      - run: yarn install
-      - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
-      - run: git config --global user.name "github-actions[bot]"
-      - run: git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - run: npm version ${{ github.event.release.tag_name }}
-      - run: ./tools/publish-affected.sh
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npx nx-cloud stop-all-agents
-      - run: git push
-        env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+        - run: yarn install
+        - run: npx nx-cloud start-ci-run
+        - run: npx nx affected --target=build --parallel --max-parallel=3
+        - run: npx nx affected --target=test --parallel --max-parallel=2
+        - run: git config --global user.name "github-actions[bot]"
+        - run: git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        - run: npm version ${{ github.event.release.tag_name }}
+        - run: ./tools/publish-affected.sh
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        - run: npx nx-cloud stop-all-agents
+        - run: git push
+          env:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
   agents:
     runs-on: ubuntu-latest
     name: Agent 1
