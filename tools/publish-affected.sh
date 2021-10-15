@@ -24,6 +24,7 @@ for lib in ${LIBS//,/ } ; do
   elif [ $IS_AFFECTED -eq 0 ]; then
     echo "✅ - Publishing $lib..."
     cd ./dist/packages/$lib
+    npm version patch
     npm publish
     cd -
   fi
