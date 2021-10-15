@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "downLevelIteration": true,
+    "downlevelIteration": true,
     "paths": {
       "@interstice/jql": ["packages/jql/src/index.ts"]
     }
