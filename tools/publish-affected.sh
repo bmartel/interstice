@@ -12,7 +12,7 @@ yarn add -D typescript@$TS_VERSION --prefer-offline
 for lib in ${LIBS//,/ } ; do
   if [ -d "./dist/packages/$lib" ]; then
     echo "✅ - Publishing $lib..."
-    cd ./dist/packages/$lib && npm version path && npm publish && cd -
+    cd ./dist/packages/$lib && npm version patch && npm publish --access public && cd -
   else
     echo "🛑 - Publish ignored"
   fi
