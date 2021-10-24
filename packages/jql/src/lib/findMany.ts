@@ -218,6 +218,7 @@ export const findManyEntities = <Value extends { id: string }>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pagination]);
 
+    // @ts-ignore
     useEffect(() => {
       if (autoReset) {
         return reset;
