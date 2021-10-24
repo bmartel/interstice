@@ -63,8 +63,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: yarn install
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
+      - run: npx nx run-many --target=build --all --parallel --max-parallel=3
+      # - run: npx nx affected --target=build --parallel --max-parallel=3
       - run: git config --global user.name "github-actions[bot]"
       - run: git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - run: ./tools/publish-affected.sh
