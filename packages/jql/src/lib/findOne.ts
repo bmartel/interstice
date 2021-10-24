@@ -1,9 +1,9 @@
-import { DocumentNode } from 'graphql';
-import { atom, useAtom, WritableAtom } from 'jotai';
-import { CombinedError, useQuery } from 'urql';
 import { useCallback, useEffect } from 'react';
+import { DocumentNode } from 'graphql';
+import { CombinedError, useQuery } from 'urql';
+import { atom, useAtom, WritableAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { AtomEntity, PauseAtomEntity } from './atom';
-import { useResetAtom } from 'jotai/utils';
 
 const defaultPauseWhen: PauseAtomEntity = (atoms) => (get) =>
   !get(atoms.variablesAtom)?.id;
@@ -32,10 +32,10 @@ export const findOneEntity = <Value extends { [k: string]: any }>(
   pauseWhen: PauseAtomEntity | boolean = defaultPauseWhen,
   initialVariables: any = {}
 ): FindOneEntityReturn<Value> => {
-  const hasFetchedAtom = atom(false);
-  const errorAtom = atom<CombinedError | null>(null);
-  const loadingAtom = atom(false);
-  const variablesAtom = atom(initialVariables);
+  const hasFetchedAtom = atomWithReset(false);
+  const errorAtom = atomWithReset<CombinedError | null>(null);
+  const loadingAtom = atomWithReset(false);
+  const variablesAtom = atomWithReset(initialVariables);
   const pauseAtom = atom<boolean>(
     typeof pauseWhen === 'boolean' || !pauseWhen
       ? pauseWhen
@@ -91,7 +91,6 @@ export const findOneEntity = <Value extends { [k: string]: any }>(
 
     const manualFetch = useCallback(() => {
       refetchQuery();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const reset = useCallback(() => {

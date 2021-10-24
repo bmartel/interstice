@@ -1,21 +1,23 @@
+import { useCallback, useState } from 'react';
 import { DocumentNode } from 'graphql';
-import { WritableAtom, atom, useAtom } from 'jotai';
 import { CombinedError, useMutation } from 'urql';
-import { useCallback } from 'react';
+import { WritableAtom, atom } from 'jotai';
+import { useAtomValue, useUpdateAtom } from 'jotai/utils';
 import { AtomEntity } from './atom';
 import { PartialWithId } from './types';
 
-export type DeleteEntityReturn<Value extends { id: string }> = (
-  id: string
-) => [
-  { entity?: PartialWithId<Value>; loading: boolean; error?: CombinedError },
-  () => void
+export type DeleteEntityReturn<Value extends { id: string }> = (id: string) => [
+  {
+    entity?: PartialWithId<Value>;
+    loading: boolean;
+    error?: CombinedError | null;
+  },
+  () => Promise<void>
 ];
 
 export const deleteEntity = <Value extends { id: string }>(
   atomEntityInstance: AtomEntity<Value>,
   mutation: string | DocumentNode,
-  fromData: (data: any) => PartialWithId<Value> = (data) => data,
   deleteSource: boolean | WritableAtom<Value[], Value[]> = true
 ): DeleteEntityReturn<Value> => {
   const deleteSourceAtom = atom(null, (get, set, id: string) => {
@@ -34,61 +36,37 @@ export const deleteEntity = <Value extends { id: string }>(
     }
   });
 
-  const optimisticUndoAtom = atom(
-    (get) => {
-      if (typeof deleteSource !== 'boolean' && deleteSource) {
-        return get(deleteSource);
-      }
-      return undefined;
-    },
-    (get, set, value: { index?: number; entity: Value }) => {
-      const { index, entity } = value;
-      if (index === undefined || index === null) {
-        set(atomEntityInstance({ id: entity.id } as any), entity);
-        return;
-      }
-      const prev = get(
-        deleteSource as WritableAtom<Value[], Value[]>
-      ) as Value[];
-      set(
-        deleteSource as WritableAtom<Value[], Value[]>,
-
-        [...prev.slice(0, index), entity, ...prev.slice(index)]
-      );
-    }
-  );
-
   return (id: string) => {
-    const [entity] = useAtom(atomEntityInstance({ id } as any));
-    const [, deleteEntityInstance] = useAtom(deleteSourceAtom);
-    const [sourceList, optimisticUndo] = useAtom(optimisticUndoAtom);
+    const entity = useAtomValue<PartialWithId<any>>(
+      atomEntityInstance({ id } as any)
+    );
+    const deleteEntityInstance = useUpdateAtom(deleteSourceAtom);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<CombinedError | null>(null);
+    const [, performDelete] = useMutation(mutation);
 
-    const [{ fetching, error, data }, performDelete] = useMutation(mutation);
+    const _delete = useCallback(async () => {
+      setLoading(true);
 
-    const optimisticDelete = useCallback(async () => {
-      const entityInstance = entity as any;
-      const index = sourceList?.findIndex((val: Value) => id === val.id);
-
-      try {
-        // Delete optimistically
-        deleteEntityInstance(id);
-
-        await performDelete({ id } as any);
-      } catch (_err) {
-        // restore if failed
-        optimisticUndo({ index, entity: entityInstance });
+      // Request delete from remote
+      const res = await performDelete({ id } as any);
+      setLoading(false);
+      if (res.error) {
+        setError(res.error);
+        throw res.error;
       }
 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id, entity, sourceList]);
+      // Delete entity
+      deleteEntityInstance(id);
+    }, [id, entity, setLoading, setError]);
 
     return [
       {
-        entity: !fetching ? fromData(data) : undefined,
-        loading: fetching,
+        entity,
+        loading,
         error,
       },
-      optimisticDelete,
+      _delete,
     ];
   };
 };

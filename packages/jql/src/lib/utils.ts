@@ -1,7 +1,6 @@
-/* eslint-disable */
 export const uniqBy = <T = Record<string, any>>(
   arr: T[],
-  predicate: ((o: T) => any) | string
+  predicate?: ((o: T) => any) | string
 ): T[] => {
   const cb =
     typeof predicate === 'function'
@@ -11,7 +10,13 @@ export const uniqBy = <T = Record<string, any>>(
   return [
     ...arr
       .reduce((map, item) => {
-        const key = item === null || item === undefined ? item : cb(item);
+        const key =
+          item === null ||
+          item === undefined ||
+          typeof item === 'string' ||
+          typeof item === 'number'
+            ? item
+            : cb(item);
 
         map.has(key) || map.set(key, item);
 

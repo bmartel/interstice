@@ -4,11 +4,12 @@ import {
   SetStateAction,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
 } from 'react';
 import { DocumentNode } from 'graphql';
 import { Atom, WritableAtom, atom, useAtom } from 'jotai';
-import { RESET, useResetAtom } from 'jotai/utils';
+import { atomWithReset, RESET, useResetAtom } from 'jotai/utils';
 import { CombinedError, useQuery } from 'urql';
 import { AtomEntity, PauseAtomEntity } from './atom';
 import { defaultPagination, Pagination, PaginatedValue } from './pagination';
@@ -17,6 +18,12 @@ import { PartialWithId } from './types';
 
 const defaultPauseWhen: PauseAtomEntity = (atoms) => (get) =>
   !get(atoms.paginationAtom)?.hasMore;
+
+const defaultFormatVariables = (vars: any): any => {
+  const { pagination, ...rest } = vars;
+  const { hasMore: _hasMore, ...restPagination } = pagination || {};
+  return { ...restPagination, ...rest };
+};
 
 export type FindManyEntitiesReturn<Value extends { id: string }> = ((
   vars?: any
@@ -55,17 +62,19 @@ export const findManyEntities = <Value extends { id: string }>(
   pauseWhen: PauseAtomEntity | boolean = defaultPauseWhen,
   initialVariables: any = {},
   paginated = true,
+  formatVariables = defaultFormatVariables,
+  autoReset = true,
   hydrate?: Value[]
 ): FindManyEntitiesReturn<Value> => {
-  const hasFetchedAtom = atom<number>(hydrate?.length ? 1 : -1);
-  const loadingAtom = atom(false);
-  const errorAtom = atom(null as CombinedError | null);
+  const hasFetchedAtom = atomWithReset<number>(hydrate?.length ? 1 : -1);
+  const loadingAtom = atomWithReset(false);
+  const errorAtom = atomWithReset(null as CombinedError | null);
   const variablesAtom = paginated
-    ? atom({
+    ? atomWithReset({
         ...initialVariables,
         pagination: initialVariables.pagination || defaultPagination,
       })
-    : (atom(initialVariables) as WritableAtom<any, any>);
+    : (atomWithReset(initialVariables) as WritableAtom<any, any>);
   const paginationAtom = paginated
     ? atom(
         (get) => (get(variablesAtom) as any).pagination || defaultPagination,
@@ -92,37 +101,49 @@ export const findManyEntities = <Value extends { id: string }>(
           paginationAtom,
         }) as any)
   );
+  let initialEntityIds: string[];
   const entityIdsAtom = listAtom
     ? null
     : atom<string[]>(
-        (hydrate
-          ?.map((entity) => {
-            if (!entity?.id) {
-              return null;
-            }
-            atomEntityInstance(entity);
-            return entity.id;
-          })
-          .filter(Boolean) as string[]) || []
+        (initialEntityIds =
+          (hydrate
+            ?.map((entity) => {
+              if (!(entity as any)?.[atomEntityInstance.idKey]) {
+                return null;
+              }
+              atomEntityInstance(entity);
+              return (entity as any)[atomEntityInstance.idKey];
+            })
+            .filter(Boolean) as string[]) || [])
       );
   const entitiesAtom =
     listAtom ||
     atom(
       (get) =>
         get(entityIdsAtom!)
-          ?.map((id) => get(atomEntityInstance({ id } as any)))
+          ?.map((id) =>
+            get(atomEntityInstance({ [atomEntityInstance.idKey]: id } as any))
+          )
           ?.filter(Boolean),
       (_get, set, update: any[] | typeof RESET) => {
         if (update === RESET) {
-          set(entityIdsAtom!, []);
+          set(entityIdsAtom!, initialEntityIds);
           return;
         }
         set(
           entityIdsAtom!,
-          update.map((u) => {
-            set(atomEntityInstance({ id: u.id } as any), u);
-            return u.id;
-          })
+          uniqBy(
+            update.map((u) => {
+              const instanceId = u[atomEntityInstance.idKey];
+              set(
+                atomEntityInstance({
+                  [atomEntityInstance.idKey]: instanceId,
+                } as any),
+                u
+              );
+              return instanceId;
+            })
+          )
         );
       }
     );
@@ -153,48 +174,12 @@ export const findManyEntities = <Value extends { id: string }>(
 
     const [{ fetching, error: _error, data }, refetchQuery] = useQuery({
       query,
-      variables,
+      variables: useMemo(
+        () => formatVariables(variables),
+        [variables, formatVariables]
+      ),
       pause,
     });
-
-    useEffect(() => {
-      setLoading(fetching);
-      if (fetching) {
-        setHasFetched(0);
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetching]);
-
-    useEffect(() => {
-      setError(_error as any);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [_error]);
-
-    useEffect(() => {
-      if (!fetching && hasData(data)) {
-        if (paginated) {
-          const { items, pagination } = fromData(data) as PaginatedValue<Value>;
-          setEntities(
-            uniqBy(
-              [...(entitiesRef.current || ([] as any)), ...(items || [])],
-              'id'
-            ) as any
-          );
-          setPagination({ hasMore: !!pagination?.hasMore });
-        } else {
-          setEntities(
-            uniqBy(
-              [
-                ...(entitiesRef.current || ([] as any)),
-                ...((fromData(data) as Value[]) || []),
-              ],
-              'id'
-            ) as any
-          );
-        }
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetching, data]);
 
     const manualFetch = useCallback(() => {
       refetchQuery();
@@ -232,6 +217,44 @@ export const findManyEntities = <Value extends { id: string }>(
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pagination]);
+
+    useEffect(() => {
+      if (autoReset) {
+        return reset;
+      }
+    }, []);
+
+    useEffect(() => {
+      setLoading(fetching);
+      if (fetching) {
+        setHasFetched(0);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [fetching]);
+
+    useEffect(() => {
+      setError(_error as any);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [_error]);
+
+    useEffect(() => {
+      if (!fetching && hasData(data)) {
+        if (paginated) {
+          const { items, pagination } = fromData(data) as PaginatedValue<Value>;
+          setEntities([
+            ...(entitiesRef.current || ([] as any)),
+            ...(items || []),
+          ]);
+          setPagination({ hasMore: !!pagination?.hasMore });
+        } else {
+          setEntities([
+            ...(entitiesRef.current || ([] as any)),
+            ...((fromData(data) as Value[]) || []),
+          ]);
+        }
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [fetching, data]);
 
     return [
       {

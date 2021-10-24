@@ -1,49 +1,53 @@
 import { DocumentNode } from 'graphql';
 import { useAtom } from 'jotai';
 import { CombinedError, useMutation } from 'urql';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { AtomEntity } from './atom';
 import { PartialWithId } from './types';
 
 export type UpdateEntityReturn<Value extends { id: string }> = (
   id: string
 ) => [
-  { entity?: Partial<Value>; loading: boolean; error?: CombinedError },
+  { entity?: PartialWithId<Value>; loading: boolean; error: CombinedError },
   (value: Partial<Value>) => Promise<void>
 ];
 
 export const updateEntity = <Value extends { id: string }>(
   atomEntityInstance: AtomEntity<Value>,
-  mutation: string | DocumentNode,
-  fromData: (data: any) => PartialWithId<Value> = (data) => data
+  mutation: string | DocumentNode
 ): UpdateEntityReturn<Value> => {
   return (id: string) => {
     const [entity, updateEntityInstance] = useAtom(
       atomEntityInstance({ id } as any)
-    );
-    const [{ fetching, error, data }, performUpdate] = useMutation(mutation);
+    ) as any;
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null as any);
+    const [, performUpdate] = useMutation(mutation);
 
     const optimisticUpdate = useCallback(
       async (value: Partial<Value>) => {
-        try {
-          // Update optimistically
-          updateEntityInstance({ ...value, id } as any);
+        setLoading(true);
+        const entityInstance = entity as any;
 
-          await performUpdate({ ...value, id } as any);
-        } catch (_err) {
+        // Update optimistically
+        updateEntityInstance({ ...value, id } as any);
+
+        const res = await performUpdate({ ...value, id } as any);
+        setLoading(false);
+        if (res.error) {
+          setError(res.error as CombinedError);
           // restore if failed
-          updateEntityInstance({ ...(entity as any), id });
+          updateEntityInstance({ ...entityInstance, id });
+          throw res.error;
         }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
       },
       [id, entity]
     );
 
     return [
       {
-        entity: !fetching ? fromData(data) : undefined,
-        loading: fetching,
+        entity,
+        loading,
         error,
       },
       optimisticUpdate,

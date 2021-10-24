@@ -1,8 +1,13 @@
+import { useCallback } from 'react';
 import { DocumentNode } from 'graphql';
 import { WritableAtom, atom, useAtom } from 'jotai';
-import { useResetAtom } from 'jotai/utils';
+import {
+  atomWithReset,
+  useAtomValue,
+  useResetAtom,
+  useUpdateAtom,
+} from 'jotai/utils';
 import { CombinedError, useMutation } from 'urql';
-import { useCallback, useEffect } from 'react';
 import { AtomEntity } from './atom';
 import { PartialWithId } from './types';
 
@@ -29,9 +34,9 @@ export const createEntity = <Value extends { id: string }, InputValue = Value>(
   fromData: (data: any) => PartialWithId<Value> = (data) => data,
   createSource: boolean | WritableAtom<Value[], Value[]> = true
 ): CreateEntityReturn<Value, InputValue> => {
-  const loadingAtom = atom(false);
-  const errorAtom = atom(null as CombinedError | null);
-  const entityIdAtom = atom<string | null>(null);
+  const loadingAtom = atomWithReset(false);
+  const errorAtom = atomWithReset(null as CombinedError | null);
+  const entityIdAtom = atomWithReset<string | null>(null);
   const entityAtom = atom<Value | null>((get) => {
     const lookupId = { [atomEntityInstance.idKey]: get(entityIdAtom) };
     if (!lookupId[atomEntityInstance.idKey]) {
@@ -63,26 +68,20 @@ export const createEntity = <Value extends { id: string }, InputValue = Value>(
     const resetLoading = useResetAtom(loadingAtom as any);
     const [error, setError] = useAtom(errorAtom);
     const resetError = useResetAtom(errorAtom as any);
-    const [, createEntityInstance] = useAtom(createSourceAtom);
+    const createEntityInstance = useUpdateAtom(createSourceAtom);
     const resetEntityId = useResetAtom(entityIdAtom as any);
-    const [entity] = useAtom(entityAtom);
-    const [{ fetching, error: _error }, performCreate] = useMutation(mutation);
-
-    useEffect(() => {
-      setLoading(fetching);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetching]);
-
-    useEffect(() => {
-      setError(_error as any);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [_error]);
+    const entity = useAtomValue(entityAtom);
+    const [, performCreate] = useMutation(mutation);
 
     const create = useCallback(async (entityData: Partial<Value>) => {
-      try {
-        const res = (await performCreate(entityData as any)) as any;
-        createEntityInstance(fromData(res.data as any));
-      } catch (err) {}
+      setLoading(true);
+      const res = (await performCreate(entityData as any)) as any;
+      setLoading(false);
+      if (res?.error) {
+        setError(res.error);
+        throw res.error;
+      }
+      createEntityInstance(fromData(res.data as any));
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

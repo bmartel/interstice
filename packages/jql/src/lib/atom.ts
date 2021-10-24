@@ -34,15 +34,13 @@ const mergeEntity = <E = any>(
   relatedEntity: E | string | number,
   get: any,
   set: any,
-  lookupAtom: AtomEntity
-): string => {
+  lookupAtom: any
+): string | undefined => {
   if (typeof relatedEntity === 'string' || typeof relatedEntity === 'number') {
-    return relatedEntity.toString() as string;
+    return relatedEntity.toString();
   }
   if ((relatedEntity as any)?.[lookupAtom.idKey]) {
-    const idString = (relatedEntity as any)[
-      lookupAtom.idKey as string
-    ].toString();
+    const idString = (relatedEntity as any)[lookupAtom.idKey].toString();
 
     let mergeOriginal = {};
     if (
@@ -52,30 +50,30 @@ const mergeEntity = <E = any>(
       const original = get(
         lookupAtom({
           [lookupAtom.targetKey]: (relatedEntity as any)[
-            lookupAtom.targetKey as string
+            lookupAtom.targetKey
           ].toString(),
-        } as any)
+        })
       );
       if (typeof original === 'object' && original) {
         mergeOriginal = original;
         set(
           lookupAtom({
-            [lookupAtom.targetKey as string]: (relatedEntity as any)[
-              lookupAtom.targetKey as any
+            [lookupAtom.targetKey]: (relatedEntity as any)[
+              lookupAtom.targetKey
             ].toString(),
-          } as any),
+          }),
           null
         );
       }
     }
-    set(lookupAtom({ [lookupAtom.idKey]: idString } as any), {
+    set(lookupAtom({ [lookupAtom.idKey]: idString }), {
       ...mergeOriginal,
       ...relatedEntity,
       [lookupAtom.idKey]: idString,
     });
-    return idString as any;
+    return idString;
   }
-  return '';
+  return;
 };
 
 const lookupEntity = <Value = any>(
