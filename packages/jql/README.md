@@ -10,7 +10,7 @@ type. It is used to create a singular reference to all entity instances (by id),
 the data.
 
 ```ts
-import { atomEntity } from '@/lib/entity/atom'
+import { atomEntity } from './atom'
 
 const todoEntity = atomEntity()
 ```
@@ -20,7 +20,7 @@ const todoEntity = atomEntity()
 Creates a hook which manages retrieval of a single entity by id.
 
 ```ts
-import { findOneEntity } from '@/lib/entity/findOne'
+import { findOneEntity } from './findOne'
 import { gql } from '@urql/core'
 import { useRouter } from 'next/router'
 
@@ -48,7 +48,7 @@ const TodoSummary = () => {
 Creates a hook which manages retrieval of a multiple entities, and optionally paginated.
 
 ```ts
-import { findManyEntities } from '@/lib/entity/findMany'
+import { findManyEntities } from './findMany'
 import { gql } from '@urql/core'
 
 const useListTodos = findManyEntities(
@@ -81,7 +81,7 @@ const TodosTable = () => {
 Creates a hook which manages subscription retrieval of multiple entities.
 
 ```ts
-import { subscribeEntities } from '@/lib/entity/subscribe'
+import { subscribeEntities } from './subscribe'
 import { gql } from '@urql/core'
 
 const useSubscribeTodos = subscribeEntities(
@@ -108,7 +108,7 @@ Creates a hook which manages the creation of a single entity.
 Optionally allows for a target list atom to be prepended to with the result.
 
 ```ts
-import { createEntity } from '@/lib/entity/create'
+import { createEntity } from './create'
 import { gql } from '@urql/core'
 
 const useCreateTodo = createEntity(
@@ -139,7 +139,7 @@ const TodosTable = () => {
 Creates a hook which manages the update of a single entity.
 
 ```ts
-import { updateEntity } from '@/lib/entity/update'
+import { updateEntity } from './update'
 import { gql } from '@urql/core'
 
 const useUpdateTodo = updateEntity(
@@ -170,7 +170,7 @@ Creates a hook which manages the deletion of a single entity.
 Optionally allows for a target list atom to be removed from.
 
 ```ts
-import { deleteEntity } from '@/lib/entity/delete'
+import { deleteEntity } from './delete'
 import { gql } from '@urql/core'
 
 const useDeleteTodo = deleteEntity(
@@ -199,7 +199,7 @@ Allows a related schema to be added to Entity Factories, to allow for cross enti
 Example. A todo may have more than one user editing.
 
 ```ts
-import { atomEntity } from '@/lib/entity/atom'
+import { atomEntity } from './atom'
 
 interface User {
   id: string;

@@ -2,10 +2,7 @@ export const uniqBy = <T = Record<string, any>>(
   arr: T[],
   predicate?: ((o: T) => any) | string
 ): T[] => {
-  const cb =
-    typeof predicate === 'function'
-      ? predicate
-      : (o: any): any => o[predicate as string];
+  const cb = typeof predicate === 'function' ? predicate : (o: any): any => o[predicate as string]
 
   return [
     ...arr
@@ -16,12 +13,12 @@ export const uniqBy = <T = Record<string, any>>(
           typeof item === 'string' ||
           typeof item === 'number'
             ? item
-            : cb(item);
+            : cb(item)
 
-        map.has(key) || map.set(key, item);
+        map.has(key) || map.set(key, item)
 
-        return map;
+        return map
       }, new Map())
       .values(),
-  ];
-};
+  ]
+}
