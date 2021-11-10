@@ -14,7 +14,15 @@
             "tsConfig": "packages/jql/tsconfig.lib.json",
             "project": "packages/jql/package.json",
             "entryFile": "packages/jql/src/index.ts",
-            "external": ["react/jsx-runtime", "react", "react-dom", "urql", "graphql", "jotai"],
+            "external": [
+              "react/jsx-runtime",
+              "react",
+              "react-dom",
+              "urql",
+              "graphql",
+              "optics-ts",
+              "jotai"
+            ],
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "assets": [
               {
@@ -23,6 +31,11 @@
                 "output": "."
               }
             ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true
+            }
           }
         },
         "lint": {

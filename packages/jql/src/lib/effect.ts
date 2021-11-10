@@ -1,103 +1,98 @@
-import { atom, WritableAtom } from 'jotai'
-import { atomFamily } from 'jotai/utils'
-import { AtomEffect, AtomEffectRef, Write, PartialWithId } from './types'
+import { atom } from 'jotai';
+import { atomFamily } from 'jotai/utils';
+import { AtomEffect, AtomEffectRef, AtomEffectUpdate, Write } from './types';
 
-const effectCache = new WeakMap()
+const effectCache = new WeakMap();
 
 export const atomEffect = <Value = any>(
   targetKey: string,
-  write: Write<{
-    value: () => Value
-    ref: () => AtomEffectRef
-    clearRef: (ref: AtomEffectRef) => void
-    set: (value: Value) => void
-    cache: (ref: AtomEffectRef, value?: any) => any
-    memo: (ref: AtomEffectRef, value?: any) => any
-    atom: WritableAtom<PartialWithId<{ [k: string]: Value }>, PartialWithId<{ [k: string]: Value }>>
-    id: string
-    idKey: string
-    targetKey: string
-    initialValue?: any
-    update: Value
-  }>,
+  write: Write<AtomEffectUpdate<Value>>,
   initialValue?: any,
   idKey = 'id'
 ): AtomEffect<Value> => {
-  const writableAtom = atom({} as any)
+  const writableAtom = atom({} as any);
   const entityDef = atomFamily<Value, Value, Value>((init: any) => {
-    let { [idKey]: id, [targetKey]: targetValue } = init
-    id = id?.toString()
+    let { [idKey]: id, [targetKey]: targetValue } = init;
+    id = id?.toString();
     return atom(
       (get) => {
-        const store = get(writableAtom) as any
-        const instance = store[id]
-        return instance?.[targetKey] || targetValue || initialValue
+        const store = get(writableAtom) as any;
+        const instance = store[id];
+        return instance?.[targetKey] || targetValue || initialValue;
       },
       (get, set, update) => {
-        const updateId = update[idKey]?.toString() || id
-        return write(get, set, {
-          value: (): Value => get(writableAtom)[updateId]?.[targetKey] || initialValue,
+        const updateId = (update as any)[idKey]?.toString() || id;
+        const updater: AtomEffectUpdate<Value> = {
+          value: (): Value =>
+            get(writableAtom)[updateId]?.[targetKey] || initialValue,
           ref: (): { [k: string]: string } => {
-            const prev = get(writableAtom) as any
+            const prev = get(writableAtom) as any;
             const current = prev[updateId] || {
               [targetKey]: initialValue,
-            }
+            };
 
             // stable ref
             if (!('_ref' in current)) {
-              current._ref = { [idKey]: updateId, targetKey }
-              set(writableAtom, { ...prev, [updateId]: current })
+              current._ref = { [idKey]: updateId, targetKey };
+              set(writableAtom, { ...prev, [updateId]: current });
             }
 
-            return current._ref
+            return current._ref;
           },
           clearRef: (ref: AtomEffectRef): void => {
-            effectCache.delete(ref)
+            effectCache.delete(ref);
           },
           set: (value: Value): void => {
-            const prev = get(writableAtom) as any
+            const prev = get(writableAtom) as any;
             const current = prev[updateId] || {
               [targetKey]: initialValue,
-            }
+            };
 
             // stable ref
             if (!('_ref' in current)) {
-              current._ref = { [idKey]: updateId, targetKey }
+              current._ref = { [idKey]: updateId, targetKey };
             }
 
-            current[targetKey] = value
+            current[targetKey] = value;
 
-            set(writableAtom, { ...prev, [updateId]: current })
+            set(writableAtom, { ...prev, [updateId]: current });
           },
           cache: (ref: AtomEffectRef, value?: any): any => {
             if (value === undefined) {
-              return effectCache.get(ref)
+              return effectCache.get(ref);
             }
-            effectCache.set(ref, value)
+            effectCache.set(ref, value);
           },
           memo: (ref: AtomEffectRef, value?: any): any => {
             if (effectCache.has(ref) || value === undefined) {
-              return effectCache.get(ref)
+              return effectCache.get(ref);
             }
-            const storedValue = typeof 'function' ? value() : value
-            effectCache.set(ref, storedValue)
-            return storedValue
+            const storedValue = typeof 'function' ? value() : value;
+            effectCache.set(ref, storedValue);
+            return storedValue;
           },
           atom: writableAtom,
           id: updateId,
           idKey,
           targetKey,
-          update: update[targetKey],
+          update: (update as any)[targetKey],
           initialValue,
-        })
+          shouldSkip: () => {
+            const previous = updater.value();
+            return (
+              previous !== updater.initialValue && previous === updater.update
+            );
+          },
+        };
+        return write(get, set, updater);
       }
-    )
-  })
+    );
+  });
 
-  ;(entityDef as any)._name = 'atomEffect'
-  ;(entityDef as any).idKey = idKey
-  ;(entityDef as any).targetKey = targetKey
-  ;(entityDef as any).atom = writableAtom
+  (entityDef as any)._name = 'atomEffect';
+  (entityDef as any).idKey = idKey;
+  (entityDef as any).targetKey = targetKey;
+  (entityDef as any).atom = writableAtom;
 
-  return entityDef as any
-}
+  return entityDef as any;
+};

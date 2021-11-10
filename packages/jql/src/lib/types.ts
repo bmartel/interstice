@@ -29,9 +29,29 @@ export type AtomFamily<Param, AtomType> = {
   setShouldRemove(shouldRemove: ShouldRemove<Param> | null): void
 }
 
+export type SetAtom<Update, Result extends void | Promise<void>> = undefined extends Update
+  ? (update?: Update) => Result
+  : (update: Update) => Result
+
 export type PauseAtomEntity = (atoms: Record<string, Atom<any>>) => (get: Getter) => boolean
 
 export type AtomEffectRef = { [k: string]: string }
+
+export type AtomEffectUpdate<Value> = {
+  value: () => Value
+  ref: () => AtomEffectRef
+  clearRef: (ref: AtomEffectRef) => void
+  set: (value: Value) => void
+  cache: (ref: AtomEffectRef, value?: any) => any
+  memo: (ref: AtomEffectRef, value?: any) => any
+  atom: WritableAtom<PartialWithId<{ [k: string]: Value }>, PartialWithId<{ [k: string]: Value }>>
+  id: string
+  idKey: string
+  targetKey: string
+  initialValue?: any
+  shouldSkip: () => boolean
+  update: Value
+}
 
 export type AtomEffect<Value = any> = AtomFamily<
   Value,
@@ -55,3 +75,5 @@ export type AtomEntity<Value = Record<string, any>> = AtomFamily<
   targetKey: string
   atom: WritableAtom<Record<string, PartialWithId<Value>>, Record<string, PartialWithId<Value>>>
 }
+
+export type ResolveType<T> = T extends Promise<infer V> ? V : T

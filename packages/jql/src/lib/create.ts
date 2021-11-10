@@ -72,7 +72,7 @@ export const createEntity = <Value extends { id: string }, InputValue = Value>(
     const entity = useAtomValue(entityAtom);
     const [, performCreate] = useMutation(mutation);
 
-    const create = useCallback(async (entityData: Partial<Value>) => {
+    const create = useCallback(async (entityData: Partial<InputValue>) => {
       setLoading(true);
       const res = (await performCreate(entityData as any)) as any;
       setLoading(false);

@@ -17,7 +17,8 @@ export type UpdateEntityReturn<
 export const updateEntity = <Value extends { id: string }, InputValue = Value>(
   atomEntityInstance: AtomEntity<Value>,
   mutation: string | DocumentNode,
-  fromData?: (data: any, original: Partial<Value>) => PartialWithId<Value>
+  fromData?: (data: any, original: Partial<Value>) => PartialWithId<Value>,
+  inputData?: (data: Partial<InputValue>) => any
 ): UpdateEntityReturn<Value, InputValue> => {
   return (id: string) => {
     const [entity, updateEntityInstance] = useAtom(
@@ -35,7 +36,20 @@ export const updateEntity = <Value extends { id: string }, InputValue = Value>(
         // Update optimistically
         updateEntityInstance({ ...value, id } as any);
 
-        const res = await performUpdate({ ...value, id } as any);
+        const input = inputData
+          ? inputData({ id, ...value })
+          : { id, ...value };
+
+        const res = await performUpdate(input);
+
+        setLoading(false);
+
+        if (res.error) {
+          setError(res.error as any);
+          // restore if failed
+          updateEntityInstance({ ...entityInstance, id });
+          throw res.error;
+        }
 
         // Update from remote
         if (fromData) {
@@ -44,17 +58,8 @@ export const updateEntity = <Value extends { id: string }, InputValue = Value>(
             id,
           } as any);
         }
-
-        setLoading(false);
-
-        if (res.error) {
-          setError(res.error as any);
-          // restore if failed
-          updateEntityInstance({ ...entityInstance, id } as any);
-          throw res.error;
-        }
       },
-      [id, entity]
+      [id, entity, updateEntityInstance]
     );
 
     return [

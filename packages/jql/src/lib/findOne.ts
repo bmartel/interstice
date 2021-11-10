@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { DocumentNode } from 'graphql'
 import { CombinedError, useQuery } from 'urql'
 import { atom, useAtom, WritableAtom } from 'jotai'
@@ -27,7 +27,7 @@ export const findOneEntity = <Value extends { [k: string]: any }>(
   atomEntityInstance: AtomEntity<Value>,
   query: string | DocumentNode,
   hasData: (data: any) => Value = (data) => data,
-  fromData: (data: any) => Value = hasData,
+  fromData: (data: any, id?: string) => Value = hasData,
   pauseWhen: PauseAtomEntity | boolean = defaultPauseWhen,
   initialVariables: any = {}
 ): FindOneEntityReturn<Value> => {
@@ -52,6 +52,8 @@ export const findOneEntity = <Value extends { [k: string]: any }>(
     const resetVariables = useResetAtom(variablesAtom as any)
     const [pause] = useAtom(pauseAtom)
     const [entity, setEntity] = useAtom(atomEntityInstance(value as any))
+    const variablesRef = useRef<Record<string, any>>(variables)
+    variablesRef.current = variables as any
 
     useEffect(() => {
       setVariables((prev: any) => ({ ...prev, ...value }))
@@ -73,7 +75,8 @@ export const findOneEntity = <Value extends { [k: string]: any }>(
 
     useEffect(() => {
       if (!fetching && hasData(data)) {
-        setEntity(fromData(data) as any)
+        const id = variablesRef.current[atomEntityInstance.idKey]
+        setEntity(fromData(data as any, id) as any)
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetching, data])

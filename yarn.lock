@@ -8285,6 +8285,11 @@ opn@^5.5.0:
   dependencies:
     is-wsl "^1.1.0"
 
+optics-ts@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/optics-ts/-/optics-ts-2.2.2.tgz#d145b507cf17998b7085a3e2dd62de7f20a22bb9"
+  integrity sha512-FPylanPFrlXVcl/u9b6SJN0x1xHhXOGyEFm92vTTD0CHfvkswMDicRJHAowlXD1hqmxGR6MwA3jvAuPMHXcT4w==
+
 optionator@^0.8.1:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.3.tgz#84fa1d036fe9d3c7e21d99884b601167ec8fb495"

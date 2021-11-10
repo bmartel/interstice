@@ -192,7 +192,6 @@ export const atomEntity = <
         }
       );
     },
-
     (a, b) => a?.[idKey] === b?.[idKey]
   );
 
