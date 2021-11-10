@@ -23,7 +23,6 @@
               "optics-ts",
               "jotai"
             ],
-            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "assets": [
               {
                 "glob": "packages/jql/README.md",
@@ -53,17 +52,8 @@
             "passWithNoTests": true
           }
         }
-      }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
+      },
+      "tags": []
     }
   }
 }

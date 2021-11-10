@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "downlevelIteration": true,
     "paths": {
-      "@interstice/jql": ["packages/jql/src/index.ts"]
+      "@interstice/jql": ["packages/jql/src/index.ts"],
+      "@interstice/test": ["packages/test/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
