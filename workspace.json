@@ -15,14 +15,9 @@
             "project": "packages/jql/package.json",
             "entryFile": "packages/jql/src/index.ts",
             "external": [
-              "react/jsx-runtime",
-              "react",
-              "react-dom",
-              "urql",
-              "graphql",
-              "optics-ts",
-              "jotai"
+              "react/jsx-runtime"
             ],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
             "assets": [
               {
                 "glob": "packages/jql/README.md",
