@@ -145,7 +145,7 @@ const TodosTable = () => {
 Creates a hook which manages the update of a single entity.
 
 ```ts
-import { updateEntity } from '@interstice/jql'
+import { updateEntity } from '@/lib/entity/update'
 import { gql } from '@urql/core'
 
 const useUpdateTodo = updateEntity(
@@ -164,9 +164,19 @@ const useUpdateTodo = updateEntity(
   (data) => data.todo
 )
 
+const TodoItem = ({ id }) => {
+  const [{ entity: todo, loading, error }, { update: updateTodo }] = useUpdateTodo(id)
+  return (
+    <pre>
+        {JSON.stringify(todo, null, 2)}
+    </pre>
+  )
+}
 const TodosTable = () => {
   const [{ entities: todos, loading: _loading, loaded, error: _error }] = useListTodos()
-  const [{ entity: todo, loading, error }, updateTodo] = useUpdateTodo()
+  return (
+    <div>{ todos.map(({ id }) => <TodoItem id={id} />) }</div>
+  )
 }
 ```
 
@@ -176,7 +186,7 @@ Creates a hook which manages the deletion of a single entity.
 Optionally allows for a target list atom to be removed from.
 
 ```ts
-import { deleteEntity } from '@interstice/jql'
+import { deleteEntity } from '@/lib/entity/delete'
 import { gql } from '@urql/core'
 
 const useDeleteTodo = deleteEntity(
@@ -192,9 +202,19 @@ const useDeleteTodo = deleteEntity(
   useListTodos.entitiesAtom
 )
 
+const TodoItem = ({ id }) => {
+  const [{ entity: todo, loading, error }, { update: deleteTodo }] = useDeleteTodo(id)
+  return (
+    <pre>
+      {JSON.stringify(todo, null, 2)}
+    </pre>
+  )
+}
 const TodosTable = () => {
-  const [{ entities: todos, loading: _loading, loaded: _loaded, error: _error }] = useListTodos()
-  const [{ entity: todo, loading, loaded, error }, deleteTodo] = useDeleteTodo()
+  const [{ entities: todos, loading: _loading, loaded, error: _error }] = useListTodos()
+  return (
+    <div>{ todos.map(({ id }) => <TodoItem id={id} />) }</div>
+  )
 }
 ```
 

@@ -1,15 +1,20 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { DocumentNode } from 'graphql';
 import { CombinedError, useMutation } from 'urql';
-import { WritableAtom, atom } from 'jotai';
-import { useAtomValue, useUpdateAtom } from 'jotai/utils';
+import { WritableAtom, atom, useAtom } from 'jotai';
+import {
+  useAtomValue,
+  atomWithReset,
+  useResetAtom,
+  useUpdateAtom,
+} from 'jotai/utils';
 import { AtomEntity, PartialWithId } from './types';
 
 export type DeleteEntityReturn<Value extends { id: string }> = (
   id: string
 ) => [
   { entity?: PartialWithId<Value>; loading: boolean; error?: CombinedError },
-  () => void
+  { delete: () => void; reset: () => void }
 ];
 
 export const deleteEntity = <Value extends { id: string }>(
@@ -35,8 +40,16 @@ export const deleteEntity = <Value extends { id: string }>(
   return (id: string) => {
     const entity = useAtomValue(atomEntityInstance({ id } as any));
     const deleteEntityInstance = useUpdateAtom(deleteSourceAtom);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const loadingAtom = useMemo(() => atomWithReset(false as any), [id]) as any;
+    const [loading, setLoading] = useAtom<boolean, boolean, any>(loadingAtom);
+    const resetLoading = useResetAtom(loadingAtom as any);
+    const errorAtom = useMemo(() => atomWithReset(null as any), [id]) as any;
+    const resetError = useResetAtom(errorAtom as any);
+    const [error, setError] = useAtom<
+      CombinedError | null,
+      CombinedError | null,
+      any
+    >(errorAtom);
     const [, performDelete] = useMutation(mutation);
 
     const _delete = useCallback(async () => {
@@ -54,13 +67,19 @@ export const deleteEntity = <Value extends { id: string }>(
       deleteEntityInstance(id);
     }, [id, entity, setLoading, setError]);
 
+    const reset = useCallback(() => {
+      resetError();
+      resetLoading();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return [
       {
         entity,
         loading,
         error,
       },
-      _delete,
+      { delete: _delete, reset },
     ] as any;
   };
 };
