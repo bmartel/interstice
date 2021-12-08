@@ -107,31 +107,39 @@ export const findManyEntities = <Value extends { id: string }>(
     : atom<string[]>(
         (initialEntityIds =
           (hydrate
-            ?.map((entity) => {
-              if (!(entity as any)?.[atomEntityInstance.idKey]) {
+            ?.map((entity: any) => {
+              if (!entity?.[atomEntityInstance.idKey]) {
                 return null;
               }
               atomEntityInstance(entity);
-              return (entity as any)[atomEntityInstance.idKey];
+              return entity[atomEntityInstance.idKey];
             })
             .filter(Boolean) as string[]) || [])
       );
   const entitiesAtom =
     listAtom ||
     atom(
-      (get) =>
-        get(entityIdsAtom!)
-          ?.map((id) =>
-            get(atomEntityInstance({ [atomEntityInstance.idKey]: id } as any))
-          )
-          ?.filter(Boolean),
+      (get) => {
+        const entityIds = get(entityIdsAtom as any) as any;
+        const entityLen = entityIds.length;
+        for (let i = 0; i < entityLen; i++) {
+          let eid = entityIds[i];
+          if (typeof eid !== 'string') {
+            eid = eid[atomEntityInstance.idKey];
+          }
+          entityIds[i] = get(
+            atomEntityInstance({ [atomEntityInstance.idKey]: eid } as any)
+          );
+        }
+        return entityIds;
+      },
       (_get, set, update: any[] | typeof RESET) => {
         if (update === RESET) {
-          set(entityIdsAtom!, initialEntityIds);
+          set(entityIdsAtom as any, initialEntityIds);
           return;
         }
         set(
-          entityIdsAtom!,
+          entityIdsAtom as any,
           uniqBy(
             update.map((u) => {
               const instanceId = u[atomEntityInstance.idKey];
@@ -219,7 +227,6 @@ export const findManyEntities = <Value extends { id: string }>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pagination]);
 
-    // eslint-disable-next-line
     // @ts-ignore
     useEffect(() => {
       if (autoReset) {
