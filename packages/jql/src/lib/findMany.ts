@@ -1,28 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { useCallback, useEffect } from 'react';
+import { Atom, WritableAtom, atom } from 'jotai';
 import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react';
-import { DocumentNode } from 'graphql';
-import { Atom, WritableAtom, atom, useAtom } from 'jotai';
-import { atomWithReset, RESET, useAtomValue, useResetAtom } from 'jotai/utils';
-import { CombinedError, useQuery } from 'urql';
-import { defaultPagination, Pagination, PaginatedValue } from './pagination';
+  atomWithReset,
+  RESET,
+  useAtomValue,
+  useResetAtom,
+  useUpdateAtom,
+} from 'jotai/utils';
 import { uniqBy } from './utils';
-import { AtomEntity, PauseAtomEntity, PartialWithId } from './types';
-
-const defaultPauseWhen: PauseAtomEntity = (atoms) => (get) =>
-  !get(atoms.paginationAtom)?.hasMore;
-
-const defaultFormatVariables = (vars: any): any => {
-  const { pagination, ...rest } = vars;
-  const { hasMore: _hasMore, ...restPagination } = pagination || {};
-  return { ...restPagination, ...rest };
-};
+import { AtomEntity, QueryWrite, CombinedError } from './types';
 
 export type FindManyEntitiesReturn<Value extends { id: string }> = ((
   vars?: any
@@ -31,16 +18,11 @@ export type FindManyEntitiesReturn<Value extends { id: string }> = ((
     entities: Value[];
     loaded: boolean;
     loading: boolean;
-    pagination: Pagination;
     error?: CombinedError;
   },
   {
-    refetch: (newValue?: PartialWithId<Value>) => void;
-    fetch: () => void;
+    fetch: (input?: any) => void;
     reset: () => void;
-    loadPrevious: () => void;
-    loadNext: () => void;
-    setPagination: Dispatch<SetStateAction<Pagination>>;
   }
 ]) & {
   entitiesAtom: WritableAtom<Value[], Value[]>;
@@ -48,59 +30,18 @@ export type FindManyEntitiesReturn<Value extends { id: string }> = ((
   errorAtom: WritableAtom<CombinedError | null, CombinedError | null>;
   loadingAtom: WritableAtom<boolean, boolean>;
   hasFetchedAtom: WritableAtom<number, number>;
-  pauseAtom: WritableAtom<boolean, boolean>;
-  variablesAtom: WritableAtom<Record<string, any>, Record<string, any>>;
-  paginationAtom: WritableAtom<Pagination, Pagination>;
 };
 
 export const findManyEntities = <Value extends { id: string }>(
   atomEntityInstance: AtomEntity<Value>,
-  query: string | DocumentNode,
-  hasData: (data: any) => Value[] | PaginatedValue<Value> = (data) => data,
-  fromData: (data: any) => Value[] | PaginatedValue<Value> = hasData,
+  query: QueryWrite<any, Value[]>,
   listAtom?: Atom<Value[]>,
-  pauseWhen: PauseAtomEntity | boolean = defaultPauseWhen,
-  initialVariables: any = {},
-  paginated = true,
-  formatVariables = defaultFormatVariables,
-  autoReset = true,
-  hydrate?: Value[]
+  hydrate?: Value[],
+  autoReset = true
 ): FindManyEntitiesReturn<Value> => {
   const hasFetchedAtom = atomWithReset<number>(hydrate?.length ? 1 : -1);
   const loadingAtom = atomWithReset(false);
   const errorAtom = atomWithReset(null as CombinedError | null);
-  const variablesAtom = paginated
-    ? atomWithReset({
-        ...initialVariables,
-        pagination: initialVariables.pagination || defaultPagination,
-      })
-    : (atomWithReset(initialVariables) as WritableAtom<any, any>);
-  const paginationAtom = paginated
-    ? atom(
-        (get) => (get(variablesAtom) as any).pagination || defaultPagination,
-        (get, set, update: any) => {
-          const prev = get(variablesAtom) as any;
-          if (update === RESET) {
-            set(variablesAtom, { ...prev, pagination: defaultPagination });
-          } else {
-            set(variablesAtom, {
-              ...prev,
-              pagination: { ...prev.pagination, ...update },
-            });
-          }
-        }
-      )
-    : atom({});
-  const pauseAtom = atom<boolean>(
-    typeof pauseWhen === 'boolean' || !pauseWhen
-      ? Boolean(pauseWhen)
-      : (pauseWhen({
-          hasFetchedAtom,
-          loadingAtom,
-          variablesAtom,
-          paginationAtom,
-        }) as any)
-  );
   let initialEntityIds: string[];
   const entityIdsAtom = listAtom
     ? null
@@ -156,76 +97,55 @@ export const findManyEntities = <Value extends { id: string }>(
       }
     );
 
+  const queryWrite: QueryWrite<any, Value[]> = async (get, set, params) => {
+    try {
+      set(params.atoms.loadingAtom, true);
+      set(params.atoms.hasFetchedAtom, 0);
+      params.previous = get(params.atoms.readAtom) as any;
+      await query(get, set, params);
+    } catch (err) {
+      set(params.atoms.errorAtom, err);
+    } finally {
+      set(params.atoms.loadingAtom, false);
+    }
+  };
+  const queryAtom = atom(null, queryWrite);
+
   function findManyHook(vars?: any) {
-    const entitiesRef = useRef<Value[]>([]);
-    const [hasFetched, setHasFetched] = useAtom(hasFetchedAtom as any);
+    const hasFetched = useAtomValue(hasFetchedAtom as any);
     const resetHasFetched = useResetAtom(hasFetchedAtom as any);
-    const [loading, setLoading] = useAtom(loadingAtom);
+    const loading = useAtomValue(loadingAtom);
     const resetLoading = useResetAtom(loadingAtom as any);
-    const [error, setError] = useAtom(errorAtom);
+    const error = useAtomValue(errorAtom);
     const resetError = useResetAtom(errorAtom as any);
-    const [variables, setVariables] = useAtom(variablesAtom);
-    const resetVariables = useResetAtom(variablesAtom);
-    const [pagination, setPagination] = useAtom(paginationAtom);
-    const pause = useAtomValue(pauseAtom);
-    const [entities, setEntities] = useAtom(entitiesAtom as any);
+    const entities = useAtomValue(entitiesAtom as any);
     const resetEntities = useResetAtom(entitiesAtom as any);
     const loaded = (hasFetched as number) > -1 && !loading;
+    const query = useUpdateAtom(queryAtom);
 
-    // Ensure useEffect can have a non stale reference without triggering recalcs
-    entitiesRef.current = entities as any;
+    const fetchQuery = useCallback(async (input?: any) => {
+      await query({
+        input,
+        atoms: {
+          loadingAtom,
+          hasFetchedAtom,
+          errorAtom,
+          readAtom: entitiesAtom,
+          writeAtom: entitiesAtom as WritableAtom<Value[], Value[]>,
+        },
+      });
+    }, []);
 
     useEffect(() => {
-      if (vars) {
-        setVariables((prev: any) => ({ ...prev, ...vars }));
-      }
+      fetchQuery(vars);
     }, [vars]);
 
-    const [{ fetching, error: _error, data }, refetchQuery] = useQuery({
-      query,
-      variables: useMemo(
-        () => formatVariables(variables),
-        [variables, formatVariables]
-      ),
-      pause,
-    });
-
-    const manualFetch = useCallback(() => {
-      refetchQuery();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const refetch = useCallback((newValue?: PartialWithId<Value>) => {
-      // If wanting to just refetch the current, just delegate to manualFetch (urql refetch)
-      if (!newValue) {
-        manualFetch();
-        return;
-      }
-      setVariables(newValue);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     const reset = useCallback(() => {
-      resetVariables();
       resetEntities();
       resetError();
       resetLoading();
       resetHasFetched();
     }, []);
-
-    const loadNext = useCallback(() => {
-      setPagination({
-        offset: pagination.offset + pagination.limit,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pagination]);
-
-    const loadPrevious = useCallback(() => {
-      setPagination({
-        offset: Math.max(pagination.offset - pagination.limit, 0),
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pagination]);
 
     // @ts-ignore
     useEffect(() => {
@@ -234,53 +154,16 @@ export const findManyEntities = <Value extends { id: string }>(
       }
     }, []);
 
-    useEffect(() => {
-      setLoading(fetching);
-      if (fetching) {
-        setHasFetched(0);
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetching]);
-
-    useEffect(() => {
-      setError(_error as any);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [_error]);
-
-    useEffect(() => {
-      if (!fetching && hasData(data)) {
-        if (paginated) {
-          const { items, pagination } = fromData(data) as PaginatedValue<Value>;
-          setEntities([
-            ...(entitiesRef.current || ([] as any)),
-            ...(items || []),
-          ]);
-          setPagination({ hasMore: !!pagination?.hasMore });
-        } else {
-          setEntities([
-            ...(entitiesRef.current || ([] as any)),
-            ...((fromData(data) as Value[]) || []),
-          ]);
-        }
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetching, data]);
-
     return [
       {
         entities,
         loading,
         loaded,
-        pagination,
         error,
       },
       {
-        refetch,
-        fetch: manualFetch,
+        fetch: fetchQuery,
         reset,
-        loadPrevious,
-        loadNext,
-        setPagination,
       },
     ];
   }
@@ -292,9 +175,6 @@ export const findManyEntities = <Value extends { id: string }>(
   findManyHook.errorAtom = errorAtom as any;
   findManyHook.loadingAtom = loadingAtom as any;
   findManyHook.hasFetchedAtom = hasFetchedAtom as any;
-  findManyHook.variablesAtom = variablesAtom as any;
-  findManyHook.paginationAtom = paginationAtom as any;
-  findManyHook.pauseAtom = pauseAtom as any;
 
   return findManyHook as any;
 };

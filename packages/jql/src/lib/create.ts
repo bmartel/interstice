@@ -1,14 +1,18 @@
 import { useCallback } from 'react';
-import { DocumentNode } from 'graphql';
-import { CombinedError, useMutation } from 'urql';
-import { WritableAtom, atom, useAtom } from 'jotai';
+import { WritableAtom, atom, Atom } from 'jotai';
 import {
   atomWithReset,
   useAtomValue,
   useResetAtom,
   useUpdateAtom,
 } from 'jotai/utils';
-import { AtomEntity, PartialWithId } from './types';
+import {
+  AtomEntity,
+  PartialWithId,
+  CombinedError,
+  MutationWrite,
+  MutationAtoms,
+} from './types';
 
 export type CreateEntityReturn<
   Value extends { id: string },
@@ -21,17 +25,13 @@ export type CreateEntityReturn<
     ) => Promise<void>;
     reset: () => void;
   }
-]) & {
-  entityAtom: WritableAtom<Value, Value>;
-  errorAtom: WritableAtom<CombinedError | null, CombinedError | null>;
-  loadingAtom: WritableAtom<boolean, boolean>;
-};
+]) &
+  MutationAtoms<Value>;
 
 export const createEntity = <Value extends { id: string }, InputValue = Value>(
   atomEntityInstance: AtomEntity<Value>,
-  mutation: string | DocumentNode,
-  fromData: (data: any) => PartialWithId<Value> = (data) => data,
-  createSource: boolean | WritableAtom<Value[], Value[]> = true
+  mutation: MutationWrite<InputValue, Value>,
+  source: boolean | WritableAtom<Value[], Value[]> = true
 ): CreateEntityReturn<Value, InputValue> => {
   const loadingAtom = atomWithReset(false);
   const errorAtom = atomWithReset(null as CombinedError | null);
@@ -43,44 +43,55 @@ export const createEntity = <Value extends { id: string }, InputValue = Value>(
     }
     return (get(atomEntityInstance(lookupId as any)) as Value) || null;
   });
-  const createSourceAtom = atom(null, (get, set, entity: Partial<Value>) => {
+  const sourceAtom = atom(null, (get, set, entity: Partial<Value>) => {
     if (atomEntityInstance.idKey in entity) {
       set(entityIdAtom as any, (entity as any)[atomEntityInstance.idKey]);
     }
-    if (typeof createSource === 'boolean' && createSource) {
+    if (typeof source === 'boolean' && source) {
       set(atomEntityInstance(entity as any), entity as any);
       return;
     }
-    if (typeof createSource !== 'boolean' && createSource) {
-      const prev = get(
-        createSource as WritableAtom<Value[], Value[]>
-      ) as Value[];
-      set(createSource as WritableAtom<Value[], Value[]>, [
-        entity as any,
-        ...prev,
-      ]);
+    if (typeof source !== 'boolean' && source) {
+      const prev = get(source as WritableAtom<Value[], Value[]>) as Value[];
+      set(source as WritableAtom<Value[], Value[]>, [entity as any, ...prev]);
     }
   });
 
+  const mutationWrite: MutationWrite<InputValue, Value> = async (
+    get,
+    set,
+    update
+  ) => {
+    try {
+      set(update.atoms.loadingAtom, true);
+      await mutation(get, set, update);
+    } catch (err) {
+      set(update.atoms.errorAtom, err);
+    } finally {
+      set(update.atoms.loadingAtom, false);
+    }
+  };
+  const mutationAtom = atom(null, mutationWrite);
+
   function createHook() {
-    const [loading, setLoading] = useAtom(loadingAtom);
+    const loading = useAtomValue(loadingAtom);
     const resetLoading = useResetAtom(loadingAtom as any);
-    const [error, setError] = useAtom(errorAtom);
+    const error = useAtomValue(errorAtom);
     const resetError = useResetAtom(errorAtom as any);
-    const createEntityInstance = useUpdateAtom(createSourceAtom);
+    const mutation = useUpdateAtom(mutationAtom);
     const resetEntityId = useResetAtom(entityIdAtom as any);
     const entity = useAtomValue(entityAtom);
-    const [, performCreate] = useMutation(mutation);
 
     const create = useCallback(async (entityData: Partial<InputValue>) => {
-      setLoading(true);
-      const res = (await performCreate(entityData as any)) as any;
-      setLoading(false);
-      if (res?.error) {
-        setError(res.error);
-        throw res.error;
-      }
-      createEntityInstance(fromData(res.data as any));
+      await mutation({
+        input: entityData,
+        atoms: {
+          errorAtom,
+          loadingAtom,
+          readAtom: entityAtom,
+          writeAtom: sourceAtom as unknown as WritableAtom<Value, Value>,
+        },
+      });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -103,7 +114,8 @@ export const createEntity = <Value extends { id: string }, InputValue = Value>(
 
   // Keep a reference on the function itself to the atoms for Create/Delete purposes, and allowing fine grain reads by
   // outside consumers
-  createHook.entityAtom = entityAtom as any;
+  createHook.readAtom = entityAtom as any;
+  createHook.writeAtom = sourceAtom as any;
   createHook.errorAtom = errorAtom as any;
   createHook.loadingAtom = loadingAtom as any;
 

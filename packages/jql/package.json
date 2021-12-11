@@ -3,10 +3,8 @@
   "version": "0.0.1",
   "publicAccess": true,
   "peerDependencies": {
-    "graphql": ">=15.6.0",
     "jotai": ">=1.4.0",
-    "react": ">=17.0.0",
-    "urql": ">=2.0.0"
+    "react": ">=17.0.0"
   },
   "resolutions": {
     "caniuse-lite": "1.0.30001279"

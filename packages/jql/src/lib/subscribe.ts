@@ -1,54 +1,35 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { DocumentNode } from 'graphql'
-import { useSubscription } from 'urql'
-import { Atom, atom, useAtom, WritableAtom } from 'jotai'
-import { atomWithReset, RESET, useResetAtom } from 'jotai/utils'
-import { uniqBy } from './utils'
-import { AtomEntity, PauseAtomEntity } from './types'
+import { useCallback, useEffect } from 'react';
+import { Atom, atom, WritableAtom } from 'jotai';
+import {
+  atomWithReset,
+  RESET,
+  useAtomValue,
+  useResetAtom,
+  useUpdateAtom,
+} from 'jotai/utils';
+import { AtomEntity, CombinedError, SubscriptionWrite } from './types';
 
-export type SubscribeEntitiesReturn<Value extends { [k: string]: string | number }> = (
-  vars?: any
-) => [
+export type SubscribeEntitiesReturn<
+  Value extends { [k: string]: string | number }
+> = (vars?: any) => [
   {
-    entities: Value[]
+    entities: Value[];
   },
   {
-    reset: () => void
+    reset: () => void;
   }
-] & { entitiesAtom: WritableAtom<Value[], Value[]> }
-
-export type HandleSubscription<Value extends { [k: string]: any }> = (
-  current: Value[],
-  response: any
-) => Value[]
-
-const defaultHandleSubscription = (_: unknown, response: any) => response
-
-const wrapHandleSubscription = <Value extends { [k: string]: any }>(
-  handler: HandleSubscription<Value>,
-  transformer: (data: any) => Value[]
-): HandleSubscription<Value> => {
-  return (current: Value[], response: any): Value[] => {
-    return transformer(handler(current, response))
-  }
-}
+] & { entitiesAtom: WritableAtom<Value[], Value[]> };
 
 export const subscribeEntities = <Value extends { [k: string]: any }>(
   atomEntityInstance: AtomEntity<Value>,
-  query: string | DocumentNode,
-  fromData: (data: any) => Value[] = (data) => data,
+  subscription: SubscriptionWrite<any, Value[]>,
   listAtom?: Atom<Value[]>,
-  pauseWhen: PauseAtomEntity | boolean = false,
-  handleSubscription: HandleSubscription<Value> = defaultHandleSubscription,
-  initialVariables: any = {},
   hydrate?: Value[]
 ): SubscribeEntitiesReturn<Value> => {
-  const variablesAtom = atomWithReset(initialVariables)
-  const pauseAtom = atom<boolean>(
-    typeof pauseWhen === 'boolean' || !pauseWhen ? pauseWhen : (pauseWhen({ variablesAtom }) as any)
-  )
-  let initialEntityIds: string[]
+  const errorAtom = atomWithReset(null as CombinedError | null);
+  const unsubscribeAtom = atomWithReset(null as any);
+  let initialEntityIds: string[];
   const entityIdsAtom = listAtom
     ? null
     : atom<string[]>(
@@ -56,81 +37,86 @@ export const subscribeEntities = <Value extends { [k: string]: any }>(
           (hydrate
             ?.map((entity) => {
               if (!entity?.id) {
-                return null
+                return null;
               }
-              atomEntityInstance(entity as any)
-              return entity.id
+              atomEntityInstance(entity as any);
+              return entity.id;
             })
             .filter(Boolean) as string[]) || [])
-      )
+      );
   const entitiesAtom =
     listAtom ||
-    atom(
+    (atom(
       (get) =>
         get(entityIdsAtom!)
           ?.map((id) => get(atomEntityInstance({ id } as any)))
           ?.filter(Boolean),
       (_get, set, update: any[] | typeof RESET) => {
         if (update === RESET) {
-          set(entityIdsAtom!, initialEntityIds)
-          return
+          set(entityIdsAtom!, initialEntityIds);
+          return;
         }
         set(
           entityIdsAtom!,
           update.map((u) => {
-            set(atomEntityInstance({ id: u.id } as any), u)
-            return u.id
+            set(atomEntityInstance({ id: u.id } as any), u);
+            return u.id;
           })
-        )
+        );
       }
-    )
+    ) as any);
+
+  const subscriptionWrite: SubscriptionWrite<any, Value[]> = (
+    get,
+    set,
+    params
+  ) => {
+    try {
+      const unsubscribe = get(params.atoms.unsubscribeAtom);
+      unsubscribe?.();
+
+      subscription(get, set, params);
+    } catch (err) {
+      set(params.atoms.errorAtom, err);
+    }
+  };
+  const subscriptionAtom = atom(null, subscriptionWrite);
 
   function subscribeHook(vars?: any) {
-    const entitiesRef = useRef<Value[]>([])
-    const [variables, setVariables] = useAtom(variablesAtom)
-    const resetVariables = useResetAtom(variablesAtom as any)
-    const [pause] = useAtom(pauseAtom)
-    const [entities, setEntities] = useAtom(entitiesAtom as any)
-    const resetEntities = useResetAtom(entitiesAtom as any)
+    const entities = useAtomValue(entitiesAtom as any) as any;
+    const resetEntities = useResetAtom(entitiesAtom as any);
+    const error = useAtomValue(errorAtom);
+    const resetError = useResetAtom(errorAtom as any);
+    const subscription = useUpdateAtom(subscriptionAtom);
 
-    // Ensure useEffect can have a non stale reference without triggering recalcs
-    entitiesRef.current = entities as any
-
-    useEffect(() => {
-      if (vars) {
-        setVariables((prev: any) => ({ ...prev, ...vars }))
-      }
-    }, [vars])
-
-    const [{ data }] = useSubscription(
-      {
-        query,
-        variables,
-        pause,
-      },
-      useMemo(() => wrapHandleSubscription(handleSubscription, fromData) as any, [
-        handleSubscription,
-        fromData,
-      ])
-    )
+    const subscribe = useCallback(async (input?: any) => {
+      subscription({
+        input,
+        atoms: {
+          errorAtom,
+          readAtom: entitiesAtom,
+          writeAtom: entitiesAtom as WritableAtom<Value[], Value[]>,
+          unsubscribeAtom,
+        },
+      });
+    }, []);
 
     useEffect(() => {
-      if (data) {
-        setEntities(uniqBy([...(entitiesRef.current || ([] as any)), ...data], 'id') as any)
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data])
+      subscribe(vars);
+    }, [vars]);
 
     const reset = useCallback(() => {
-      resetVariables()
-      resetEntities()
+      resetError();
+      resetEntities();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
-    return [{ entities }, { reset }]
+    return [{ entities, error }, { reset }];
   }
-  // Keep a reference on the function itself to the entitiesAtom for Create/Delete purposes
-  subscribeHook.entitiesAtom = entitiesAtom as any
 
-  return subscribeHook as any
-}
+  // Keep a reference on the function itself to the entitiesAtom for Create/Delete purposes
+  subscribeHook.entitiesAtom = entitiesAtom as any;
+  subscribeHook.errorAtom = errorAtom as any;
+
+  return subscribeHook as any;
+};

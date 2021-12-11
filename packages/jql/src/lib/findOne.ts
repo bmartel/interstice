@@ -1,121 +1,101 @@
-import { useCallback, useEffect, useRef } from 'react'
-import { DocumentNode } from 'graphql'
-import { CombinedError, useQuery } from 'urql'
-import { atom, useAtom, WritableAtom } from 'jotai'
-import { atomWithReset, useResetAtom } from 'jotai/utils'
-import { AtomEntity, PauseAtomEntity } from './types'
+import { useCallback, useEffect, useMemo } from 'react';
+import { atom, WritableAtom } from 'jotai';
+import {
+  atomWithReset,
+  useAtomValue,
+  useResetAtom,
+  useUpdateAtom,
+} from 'jotai/utils';
+import { AtomEntity, QueryWrite, CombinedError } from './types';
 
-const defaultPauseWhen: PauseAtomEntity = (atoms) => (get) => !get(atoms.variablesAtom)?.id
-
-export type FindOneEntityReturn<Value extends { [k: string]: string | number }> = ((
-  value: Partial<Value>
-) => [
+export type FindOneEntityReturn<
+  Value extends { [k: string]: string | number }
+> = ((value: Partial<Value>) => [
   { entity: Value; loaded: boolean; loading: boolean; error?: CombinedError },
   {
-    reset: () => void
-    refetch: (newValue: Partial<Value>) => void
-    fetch: () => void
+    reset: () => void;
+    fetch: (input?: any) => void;
   }
 ]) & {
-  errorAtom: WritableAtom<CombinedError | null, CombinedError | null>
-  loadingAtom: WritableAtom<boolean, boolean>
-  pauseAtom: WritableAtom<boolean, boolean>
-  variablesAtom: WritableAtom<Record<string, any>, Record<string, any>>
-}
+  errorAtom: WritableAtom<CombinedError | null, CombinedError | null>;
+  loadingAtom: WritableAtom<boolean, boolean>;
+  pauseAtom: WritableAtom<boolean, boolean>;
+  variablesAtom: WritableAtom<Record<string, any>, Record<string, any>>;
+};
 
 export const findOneEntity = <Value extends { [k: string]: any }>(
   atomEntityInstance: AtomEntity<Value>,
-  query: string | DocumentNode,
-  hasData: (data: any) => Value = (data) => data,
-  fromData: (data: any, id?: string) => Value = hasData,
-  pauseWhen: PauseAtomEntity | boolean = defaultPauseWhen,
-  initialVariables: any = {}
+  query: QueryWrite<any, Value>
 ): FindOneEntityReturn<Value> => {
-  const hasFetchedAtom = atomWithReset(false)
-  const errorAtom = atomWithReset<CombinedError | null>(null)
-  const loadingAtom = atomWithReset(false)
-  const variablesAtom = atomWithReset(initialVariables)
-  const pauseAtom = atom<boolean>(
-    typeof pauseWhen === 'boolean' || !pauseWhen
-      ? pauseWhen
-      : (pauseWhen({ hasFetchedAtom, loadingAtom, variablesAtom }) as any)
-  )
+  const hasFetchedAtom = atomWithReset(-1);
+  const errorAtom = atomWithReset<CombinedError | null>(null);
+  const loadingAtom = atomWithReset(false);
 
-  function findOneHook(value: Partial<Value>) {
-    const [hasFetched, setHasFetched] = useAtom(hasFetchedAtom)
-    const resetHasFetched = useResetAtom(hasFetchedAtom as any)
-    const [loading, setLoading] = useAtom(loadingAtom)
-    const resetLoading = useResetAtom(loadingAtom as any)
-    const [error, setError] = useAtom(errorAtom as any)
-    const resetError = useResetAtom(errorAtom as any)
-    const [variables, setVariables] = useAtom(variablesAtom)
-    const resetVariables = useResetAtom(variablesAtom as any)
-    const [pause] = useAtom(pauseAtom)
-    const [entity, setEntity] = useAtom(atomEntityInstance(value as any))
-    const variablesRef = useRef<Record<string, any>>(variables)
-    variablesRef.current = variables as any
+  const queryWrite: QueryWrite<any, Value> = async (get, set, params) => {
+    try {
+      set(params.atoms.loadingAtom, true);
+      set(params.atoms.hasFetchedAtom, 0);
+      params.previous = get(params.atoms.readAtom) as any;
+      await query(get, set, params);
+    } catch (err) {
+      set(params.atoms.errorAtom, err);
+    } finally {
+      set(params.atoms.loadingAtom, false);
+    }
+  };
+  const queryAtom = atom(null, queryWrite);
 
-    useEffect(() => {
-      setVariables((prev: any) => ({ ...prev, ...value }))
-    }, [value])
+  function findOneHook(value?: Record<string, any>) {
+    const sourceAtom = useMemo(
+      () =>
+        atomEntityInstance({
+          [atomEntityInstance.idKey]: value?.[atomEntityInstance.idKey],
+        } as any),
+      [value?.[atomEntityInstance.idKey]]
+    ) as any;
+    const hasFetched = useAtomValue(hasFetchedAtom);
+    const resetHasFetched = useResetAtom(hasFetchedAtom as any);
+    const loading = useAtomValue(loadingAtom);
+    const resetLoading = useResetAtom(loadingAtom as any);
+    const error = useAtomValue(errorAtom as any);
+    const resetError = useResetAtom(errorAtom as any);
+    const entity = useAtomValue(sourceAtom) as any;
+    const query = useUpdateAtom(queryAtom);
 
-    const [{ fetching, error: _error, data }, refetchQuery] = useQuery({
-      query,
-      variables,
-      pause,
-    })
-
-    useEffect(() => {
-      setLoading(fetching)
-      if (fetching) {
-        setHasFetched(fetching)
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetching])
-
-    useEffect(() => {
-      if (!fetching && hasData(data)) {
-        const id = variablesRef.current[atomEntityInstance.idKey]
-        setEntity(fromData(data as any, id) as any)
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetching, data])
+    const fetchQuery = useCallback((input?: any) => {
+      query({
+        input,
+        atoms: {
+          loadingAtom,
+          hasFetchedAtom,
+          errorAtom,
+          readAtom: sourceAtom,
+          writeAtom: sourceAtom as WritableAtom<Value, Value>,
+        },
+      });
+    }, []);
 
     useEffect(() => {
-      setError(_error as any)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [_error])
-
-    const refetch = useCallback((newValue: Partial<Value>) => {
-      setVariables(newValue)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    const manualFetch = useCallback(() => {
-      refetchQuery()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+      fetchQuery(value);
+    }, [value]);
 
     const reset = useCallback(() => {
-      resetVariables()
-      resetError()
-      resetLoading()
-      resetHasFetched()
-    }, [])
+      resetError();
+      resetLoading();
+      resetHasFetched();
+    }, []);
 
     return [
       { entity, loading, loaded: hasFetched && !loading, error: error as any },
-      { reset, refetch, fetch: manualFetch },
-    ]
+      { reset, fetch: fetchQuery },
+    ];
   }
 
   // Keep a reference on the function itself to the atoms for Create/Delete purposes, and allowing fine grain reads by
   // outside consumers
-  findOneHook.errorAtom = errorAtom as any
-  findOneHook.loadingAtom = loadingAtom as any
-  findOneHook.hasFetchedAtom = hasFetchedAtom as any
-  findOneHook.variablesAtom = variablesAtom as any
-  findOneHook.pauseAtom = pauseAtom as any
+  findOneHook.errorAtom = errorAtom as any;
+  findOneHook.loadingAtom = loadingAtom as any;
+  findOneHook.hasFetchedAtom = hasFetchedAtom as any;
 
-  return findOneHook as any
-}
+  return findOneHook as any;
+};
