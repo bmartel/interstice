@@ -1,0 +1,11 @@
+{
+  "name": "@interstice/mx",
+  "version": "0.0.1",
+  "publicAccess": true,
+  "dependencies": {
+    "million": "*"
+  },
+  "resolutions": {
+    "caniuse-lite": "1.0.30001279"
+  }
+}
