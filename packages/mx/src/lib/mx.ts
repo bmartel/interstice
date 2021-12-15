@@ -1,4 +1,4 @@
-import { createElement, patch, VElement, DOMNode } from 'million';
+import { createElement, patch, VNode, DOMNode } from 'million';
 
 export const define = (name: string) => (El: any) => {
   window.customElements.define(name, El);
@@ -56,7 +56,7 @@ export abstract class CustomElement extends HTMLElement {
     this.destroyMountPoint();
   }
 
-  abstract render(): VElement;
+  abstract render(): VNode;
 
   forceRender() {
     patch(this._mountPoint!, this.render());

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "publicAccess": true,
   "dependencies": {
-    "million": "*"
+    "million": "^1.0.2"
   },
   "resolutions": {
     "caniuse-lite": "1.0.30001279"
