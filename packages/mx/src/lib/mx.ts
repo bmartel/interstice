@@ -7,9 +7,58 @@ export const define = (name: string) => (El: any) => {
 
 export abstract class CustomElement extends HTMLElement {
   protected _mountPoint: DOMNode | null = null;
-  protected _shadowRoot: ShadowRoot | null = null;
+  protected _styles: HTMLStyleElement | null = null;
   __state: Record<string, any> = {};
   __props: Record<string, any> = {};
+
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.createStyles();
+  }
+
+  protected async connect() {}
+  protected async disconnect() {}
+  protected styles(): string {
+    return '';
+  }
+  protected shouldUpdate(_previous: any, _next: any) {
+    return true;
+  }
+  protected abstract render(): VNode;
+
+  private createStyles() {
+    const styles = this.styles();
+    if (styles) {
+      this._styles = document.createElement('style');
+      this._styles.innerHTML = styles;
+      this.shadowRoot?.appendChild(this._styles);
+    }
+  }
+
+  private createMountPoint() {
+    this._mountPoint = createElement(this.render());
+    this.shadowRoot?.appendChild(this._mountPoint);
+  }
+
+  private destroyMountPoint() {
+    this.shadowRoot?.removeChild(this._mountPoint!);
+    this._mountPoint = null;
+  }
+
+  async connectedCallback() {
+    await this.connect();
+    this.createMountPoint();
+  }
+
+  async disconnectedCallback() {
+    await this.disconnect();
+    this.destroyMountPoint();
+  }
+
+  private forceRender() {
+    patch(this._mountPoint!, this.render());
+  }
 
   parseProperty(newValue: any): any {
     return typeof newValue === 'string'
@@ -24,42 +73,6 @@ export abstract class CustomElement extends HTMLElement {
         ? Number(newValue)
         : newValue
       : newValue;
-  }
-
-  shouldUpdate(_previous: any, _next: any) {
-    return true;
-  }
-
-  createMountPoint() {
-    this._mountPoint = createElement(this.render());
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._shadowRoot.appendChild(this._mountPoint);
-  }
-
-  destroyMountPoint() {
-    this._shadowRoot?.removeChild(this._mountPoint!);
-    this._mountPoint = null;
-    this._shadowRoot = null;
-  }
-
-  async connect() {}
-
-  async connectedCallback() {
-    await this.connect();
-    this.createMountPoint();
-  }
-
-  async disconnect() {}
-
-  async disconnectedCallback() {
-    await this.disconnect();
-    this.destroyMountPoint();
-  }
-
-  abstract render(): VNode;
-
-  forceRender() {
-    patch(this._mountPoint!, this.render());
   }
 
   maybeRender(oldValue: any, newValue: any) {
