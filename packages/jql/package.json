@@ -16,14 +16,13 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
     "jotai": ">=1.4.0",
-    "react": ">=17.0.0",
-    "optics-ts": ">=2.2.2"
+    "optics-ts": ">=2.2.2",
+    "react": ">=17.0.0"
   },
   "husky": {
     "hooks": {
@@ -51,6 +50,7 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.4",
+    "@types/react": "^17.0.37",
     "husky": "^7.0.4",
     "size-limit": "^7.0.4",
     "tsdx": "^0.14.1",
