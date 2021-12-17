@@ -13,18 +13,21 @@ export const atomEffect = <Value = any>(
   const writableAtom = atom({} as any);
   const entityDef = atomFamily<Value, Value, Value>((init: any) => {
     let { [idKey]: id, [targetKey]: targetValue } = init;
-    id = id?.toString();
+    id = id && id.toString();
     return atom(
       (get) => {
         const store = get(writableAtom) as any;
         const instance = store[id];
-        return instance?.[targetKey] || targetValue || initialValue;
+        return instance && instance[targetKey] || targetValue || initialValue;
       },
       (get, set, update) => {
-        const updateId = (update as any)[idKey]?.toString() || id;
+        let updateId = (update as any)[idKey]
+        updateId = updateId && updateId.toString() || id;
         const updater: AtomEffectUpdate<Value> = {
-          value: (): Value =>
-            get(writableAtom)[updateId]?.[targetKey] || initialValue,
+          value: (): Value => {
+            let _val = get(writableAtom)[updateId]
+            return _val && _val[targetKey] || initialValue
+          },
           ref: (): { [k: string]: string } => {
             const prev = get(writableAtom) as any;
             const current = prev[updateId] || {

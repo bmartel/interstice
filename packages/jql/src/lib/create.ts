@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { WritableAtom, atom, Atom } from 'jotai';
+import { WritableAtom, atom } from 'jotai';
 import {
   atomWithReset,
   useAtomValue,

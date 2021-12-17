@@ -49,9 +49,9 @@ export const findOneEntity = <Value extends { [k: string]: any }>(
     const sourceAtom = useMemo(
       () =>
         atomEntityInstance({
-          [atomEntityInstance.idKey]: value?.[atomEntityInstance.idKey],
+          [atomEntityInstance.idKey]: value && value[atomEntityInstance.idKey],
         } as any),
-      [value?.[atomEntityInstance.idKey]]
+      [value && value[atomEntityInstance.idKey]]
     ) as any;
     const hasFetched = useAtomValue(hasFetchedAtom);
     const resetHasFetched = useResetAtom(hasFetchedAtom as any);

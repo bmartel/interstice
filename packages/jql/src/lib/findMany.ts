@@ -39,7 +39,7 @@ export const findManyEntities = <Value extends { id: string }>(
   hydrate?: Value[],
   autoReset = true
 ): FindManyEntitiesReturn<Value> => {
-  const hasFetchedAtom = atomWithReset<number>(hydrate?.length ? 1 : -1);
+  const hasFetchedAtom = atomWithReset<number>(hydrate && hydrate.length ? 1 : -1);
   const loadingAtom = atomWithReset(false);
   const errorAtom = atomWithReset(null as CombinedError | null);
   let initialEntityIds: string[];
@@ -47,9 +47,9 @@ export const findManyEntities = <Value extends { id: string }>(
     ? null
     : atom<string[]>(
         (initialEntityIds =
-          (hydrate
-            ?.map((entity: any) => {
-              if (!entity?.[atomEntityInstance.idKey]) {
+          (hydrate && hydrate
+            .map((entity: any) => {
+              if (!entity || !entity[atomEntityInstance.idKey]) {
                 return null;
               }
               atomEntityInstance(entity);

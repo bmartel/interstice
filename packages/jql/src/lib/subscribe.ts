@@ -34,9 +34,9 @@ export const subscribeEntities = <Value extends { [k: string]: any }>(
     ? null
     : atom<string[]>(
         (initialEntityIds =
-          (hydrate
-            ?.map((entity) => {
-              if (!entity?.id) {
+          (hydrate && hydrate
+            .map((entity) => {
+              if (!entity || !entity.id) {
                 return null;
               }
               atomEntityInstance(entity as any);
@@ -47,10 +47,11 @@ export const subscribeEntities = <Value extends { [k: string]: any }>(
   const entitiesAtom =
     listAtom ||
     (atom(
-      (get) =>
-        get(entityIdsAtom!)
-          ?.map((id) => get(atomEntityInstance({ id } as any)))
-          ?.filter(Boolean),
+      (get) => {
+        let _val = get(entityIdsAtom!)
+        return _val && _val.map((id) => get(atomEntityInstance({ id } as any)))
+          .filter(Boolean) || []
+      },
       (_get, set, update: any[] | typeof RESET) => {
         if (update === RESET) {
           set(entityIdsAtom!, initialEntityIds);
@@ -73,7 +74,7 @@ export const subscribeEntities = <Value extends { [k: string]: any }>(
   ) => {
     try {
       const unsubscribe = get(params.atoms.unsubscribeAtom);
-      unsubscribe?.();
+      unsubscribe && unsubscribe();
 
       subscription(get, set, params);
     } catch (err) {

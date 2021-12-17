@@ -29,6 +29,17 @@ class MyButton extends CustomElement {
   increment = () => {
     this.count++
   }
+  
+  styles() {
+    return /* css */ `
+      button {
+        border: none;
+        background: hotpink;
+        color: black;
+        padding: 0.5rem 0.75rem;
+      }
+    `
+  }
 
   render() {
     return (
@@ -40,7 +51,3 @@ class MyButton extends CustomElement {
 }
 
 ```
-
-## Running unit tests
-
-Run `nx test mx` to execute the unit tests via [Jest](https://jestjs.io).

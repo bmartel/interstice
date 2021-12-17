@@ -32,17 +32,17 @@ export abstract class CustomElement extends HTMLElement {
     if (styles) {
       this._styles = document.createElement('style');
       this._styles.innerHTML = styles;
-      this.shadowRoot?.appendChild(this._styles);
+      this.shadowRoot && this.shadowRoot.appendChild(this._styles);
     }
   }
 
   private createMountPoint() {
     this._mountPoint = createElement(this.render());
-    this.shadowRoot?.appendChild(this._mountPoint);
+    this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
   }
 
   private destroyMountPoint() {
-    this.shadowRoot?.removeChild(this._mountPoint!);
+    this.shadowRoot && this.shadowRoot.removeChild(this._mountPoint!);
     this._mountPoint = null;
   }
 
@@ -62,8 +62,8 @@ export abstract class CustomElement extends HTMLElement {
 
   parseProperty(newValue: any): any {
     return typeof newValue === 'string'
-      ? ['{', '['].indexOf(newValue?.charAt(0)) > -1 &&
-        ['}', ']'].indexOf(newValue?.charAt(+newValue?.length - 1)) > -1
+      ? ['{', '['].indexOf(newValue && newValue.charAt(0)) > -1 &&
+        ['}', ']'].indexOf(newValue && newValue.charAt(+(newValue && newValue.length) - 1)) > -1
         ? JSON.parse(newValue)
         : newValue === 'undefined'
         ? undefined
@@ -87,7 +87,7 @@ export abstract class CustomElement extends HTMLElement {
 }
 
 function proxyProperty(target: any, propertyName: string, parse?: boolean) {
-  let value = target?.[propertyName];
+  let value = target && target[propertyName];
   const parseProperty = target.parseProperty;
   Object.defineProperty(target, propertyName, {
     get() {
@@ -133,15 +133,15 @@ export function MXElement(options: { tag: string }) {
 
 export function State() {
   return function (target: any, propertyKey: string) {
-    target.__state ||= [];
+    target.__state = target.__state || [];
     target.__state.push(propertyKey);
   };
 }
 
 export function Prop() {
   return function (target: any, propertyKey: string) {
-    target.__observedAttributes ||= [];
-    target.__props ||= [];
+    target.__observedAttributes = target.__observedAttributes || [];
+    target.__props = target.__props || [];
     target.__props.push(propertyKey);
     target.__observedAttributes.push(propertyKey);
   };

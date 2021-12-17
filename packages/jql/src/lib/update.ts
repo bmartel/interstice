@@ -27,7 +27,7 @@ const defaultOptimisticUpdate: MutationWrite<any, any> = (
   // Update optimistically
   set(update.atoms.writeAtom, {
     ...update.input,
-    id: update.entity?.id,
+    id: update.entity && update.entity.id,
   } as any);
 };
 

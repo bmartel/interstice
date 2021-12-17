@@ -1,12 +1,60 @@
 {
-  "name": "@interstice/jql",
-  "version": "0.0.1",
+  "version": "0.2.2",
+  "license": "MIT",
   "publicAccess": true,
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
   "peerDependencies": {
     "jotai": ">=1.4.0",
-    "react": ">=17.0.0"
+    "react": ">=17.0.0",
+    "optics-ts": ">=2.2.2"
   },
-  "resolutions": {
-    "caniuse-lite": "1.0.30001279"
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "@interstice/jql",
+  "author": "Brandon Martel",
+  "module": "dist/jql.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/jql.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/jql.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.4",
+    "husky": "^7.0.4",
+    "size-limit": "^7.0.4",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
   }
 }

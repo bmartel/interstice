@@ -14,13 +14,13 @@ const mergeEntity = <E = any>(
   if (typeof relatedEntity === 'string' || typeof relatedEntity === 'number') {
     return relatedEntity.toString();
   }
-  if (relatedEntity?.[lookupAtom.idKey]) {
+  if (relatedEntity && relatedEntity[lookupAtom.idKey]) {
     const idString = relatedEntity[lookupAtom.idKey].toString();
 
     let mergeOriginal = {};
     if (
       lookupAtom.idKey !== lookupAtom.targetKey &&
-      relatedEntity?.[lookupAtom.targetKey]
+      relatedEntity && relatedEntity[lookupAtom.targetKey]
     ) {
       const original = get(
         lookupAtom({
@@ -71,7 +71,7 @@ const lookupEntity = <Value = any>(
         ? entityRef
         : ({
             [lookupAtom.idKey]:
-              entityRef?.[lookupAtom.idKey] || entityRef || defaultId,
+              entityRef && entityRef[lookupAtom.idKey] || entityRef || defaultId,
           } as any)
     )
   );
@@ -95,7 +95,7 @@ export const atomEntity = <
   const entityDef = atomFamily<Value, Value, Value>(
     (init) => {
       let { [idKey]: id, ...values } = init;
-      id = id?.toString();
+      id = id && id.toString();
       return atom(
         (get) => {
           const lookupId = id || lookupTarget.get(init);
@@ -111,19 +111,19 @@ export const atomEntity = <
               ) => ({
                 ...resolved,
                 [key]: Array.isArray(lookup)
-                  ? entity?.[key]
-                      ?.map((relatedId: any) => {
+                  ? entity && entity[key]
+                      && entity[key].map((relatedId: any) => {
                         return lookupEntity(relatedId, get, lookup[0]);
                       })
                       .filter(Boolean)
                   : lookup._name === 'atomEntity'
-                  ? lookupEntity(entity?.[key], get, lookup, id)
+                  ? lookupEntity(entity && entity[key], get, lookup, id)
                   : get(
                       lookup({
                         [(lookup as any).idKey]: lookupId,
                         ...entity,
                       } as any)
-                    ) || entity?.[key],
+                    ) || entity && entity[key],
               }),
               entity
             );
@@ -132,7 +132,8 @@ export const atomEntity = <
         },
         (get, set, update) => {
           if (!update) return;
-          const entityId = (id || update[idKey])?.toString();
+          let entityId = (id || update[idKey])
+          entityId = entityId && entityId.toString();
           if (!entityId) return;
 
           const prev = get(writableAtom) as any;
@@ -157,8 +158,8 @@ export const atomEntity = <
               if (Array.isArray(lookup)) {
                 const lookupAtom = lookup[0] as any;
 
-                next[entityId][key] = next[entityId][key]
-                  ?.map((relatedEntity: any) =>
+                next[entityId][key] = next[entityId][key] && next[entityId][key]
+                  .map((relatedEntity: any) =>
                     mergeEntity(relatedEntity, get, set, lookupAtom)
                   )
                   .filter(Boolean);
@@ -192,7 +193,7 @@ export const atomEntity = <
         }
       );
     },
-    (a, b) => a?.[idKey] === b?.[idKey]
+    (a, b) => (a && a[idKey]) === (b && b[idKey])
   );
 
   (entityDef as any)._name = 'atomEntity';

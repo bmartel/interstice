@@ -5,7 +5,12 @@ boilerplate issue created in managing state between server and client, in a tran
 
 ## Get started
 
+**NOTE** `urql` and `graphql` are optional, these are just used in the readme as an example, any promise based lib will
+work here and graphql is not required.
+
 ```bash
+npm i jotai optics-ts urql @interstice/jql
+#
 yarn add jotai optics-ts urql @interstice/jql
 ```
 

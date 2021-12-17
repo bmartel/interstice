@@ -6,9 +6,8 @@ import { AtomEntity, ResolveType, SetAtom } from './types'
 
 export type FocusEntityReturn<
   Value extends { [k: string]: string | number },
-  A,
   R extends void | Promise<void>
-> = (id: string) => [ResolveType<A>, SetAtom<A, R>]
+> = (id: string) => [ResolveType<Value>, SetAtom<Value, R>]
 
 export const focusEntity = <Value extends { [k: string]: any }, A = any>(
   atomEntityInstance: AtomEntity<Value>,
@@ -20,7 +19,7 @@ export const focusEntity = <Value extends { [k: string]: any }, A = any>(
     | O.Iso<Value, any, A>
     | O.Prism<Value, any, A>
     | O.Traversal<Value, any, A>
-): FocusEntityReturn<Value, A, void | Promise<void>> => (id) => {
+): FocusEntityReturn<Value, void | Promise<void>> => (id) => {
   return useAtom(
     useMemo(
       () =>
