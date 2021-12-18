@@ -386,7 +386,7 @@ export function MXElement(options: { tag: string; route?: string | RegExp }) {
         constructor() {
           super();
           __props.forEach((prop: PropertyBinding) =>
-            proxyLocalProperty(this, prop.propertyKey, prop.lookupKey, true)
+            proxyLocalProperty(this, prop.propertyKey, prop.lookupKey)
           );
           __state.forEach((prop: PropertyBinding) =>
             proxyProperty(
