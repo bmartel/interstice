@@ -267,6 +267,27 @@ define('mx-link')(
   }
 );
 
+function defaultParseProperty(newValue: any): any {
+  return typeof newValue === 'string'
+    ? ['{', '['].indexOf(newValue && newValue.charAt(0)) > -1 &&
+      ['}', ']'].indexOf(
+        newValue && newValue.charAt(+(newValue && newValue.length) - 1)
+      ) > -1
+      ? JSON.parse(newValue)
+      : newValue === 'true'
+      ? true
+      : newValue === 'false'
+      ? false
+      : newValue === 'undefined'
+      ? undefined
+      : newValue === 'null'
+      ? null
+      : /\d+(\.\d+)?/.test(newValue)
+      ? Number(newValue)
+      : newValue
+    : newValue;
+}
+
 export abstract class CustomElement extends BaseElement {
   constructor() {
     super();
@@ -294,20 +315,7 @@ export abstract class CustomElement extends BaseElement {
   }
 
   parseProperty(newValue: any): any {
-    return typeof newValue === 'string'
-      ? ['{', '['].indexOf(newValue && newValue.charAt(0)) > -1 &&
-        ['}', ']'].indexOf(
-          newValue && newValue.charAt(+(newValue && newValue.length) - 1)
-        ) > -1
-        ? JSON.parse(newValue)
-        : newValue === 'undefined'
-        ? undefined
-        : newValue === 'null'
-        ? null
-        : /\d+(\.\d+)?/.test(newValue)
-        ? Number(newValue)
-        : newValue
-      : newValue;
+    return defaultParseProperty(newValue);
   }
 
   maybeRender(oldValue: any, newValue: any) {
@@ -339,41 +347,6 @@ export function getQueryParam(key: string): any {
   return decodeURIComponent(param);
 }
 
-function proxyLocalProperty(
-  target: any,
-  propertyName: string,
-  attrName?: string
-) {
-  let value = target && target[propertyName];
-  const parseProperty = target.parseProperty;
-  Object.defineProperty(target, propertyName, {
-    get() {
-      return value;
-    },
-    set(newValue: any) {
-      const oldValue = value;
-      try {
-        value = parseProperty(newValue);
-        target.maybeRender(oldValue, newValue);
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    enumerable: true,
-    configurable: true,
-  });
-
-  if (attrName && attrName !== propertyName.toLowerCase()) {
-    Object.defineProperty(target, attrName, {
-      get() {
-        return this[propertyName];
-      },
-      set(newValue: any) {
-        this[propertyName] = newValue;
-      },
-    });
-  }
-}
 function proxyProperty(
   target: any,
   _optionsKey: any, // Not used for now, might be interesting to have storage scoped to element definitions
@@ -381,17 +354,21 @@ function proxyProperty(
   lookupKey: string | number,
   type: string
 ) {
-  let value: any = target && target[propertyName];
+  const defaultValue: any = target && target[propertyName];
+  let value: any = defaultValue;
   target.__proxy = target.__proxy || {};
   target.__proxy[propertyName] = target.__proxy[propertyName] || {};
+  const parseProperty = target.parseProperty;
 
   Object.defineProperty(target.__proxy[propertyName], type, {
     get() {
       const _storage = routeStorage();
-      if (value !== undefined && value !== null && value !== '') {
+      if (value !== defaultValue) {
         return value;
       }
       switch (type) {
+        case 'prop':
+          return value;
         case 'state':
           return value;
         case 'param':
@@ -404,25 +381,33 @@ function proxyProperty(
         case 'query':
           if (!_storage) return value;
           value = _storage.query && _storage.query.get(lookupKey);
+          value = defaultParseProperty(
+            _storage.query && _storage.query.get(lookupKey)
+          );
           return value;
         case 'hash':
           if (!_storage) return value;
-          value = _storage.hash && _storage.hash.get(lookupKey);
+          value = defaultParseProperty(
+            _storage.hash && _storage.hash.get(lookupKey)
+          );
           return value;
         case 'storage':
-          value = JSON.parse(
+          value = defaultParseProperty(
             localStorage.getItem(lookupKey as string) as any
-          ) as any;
+          );
           return value;
         default:
           return value;
       }
     },
-    set(nextValue: any) {
+    set(newValue: any) {
       const _storage = routeStorage();
       const oldValue = value;
-      value = nextValue;
+      value = parseProperty(newValue);
       switch (type) {
+        case 'prop':
+          target.maybeRender(oldValue, value);
+          return;
         case 'state':
           target.maybeRender(oldValue, value);
           return;
@@ -431,7 +416,7 @@ function proxyProperty(
           if (typeof lookupKey === 'string') {
             lookupKey = _storage.namedGroups[lookupKey];
           }
-          _storage.params[lookupKey] = nextValue;
+          _storage.params[lookupKey] = value;
           routeStorage({
             ..._storage,
             params: _storage.params,
@@ -439,23 +424,23 @@ function proxyProperty(
           return;
         case 'query':
           if (!_storage) return;
-          _storage.query.set(lookupKey, nextValue);
+          _storage.query.set(lookupKey, value);
           routeStorage({
             ..._storage,
             query: _storage.query,
           });
-          addQueryParam(lookupKey as string, nextValue);
+          addQueryParam(lookupKey as string, value);
           return;
         case 'hash':
           if (!_storage) return;
-          _storage.hash.set(lookupKey, nextValue);
+          _storage.hash.set(lookupKey, value);
           routeStorage({
             ..._storage,
             hash: _storage.hash,
           });
           return;
         case 'storage':
-          localStorage.setItem(lookupKey as string, JSON.stringify(nextValue));
+          localStorage.setItem(lookupKey as string, JSON.stringify(value));
       }
     },
     enumerable: true,
@@ -540,7 +525,13 @@ export function MXElement(options: { tag: string; route?: string | RegExp }) {
         constructor() {
           super();
           __props.forEach((prop: PropertyBinding) =>
-            proxyLocalProperty(this, prop.propertyKey, prop.lookupKey)
+            proxyProperty(
+              this,
+              options,
+              prop.propertyKey,
+              prop.lookupKey,
+              'prop'
+            )
           );
           __state.forEach((prop: PropertyBinding) =>
             proxyProperty(
