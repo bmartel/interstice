@@ -16,6 +16,7 @@
     "jsx": "react",
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true
   }

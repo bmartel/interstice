@@ -21,7 +21,7 @@ export class IndexPage extends CustomElement {
   totalCount: number = 0;
 
   @State()
-  messages: Array<Message> = [];
+  messages: any = [];
 
   @On("addMessage")
   addMessage = (e: CustomEvent<Message>) => {
@@ -30,7 +30,7 @@ export class IndexPage extends CustomElement {
 
   @On("updateMessage")
   updateMessage = (e: CustomEvent<Partial<Message>>) => {
-    this.messages = this.messages.map((m) => {
+    this.messages = this.messages.map((m: any) => {
       if (m.id === e.detail.id) {
         return {
           ...m,
@@ -61,12 +61,14 @@ export class IndexPage extends CustomElement {
   render() {
     return (
       <main>
+        <mx-link href="/counter">Counter</mx-link>
         <h1>Simple Counter</h1>
 
         <counter-button text=" +"></counter-button>
         <counter-button></counter-button>
-        <counter-button defaultCount={this.totalCount}></counter-button>
+        <counter-button defaultCount={this.totalCount as any}></counter-button>
 
+        <mx-link href="/messages">Messages</mx-link>
         <h1>Messages</h1>
 
         <message-list messages={this.messages}></message-list>

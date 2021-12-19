@@ -1,11 +1,10 @@
 import { CustomElement, Dispatch, MXElement, Prop } from "@interstice/mx";
-import { Message } from "@/store";
 import "./message-item";
 
 @MXElement({ tag: "message-list" })
 export class MessageList extends CustomElement {
   @Prop()
-  messages: Array<Message> = [];
+  messages: any = [];
 
   @Dispatch("addMessage")
   submitMessage = (e: any) => {
@@ -31,7 +30,7 @@ export class MessageList extends CustomElement {
           <button type="submit">Submit</button>
         </form>
         <ul>
-          {this.messages.map((m) => (
+          {this.messages.map((m: any) => (
             <message-item key={m.id} message={m}></message-item>
           ))}
         </ul>

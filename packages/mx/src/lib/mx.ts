@@ -1,9 +1,10 @@
 import { createElement, patch, VNode, DOMNode, m } from 'million';
 
-export const define = (name: string) => (El: any) => {
-  window.customElements.define(name, El);
-  return El;
-};
+export const define =
+  (name: string) => (El: any, opt?: ElementDefinitionOptions) => {
+    window.customElements.define(name, El, opt);
+    return El;
+  };
 
 abstract class BaseElement extends HTMLElement {
   protected _mountPoint: DOMNode | null = null;
@@ -19,7 +20,7 @@ abstract class BaseElement extends HTMLElement {
 
   protected abstract render(): VNode;
 
-  private createMountPoint() {
+  protected createMountPoint() {
     this._mountPoint = createElement(this.render());
     this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
   }
@@ -40,7 +41,7 @@ abstract class BaseElement extends HTMLElement {
   }
 }
 
-const storage = new WeakMap<any, any>();
+export const storage = new WeakMap<any, any>();
 
 const MXRoute = define('mx-route')(
   class RouteElement extends BaseElement {
@@ -57,8 +58,8 @@ const MXRoute = define('mx-route')(
     }
 
     private updateStorage(data: any = {}) {
-      const _data = storage.get(RouteElement) || {};
-      storage.set(MXRoute, {
+      const _data = routeStorage() || {};
+      routeStorage({
         ..._data,
         ...data,
       });
@@ -123,6 +124,116 @@ const MXRoute = define('mx-route')(
 
     render() {
       return m('slot', this._matched ? undefined : { name: 'fallback' });
+    }
+  }
+);
+
+export function routeStorage(data?: any) {
+  if (data) {
+    storage.set(MXRoute, data);
+    return;
+  }
+  return storage.get(MXRoute);
+}
+
+define('mx-link')(
+  class LinkElement extends BaseElement {
+    href: string = '';
+    state?: any = {};
+    active?: any;
+
+    // @ts-ignore
+    static get observedAttributes() {
+      return ['href', 'state'];
+    }
+
+    updateAnchor(name: string, value: any) {
+      if (this._mountPoint === null) return;
+      (this._mountPoint as any).setAttribute(name, value);
+    }
+
+    attributeChangedCallback(name: string, oldValue: any, newValue: any) {
+      this.updateActive();
+      if (oldValue !== newValue) {
+        this.updateAnchor(name, newValue);
+      }
+    }
+
+    render(): any {
+      const a = document.createElement('a');
+      a.appendChild(document.createElement('slot'));
+      return a;
+    }
+
+    protected createMountPoint() {
+      this._mountPoint = this.render();
+      this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint!);
+    }
+
+    async connectedCallback(): Promise<void> {
+      await super.connectedCallback();
+      this.updateActive();
+      this.updateAnchor('href', this.href);
+      this.updateAnchor('state', this.state);
+      if (this._mountPoint) {
+        this._mountPoint.addEventListener('click', this.navigate);
+      }
+    }
+
+    navigate = (e: Event) => {
+      e.preventDefault();
+      if (this.replace) {
+        history.replaceState(this.state || {}, document.title, this.href);
+        return;
+      }
+      history.pushState(this.state || {}, document.title, this.href);
+    };
+
+    updateActive() {
+      const active = this.isActive || true;
+      if (active) {
+        this.setAttribute('active', '');
+      } else {
+        this.removeAttribute('active');
+      }
+    }
+
+    protected async disconnect(): Promise<void> {
+      super.disconnect();
+      if (this._mountPoint) {
+        this._mountPoint.removeEventListener('click', this.navigate);
+      }
+    }
+
+    // @ts-ignore
+    get asUrl(): URL {
+      return new URL(this.href, document.baseURI);
+    }
+
+    // @ts-ignore
+    get asPath(): string {
+      return this.asUrl.pathname;
+    }
+
+    // @ts-ignore
+    get isActive(): boolean {
+      const pathname = this.asPath;
+      const _storage = routeStorage();
+      return !(!_storage || !(pathname in _storage));
+    }
+
+    // @ts-ignore
+    get replace(): boolean {
+      return this.hasAttribute('replace');
+    }
+
+    // @ts-ignore
+    set replace(val: boolean) {
+      if (val) {
+        this.setAttribute('replace', '');
+      } else {
+        this.removeAttribute('replace');
+      }
     }
   }
 );
@@ -234,7 +345,7 @@ function proxyProperty(
 
   Object.defineProperty(target.__proxy[propertyName], type, {
     get() {
-      const _storage = storage.get(MXRoute);
+      const _storage = routeStorage();
       if (value !== undefined && value !== null && value !== '') {
         return value;
       }
@@ -266,7 +377,7 @@ function proxyProperty(
       }
     },
     set(nextValue: any) {
-      const _storage = storage.get(MXRoute);
+      const _storage = routeStorage();
       const oldValue = value;
       value = nextValue;
       switch (type) {
@@ -279,7 +390,7 @@ function proxyProperty(
             lookupKey = _storage.namedGroups[lookupKey];
           }
           _storage.params[lookupKey] = nextValue;
-          storage.set(MXRoute, {
+          routeStorage({
             ..._storage,
             params: _storage.params,
           });
@@ -287,7 +398,7 @@ function proxyProperty(
         case 'query':
           if (!_storage) return;
           _storage.query.set(lookupKey, nextValue);
-          storage.set(MXRoute, {
+          routeStorage({
             ..._storage,
             query: _storage.query,
           });
@@ -295,7 +406,7 @@ function proxyProperty(
         case 'hash':
           if (!_storage) return;
           _storage.hash.set(lookupKey, nextValue);
-          storage.set(MXRoute, {
+          routeStorage({
             ..._storage,
             hash: _storage.hash,
           });
