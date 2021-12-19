@@ -50,18 +50,19 @@ const MXRoute = define('mx-route')(
     private _matched: RegExpMatchArray | null = null;
     private _namedGroups: Record<string, number> = {};
     private _matchNamedGroup = /<(.+)>/g;
-    private _url: URL;
+    private _url: URL | null = null;
 
-    constructor() {
-      super();
+    private updateUrl() {
       this._url = new URL(window.location.href);
     }
-
-    private updateStorage(data: any = {}) {
+    private updateStorage(key: string, data: any = {}) {
       const _data = routeStorage() || {};
       routeStorage({
-        ..._data,
         ...data,
+        [key]: {
+          ...(_data && _data[key]),
+          ...data,
+        },
       });
     }
 
@@ -99,27 +100,41 @@ const MXRoute = define('mx-route')(
     }
 
     private parseMatch() {
+      this.updateUrl();
       this.createMatcher();
-
+      if (!this._url) return;
       if (this._matcher) {
         this._matched = this._matcher.exec(this._url.pathname);
 
-        this.updateStorage({
-          namedGroups: this._namedGroups,
-          params: this._matched || {},
-          query: this._url.searchParams,
-          hash: new URLSearchParams(this._url.hash.replace('#', '')),
-        });
+        if (this._matched) {
+          this.updateStorage(this._url.pathname, {
+            namedGroups: this._namedGroups,
+            params: this._matched || {},
+            query: this._url.searchParams,
+            hash: new URLSearchParams(this._url.hash.replace('#', '')),
+          });
+        }
       }
     }
-    //
-    // private forceRender() {
-    //   patch(this._mountPoint!, this.render());
-    // }
+
+    private forceRender() {
+      patch(this._mountPoint!, this.render());
+    }
+
+    updateAndRender = () => {
+      this.parseMatch();
+      this.forceRender();
+    };
 
     protected async connect(): Promise<void> {
       super.connect();
       this.parseMatch();
+      window.addEventListener('mx-navigation', this.updateAndRender);
+    }
+
+    protected async disconnect(): Promise<void> {
+      super.disconnect();
+      window.removeEventListener('mx-navigation', this.updateAndRender);
     }
 
     render() {
@@ -161,6 +176,7 @@ define('mx-link')(
 
     render(): any {
       const a = document.createElement('a');
+      a.setAttribute('part', 'anchor');
       a.appendChild(document.createElement('slot'));
       return a;
     }
@@ -178,31 +194,45 @@ define('mx-link')(
       if (this._mountPoint) {
         this._mountPoint.addEventListener('click', this.navigate);
       }
+      window.addEventListener('mx-navigation', this.updateActive);
     }
 
     navigate = (e: Event) => {
       e.preventDefault();
       if (this.replace) {
-        history.replaceState(this.state || {}, document.title, this.href);
+        history.replaceState(this.state, document.title, this.href);
         return;
       }
-      history.pushState(this.state || {}, document.title, this.href);
+      history.pushState(this.state, document.title, this.href);
+      window.dispatchEvent(
+        new CustomEvent('mx-navigation', {
+          detail: {
+            href: this.href,
+            title: document.title,
+            state: this.state,
+          },
+          composed: true,
+          cancelable: true,
+          bubbles: true,
+        })
+      );
     };
 
-    updateActive() {
-      const active = this.isActive || true;
+    updateActive = () => {
+      const active = this.isActive;
       if (active) {
         this.setAttribute('active', '');
       } else {
         this.removeAttribute('active');
       }
-    }
+    };
 
     protected async disconnect(): Promise<void> {
       super.disconnect();
       if (this._mountPoint) {
         this._mountPoint.removeEventListener('click', this.navigate);
       }
+      window.removeEventListener('mx-navigation', this.updateActive);
     }
 
     // @ts-ignore
