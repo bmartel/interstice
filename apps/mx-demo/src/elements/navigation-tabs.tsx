@@ -22,7 +22,9 @@ export class NavigationTabs extends CustomElement {
   render() {
     return (
       <nav>
-        <mx-link href="/">Home</mx-link>
+        <mx-link href="/" inherit="">
+          Home
+        </mx-link>
         <mx-link href="/counter">Counter</mx-link>
         <mx-link href="/messages">Messages</mx-link>
       </nav>

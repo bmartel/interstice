@@ -156,10 +156,12 @@ define('mx-link')(
     href: string = '';
     state?: any = {};
     active?: any;
+    inherit?: any;
+    replace?: any;
 
     // @ts-ignore
     static get observedAttributes() {
-      return ['href', 'state'];
+      return ['href', 'state', 'inherit', 'replace'];
     }
 
     updateAnchor(name: string, value: any) {
@@ -222,6 +224,17 @@ define('mx-link')(
       const active = this.isActive;
       if (active) {
         this.setAttribute('active', '');
+        const _storage = routeStorage()[this.href];
+        const inherit = this.hasAttribute('inherit');
+        if (inherit && _storage && _storage.query) {
+          const url = new URL(this.href, document.baseURI);
+          _storage.query.forEach((v: any, k: any) => {
+            url.searchParams.append(k, v);
+          });
+          url.host = '';
+          this.href = url.toString();
+          this.updateAnchor('href', this.href);
+        }
       } else {
         this.removeAttribute('active');
       }
@@ -250,20 +263,6 @@ define('mx-link')(
       const pathname = this.asPath;
       const _storage = routeStorage();
       return !(!_storage || !(pathname in _storage));
-    }
-
-    // @ts-ignore
-    get replace(): boolean {
-      return this.hasAttribute('replace');
-    }
-
-    // @ts-ignore
-    set replace(val: boolean) {
-      if (val) {
-        this.setAttribute('replace', '');
-      } else {
-        this.removeAttribute('replace');
-      }
     }
   }
 );
@@ -326,6 +325,19 @@ type PropertyBinding = {
   propertyKey: string;
   lookupKey: string;
 };
+
+export function addQueryParam(key: string, value: any) {
+  const url = new URL(window.location.href);
+  url.searchParams.set(key, encodeURIComponent(value));
+  window.history.pushState({}, '', url.toString());
+}
+
+export function getQueryParam(key: string): any {
+  const url = new URL(window.location.href);
+  const param = url.searchParams.get(key);
+  if (!param) return param;
+  return decodeURIComponent(param);
+}
 
 function proxyLocalProperty(
   target: any,
@@ -432,6 +444,7 @@ function proxyProperty(
             ..._storage,
             query: _storage.query,
           });
+          addQueryParam(lookupKey as string, nextValue);
           return;
         case 'hash':
           if (!_storage) return;
