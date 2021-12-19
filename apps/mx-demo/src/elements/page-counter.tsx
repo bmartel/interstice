@@ -27,7 +27,7 @@ export class PageCounter extends CustomElement {
 
         <counter-button text=" +"></counter-button>
         <counter-button></counter-button>
-        <counter-button defaultCount={this.totalCount as any}></counter-button>
+        <counter-button totalCount={this.totalCount as any}></counter-button>
       </main>
     );
   }

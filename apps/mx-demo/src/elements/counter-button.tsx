@@ -9,11 +9,11 @@ import {
 
 @MXElement({ tag: "counter-button" })
 export class CounterButtonElement extends CustomElement {
-  @Prop("someText")
+  @Prop()
   text: string = "";
 
   @Prop()
-  defaultCount: number = 0;
+  totalCount: number = 0;
 
   @State()
   count: number = 0;
@@ -25,7 +25,7 @@ export class CounterButtonElement extends CustomElement {
   };
 
   get combinedCount() {
-    return this.defaultCount + this.count;
+    return this.totalCount + this.count;
   }
 
   @Dispatch("updateCount")
