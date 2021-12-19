@@ -16,9 +16,16 @@ export function proxyProperty(
   const defaultValue: any = target && target[propertyName];
   let value: any = defaultValue;
   target.__proxy = target.__proxy || {};
+  target.__proxyOrder = target.__proxyOrder || {};
+  target.__proxyOrder[propertyName] = target.__proxyOrder[propertyName] || [];
   target.__proxy[propertyName] = target.__proxy[propertyName] || {};
-  const parseProperty = target.parseProperty.bind(target);
 
+  const parseProperty = target.parseProperty.bind(target);
+  if (target.__proxyOrder[propertyName].indexOf(type) === -1) {
+    target.__proxyOrder[propertyName].push(type);
+  }
+
+  console.log(target.__proxyOrder, propertyName);
   Object.defineProperty(target.__proxy[propertyName], type, {
     get() {
       const _storage = routeStorage();
@@ -52,6 +59,10 @@ export function proxyProperty(
           value = parseProperty(
             localStorage.getItem(lookupKey as string) as any
           );
+          return value;
+        case 'cssProp':
+          const root = document.documentElement;
+          value = root.style.getPropertyValue(lookupKey as string);
           return value;
         default:
           return value;
@@ -103,6 +114,12 @@ export function proxyProperty(
         case 'storage':
           value = newValue;
           localStorage.setItem(lookupKey as string, JSON.stringify(value));
+          return;
+        case 'cssProp':
+          value = newValue.toString();
+          const root = document.documentElement;
+          root.style.setProperty(lookupKey as string, newValue);
+          return value;
       }
     },
     enumerable: true,
@@ -111,18 +128,44 @@ export function proxyProperty(
 
   Object.defineProperty(target, propertyName, {
     get() {
-      return Object.values(this.__proxy[propertyName]).find(
-        (e) => e !== undefined && e !== null && e !== ''
-      );
+      let propValue: any = undefined;
+      this.__proxyOrder[propertyName].find((key: string) => {
+        const e = this.__proxy[propertyName][key];
+        if (e !== undefined && e !== null && e !== '') {
+          propValue = e;
+          return true;
+        }
+        return false;
+      });
+      return propValue;
     },
     set(nextValue: any) {
-      Object.keys(this.__proxy[propertyName]).forEach((key) => {
+      this.__proxyOrder[propertyName].forEach((key: string) => {
         this.__proxy[propertyName][key] = nextValue;
       });
     },
     enumerable: true,
     configurable: true,
   });
+
+  // Property Alias
+  if (
+    type === 'prop' &&
+    lookupKey &&
+    typeof lookupKey === 'string' &&
+    lookupKey !== propertyName
+  ) {
+    Object.defineProperty(target, lookupKey, {
+      get() {
+        return target[propertyName];
+      },
+      set(nextValue: any) {
+        target[propertyName] = nextValue;
+      },
+      enumerable: true,
+      configurable: true,
+    });
+  }
 }
 
 export type EventBinding = {

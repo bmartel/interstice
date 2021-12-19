@@ -1,21 +1,22 @@
-import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
+import {
+  CustomElement,
+  Dispatch,
+  MXElement,
+  State,
+  Storage,
+} from "@interstice/mx";
 
 @MXElement({ tag: "dark-mode-toggle" })
 export class DarkModeToggle extends CustomElement {
-  @Storage("darkMode")
+  @Storage({ key: "darkMode" })
   @State()
   enabled: boolean | undefined = undefined;
 
-  protected async connect(): Promise<void> {
-    await super.connect();
-    if (this.enabled === undefined) {
-      this.enabled = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-  }
-
-  @On("click")
+  @Dispatch("updateDarkMode")
   toggle = () => {
     this.enabled = !this.enabled;
+
+    return this.enabled;
   };
 
   protected styles() {
@@ -36,12 +37,16 @@ export class DarkModeToggle extends CustomElement {
         transition: background-color 0.2s ease-out;
       }
       button:hover {
-        background-color: lavender;
+        background-color: whitesmoke;
       }
     `;
   }
 
   protected render() {
-    return <button type="button">{this.enabled ? "🌙" : "☀️️️"}</button>;
+    return (
+      <button type="button" onclick={this.toggle}>
+        {this.enabled ? "🌙" : "☀️️️"}
+      </button>
+    );
   }
 }

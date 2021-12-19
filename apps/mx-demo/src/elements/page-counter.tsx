@@ -25,7 +25,7 @@ export class PageCounter extends CustomElement {
       <main>
         <h1>Simple Counter</h1>
 
-        <counter-button text=" +"></counter-button>
+        <counter-button someText=" +"></counter-button>
         <counter-button></counter-button>
         <counter-button totalCount={this.totalCount as any}></counter-button>
       </main>

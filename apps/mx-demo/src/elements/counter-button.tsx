@@ -9,7 +9,7 @@ import {
 
 @MXElement({ tag: "counter-button" })
 export class CounterButtonElement extends CustomElement {
-  @Prop()
+  @Prop({ key: "someText" })
   text: string = "";
 
   @Prop()

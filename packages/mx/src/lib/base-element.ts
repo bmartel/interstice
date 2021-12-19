@@ -15,15 +15,18 @@ export abstract class BaseElement extends HTMLElement {
   protected abstract render(): VNode;
 
   protected forceRender() {
-    patch(this._mountPoint!, this.render());
+    if (!this._mountPoint) return;
+    patch(this._mountPoint, this.render());
   }
 
   protected createMountPoint() {
+    if (this._mountPoint) return;
     this._mountPoint = createElement(this.render());
     this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
   }
 
-  private destroyMountPoint() {
+  protected destroyMountPoint() {
+    if (!this._mountPoint) return;
     this.shadowRoot && this.shadowRoot.removeChild(this._mountPoint!);
     this._mountPoint = null;
   }

@@ -2,16 +2,17 @@ import { defaultParseProperty } from './utils';
 import { BaseElement } from './base-element';
 
 export abstract class CustomElement extends BaseElement {
-  constructor() {
-    super();
-    this.createStyles();
-  }
-
   protected styles(): string {
     return '';
   }
   protected shouldUpdate(_previous: any, _next: any) {
     return true;
+  }
+
+  async connectedCallback(): Promise<void> {
+    await this.connect();
+    this.createStyles();
+    this.createMountPoint();
   }
 
   private createStyles() {
@@ -21,6 +22,10 @@ export abstract class CustomElement extends BaseElement {
       this._styles.innerHTML = styles;
       this.shadowRoot && this.shadowRoot.appendChild(this._styles);
     }
+  }
+  protected updateStyles() {
+    if (!this._styles) return;
+    this._styles.innerHTML = this.styles();
   }
 
   parseProperty(newValue: any): any {

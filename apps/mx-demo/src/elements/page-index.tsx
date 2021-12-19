@@ -1,8 +1,8 @@
 import {
   CustomElement,
   MXElement,
-  Prop,
   QueryParam,
+  State,
   Storage,
 } from "@interstice/mx";
 import "./counter-button";
@@ -10,10 +10,10 @@ import "./message-list";
 
 @MXElement({ tag: "page-index", route: "^/$" })
 export class PageIndex extends CustomElement {
-  @QueryParam("clicked")
-  @Storage("clicked")
-  @Prop()
-  clicked: boolean = false;
+  @QueryParam({ key: "clicked" })
+  @Storage({ key: "clicked" })
+  @State()
+  clicked: boolean | undefined = undefined;
 
   updateQuery = () => {
     this.clicked = !this.clicked;
