@@ -5,8 +5,8 @@ import "./dark-mode-toggle";
 export class NavigationTabs extends CustomElement {
   styles() {
     return /* css */ `
+      ${super.styles()}
       nav {
-        box-sizing: border-box;
         display: flex;
         width: 100%;
         border-bottom: 2px solid var(--border-color);
@@ -14,9 +14,6 @@ export class NavigationTabs extends CustomElement {
       .nav-group {
         display: flex;
         flex: 1;
-      }
-      mx-link {
-        box-sizing: border-box;
       }
       mx-link::part(anchor) {
         color: var(--color);

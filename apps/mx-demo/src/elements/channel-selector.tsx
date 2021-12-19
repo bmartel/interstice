@@ -1,8 +1,10 @@
-import { CustomElement, MXElement, On, State } from "@interstice/mx";
+import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
 import "./channel-item";
 
 @MXElement({ tag: "channel-selector" })
 export class ChannelSelector extends CustomElement {
+
+  @Storage({ key: "channels" })
   @State()
   channels: any = [];
 
@@ -21,7 +23,6 @@ export class ChannelSelector extends CustomElement {
 
   @On("updateChannel")
   updateChannel = (e: CustomEvent<any>) => {
-    console.log("updating message", e.detail);
     this.channels = this.channels.map((m: any) => {
       if (m.id === e.detail.id) {
         return {
@@ -35,14 +36,19 @@ export class ChannelSelector extends CustomElement {
 
   styles() {
     return `
+      ${super.styles()}
       :host {
+        display: flex;
+        flex-direction: column;
         height: 100%;
+        flex: 1;
+        width: 320px;
+        overflow-y: auto;
       }
       .container {
         height: 100%;
         display: flex;
         flex-direction: column;
-        width: 320px;
       }
       ul {
         list-style: none;

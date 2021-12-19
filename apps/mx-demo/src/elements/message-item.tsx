@@ -18,7 +18,7 @@ export class MessageItem extends CustomElement {
   @State()
   editing: boolean = false;
 
-  isOwner:boolean = Math.random() > 0.5
+  isOwner: boolean = Math.random() > 0.5;
 
   edit = () => {
     this.editing = true;
@@ -45,6 +45,7 @@ export class MessageItem extends CustomElement {
 
   styles() {
     return `
+      ${super.styles()}
       li {
         display: flex;
         align-items: center;

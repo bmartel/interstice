@@ -3,7 +3,14 @@ import { BaseElement } from './base-element';
 
 export abstract class CustomElement extends BaseElement {
   protected styles(): string {
-    return '';
+    return `
+      :host {
+        box-sizing: border-box;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+    `;
   }
   protected shouldUpdate(_previous: any, _next: any) {
     return true;
@@ -34,7 +41,7 @@ export abstract class CustomElement extends BaseElement {
 
   maybeRender(oldValue: any, newValue: any) {
     if (this._mountPoint && this.shouldUpdate(oldValue, newValue)) {
-      this.forceRender();
+      requestAnimationFrame(() => this.forceRender());
     }
   }
 

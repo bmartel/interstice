@@ -6,7 +6,7 @@ import {
   State,
 } from "@interstice/mx";
 
-@MXElement({ tag: "message-item" })
+@MXElement({ tag: "channel-item" })
 export class ChannelItem extends CustomElement {
   @Prop()
   id: string = "";
@@ -42,6 +42,7 @@ export class ChannelItem extends CustomElement {
 
   styles() {
     return `
+      ${super.styles()}
       li {
         display: flex;
         align-items: center;
@@ -59,7 +60,7 @@ export class ChannelItem extends CustomElement {
               name="content"
               type="text"
               value={this.name}
-              placeholder="message"
+              placeholder="Channel"
             />
             <button type="submit">Update</button>
           </form>

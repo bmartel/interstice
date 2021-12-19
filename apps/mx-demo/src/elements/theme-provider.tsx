@@ -40,21 +40,25 @@ export class ThemeProvider extends CustomElement {
 
   styles() {
     return `
+      ${super.styles()}
       :host {
-        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
         ${this.darkMode ? this.darkModeStyles() : this.lightModeStyles()}
       }
       div {
-        box-sizing: border-box;
         flex: 1;
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
         background-color: var(--background-color);
         color: var(--color);
+      }
+      ::slotted([active]) {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
       }
     `;
   }

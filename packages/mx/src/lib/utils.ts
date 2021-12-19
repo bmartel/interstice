@@ -37,3 +37,22 @@ export function defaultParseProperty(newValue: any): any {
       : newValue
     : newValue;
 }
+export function isEmpty(a: any): boolean {
+  return !(
+    a !== null &&
+    a !== undefined &&
+    a !== '' &&
+    ((typeof a === 'object' && JSON.stringify(a) === '{}') ||
+      (Array.isArray(a) && a.length > 0))
+  );
+}
+
+export function isEqual(a: any, b: any): boolean {
+  return (
+    a === b ||
+    !(typeof a !== typeof b ||
+    !(Array.isArray(a) && Array.isArray(b)) ||
+    a.length !== b.length ||
+    (typeof a === 'object' && JSON.stringify(a) !== JSON.stringify(b))
+  ));
+}

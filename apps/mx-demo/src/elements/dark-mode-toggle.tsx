@@ -19,8 +19,9 @@ export class DarkModeToggle extends CustomElement {
     return this.enabled;
   };
 
-  protected styles() {
+  styles() {
     return /* css */ `
+      ${super.styles()}
       button {
         background-color: transparent;
         cursor: pointer;
@@ -42,7 +43,7 @@ export class DarkModeToggle extends CustomElement {
     `;
   }
 
-  protected render() {
+  render() {
     return (
       <button type="button" onclick={this.toggle}>
         {this.enabled ? "🌙" : "☀️️️"}

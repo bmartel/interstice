@@ -1,8 +1,9 @@
-import { CustomElement, MXElement, On, State } from "@interstice/mx";
+import { MXElement, On, State } from "@interstice/mx";
+import {PageElement} from "./page-element";
 import "./counter-button";
 
 @MXElement({ tag: "page-counter", route: "^/counter$" })
-export class PageCounter extends CustomElement {
+export class PageCounter extends PageElement {
   @State()
   totalCount: number = 0;
 
@@ -10,14 +11,6 @@ export class PageCounter extends CustomElement {
   updateCount = () => {
     this.totalCount++;
   };
-
-  styles() {
-    return /* css */ `
-      main {
-        background: hotpink;
-      }
-    `;
-  }
 
   render() {
     console.log("rendering counter");

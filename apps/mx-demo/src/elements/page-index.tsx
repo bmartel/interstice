@@ -1,15 +1,15 @@
 import {
-  CustomElement,
   MXElement,
   QueryParam,
   State,
   Storage,
 } from "@interstice/mx";
+import {PageElement} from "./page-element";
 import "./counter-button";
 import "./message-list";
 
 @MXElement({ tag: "page-index", route: "^/$" })
-export class PageIndex extends CustomElement {
+export class PageIndex extends PageElement {
   @QueryParam({ key: "clicked" })
   @Storage({ key: "clicked" })
   @State()
@@ -20,7 +20,6 @@ export class PageIndex extends CustomElement {
   };
 
   render() {
-    console.log("rendering index");
     return (
       <main>
         <h1>Param and Storage State</h1>

@@ -24,6 +24,7 @@ export class MessageList extends CustomElement {
 
   styles() {
     return `
+      ${super.styles()}
       .container {
         display: grid;
         margin: 0 auto;

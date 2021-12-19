@@ -1,5 +1,5 @@
 import { routeStorage } from './storage';
-import { addQueryParam } from './utils';
+import { addQueryParam, isEmpty } from './utils';
 
 export type PropertyBinding = {
   propertyKey: string;
@@ -28,9 +28,7 @@ export function proxyProperty(
   Object.defineProperty(target.__proxy[propertyName], type, {
     get() {
       const _storage = routeStorage();
-      if (value !== defaultValue) {
-        return value;
-      }
+
       switch (type) {
         case 'prop':
           return value;
@@ -130,11 +128,8 @@ export function proxyProperty(
       let propValue: any = undefined;
       this.__proxyOrder[propertyName].find((key: string) => {
         const e = this.__proxy[propertyName][key];
-        if (e !== undefined && e !== null && e !== '') {
-          propValue = e;
-          return true;
-        }
-        return false;
+        propValue = e;
+        return !isEmpty(e) && !isEmpty(propValue)
       });
       return propValue;
     },

@@ -1,10 +1,11 @@
-import { CustomElement, MXElement, On, State } from "@interstice/mx";
+import { MXElement, On, State } from "@interstice/mx";
+import {PageElement} from "./page-element";
 import { Message } from "@/store";
-import "./counter-button";
+import "./channel-selector";
 import "./message-list";
 
-@MXElement({ tag: "page-messages", route: "^/messages$" })
-export class PageMessages extends CustomElement {
+@MXElement({ tag: "page-messages", route: "^/messages(\/.*)?$" })
+export class PageMessages extends PageElement {
   @State()
   messages: any = [];
 
@@ -15,7 +16,6 @@ export class PageMessages extends CustomElement {
 
   @On("updateMessage")
   updateMessage = (e: CustomEvent<Partial<Message>>) => {
-    console.log("updating message", e.detail);
     this.messages = this.messages.map((m: any) => {
       if (m.id === e.detail.id) {
         return {
@@ -27,26 +27,11 @@ export class PageMessages extends CustomElement {
     });
   };
 
-  styles() {
-    return `
-      :host {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-      }
-      main {
-        flex: 1;
-        height: 100%;
-      }
-    `
-  }
 
   render() {
-    console.log("rendering messages");
     return (
       <main>
-        <h1>Messages</h1>
-        <message-list messages={this.messages}></message-list>
+        <channel-selector></channel-selector>
       </main>
     );
   }
