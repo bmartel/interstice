@@ -282,7 +282,7 @@ function defaultParseProperty(newValue: any): any {
       ? undefined
       : newValue === 'null'
       ? null
-      : /\d+(\.\d+)?/.test(newValue)
+      : /^\d+(\.\d+)?$/.test(newValue)
       ? Number(newValue)
       : newValue
     : newValue;
@@ -358,7 +358,7 @@ function proxyProperty(
   let value: any = defaultValue;
   target.__proxy = target.__proxy || {};
   target.__proxy[propertyName] = target.__proxy[propertyName] || {};
-  const parseProperty = target.parseProperty;
+  const parseProperty = target.parseProperty.bind(target);
 
   Object.defineProperty(target.__proxy[propertyName], type, {
     get() {
@@ -381,18 +381,16 @@ function proxyProperty(
         case 'query':
           if (!_storage) return value;
           value = _storage.query && _storage.query.get(lookupKey);
-          value = defaultParseProperty(
+          value = parseProperty(
             _storage.query && _storage.query.get(lookupKey)
           );
           return value;
         case 'hash':
           if (!_storage) return value;
-          value = defaultParseProperty(
-            _storage.hash && _storage.hash.get(lookupKey)
-          );
+          value = parseProperty(_storage.hash && _storage.hash.get(lookupKey));
           return value;
         case 'storage':
-          value = defaultParseProperty(
+          value = parseProperty(
             localStorage.getItem(lookupKey as string) as any
           );
           return value;
@@ -403,15 +401,17 @@ function proxyProperty(
     set(newValue: any) {
       const _storage = routeStorage();
       const oldValue = value;
-      value = parseProperty(newValue);
       switch (type) {
         case 'prop':
+          value = parseProperty(newValue);
           target.maybeRender(oldValue, value);
           return;
         case 'state':
+          value = newValue;
           target.maybeRender(oldValue, value);
           return;
         case 'param':
+          value = newValue;
           if (!_storage) return;
           if (typeof lookupKey === 'string') {
             lookupKey = _storage.namedGroups[lookupKey];
@@ -423,6 +423,7 @@ function proxyProperty(
           });
           return;
         case 'query':
+          value = newValue;
           if (!_storage) return;
           _storage.query.set(lookupKey, value);
           routeStorage({
@@ -432,6 +433,7 @@ function proxyProperty(
           addQueryParam(lookupKey as string, value);
           return;
         case 'hash':
+          value = newValue;
           if (!_storage) return;
           _storage.hash.set(lookupKey, value);
           routeStorage({
@@ -440,6 +442,7 @@ function proxyProperty(
           });
           return;
         case 'storage':
+          value = newValue;
           localStorage.setItem(lookupKey as string, JSON.stringify(value));
       }
     },

@@ -20,6 +20,7 @@ export class PageCounter extends CustomElement {
   }
 
   render() {
+    console.log("rendering counter");
     return (
       <main>
         <h1>Simple Counter</h1>

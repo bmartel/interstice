@@ -15,6 +15,7 @@ export class PageMessages extends CustomElement {
 
   @On("updateMessage")
   updateMessage = (e: CustomEvent<Partial<Message>>) => {
+    console.log("updating message", e.detail);
     this.messages = this.messages.map((m: any) => {
       if (m.id === e.detail.id) {
         return {
@@ -34,6 +35,7 @@ export class PageMessages extends CustomElement {
     `;
   }
   render() {
+    console.log("rendering messages");
     return (
       <main>
         <h1>Messages</h1>

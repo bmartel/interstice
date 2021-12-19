@@ -10,7 +10,10 @@ import { Message } from "@/store";
 @MXElement({ tag: "message-item" })
 export class MessageList extends CustomElement {
   @Prop()
-  message: Message | null = null;
+  id: Message["id"] = "";
+
+  @Prop()
+  content: Message["content"] = "";
 
   @State()
   editing: boolean = false;
@@ -23,19 +26,17 @@ export class MessageList extends CustomElement {
   updateMessage = (e: any) => {
     e.preventDefault();
 
-    if (!this.message) return {};
+    if (!this.id) return {};
 
     const form = new FormData(e.target);
+    const content = form.get("content") as string;
+
+    this.content = content;
     this.editing = false;
 
-    this.message = {
-      ...this.message,
-      content: form.get("content") as string,
-      updatedAt: new Date().toISOString(),
-    };
     return {
-      id: this.message!.id,
-      content: form.get("content") as string,
+      id: this.id!,
+      content,
       updatedAt: new Date().toISOString(),
     };
   };
@@ -48,13 +49,13 @@ export class MessageList extends CustomElement {
             <input
               name="content"
               type="text"
-              value={this.message?.content || ""}
+              value={this.content}
               placeholder="message"
             />
             <button type="submit">Update</button>
           </form>
         ) : (
-          <span onclick={this.edit}>{this.message?.content}</span>
+          <span onclick={this.edit}>{this.content}</span>
         )}
       </li>
     );

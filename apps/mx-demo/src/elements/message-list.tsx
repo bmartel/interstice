@@ -31,7 +31,11 @@ export class MessageList extends CustomElement {
         </form>
         <ul>
           {this.messages.map((m: any) => (
-            <message-item key={m.id} message={m}></message-item>
+            <message-item
+              key={m.id}
+              id={m.id}
+              content={m.content}
+            ></message-item>
           ))}
         </ul>
       </div>

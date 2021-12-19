@@ -20,6 +20,7 @@ export class PageIndex extends CustomElement {
   };
 
   render() {
+    console.log("rendering index");
     return (
       <main>
         <h1>Param and Storage State</h1>
