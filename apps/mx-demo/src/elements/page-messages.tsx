@@ -28,18 +28,24 @@ export class PageMessages extends CustomElement {
   };
 
   styles() {
-    return /* css */ `
-      main {
-        background: hotpink;
+    return `
+      :host {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
       }
-    `;
+      main {
+        flex: 1;
+        height: 100%;
+      }
+    `
   }
+
   render() {
     console.log("rendering messages");
     return (
       <main>
         <h1>Messages</h1>
-
         <message-list messages={this.messages}></message-list>
       </main>
     );

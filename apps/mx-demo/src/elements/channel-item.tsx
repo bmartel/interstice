@@ -5,40 +5,37 @@ import {
   Prop,
   State,
 } from "@interstice/mx";
-import { Message } from "@/store";
 
 @MXElement({ tag: "message-item" })
-export class MessageItem extends CustomElement {
+export class ChannelItem extends CustomElement {
   @Prop()
-  id: Message["id"] = "";
+  id: string = "";
 
   @Prop()
-  content: Message["content"] = "";
+  name: string = "";
 
   @State()
   editing: boolean = false;
-
-  isOwner:boolean = Math.random() > 0.5
 
   edit = () => {
     this.editing = true;
   };
 
-  @Dispatch("updateMessage")
-  updateMessage = (e: any) => {
+  @Dispatch("updateChannel")
+  updateChannel = (e: any) => {
     e.preventDefault();
 
     if (!this.id) return {};
 
     const form = new FormData(e.target);
-    const content = form.get("content") as string;
+    const name= form.get("name") as string;
 
-    this.content = content;
+    this.name = name;
     this.editing = false;
 
     return {
       id: this.id!,
-      content,
+      name,
       updatedAt: new Date().toISOString(),
     };
   };
@@ -48,11 +45,6 @@ export class MessageItem extends CustomElement {
       li {
         display: flex;
         align-items: center;
-      }
-      li[data-owner=false] {
-        justify-content: flex-end;
-      }
-      li[data-owner=true] {
         justify-content: flex-start;
       }
     `;
@@ -60,21 +52,22 @@ export class MessageItem extends CustomElement {
 
   render() {
     return (
-      <li data-owner={this.isOwner}>
+      <li>
         {this.editing ? (
-          <form onSubmit={this.updateMessage}>
+          <form onSubmit={this.updateChannel}>
             <input
               name="content"
               type="text"
-              value={this.content}
+              value={this.name}
               placeholder="message"
             />
             <button type="submit">Update</button>
           </form>
         ) : (
-          <span onclick={this.edit}>{this.content}</span>
+          <span onclick={this.edit}>{this.name}</span>
         )}
       </li>
     );
   }
 }
+

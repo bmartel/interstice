@@ -2,6 +2,7 @@ import { routeStorage } from './storage';
 import { CustomElement } from './custom-element';
 
 export abstract class RouteElement extends CustomElement {
+  public active?: any;
   public tag: string = '';
   public route: string | RegExp = '';
   private _matcher: RegExp | undefined = undefined;
@@ -76,12 +77,15 @@ export abstract class RouteElement extends CustomElement {
     }
   }
 
+
   updateAndRender = () => {
     this.parseMatch();
     if (this._matched) {
+      this.setAttribute('active', '');
       this.createMountPoint();
       this.forceRender();
     } else {
+      this.removeAttribute('active')
       this.destroyMountPoint();
     }
   };
@@ -89,6 +93,7 @@ export abstract class RouteElement extends CustomElement {
   async connectedCallback() {
     await this.connect();
     if (this._matched) {
+      this.setAttribute('active', '');
       this.createMountPoint();
     }
   }

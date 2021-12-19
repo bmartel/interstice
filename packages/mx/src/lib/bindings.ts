@@ -25,7 +25,6 @@ export function proxyProperty(
     target.__proxyOrder[propertyName].push(type);
   }
 
-  console.log(target.__proxyOrder, propertyName);
   Object.defineProperty(target.__proxy[propertyName], type, {
     get() {
       const _storage = routeStorage();

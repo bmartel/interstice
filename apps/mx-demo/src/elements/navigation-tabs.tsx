@@ -9,7 +9,7 @@ export class NavigationTabs extends CustomElement {
         box-sizing: border-box;
         display: flex;
         width: 100%;
-        border-bottom: 2px solid gray;
+        border-bottom: 2px solid var(--border-color);
       }
       .nav-group {
         display: flex;
@@ -19,6 +19,8 @@ export class NavigationTabs extends CustomElement {
         box-sizing: border-box;
       }
       mx-link::part(anchor) {
+        color: var(--color);
+        background-color: transparent;
         box-sizing: border-box;
         display: flex;
         align-items: center;
@@ -26,9 +28,14 @@ export class NavigationTabs extends CustomElement {
         text-decoration: none;
         height: 36px;
         padding-inline: 1rem;
+        will-change: background-color;
+        transition: background-color 0.2s ease-out;
+      }
+      mx-link:hover::part(anchor) {
+        background-color: var(--hover-button-background-color);
       }
       mx-link[active]::part(anchor) {
-        background: gray;
+        background-color: var(--button-background-color);
       }
       dark-mode-toggle {
         margin-right: 0.75rem;

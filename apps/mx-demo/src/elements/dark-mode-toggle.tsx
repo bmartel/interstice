@@ -37,7 +37,7 @@ export class DarkModeToggle extends CustomElement {
         transition: background-color 0.2s ease-out;
       }
       button:hover {
-        background-color: whitesmoke;
+        background-color: var(--hover-button-background-color);
       }
     `;
   }

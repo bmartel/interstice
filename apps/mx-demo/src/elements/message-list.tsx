@@ -22,9 +22,23 @@ export class MessageList extends CustomElement {
     };
   };
 
+  styles() {
+    return `
+      .container {
+        display: grid;
+        margin: 0 auto;
+        max-width: 1200px;
+        grid-template-columns: 320px 1fr;
+      }
+      ul {
+        list-style: none;
+      }
+    `;
+  }
+
   render() {
     return (
-      <div>
+      <div class="container">
         <form onSubmit={this.submitMessage}>
           <input name="content" type="text" placeholder="message" />
           <button type="submit">Submit</button>
