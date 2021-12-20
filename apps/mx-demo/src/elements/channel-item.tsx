@@ -55,9 +55,6 @@ export class ChannelItem extends CustomElement {
         padding: 0;
       }
       mx-link::part(anchor) {
-      }
-
-      mx-link::part(anchor) {
         padding-inline: 1rem;
         height: 48px;
         color: var(--color);
@@ -94,7 +91,7 @@ export class ChannelItem extends CustomElement {
             <button type="submit">Update</button>
           </form>
         ) : (
-          <mx-link href={`/channels/${this.id}/messages`}>{this.name}</mx-link>
+          <mx-link href={`/channels/${this.id}/messages`} exact="">{this.name}</mx-link>
         )}
       </li>
     );

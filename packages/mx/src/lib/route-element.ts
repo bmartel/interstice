@@ -1,6 +1,16 @@
 import { routeStorage } from './storage';
 import { CustomElement } from './custom-element';
 
+window.addEventListener('popstate', () => {
+  dispatchEvent(
+    new CustomEvent('mx-navigation', {
+      bubbles: true,
+      composed: true,
+      cancelable: true,
+    })
+  );
+});
+
 export abstract class RouteElement extends CustomElement {
   public active?: any;
   public tag: string = '';
@@ -77,7 +87,6 @@ export abstract class RouteElement extends CustomElement {
     }
   }
 
-
   updateAndRender = () => {
     this.parseMatch();
     if (this._matched) {
@@ -85,7 +94,7 @@ export abstract class RouteElement extends CustomElement {
       this.createMountPoint();
       this.forceRender();
     } else {
-      this.removeAttribute('active')
+      this.removeAttribute('active');
       this.destroyMountPoint();
     }
   };

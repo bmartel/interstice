@@ -56,6 +56,53 @@ export class ChannelSelector extends CustomElement {
         padding: 1rem 0;
         list-style: none;
       }
+      form {
+        top: 0;
+        z-index: 2;
+        position: sticky;
+        display: flex;
+        width: 100%;
+        border-width: 0 0 3px 0;
+        border-style: solid solid solid solid;
+        border-color: var(--input-background-color);
+        will-change: border-color;
+        transition: border-color 0.2s ease-out;
+      }
+      form:focus-within {
+        border-color: var(--outline-color);
+      }
+      input {
+        border: none;
+        outline: none;
+        flex: 1;
+        display: inline-flex;
+        align-items: center;
+        height: 48px;
+        padding: 0 1rem;
+        color: var(--color);
+        background-color: var(--background-color);
+      }
+      input:focus {
+        background-color: var(--input-background-color);
+      }
+      button {
+        appearance: none;
+        border: none;
+        background-color: var(--background-color);
+        font-size: 18px;
+        cursor: pointer;
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+        width: 48px;
+        will-change: background-color;
+        transition: background-color 0.2s ease-out;
+      }
+      button:hover {
+        background-color: var(--accent-color);
+      }
     `;
   }
 
@@ -64,7 +111,7 @@ export class ChannelSelector extends CustomElement {
       <div class="container">
         <form onSubmit={this.addChannel}>
           <input name="name" type="text" placeholder="Channel" />
-          <button type="submit">+</button>
+          <button type="submit">➕</button>
         </form>
         <ul>
           {this.channels.map((m: any) => (
