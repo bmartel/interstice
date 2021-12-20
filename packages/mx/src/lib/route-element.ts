@@ -18,7 +18,6 @@ export abstract class RouteElement extends CustomElement {
   private _matcher: RegExp | undefined = undefined;
   protected _matched: RegExpMatchArray | null = null;
   private _namedGroups: Record<string, number> = {};
-  private _matchNamedGroup = /<(.+)>/g;
   private _url: URL | null = null;
 
   private updateUrl() {
@@ -42,31 +41,39 @@ export abstract class RouteElement extends CustomElement {
     }
 
     if (typeof this.route === 'string') {
-      let _route = this.route as string
-      // const groupsSplit = /(\((?!\().*\))/g.exec(_route as string);
-      const groupsSplit = _route.split(/[\(\)]/g)
-      console.log(groupsSplit)
-      // let captureGroupPosition = 1;
-      // for (let i = 0; i < this.route.length - 1; i++) {
-      //   const isCaptureGroup =
-      //     groupsSplit[i].charAt(0) === '(' &&
-      //     groupsSplit[i].charAt(groupsSplit[i].length - 1) === ')';
-      //   if (
-      //     i > 0 &&
-      //     isCaptureGroup &&
-      //     groupsSplit[i - 1].charAt(groupsSplit[i - 1].length - 1) === '>'
-      //   ) {
-      //     const _namedGroup = this._matchNamedGroup.exec(groupsSplit[i - 1]);
-      //     if (_namedGroup) {
-      //       this._namedGroups[_namedGroup[1]] = captureGroupPosition;
-      //       groupsSplit[i - 1] = '';
-      //     }
-      //   }
-      //   if (isCaptureGroup) {
-      //     captureGroupPosition++;
-      //   }
-      // }
-      // console.log(_route)
+      let _route = this.route as string;
+      let _search = _route;
+      let _named = '';
+      let i = 0;
+      let j = 0;
+      let k = 0;
+      let g = 0;
+
+      while (i > -1) {
+        i = _search.indexOf('(');
+        k = _search.indexOf(')');
+        if (i === -1 || k < i) break;
+        j = i - 1;
+        _named = '';
+        if (_search.charAt(i - 1) === '>') {
+          while (j--) {
+            let _char = _search.charAt(j);
+            if (_char === '<') {
+              break;
+            }
+            _named = _char + _named;
+          }
+          if (_named) {
+            this._namedGroups[_named] = g;
+          }
+        }
+        _search = _search.substring(k + 1);
+        g++;
+      }
+
+      if (Object.keys(this._namedGroups).length) {
+        _route = _route.replace(/<.*>/g, '');
+      }
       this._matcher = new RegExp(_route);
       return;
     }

@@ -28,7 +28,6 @@ export function proxyProperty(
   Object.defineProperty(target.__proxy[propertyName], type, {
     get() {
       const _storage = routeStorage();
-
       switch (type) {
         case 'prop':
           return value;
@@ -53,9 +52,10 @@ export function proxyProperty(
           value = parseProperty(_storage.hash && _storage.hash.get(lookupKey));
           return value;
         case 'storage':
-          value = parseProperty(
-            localStorage.getItem(lookupKey as string) as any
-          );
+          const item = localStorage.getItem(lookupKey as string) as any;
+          if (item) {
+            value = parseProperty(item);
+          }
           return value;
         case 'cssProp':
           const root = document.documentElement;
@@ -129,7 +129,7 @@ export function proxyProperty(
       this.__proxyOrder[propertyName].find((key: string) => {
         const e = this.__proxy[propertyName][key];
         propValue = e;
-        return !isEmpty(e) && !isEmpty(propValue)
+        return !isEmpty(e) && !isEmpty(propValue);
       });
       return propValue;
     },

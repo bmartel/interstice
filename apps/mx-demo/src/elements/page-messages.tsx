@@ -1,10 +1,13 @@
 import { MXElement, On, State } from "@interstice/mx";
-import {PageElement} from "./page-element";
+import { PageElement } from "./page-element";
 import { Message } from "@/store";
 import "./channel-selector";
 import "./message-list";
 
-@MXElement({ tag: "page-messages", route: `^/channels(\/messages)?(\/\d*)?$` })
+@MXElement({
+  tag: "page-messages",
+  route: `^/channels(/messages)?<channelId>(/\d*)?$`,
+})
 export class PageMessages extends PageElement {
   @State()
   messages: any = [];
@@ -26,7 +29,6 @@ export class PageMessages extends PageElement {
       return m;
     });
   };
-
 
   render() {
     return (
