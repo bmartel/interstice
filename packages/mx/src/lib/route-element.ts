@@ -40,29 +40,33 @@ export abstract class RouteElement extends CustomElement {
     if (this._matcher || !this.tag || !this.route) {
       return;
     }
+
     if (typeof this.route === 'string') {
-      const groupsSplit = (this.route as string).split(/\(.+\)/g);
-      let captureGroupPosition = 1;
-      for (let i = 0; i < groupsSplit.length - 1; i++) {
-        const isCaptureGroup =
-          groupsSplit[i].charAt(0) === '(' &&
-          groupsSplit[i].charAt(groupsSplit[i].length - 1) === ')';
-        if (
-          i > 0 &&
-          isCaptureGroup &&
-          groupsSplit[i - 1].charAt(groupsSplit[i - 1].length - 1) === '>'
-        ) {
-          const _namedGroup = this._matchNamedGroup.exec(groupsSplit[i - 1]);
-          if (_namedGroup) {
-            this._namedGroups[_namedGroup[1]] = captureGroupPosition;
-            groupsSplit[i - 1] = '';
-          }
-        }
-        if (isCaptureGroup) {
-          captureGroupPosition++;
-        }
-      }
-      const _route = groupsSplit.join('');
+      let _route = this.route as string
+      // const groupsSplit = /(\((?!\().*\))/g.exec(_route as string);
+      const groupsSplit = _route.split(/[\(\)]/g)
+      console.log(groupsSplit)
+      // let captureGroupPosition = 1;
+      // for (let i = 0; i < this.route.length - 1; i++) {
+      //   const isCaptureGroup =
+      //     groupsSplit[i].charAt(0) === '(' &&
+      //     groupsSplit[i].charAt(groupsSplit[i].length - 1) === ')';
+      //   if (
+      //     i > 0 &&
+      //     isCaptureGroup &&
+      //     groupsSplit[i - 1].charAt(groupsSplit[i - 1].length - 1) === '>'
+      //   ) {
+      //     const _namedGroup = this._matchNamedGroup.exec(groupsSplit[i - 1]);
+      //     if (_namedGroup) {
+      //       this._namedGroups[_namedGroup[1]] = captureGroupPosition;
+      //       groupsSplit[i - 1] = '';
+      //     }
+      //   }
+      //   if (isCaptureGroup) {
+      //     captureGroupPosition++;
+      //   }
+      // }
+      // console.log(_route)
       this._matcher = new RegExp(_route);
       return;
     }

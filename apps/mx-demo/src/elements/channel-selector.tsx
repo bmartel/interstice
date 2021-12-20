@@ -106,6 +106,9 @@ export class ChannelSelector extends CustomElement {
     `;
   }
 
+  // 🗨️
+  // ✍️
+  // 💬
   render() {
     return (
       <div class="container">
