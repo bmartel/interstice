@@ -12,15 +12,40 @@ export class PageCounter extends PageElement {
     this.totalCount++;
   };
 
+  styles() {
+    return `
+      ${super.styles()}
+      .emoji {
+        font-size: 36px;
+      }
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .button-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+    `;
+  }
+
   render() {
     console.log("rendering counter");
     return (
       <main>
         <h1>Simple Counter</h1>
 
-        <counter-button someText=" +"></counter-button>
-        <counter-button></counter-button>
-        <counter-button totalCount={this.totalCount as any}></counter-button>
+        <div class="actions">
+          <counter-button></counter-button>
+          <span class="emoji">➕</span>
+          <counter-button></counter-button>
+          <span class="emoji">👉</span>
+          <counter-button disabled="" totalCount={this.totalCount as any}></counter-button>
+        </div>
       </main>
     );
   }
