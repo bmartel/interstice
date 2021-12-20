@@ -48,7 +48,7 @@ export class NavigationTabs extends CustomElement {
             Home
           </mx-link>
           <mx-link href="/counter">Counter</mx-link>
-          <mx-link href="/messages">Messages</mx-link>
+          <mx-link href="/channels">Messages</mx-link>
         </div>
 
         <dark-mode-toggle></dark-mode-toggle>

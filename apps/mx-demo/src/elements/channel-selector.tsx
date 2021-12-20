@@ -3,7 +3,6 @@ import "./channel-item";
 
 @MXElement({ tag: "channel-selector" })
 export class ChannelSelector extends CustomElement {
-
   @Storage({ key: "channels" })
   @State()
   channels: any = [];
@@ -14,11 +13,14 @@ export class ChannelSelector extends CustomElement {
     const form = new FormData(e.target);
     e.target.reset();
 
-    this.channels = this.channels.concat({
-      id: Date.now(),
-      name: form.get('name'),
-      createdAt: new Date().toISOString(),
-    })
+    this.channels = [
+      {
+        id: Date.now(),
+        name: form.get("name"),
+        createdAt: new Date().toISOString(),
+      },
+      ...this.channels,
+    ];
   };
 
   @On("updateChannel")
@@ -40,17 +42,18 @@ export class ChannelSelector extends CustomElement {
       :host {
         display: flex;
         flex-direction: column;
-        height: 100%;
         flex: 1;
         width: 320px;
-        overflow-y: auto;
       }
       .container {
-        height: 100%;
         display: flex;
         flex-direction: column;
+        height: calc(100vh - 36px);
+        overflow-y: auto;
       }
       ul {
+        margin: 0;
+        padding: 1rem 0;
         list-style: none;
       }
     `;
@@ -65,15 +68,10 @@ export class ChannelSelector extends CustomElement {
         </form>
         <ul>
           {this.channels.map((m: any) => (
-            <channel-item
-              key={m.id}
-              id={m.id}
-              name={m.name}
-            ></channel-item>
+            <channel-item key={m.id} id={m.id} name={m.name}></channel-item>
           ))}
         </ul>
       </div>
     );
   }
 }
-

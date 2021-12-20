@@ -21,21 +21,28 @@ export class ChannelItem extends CustomElement {
     this.editing = true;
   };
 
+  editName: string = ""
+
+  updateName= (e: any) =>{
+    this.editName = e.target.value
+  }
+
   @Dispatch("updateChannel")
   updateChannel = (e: any) => {
     e.preventDefault();
 
     if (!this.id) return {};
 
-    const form = new FormData(e.target);
-    const name= form.get("name") as string;
+    const newName = this.editName;
 
-    this.name = name;
+    if (!newName) return {};
+
     this.editing = false;
+    this.name = newName;
 
     return {
       id: this.id!,
-      name,
+      name: newName,
       updatedAt: new Date().toISOString(),
     };
   };
@@ -44,9 +51,30 @@ export class ChannelItem extends CustomElement {
     return `
       ${super.styles()}
       li {
+        margin: 0;
+        padding: 0;
+      }
+      mx-link::part(anchor) {
+      }
+
+      mx-link::part(anchor) {
+        padding-inline: 1rem;
+        height: 48px;
+        color: var(--color);
+        background-color: transparent;
+        box-sizing: border-box;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
+        text-decoration: none;
+        will-change: background-color;
+        transition: background-color 0.2s ease-out;
+      }
+      mx-link:hover::part(anchor) {
+        background-color: var(--hover-button-background-color);
+      }
+      mx-link[active]::part(anchor) {
+        background-color: var(--button-background-color);
       }
     `;
   }
@@ -60,15 +88,15 @@ export class ChannelItem extends CustomElement {
               name="content"
               type="text"
               value={this.name}
+              oninput={this.updateName}
               placeholder="Channel"
             />
             <button type="submit">Update</button>
           </form>
         ) : (
-          <span onclick={this.edit}>{this.name}</span>
+          <mx-link href={`/channels/${this.id}/messages`}>{this.name}</mx-link>
         )}
       </li>
     );
   }
 }
-

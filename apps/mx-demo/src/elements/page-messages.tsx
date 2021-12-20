@@ -4,7 +4,7 @@ import { Message } from "@/store";
 import "./channel-selector";
 import "./message-list";
 
-@MXElement({ tag: "page-messages", route: "^/messages(\/.*)?$" })
+@MXElement({ tag: "page-messages", route: "^/channels(\/.*)?$" })
 export class PageMessages extends PageElement {
   @State()
   messages: any = [];
