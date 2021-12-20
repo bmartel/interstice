@@ -26,10 +26,10 @@ export class ThemeProvider extends CustomElement {
       --outline-offset: -2px;
       --outline-color: hsl(210.9, 85.5%, 54.1%);
       --accent-color: hsl(210.9, 85.5%, 74.1%);
-      --input-background-color: hsl(242,1%,5%);
-      --border-color: hsl(242,1%,10%);
-      --button-background-color: hsl(242,1%,10%);
-      --hover-button-background-color: hsl(242,1%,18%);
+      --input-background-color: hsl(210.9,16%,5%);
+      --border-color: hsl(210.9,16%,10%);
+      --button-background-color: hsl(210.9,16%,10%);
+      --hover-button-background-color: hsl(210.9,16%,18%);
     `;
   }
 
@@ -41,10 +41,10 @@ export class ThemeProvider extends CustomElement {
       --outline-offset: -3px;
       --outline-color: hsl(210.9, 85.5%, 54.1%);
       --accent-color: hsl(210.9, 85.5%, 74.1%);
-      --input-background-color: hsl(242,16%,87%);
-      --border-color: hsl(242,16%,82%);
-      --button-background-color: hsl(242,16%,82%);
-      --hover-button-background-color: hsl(242,16%,90%);
+      --input-background-color: hsl(210.9,16%,87%);
+      --border-color: hsl(210.9,16%,82%);
+      --button-background-color: hsl(210.9,16%,82%);
+      --hover-button-background-color: hsl(210.9,16%,90%);
     `;
   }
 
