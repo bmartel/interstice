@@ -6,7 +6,7 @@ import "./message-list";
 
 @MXElement({
   tag: "page-messages",
-  route: `^/channels(/messages)?<channelId>(/\d*)?$`,
+  route: `^\/channels\/?<channelId>(\\d+)?(\/messages)?$`,
 })
 export class PageMessages extends PageElement {
   @State()

@@ -1,15 +1,6 @@
 import { routeStorage } from './storage';
 import { CustomElement } from './custom-element';
-
-window.addEventListener('popstate', () => {
-  dispatchEvent(
-    new CustomEvent('mx-navigation', {
-      bubbles: true,
-      composed: true,
-      cancelable: true,
-    })
-  );
-});
+import { MX_NAVIGATION_EVENT } from './navigation';
 
 export abstract class RouteElement extends CustomElement {
   public active?: any;
@@ -121,11 +112,11 @@ export abstract class RouteElement extends CustomElement {
   protected async connect(): Promise<void> {
     await super.connect();
     this.parseMatch();
-    window.addEventListener('mx-navigation', this.updateAndRender);
+    window.addEventListener(MX_NAVIGATION_EVENT, this.updateAndRender);
   }
 
   protected async disconnect(): Promise<void> {
     await super.disconnect();
-    window.removeEventListener('mx-navigation', this.updateAndRender);
+    window.removeEventListener(MX_NAVIGATION_EVENT, this.updateAndRender);
   }
 }

@@ -1,4 +1,5 @@
 import { BaseElement } from './base-element';
+import { MX_NAVIGATION_EVENT, navigate } from './navigation';
 import { routeStorage } from './storage';
 import { define } from './utils';
 
@@ -48,45 +49,30 @@ define('mx-link')(
       if (this._mountPoint) {
         this._mountPoint.addEventListener('click', this.navigate);
       }
-      window.addEventListener('mx-navigation', this.updateActive);
+      window.addEventListener(MX_NAVIGATION_EVENT, this.updateActive);
     }
 
     navigate = (e: Event) => {
       e.preventDefault();
-      if (this.replace) {
-        history.replaceState(this.state, document.title, this.href);
-        return;
-      }
-      history.pushState(this.state, document.title, this.href);
-      window.dispatchEvent(
-        new CustomEvent('mx-navigation', {
-          detail: {
-            href: this.href,
-            title: document.title,
-            state: this.state,
-          },
-          composed: true,
-          cancelable: true,
-          bubbles: true,
-        })
-      );
+      navigate(this.href, { state: this.state, replace: this.replace });
     };
 
     updateActive = () => {
       const active = this.isActive;
       if (active) {
         this.setAttribute('active', '');
-        const _storage = routeStorage()[this.href];
-        const inherit = this.hasAttribute('inherit');
-        if (inherit && _storage && _storage.query) {
-          const url = new URL(this.href, document.baseURI);
-          _storage.query.forEach((v: any, k: any) => {
-            url.searchParams.append(k, v);
-          });
-          url.host = '';
-          this.href = url.toString();
-          this.updateAnchor('href', this.href);
-        }
+        // const _storage = routeStorage()[this.href];
+        // const inherit = this.hasAttribute('inherit');
+
+        // if (inherit && _storage && _storage.query) {
+        //   const url = new URL(this.href, document.baseURI);
+        //   _storage.query.forEach((v: any, k: any) => {
+        //     url.searchParams.append(k, v);
+        //   });
+        //   url.host = '';
+        //   this.href = url.toString();
+        //   this.updateAnchor('href', this.href);
+        // }
       } else {
         this.removeAttribute('active');
       }
@@ -97,7 +83,7 @@ define('mx-link')(
       if (this._mountPoint) {
         this._mountPoint.removeEventListener('click', this.navigate);
       }
-      window.removeEventListener('mx-navigation', this.updateActive);
+      window.removeEventListener(MX_NAVIGATION_EVENT, this.updateActive);
     }
 
     // @ts-ignore
