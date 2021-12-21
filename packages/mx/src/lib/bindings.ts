@@ -35,10 +35,12 @@ export function proxyProperty(
           return value;
         case 'param':
           if (!_storage) return value;
-          if (typeof lookupKey === 'string') {
+          if (typeof lookupKey === 'string' && _storage.namedGroups) {
             lookupKey = _storage.namedGroups[lookupKey];
           }
-          value = _storage && _storage.params[lookupKey];
+          if (typeof lookupKey === 'number' && Array.isArray(_storage.params)) {
+            value = _storage.params[lookupKey];
+          }
           return value;
         case 'query':
           if (!_storage) return value;

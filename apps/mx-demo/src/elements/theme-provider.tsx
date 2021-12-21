@@ -1,15 +1,14 @@
-import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
+import { CustomElement, MXElement, On, Storage } from "@interstice/mx";
 
 @MXElement({ tag: "theme-provider" })
 export class ThemeProvider extends CustomElement {
   @Storage({ key: "darkMode" })
-  @State()
   darkMode: boolean | undefined = undefined;
 
   @On("updateDarkMode")
   updateDarkMode(e: CustomEvent<boolean>) {
     this.darkMode = e.detail;
-    this.updateStyles()
+    super.updateStyles();
   }
 
   async connect() {

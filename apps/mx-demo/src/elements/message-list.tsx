@@ -1,4 +1,10 @@
-import { CustomElement, Dispatch, MXElement, Prop } from "@interstice/mx";
+import {
+  CustomElement,
+  Dispatch,
+  MXElement,
+  Param,
+  State,
+} from "@interstice/mx";
 import "./message-item";
 
 @MXElement({
@@ -6,7 +12,10 @@ import "./message-item";
   route: `^\/channels\/<channelId>(\\d+)(\/messages)$`,
 })
 export class MessageList extends CustomElement {
-  @Prop()
+  @Param({ key: "channelId" })
+  channelId: number | null = null;
+
+  @State()
   messages: any = [];
 
   @Dispatch("addMessage")
@@ -43,6 +52,7 @@ export class MessageList extends CustomElement {
   render() {
     return (
       <div class="container">
+        {this.channelId}
         <form onSubmit={this.submitMessage}>
           <input name="content" type="text" placeholder="message" />
           <button type="submit">Submit</button>
