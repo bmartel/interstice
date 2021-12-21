@@ -1,14 +1,17 @@
+export type StorageType = 'session' | 'local' | 'cookie' | 'memory' | 'route';
 export type PropertyDecoratorArgs = {
   key?: string;
   scope?: string;
+  storageType?: StorageType;
+  expiry?: string | number;
   observed?: boolean;
-  session?: boolean;
 };
 export type PropertyBindingArgs = {
   key: string;
-  lookup: string | number;
   scope?: string;
-  session?: boolean;
+  storageType?: StorageType;
+  expiry?: string | number;
+  lookup: string | number;
 };
 
 export type PropertyDecorator = (

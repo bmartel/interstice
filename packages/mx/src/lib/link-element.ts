@@ -1,7 +1,9 @@
 import { BaseElement } from './base-element';
 import { MX_NAVIGATION_EVENT, navigate } from './navigation';
-import { routeStorage } from './storage';
+import { storage } from './storage';
 import { define } from './utils';
+
+const memory = storage('memory');
 
 define('mx-link')(
   class LinkElement extends BaseElement {
@@ -96,7 +98,7 @@ define('mx-link')(
     get isActive(): boolean {
       const exact = this.hasAttribute('exact');
       const pathname = this.asPath;
-      const _storage = routeStorage();
+      const _storage = memory.getItem('route');
       if (exact) {
         return !(!_storage || !_storage[pathname]);
       }

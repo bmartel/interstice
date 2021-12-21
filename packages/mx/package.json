@@ -1,5 +1,5 @@
 {
-  "version": "0.0.16",
+  "version": "0.0.17",
   "license": "MIT",
   "publicAccess": true,
   "main": "dist/index.js",
@@ -19,7 +19,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "peerDependencies": {},
   "husky": {
     "hooks": {
       "pre-commit": "tsdx lint"
@@ -45,10 +44,12 @@
     }
   ],
   "dependencies": {
+    "js-cookie": "^3.0.1",
     "million": "^1.0.2"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.4",
+    "@types/js-cookie": "^3.0.1",
     "husky": "^7.0.4",
     "size-limit": "^7.0.4",
     "tsdx": "^0.14.1",

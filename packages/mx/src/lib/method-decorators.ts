@@ -12,7 +12,8 @@ const PropertyDecorator = (
     observed: _observed = observed,
     key,
     scope,
-    session,
+    storageType,
+    expiry,
   }: PropertyDecoratorArgs = {}) {
     return function (target: any, propertyKey: string) {
       if (_observed) {
@@ -30,7 +31,8 @@ const PropertyDecorator = (
         key: propertyKey,
         lookup,
         scope,
-        session,
+        storageType,
+        expiry,
       });
       if (_observed) {
         target.__observedAttributes.push(lookup);
@@ -62,7 +64,10 @@ export const HashParam = PropertyDecorator('__hashParams') as (
   options: Pick<PropertyDecoratorArgs, 'key'>
 ) => MethodDecorator;
 export const Storage = PropertyDecorator('__storage') as (
-  options: Pick<PropertyDecoratorArgs, 'key' | 'scope' | 'session'>
+  options: Pick<PropertyDecoratorArgs, 'key' | 'scope' | 'storageType'>
+) => MethodDecorator;
+export const Cookie = PropertyDecorator('__cookie') as (
+  options: Pick<PropertyDecoratorArgs, 'key' | 'scope' | 'expiry'>
 ) => MethodDecorator;
 
 export function On(eventName: string) {

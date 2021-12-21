@@ -1,6 +1,8 @@
-import { routeStorage } from './storage';
+import { storage } from './storage';
 import { CustomElement } from './custom-element';
 import { MX_NAVIGATION_EVENT } from './navigation';
+
+const memory = storage('memory');
 
 export abstract class RouteElement extends CustomElement {
   public active?: any;
@@ -16,8 +18,8 @@ export abstract class RouteElement extends CustomElement {
   }
 
   private updateStorage(key: string, data: any = {}) {
-    const _data = routeStorage() || {};
-    routeStorage({
+    const _data = memory.getItem('route') || {};
+    memory.setItem('route', {
       ...data,
       [key]: {
         ...(_data && _data[key]),

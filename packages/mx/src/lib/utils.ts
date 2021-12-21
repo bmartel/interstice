@@ -10,14 +10,7 @@ export function addQueryParam(key: string, value: any) {
   window.history.pushState({}, '', url.toString());
 }
 
-export function getQueryParam(key: string): any {
-  const url = new URL(window.location.href);
-  const param = url.searchParams.get(key);
-  if (!param) return param;
-  return decodeURIComponent(param);
-}
-
-export function defaultParseProperty(newValue: any): any {
+export function parseProperty(newValue: any): any {
   return typeof newValue === 'string'
     ? ['{', '['].indexOf(newValue && newValue.charAt(0)) > -1 &&
       ['}', ']'].indexOf(
@@ -34,9 +27,10 @@ export function defaultParseProperty(newValue: any): any {
       ? null
       : /^\d+(\.\d+)?$/.test(newValue)
       ? Number(newValue)
-      : newValue
+      : decodeURIComponent(newValue)
     : newValue;
 }
+
 export function isEmpty(a: any): boolean {
   return !(
     a !== null &&
@@ -50,9 +44,11 @@ export function isEmpty(a: any): boolean {
 export function isEqual(a: any, b: any): boolean {
   return (
     a === b ||
-    !(typeof a !== typeof b ||
-    !(Array.isArray(a) && Array.isArray(b)) ||
-    a.length !== b.length ||
-    (typeof a === 'object' && JSON.stringify(a) !== JSON.stringify(b))
-  ));
+    !(
+      typeof a !== typeof b ||
+      !(Array.isArray(a) && Array.isArray(b)) ||
+      a.length !== b.length ||
+      (typeof a === 'object' && JSON.stringify(a) !== JSON.stringify(b))
+    )
+  );
 }

@@ -1,4 +1,3 @@
-import { defaultParseProperty } from './utils';
 import { BaseElement } from './base-element';
 
 export abstract class CustomElement extends BaseElement {
@@ -33,10 +32,6 @@ export abstract class CustomElement extends BaseElement {
   protected updateStyles() {
     if (!this._styles) return;
     this._styles.innerHTML = this.styles();
-  }
-
-  parseProperty(newValue: any): any {
-    return defaultParseProperty(newValue);
   }
 
   maybeRender(oldValue: any, newValue: any) {

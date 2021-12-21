@@ -1,6 +1,8 @@
-import { routeStorage, storage } from './storage';
-import { addQueryParam, isEmpty } from './utils';
+import { storage } from './storage';
+import { addQueryParam, parseProperty, isEmpty } from './utils';
 import { PropertyBindingArgs } from './types';
+
+const memory = storage('memory');
 
 export function proxyProperty(
   target: any,
@@ -9,7 +11,8 @@ export function proxyProperty(
     key: propertyName,
     scope: scopeKey,
     lookup: lookupKey,
-    session,
+    expiry,
+    storageType,
   }: PropertyBindingArgs = {} as any,
   type: string
 ) {
@@ -20,46 +23,45 @@ export function proxyProperty(
   target.__proxyOrder[propertyName] = target.__proxyOrder[propertyName] || [];
   target.__proxy[propertyName] = target.__proxy[propertyName] || {};
 
-  const parseProperty = target.parseProperty.bind(target);
   if (target.__proxyOrder[propertyName].indexOf(type) === -1) {
     target.__proxyOrder[propertyName].push(type);
   }
 
   Object.defineProperty(target.__proxy[propertyName], type, {
     get() {
-      const _storage = routeStorage();
+      const _route = memory.getItem('route');
       switch (type) {
         case 'prop':
           return value;
         case 'state':
           return value;
         case 'param':
-          if (!_storage) return value;
-          if (typeof lookupKey === 'string' && _storage.namedGroups) {
-            lookupKey = _storage.namedGroups[lookupKey];
+          if (!_route) return value;
+          if (typeof lookupKey === 'string' && _route.namedGroups) {
+            lookupKey = _route.namedGroups[lookupKey];
           }
-          if (typeof lookupKey === 'number' && Array.isArray(_storage.params)) {
-            value = _storage.params[lookupKey];
+          if (typeof lookupKey === 'number' && Array.isArray(_route.params)) {
+            value = _route.params[lookupKey];
           }
           return value;
         case 'query':
-          if (!_storage) return value;
-          value = _storage.query && _storage.query.get(lookupKey);
-          value = parseProperty(
-            _storage.query && _storage.query.get(lookupKey)
-          );
+          if (!_route) return value;
+          value = _route.query && _route.query.get(lookupKey);
+          value = parseProperty(_route.query && _route.query.get(lookupKey));
           return value;
         case 'hash':
-          if (!_storage) return value;
-          value = parseProperty(_storage.hash && _storage.hash.get(lookupKey));
+          if (!_route) return value;
+          value = parseProperty(_route.hash && _route.hash.get(lookupKey));
           return value;
         case 'storage':
-          const item = storage(session).getItem(
+          value = storage(storageType).getItem(
             `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`
           ) as any;
-          if (item) {
-            value = parseProperty(item);
-          }
+          return value;
+        case 'cookie':
+          value = storage('cookie').getItem(
+            `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`
+          ) as any;
           return value;
         case 'cssProp':
           const root = document.documentElement;
@@ -70,7 +72,7 @@ export function proxyProperty(
       }
     },
     set(newValue: any) {
-      const _storage = routeStorage();
+      const _route = memory.getItem('route');
       const oldValue = value;
       switch (type) {
         case 'prop':
@@ -83,40 +85,50 @@ export function proxyProperty(
           return;
         case 'param':
           value = newValue;
-          if (!_storage) return;
+          if (!_route) return;
           if (typeof lookupKey === 'string') {
-            lookupKey = _storage.namedGroups[lookupKey];
+            lookupKey = _route.namedGroups[lookupKey];
           }
-          _storage.params[lookupKey] = value;
-          routeStorage({
-            ..._storage,
-            params: _storage.params,
+          _route.params[lookupKey] = value;
+          // TODO: use a generic pushState on the current params and generate the pathname after updates to route
+          memory.setItem('route', {
+            ..._route,
+            params: _route.params,
           });
           return;
         case 'query':
           value = newValue;
-          if (!_storage) return;
-          _storage.query.set(lookupKey, value);
-          routeStorage({
-            ..._storage,
-            query: _storage.query,
+          if (!_route) return;
+          _route.query.set(lookupKey, value);
+          memory.setItem('route', {
+            ..._route,
+            query: _route.query,
           });
+          // TODO: move this into the MultiStorage class, use a generic pushState on the current query value after updates to route
           addQueryParam(lookupKey as string, value);
           return;
         case 'hash':
           value = newValue;
-          if (!_storage) return;
-          _storage.hash.set(lookupKey, value);
-          routeStorage({
-            ..._storage,
-            hash: _storage.hash,
+          if (!_route) return;
+          _route.hash.set(lookupKey, value);
+          memory.setItem('route', {
+            ..._route,
+            hash: _route.hash,
           });
           return;
         case 'storage':
           value = newValue;
-          storage(session).setItem(
+          storage(storageType).setItem(
             `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`,
-            JSON.stringify(value)
+            value
+          );
+          return;
+        case 'cookie':
+          value = newValue;
+          storage(storageType).setItem(
+            `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`,
+            value,
+            expiry
           );
           return;
         case 'cssProp':

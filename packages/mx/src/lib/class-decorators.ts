@@ -20,6 +20,7 @@ export function MXElement(options: { tag: string; route?: string | RegExp }) {
     const __state = ctor.prototype.__state || [];
     const __props = ctor.prototype.__props || [];
     const __cssProps = ctor.prototype.__cssProps || [];
+    const __cookie = ctor.prototype.__cookie || [];
     const __events = ctor.prototype.__events || [];
     const __dispatchEvents = ctor.prototype.__dispatchEvents || [];
 
@@ -33,6 +34,7 @@ export function MXElement(options: { tag: string; route?: string | RegExp }) {
     delete ctor.prototype.__state;
     delete ctor.prototype.__props;
     delete ctor.prototype.__cssProps;
+    delete ctor.prototype.__cookie;
     delete ctor.prototype.__events;
     delete ctor.prototype.__dispatchEvents;
 
@@ -61,6 +63,9 @@ export function MXElement(options: { tag: string; route?: string | RegExp }) {
           );
           __storage.forEach((prop: PropertyBindingArgs) =>
             proxyProperty(this, options, prop, 'storage')
+          );
+          __cookie.forEach((prop: PropertyBindingArgs) =>
+            proxyProperty(this, options, prop, 'cookie')
           );
           __cssProps.forEach((prop: PropertyBindingArgs) =>
             proxyProperty(this, options, prop, 'cssProp')
