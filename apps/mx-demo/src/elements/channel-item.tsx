@@ -21,11 +21,11 @@ export class ChannelItem extends CustomElement {
     this.editing = true;
   };
 
-  editName: string = ""
+  editName: string = "";
 
-  updateName= (e: any) =>{
-    this.editName = e.target.value
-  }
+  updateName = (e: any) => {
+    this.editName = e.target.value;
+  };
 
   @Dispatch("updateChannel")
   updateChannel = (e: any) => {
@@ -51,10 +51,19 @@ export class ChannelItem extends CustomElement {
     return `
       ${super.styles()}
       li {
+        display: flex;
         margin: 0;
         padding: 0;
+        width: 100%;
+      }
+      mx-link {
+        display: inline-flex;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
       }
       mx-link::part(anchor) {
+        width: 100%;
         padding-inline: 1rem;
         height: 48px;
         color: var(--color);
@@ -62,10 +71,11 @@ export class ChannelItem extends CustomElement {
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         text-decoration: none;
         will-change: background-color;
         transition: background-color 0.2s ease-out;
+        gap: 1rem;
       }
       mx-link:hover::part(anchor) {
         background-color: var(--hover-button-background-color);
@@ -91,7 +101,10 @@ export class ChannelItem extends CustomElement {
             <button type="submit">Update</button>
           </form>
         ) : (
-          <mx-link href={`/channels/${this.id}/messages`} exact="">{this.name}</mx-link>
+          <mx-link href={`/channels/${this.id}/messages`} exact="">
+            <span>🔶</span>
+            <span>{this.name}</span>
+          </mx-link>
         )}
       </li>
     );

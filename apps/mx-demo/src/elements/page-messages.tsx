@@ -2,7 +2,6 @@ import { MXElement, On, State } from "@interstice/mx";
 import { PageElement } from "./page-element";
 import { Message } from "@/store";
 import "./channel-selector";
-import "./message-list";
 
 @MXElement({
   tag: "page-messages",

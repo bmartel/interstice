@@ -1,7 +1,10 @@
 import { CustomElement, Dispatch, MXElement, Prop } from "@interstice/mx";
 import "./message-item";
 
-@MXElement({ tag: "message-list" })
+@MXElement({
+  tag: "message-list",
+  route: `^\/channels\/<channelId>(\\d+)(\/messages)$`,
+})
 export class MessageList extends CustomElement {
   @Prop()
   messages: any = [];

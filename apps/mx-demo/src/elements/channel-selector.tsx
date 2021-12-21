@@ -1,4 +1,5 @@
 import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
+import "./message-list";
 import "./channel-item";
 
 @MXElement({ tag: "channel-selector" })
@@ -43,13 +44,23 @@ export class ChannelSelector extends CustomElement {
         display: flex;
         flex-direction: column;
         flex: 1;
+      }
+      .channel-pane {
         width: 320px;
+        height: calc(100vh - 36px);
+        overflow-y: auto;
+        border-width: 0 2px 0 0;
+        border-style: solid solid solid solid;
+        border-color: var(--input-background-color);
+      }
+      .message-pane {
+        flex: 1;
+        height: calc(100vh - 36px);
+        overflow-y: auto;
       }
       .container {
         display: flex;
-        flex-direction: column;
-        height: calc(100vh - 36px);
-        overflow-y: auto;
+        flex: 1;
       }
       ul {
         margin: 0;
@@ -62,7 +73,7 @@ export class ChannelSelector extends CustomElement {
         position: sticky;
         display: flex;
         width: 100%;
-        border-width: 0 0 3px 0;
+        border-width: 0 0 2px 0;
         border-style: solid solid solid solid;
         border-color: var(--input-background-color);
         will-change: border-color;
@@ -109,18 +120,39 @@ export class ChannelSelector extends CustomElement {
   // 🗨️
   // ✍️
   // 💬
+  // 📨
+  // ✉️
+  // ✖️
+  // ✅
+  // 🗑️
+  // 🔗
+  // 🔎
+  // ⚙️
+  // 🕑
+  // 📑
+  // 🔥
+  // ✨
+  // 📝
+  // 🔔
+  // 📋
+  // 🔶
   render() {
     return (
       <div class="container">
-        <form onSubmit={this.addChannel}>
-          <input name="name" type="text" placeholder="Channel" />
-          <button type="submit">➕</button>
-        </form>
-        <ul>
-          {this.channels.map((m: any) => (
-            <channel-item key={m.id} id={m.id} name={m.name}></channel-item>
-          ))}
-        </ul>
+        <div className="channel-pane">
+          <form onSubmit={this.addChannel}>
+            <input name="name" type="text" placeholder="Channel" />
+            <button type="submit">➕</button>
+          </form>
+          <ul>
+            {this.channels.map((m: any) => (
+              <channel-item key={m.id} id={m.id} name={m.name}></channel-item>
+            ))}
+          </ul>
+        </div>
+        <div className="message-pane">
+          <message-list></message-list>
+        </div>
       </div>
     );
   }
