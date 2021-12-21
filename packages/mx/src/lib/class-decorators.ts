@@ -81,7 +81,12 @@ export function MXElement(options: { tag: string; route?: string | RegExp }) {
             this.route = options.route as any;
           }
 
+          updateAndRenderChild() {
+            this._mountPoint && (this._mountPoint as any).forceRender();
+          }
+
           render() {
+            this.updateAndRenderChild();
             // @ts-ignore
             return m(mxTag);
           }

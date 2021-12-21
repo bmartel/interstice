@@ -11,10 +11,11 @@ define('mx-link')(
     inherit?: any;
     replace?: any;
     exact?: any;
+    _url: URL = new URL(window.location.href);
 
     // @ts-ignore
     static get observedAttributes() {
-      return ['href', 'state', 'exact', 'inherit', 'replace'];
+      return ['href', 'state', 'exact', 'replace'];
     }
 
     updateAnchor(name: string, value: any) {
@@ -54,25 +55,20 @@ define('mx-link')(
 
     navigate = (e: Event) => {
       e.preventDefault();
-      navigate(this.href, { state: this.state, replace: this.replace });
+      if (this._url.toString() !== this.asUrl.toString()) {
+        navigate(this.href, { state: this.state, replace: this.replace });
+      }
     };
 
+    updateUrl() {
+      this._url = new URL(window.location.href);
+    }
+
     updateActive = () => {
+      this.updateUrl();
       const active = this.isActive;
       if (active) {
         this.setAttribute('active', '');
-        // const _storage = routeStorage()[this.href];
-        // const inherit = this.hasAttribute('inherit');
-
-        // if (inherit && _storage && _storage.query) {
-        //   const url = new URL(this.href, document.baseURI);
-        //   _storage.query.forEach((v: any, k: any) => {
-        //     url.searchParams.append(k, v);
-        //   });
-        //   url.host = '';
-        //   this.href = url.toString();
-        //   this.updateAnchor('href', this.href);
-        // }
       } else {
         this.removeAttribute('active');
       }
