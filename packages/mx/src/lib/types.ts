@@ -10,3 +10,8 @@ export type PropertyBindingArgs = {
   scope?: string;
   session?: boolean;
 };
+
+export type PropertyDecorator = (
+  target: any,
+  propertyKey: string | symbol
+) => void;

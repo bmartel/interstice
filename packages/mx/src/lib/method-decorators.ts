@@ -1,4 +1,7 @@
-import { PropertyDecoratorArgs } from './types';
+import {
+  PropertyDecoratorArgs,
+  PropertyDecorator as MethodDecorator,
+} from './types';
 
 const PropertyDecorator = (
   targetKey: string,
@@ -37,10 +40,10 @@ const PropertyDecorator = (
 };
 
 export const State = PropertyDecorator('__state') as (
-  options: Pick<PropertyDecoratorArgs, 'key'>
+  options?: Pick<PropertyDecoratorArgs, 'key'>
 ) => MethodDecorator;
 export const Prop = PropertyDecorator('__props', true, true) as (
-  options: Pick<PropertyDecoratorArgs, 'key'>
+  options?: Pick<PropertyDecoratorArgs, 'key'>
 ) => MethodDecorator;
 export const CssProp = PropertyDecorator(
   '__cssProps',
