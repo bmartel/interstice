@@ -41,6 +41,7 @@ export abstract class RouteElement extends CustomElement {
       let g = 0;
 
       while (i > -1) {
+        g++;
         i = _search.indexOf('(');
         k = _search.indexOf(')');
         if (i === -1 || k < i) break;
@@ -59,7 +60,6 @@ export abstract class RouteElement extends CustomElement {
           }
         }
         _search = _search.substring(k + 1);
-        g++;
       }
 
       if (Object.keys(this._namedGroups).length) {

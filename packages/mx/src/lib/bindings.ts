@@ -1,16 +1,16 @@
-import { routeStorage } from './storage';
+import { routeStorage, storage } from './storage';
 import { addQueryParam, isEmpty } from './utils';
-
-export type PropertyBinding = {
-  propertyKey: string;
-  lookupKey: string;
-};
+import { PropertyBindingArgs } from './types';
 
 export function proxyProperty(
   target: any,
   _optionsKey: any, // Not used for now, might be interesting to have storage scoped to element definitions
-  propertyName: string,
-  lookupKey: string | number,
+  {
+    key: propertyName,
+    scope: scopeKey,
+    lookup: lookupKey,
+    session,
+  }: PropertyBindingArgs = {} as any,
   type: string
 ) {
   const defaultValue: any = target && target[propertyName];
@@ -52,7 +52,9 @@ export function proxyProperty(
           value = parseProperty(_storage.hash && _storage.hash.get(lookupKey));
           return value;
         case 'storage':
-          const item = localStorage.getItem(lookupKey as string) as any;
+          const item = storage(session).getItem(
+            `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`
+          ) as any;
           if (item) {
             value = parseProperty(item);
           }
@@ -110,7 +112,10 @@ export function proxyProperty(
           return;
         case 'storage':
           value = newValue;
-          localStorage.setItem(lookupKey as string, JSON.stringify(value));
+          storage(session).setItem(
+            `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`,
+            JSON.stringify(value)
+          );
           return;
         case 'cssProp':
           value = newValue.toString();
@@ -128,8 +133,9 @@ export function proxyProperty(
       let propValue: any = undefined;
       this.__proxyOrder[propertyName].find((key: string) => {
         const e = this.__proxy[propertyName][key];
+        const found = isEmpty(propValue) && !isEmpty(e);
         propValue = e;
-        return !isEmpty(e) && !isEmpty(propValue);
+        return found;
       });
       return propValue;
     },

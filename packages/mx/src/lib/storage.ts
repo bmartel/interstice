@@ -1,9 +1,14 @@
-export const storage = new Map<any, any>();
+export const memoryStorage = new Map<any, any>();
 
 export function routeStorage(data?: any) {
   if (data) {
-    storage.set('route', data);
+    memoryStorage.set('route', data);
     return;
   }
-  return storage.get('route');
+  return memoryStorage.get('route');
+}
+
+export function storage(session?: boolean): Storage {
+  if (session) return sessionStorage;
+  return localStorage;
 }

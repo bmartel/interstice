@@ -4,11 +4,11 @@ import {
   bindEvent,
   DispatchBinding,
   EventBinding,
-  PropertyBinding,
   proxyProperty,
 } from './bindings';
 import { define } from './utils';
 import { RouteElement } from './route-element';
+import { PropertyBindingArgs } from './types';
 
 export function MXElement(options: { tag: string; route?: string | RegExp }) {
   return function (ctor: any) {
@@ -44,68 +44,26 @@ export function MXElement(options: { tag: string; route?: string | RegExp }) {
         }
         constructor() {
           super();
-          __props.forEach((prop: PropertyBinding) =>
-            proxyProperty(
-              this,
-              options,
-              prop.propertyKey,
-              prop.lookupKey,
-              'prop'
-            )
+          __props.forEach((prop: PropertyBindingArgs) =>
+            proxyProperty(this, options, prop, 'prop')
           );
-          __state.forEach((prop: PropertyBinding) =>
-            proxyProperty(
-              this,
-              options,
-              prop.propertyKey,
-              prop.lookupKey,
-              'state'
-            )
+          __state.forEach((prop: PropertyBindingArgs) =>
+            proxyProperty(this, options, prop, 'state')
           );
-          __params.forEach((prop: PropertyBinding) =>
-            proxyProperty(
-              this,
-              options,
-              prop.propertyKey,
-              prop.lookupKey,
-              'param'
-            )
+          __params.forEach((prop: PropertyBindingArgs) =>
+            proxyProperty(this, options, prop, 'param')
           );
-          __queryParams.forEach((prop: PropertyBinding) =>
-            proxyProperty(
-              this,
-              options,
-              prop.propertyKey,
-              prop.lookupKey,
-              'query'
-            )
+          __queryParams.forEach((prop: PropertyBindingArgs) =>
+            proxyProperty(this, options, prop, 'query')
           );
-          __hashParams.forEach((prop: PropertyBinding) =>
-            proxyProperty(
-              this,
-              options,
-              prop.propertyKey,
-              prop.lookupKey,
-              'hash'
-            )
+          __hashParams.forEach((prop: PropertyBindingArgs) =>
+            proxyProperty(this, options, prop, 'hash')
           );
-          __storage.forEach((prop: PropertyBinding) =>
-            proxyProperty(
-              this,
-              options,
-              prop.propertyKey,
-              prop.lookupKey,
-              'storage'
-            )
+          __storage.forEach((prop: PropertyBindingArgs) =>
+            proxyProperty(this, options, prop, 'storage')
           );
-          __cssProps.forEach((prop: PropertyBinding) =>
-            proxyProperty(
-              this,
-              options,
-              prop.propertyKey,
-              prop.lookupKey,
-              'cssProp'
-            )
+          __cssProps.forEach((prop: PropertyBindingArgs) =>
+            proxyProperty(this, options, prop, 'cssProp')
           );
           __events.forEach((e: EventBinding) => bindEvent(this, e));
           __dispatchEvents.forEach((d: DispatchBinding) =>
