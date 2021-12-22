@@ -29,6 +29,7 @@ export class ThemeProvider extends CustomElement {
       --border-color: hsl(210.9,16%,10%);
       --button-background-color: hsl(210.9,16%,10%);
       --hover-button-background-color: hsl(210.9,16%,18%);
+      --emoji-bullet: "◽";
     `;
   }
 
@@ -44,6 +45,7 @@ export class ThemeProvider extends CustomElement {
       --border-color: hsl(210.9,16%,82%);
       --button-background-color: hsl(210.9,16%,82%);
       --hover-button-background-color: hsl(210.9,16%,90%);
+      --emoji-bullet: "◾";
     `;
   }
 

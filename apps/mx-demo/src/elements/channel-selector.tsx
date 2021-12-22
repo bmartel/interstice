@@ -1,5 +1,11 @@
-import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
-import "./message-list";
+import {
+  CustomElement,
+  MXElement,
+  On,
+  State,
+  Storage,
+  navigate,
+} from "@interstice/mx";
 import "./channel-item";
 
 @MXElement({ tag: "channel-selector" })
@@ -13,15 +19,17 @@ export class ChannelSelector extends CustomElement {
     e.preventDefault();
     const form = new FormData(e.target);
     e.target.reset();
-
+    const id = Date.now();
     this.channels = [
       {
-        id: Date.now(),
+        id,
         name: form.get("name"),
         createdAt: new Date().toISOString(),
       },
       ...this.channels,
     ];
+
+    navigate(`/channels/${id}/messages`);
   };
 
   @On("updateChannel")
@@ -136,6 +144,7 @@ export class ChannelSelector extends CustomElement {
   // 🔔
   // 📋
   // 🔶
+  // ⬜
   render() {
     return (
       <div class="container">
@@ -146,7 +155,9 @@ export class ChannelSelector extends CustomElement {
           </form>
           <ul>
             {this.channels.map((m: any) => (
-              <channel-item key={m.id} id={m.id} name={m.name}></channel-item>
+              <li key={m.id}>
+                <channel-item id={m.id} name={m.name}></channel-item>
+              </li>
             ))}
           </ul>
         </div>

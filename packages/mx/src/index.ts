@@ -2,6 +2,7 @@ export * from 'million';
 export * from './lib/utils';
 export * from './lib/storage';
 export * from './lib/bindings';
+export * from './lib/navigation';
 export * from './lib/base-element';
 export * from './lib/custom-element';
 export * from './lib/route-element';

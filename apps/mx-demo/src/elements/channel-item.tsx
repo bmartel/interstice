@@ -50,7 +50,7 @@ export class ChannelItem extends CustomElement {
   styles() {
     return `
       ${super.styles()}
-      li {
+      div {
         display: flex;
         margin: 0;
         padding: 0;
@@ -83,12 +83,15 @@ export class ChannelItem extends CustomElement {
       mx-link[active]::part(anchor) {
         background-color: var(--button-background-color);
       }
+      .emoji-bullet:before {
+        content: var(--emoji-bullet);
+      }
     `;
   }
 
   render() {
     return (
-      <li>
+      <div>
         {this.editing ? (
           <form onSubmit={this.updateChannel}>
             <input
@@ -102,11 +105,11 @@ export class ChannelItem extends CustomElement {
           </form>
         ) : (
           <mx-link href={`/channels/${this.id}/messages`} exact="">
-            <span>🔶</span>
+            <span class="emoji-bullet"></span>
             <span>{this.name}</span>
           </mx-link>
         )}
-      </li>
+      </div>
     );
   }
 }

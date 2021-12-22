@@ -1,4 +1,5 @@
-import { BaseElement } from './base-element';
+import { m } from 'million';
+import { CustomElement } from './custom-element';
 import { MX_NAVIGATION_EVENT, navigate } from './navigation';
 import { storage } from './storage';
 import { define } from './utils';
@@ -6,7 +7,7 @@ import { define } from './utils';
 const memory = storage('memory');
 
 define('mx-link')(
-  class LinkElement extends BaseElement {
+  class LinkElement extends CustomElement {
     href: string = '';
     state?: any = {};
     active?: any;
@@ -20,39 +21,18 @@ define('mx-link')(
       return ['href', 'state', 'exact', 'replace'];
     }
 
-    updateAnchor(name: string, value: any) {
-      if (this._mountPoint === null) return;
-      (this._mountPoint as any).setAttribute(name, value);
-    }
-
-    attributeChangedCallback(name: string, oldValue: any, newValue: any) {
-      this.updateActive();
-      if (oldValue !== newValue) {
-        this.updateAnchor(name, newValue);
-      }
-    }
-
-    render(): any {
-      const a = document.createElement('a');
-      a.setAttribute('part', 'anchor');
-      a.appendChild(document.createElement('slot'));
-      return a;
-    }
-
-    protected createMountPoint() {
-      this._mountPoint = this.render();
-      this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint!);
-    }
-
     async connectedCallback(): Promise<void> {
       await super.connectedCallback();
       this.updateActive();
-      this.updateAnchor('href', this.href);
-      this.updateAnchor('state', this.state);
-      if (this._mountPoint) {
-        this._mountPoint.addEventListener('click', this.navigate);
-      }
       window.addEventListener(MX_NAVIGATION_EVENT, this.updateActive);
+    }
+
+    async disconnect(): Promise<void> {
+      await super.disconnect();
+      if (this._mountPoint) {
+        this._mountPoint.removeEventListener('click', this.navigate);
+      }
+      window.removeEventListener(MX_NAVIGATION_EVENT, this.updateActive);
     }
 
     navigate = (e: Event) => {
@@ -76,14 +56,6 @@ define('mx-link')(
       }
     };
 
-    protected async disconnect(): Promise<void> {
-      await super.disconnect();
-      if (this._mountPoint) {
-        this._mountPoint.removeEventListener('click', this.navigate);
-      }
-      window.removeEventListener(MX_NAVIGATION_EVENT, this.updateActive);
-    }
-
     // @ts-ignore
     get asUrl(): URL {
       return new URL(this.href, document.baseURI);
@@ -105,6 +77,19 @@ define('mx-link')(
       return !(
         !_storage ||
         !Object.keys(_storage).some((key) => key.startsWith(pathname))
+      );
+    }
+
+    render(): any {
+      return m(
+        'a',
+        {
+          onclick: this.navigate,
+          part: 'anchor',
+          href: this.href,
+          state: this.state,
+        },
+        [m('slot')]
       );
     }
   }

@@ -31,45 +31,43 @@ export function proxyProperty(
     get() {
       const _route = memory.getItem('route');
       switch (type) {
-        case 'prop':
-          return value;
-        case 'state':
-          return value;
         case 'param':
-          if (!_route) return value;
-          if (typeof lookupKey === 'string' && _route.namedGroups) {
-            lookupKey = _route.namedGroups[lookupKey];
+          if (_route) {
+            if (typeof lookupKey === 'string' && _route.namedGroups) {
+              lookupKey = _route.namedGroups[lookupKey];
+            }
+            if (typeof lookupKey === 'number' && Array.isArray(_route.params)) {
+              value = _route.params[lookupKey];
+            }
           }
-          if (typeof lookupKey === 'number' && Array.isArray(_route.params)) {
-            value = _route.params[lookupKey];
-          }
-          return value;
+          break;
         case 'query':
-          if (!_route) return value;
-          value = _route.query && _route.query.get(lookupKey);
-          value = parseProperty(_route.query && _route.query.get(lookupKey));
-          return value;
+          if (_route) {
+            value = _route.query && _route.query.get(lookupKey);
+            value = parseProperty(_route.query && _route.query.get(lookupKey));
+          }
+          break;
         case 'hash':
-          if (!_route) return value;
-          value = parseProperty(_route.hash && _route.hash.get(lookupKey));
-          return value;
+          if (_route) {
+            value = parseProperty(_route.hash && _route.hash.get(lookupKey));
+          }
+          break;
         case 'storage':
           value = storage(storageType).getItem(
             `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`
           ) as any;
-          return value;
+          break;
         case 'cookie':
           value = storage('cookie').getItem(
             `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`
           ) as any;
-          return value;
+          break;
         case 'cssProp':
           const root = document.documentElement;
           value = root.style.getPropertyValue(lookupKey as string);
-          return value;
-        default:
-          return value;
+          break;
       }
+      return value || defaultValue;
     },
     set(newValue: any) {
       const _route = memory.getItem('route');
@@ -135,7 +133,7 @@ export function proxyProperty(
           value = newValue.toString();
           const root = document.documentElement;
           root.style.setProperty(lookupKey as string, newValue);
-          return value;
+          return;
       }
     },
     enumerable: true,
