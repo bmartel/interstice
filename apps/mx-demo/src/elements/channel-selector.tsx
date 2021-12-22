@@ -1,11 +1,4 @@
-import {
-  CustomElement,
-  MXElement,
-  On,
-  State,
-  Storage,
-  navigate,
-} from "@interstice/mx";
+import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
 import "./channel-item";
 
 @MXElement({ tag: "channel-selector" })
@@ -28,8 +21,6 @@ export class ChannelSelector extends CustomElement {
       },
       ...this.channels,
     ];
-
-    navigate(`/channels/${id}/messages`);
   };
 
   @On("updateChannel")

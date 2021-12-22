@@ -18,7 +18,7 @@ define('mx-link')(
 
     // @ts-ignore
     static get observedAttributes() {
-      return ['href', 'state', 'exact', 'replace'];
+      return ['href', 'state', 'exact', 'root', 'replace'];
     }
 
     async connectedCallback(): Promise<void> {
@@ -48,12 +48,7 @@ define('mx-link')(
 
     updateActive = () => {
       this.updateUrl();
-      const active = this.isActive;
-      if (active) {
-        this.setAttribute('active', '');
-      } else {
-        this.removeAttribute('active');
-      }
+      this.forceRender();
     };
 
     // @ts-ignore
@@ -67,8 +62,18 @@ define('mx-link')(
     }
 
     // @ts-ignore
+    get isExact(): boolean {
+      return this.hasAttribute('exact');
+    }
+
+    // @ts-ignore
+    get isRoot(): boolean {
+      return this.hasAttribute('root');
+    }
+
+    // @ts-ignore
     get isActive(): boolean {
-      const exact = this.hasAttribute('exact');
+      const exact = this.isExact;
       const pathname = this.asPath;
       const _storage = memory.getItem('route');
       if (exact) {
@@ -81,13 +86,20 @@ define('mx-link')(
     }
 
     render(): any {
+      const isActive = this.isActive;
+      const isRoot = this.isRoot;
+      const currentType = isRoot ? 'page' : 'location';
+      const activeLink = {
+        'aria-current': currentType,
+      };
       return m(
         'a',
         {
           onclick: this.navigate,
-          part: 'anchor',
+          part: isActive ? `anchor-current-${currentType}` : 'anchor',
           href: this.href,
           state: this.state,
+          ...(isActive ? activeLink : {}),
         },
         [m('slot')]
       );

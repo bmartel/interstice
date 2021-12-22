@@ -1,6 +1,8 @@
 import { BaseElement } from './base-element';
 
 export abstract class CustomElement extends BaseElement {
+  private __removeListeners: Array<() => void> = [];
+
   protected styles(): string {
     return `
       :host {
@@ -15,10 +17,23 @@ export abstract class CustomElement extends BaseElement {
     return true;
   }
 
-  async connectedCallback(): Promise<void> {
+  async connectedCallback() {
     await this.connect();
     this.createStyles();
     this.createMountPoint();
+  }
+
+  async disconnectedCallback() {
+    await this.disconnect();
+    this.destroyMountPoint();
+    this.removeEventListeners();
+  }
+
+  private removeEventListeners() {
+    this.__removeListeners.forEach((f) => {
+      f();
+    });
+    this.__removeListeners = [];
   }
 
   private createStyles() {

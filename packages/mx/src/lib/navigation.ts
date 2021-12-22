@@ -19,25 +19,23 @@ export type NavigateOptions = {
 
 export function navigate(href: string, options: NavigateOptions = {}) {
   const { replace, silent, state, title } = options;
-  setTimeout(() => {
-    if (replace) {
-      history.replaceState(state, title || '', href);
-    } else {
-      history.pushState(state, title || '', href);
-    }
-    if (!silent) {
-      dispatchEvent(
-        new CustomEvent(MX_NAVIGATION_EVENT, {
-          detail: {
-            href,
-            title,
-            state,
-          },
-          composed: true,
-          cancelable: true,
-          bubbles: true,
-        })
-      );
-    }
-  }, 0);
+  if (replace) {
+    history.replaceState(state, title || '', href);
+  } else {
+    history.pushState(state, title || '', href);
+  }
+  if (!silent) {
+    dispatchEvent(
+      new CustomEvent(MX_NAVIGATION_EVENT, {
+        detail: {
+          href,
+          title,
+          state,
+        },
+        composed: true,
+        cancelable: true,
+        bubbles: true,
+      })
+    );
+  }
 }

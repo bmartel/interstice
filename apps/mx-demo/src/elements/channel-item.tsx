@@ -62,7 +62,7 @@ export class ChannelItem extends CustomElement {
         align-items: center;
         justify-content: flex-start;
       }
-      mx-link::part(anchor) {
+      mx-link::part(anchor), mx-link::part(anchor-current-location) {
         width: 100%;
         padding-inline: 1rem;
         height: 48px;
@@ -80,7 +80,7 @@ export class ChannelItem extends CustomElement {
       mx-link:hover::part(anchor) {
         background-color: var(--hover-button-background-color);
       }
-      mx-link[active]::part(anchor) {
+      mx-link::part(anchor-current-location)  {
         background-color: var(--button-background-color);
       }
       .emoji-bullet:before {

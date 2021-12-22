@@ -187,6 +187,10 @@ export type EventBinding = {
 
 export function bindEvent(target: any, e: EventBinding) {
   target.addEventListener(e.eventName, target[e.eventHandler]);
+  target.__removeListeners = target.__removeListeners || [];
+  target.__removeListeners.push(() =>
+    target.removeEventListener(e.eventName, target[e.eventHandler])
+  );
 }
 
 export type DispatchBinding = {

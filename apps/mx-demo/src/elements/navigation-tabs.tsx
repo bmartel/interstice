@@ -15,7 +15,7 @@ export class NavigationTabs extends CustomElement {
         display: flex;
         flex: 1;
       }
-      mx-link::part(anchor) {
+      mx-link::part(anchor), mx-link::part(anchor-current-page) {
         color: var(--color);
         background-color: transparent;
         box-sizing: border-box;
@@ -31,7 +31,7 @@ export class NavigationTabs extends CustomElement {
       mx-link:hover::part(anchor) {
         background-color: var(--hover-button-background-color);
       }
-      mx-link[active]::part(anchor) {
+      mx-link::part(anchor-current-page)  {
         background-color: var(--button-background-color);
       }
       dark-mode-toggle {
@@ -44,11 +44,15 @@ export class NavigationTabs extends CustomElement {
     return (
       <nav>
         <div class="nav-group">
-          <mx-link href="/" inherit="" exact="">
+          <mx-link root="" href="/" inherit="" exact="">
             Home
           </mx-link>
-          <mx-link href="/counter">Counter</mx-link>
-          <mx-link href="/channels">Messages</mx-link>
+          <mx-link root="" href="/counter">
+            Counter
+          </mx-link>
+          <mx-link root="" href="/channels">
+            Messages
+          </mx-link>
         </div>
 
         <dark-mode-toggle></dark-mode-toggle>
