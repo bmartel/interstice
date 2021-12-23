@@ -67,7 +67,7 @@ export function proxyProperty(
           value = root.style.getPropertyValue(lookupKey as string);
           break;
       }
-      return value || defaultValue;
+      return value;
     },
     set(newValue: any) {
       const _route = memory.getItem('route');

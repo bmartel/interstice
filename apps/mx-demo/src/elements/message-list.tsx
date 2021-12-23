@@ -5,13 +5,16 @@ import {
   Param,
   State,
 } from "@interstice/mx";
-import "./message-item";
 
 @MXElement({
   tag: "message-list",
   route: `^\/channels\/<channelId>(\\d+)(\/messages)$`,
 })
 export class MessageList extends CustomElement {
+  async elements() {
+    await import("./message-item")
+  }
+
   @Param({ key: "channelId" })
   channelId: number | null = null;
 

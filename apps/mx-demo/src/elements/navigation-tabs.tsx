@@ -1,8 +1,11 @@
 import { CustomElement, MXElement } from "@interstice/mx";
-import "./dark-mode-toggle";
 
 @MXElement({ tag: "navigation-tabs" })
 export class NavigationTabs extends CustomElement {
+  async elements() {
+    await import("./dark-mode-toggle")
+  }
+
   styles() {
     return /* css */ `
       ${super.styles()}

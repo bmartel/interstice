@@ -1,9 +1,12 @@
 import { MXElement, QueryParam, State, Storage } from "@interstice/mx";
 import { PageElement } from "./page-element";
-import "./message-list";
 
 @MXElement({ tag: "page-index", route: "^/$" })
 export class PageIndex extends PageElement {
+  async elements() {
+    await import("./message-list");
+  }
+
   @QueryParam({ key: "clicked" })
   @Storage({ key: "clicked" })
   @State()

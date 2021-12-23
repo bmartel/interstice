@@ -32,12 +32,10 @@ export function parseProperty(newValue: any): any {
 }
 
 export function isEmpty(a: any): boolean {
-  return !(
-    a !== null &&
-    a !== undefined &&
-    a !== '' &&
-    ((typeof a === 'object' && JSON.stringify(a) === '{}') ||
-      (Array.isArray(a) && a.length > 0))
+  return (
+    (typeof a === 'object' && JSON.stringify(a) === '{}') ||
+    (Array.isArray(a) && a.length === 0) ||
+    !a
   );
 }
 

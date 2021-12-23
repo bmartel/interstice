@@ -1,8 +1,11 @@
 import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
-import "./channel-item";
 
 @MXElement({ tag: "channel-selector" })
 export class ChannelSelector extends CustomElement {
+  async elements() {
+    await import("./channel-item")
+  }
+
   @Storage({ key: "channels" })
   @State()
   channels: any = [];
@@ -34,6 +37,11 @@ export class ChannelSelector extends CustomElement {
       }
       return m;
     });
+  };
+
+  @On("deleteChannel")
+  deleteChannel = (e: CustomEvent<any>) => {
+    this.channels = this.channels.filter((m: any) => m.id === e.detail.id)
   };
 
   styles() {

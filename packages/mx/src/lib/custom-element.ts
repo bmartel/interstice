@@ -2,6 +2,9 @@ import { BaseElement } from './base-element';
 
 export abstract class CustomElement extends BaseElement {
   private __removeListeners: Array<() => void> = [];
+  private __elements: boolean = false
+
+  protected async elements(): Promise<void> {}
 
   protected styles(): string {
     return `
@@ -19,6 +22,10 @@ export abstract class CustomElement extends BaseElement {
 
   async connectedCallback() {
     await this.connect();
+    if (!this.__elements) {
+      await this.elements()
+    }
+    this.__elements = true;
     this.createStyles();
     this.createMountPoint();
   }

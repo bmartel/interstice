@@ -12,7 +12,7 @@ export class ThemeProvider extends CustomElement {
   }
 
   async connect() {
-    if (this.darkMode === undefined) {
+    if (typeof this.darkMode !== "boolean") {
       this.darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
   }
