@@ -89,6 +89,10 @@ export class ChannelItem extends CustomElement {
     `;
   }
 
+  get href() {
+    return `/channels/${this.id}/messages`
+  }
+
   render() {
     return (
       <div>
@@ -104,7 +108,7 @@ export class ChannelItem extends CustomElement {
             <button type="submit">Update</button>
           </form>
         ) : (
-          <mx-link href={`/channels/${this.id}/messages`} exact="">
+          <mx-link key={this.href} href={this.href} exact="">
             <span class="emoji-bullet"></span>
             <span>{this.name}</span>
           </mx-link>
