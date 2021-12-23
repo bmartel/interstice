@@ -25,10 +25,12 @@ export class ThemeProvider extends CustomElement {
       --outline-offset: -2px;
       --outline-color: hsl(210.9, 85.5%, 54.1%);
       --accent-color: hsl(210.9, 85.5%, 74.1%);
-      --input-background-color: hsl(210.9,16%,5%);
+      --input-background-color: hsl(210.9,16%,8%);
       --border-color: hsl(210.9,16%,10%);
-      --button-background-color: hsl(210.9,16%,10%);
-      --hover-button-background-color: hsl(210.9,16%,18%);
+      --button-background-color: hsl(210.9,16%,16%);
+      --hover-button-background-color: hsl(210.9,16%,22%);
+      --message-button-background-color: var(--outline-color);
+      --hover-message-button-background-color: var(--accent-color);
       --emoji-bullet: "◽";
     `;
   }
@@ -41,10 +43,12 @@ export class ThemeProvider extends CustomElement {
       --outline-offset: -3px;
       --outline-color: hsl(210.9, 85.5%, 54.1%);
       --accent-color: hsl(210.9, 85.5%, 74.1%);
-      --input-background-color: hsl(210.9,16%,87%);
-      --border-color: hsl(210.9,16%,82%);
-      --button-background-color: hsl(210.9,16%,82%);
-      --hover-button-background-color: hsl(210.9,16%,90%);
+      --input-background-color: hsl(210.9,16%,94%);
+      --border-color: hsl(210.9,16%,86%);
+      --button-background-color: hsl(210.9,16%,86%);
+      --hover-button-background-color: hsl(210.9,16%,92%);
+      --message-button-background-color: var(--outline-color);
+      --hover-message-button-background-color: var(--accent-color);
       --emoji-bullet: "◾";
     `;
   }

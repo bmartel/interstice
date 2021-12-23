@@ -43,12 +43,82 @@ export class MessageList extends CustomElement {
   styles() {
     return `
       ${super.styles()}
-      .container {
+      :host {
         display: flex;
         flex: 1;
       }
+      .container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 2rem;
+      }
       ul {
         list-style: none;
+        flex: 1;
+        padding: 0 0 calc(2rem + 96px) 0;
+        margin: 0;
+      }
+      message-item {
+        display: flex;
+        width: 100%;
+      }
+      .form-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background-color: var(--background-color);
+        position: sticky;
+        bottom: 0;
+        padding-bottom: 2rem;
+      }
+      form {
+        border-radius: 6px;
+        align-items: center;
+        background-color: var(--input-background-color);
+        display: flex;
+        width: 100%;
+        transition: all 0.2s ease-out;
+      }
+      form:focus-within {
+        background-color: var(--button-background-color);
+      }
+      textarea {
+        border: none;
+        outline: none;
+        flex: 1;
+        display: inline-flex;
+        align-items: center;
+        font-size: 16px;
+        padding: 1rem;
+        height: 96px;
+        color: var(--color);
+        background-color: var(--input-background-color);
+        resize: none;
+        transition: all 0.2s ease-out;
+      }
+      textarea:focus {
+        background-color: var(--button-background-color);
+      }
+      button {
+        border-radius: 6px;
+        margin: 1rem;
+        appearance: none;
+        border: none;
+        background-color: var(--message-button-background-color);
+        font-size: 18px;
+        cursor: pointer;
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+        width: 48px;
+        will-change: background-color;
+        transition: background-color 0.2s ease-out;
+      }
+      button:hover {
+        background-color: var(--hover-message-button-background-color);
       }
     `;
   }
@@ -65,10 +135,16 @@ export class MessageList extends CustomElement {
             ></message-item>
           ))}
         </ul>
-        <form onSubmit={this.submitMessage}>
-          <input name="content" type="text" placeholder="message" />
-          <button type="submit">Submit</button>
-        </form>
+        <div class="form-wrapper">
+          <form onSubmit={this.submitMessage}>
+            <textarea
+              name="content"
+              placeholder="Type a message here"
+              rows={2}
+            ></textarea>
+            <button type="submit">✉️</button>
+          </form>
+        </div>
       </div>
     );
   }

@@ -3,8 +3,8 @@ import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
 @MXElement({ tag: "channel-selector" })
 export class ChannelSelector extends CustomElement {
   async elements() {
-    await import("./channel-item")
-    await import("./message-list")
+    await import("./channel-item");
+    await import("./message-list");
   }
 
   @Storage({ key: "channels" })
@@ -42,7 +42,7 @@ export class ChannelSelector extends CustomElement {
 
   @On("deleteChannel")
   deleteChannel = (e: CustomEvent<any>) => {
-    this.channels = this.channels.filter((m: any) => m.id === e.detail.id)
+    this.channels = this.channels.filter((m: any) => m.id === e.detail.id);
   };
 
   styles() {
@@ -62,7 +62,13 @@ export class ChannelSelector extends CustomElement {
         border-color: var(--input-background-color);
       }
       .message-pane {
+        display: flex;
         flex: 1;
+      }
+      message-list {
+        display: flex;
+        flex: 1;
+        width: 100%;
         height: calc(100vh - 36px);
         overflow-y: auto;
       }

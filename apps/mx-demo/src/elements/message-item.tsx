@@ -46,15 +46,26 @@ export class MessageItem extends CustomElement {
   styles() {
     return `
       ${super.styles()}
+      :host {
+        width: 100%;
+      }
       li {
+        max-width: 75%;
         display: flex;
         align-items: center;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
       }
       li[data-owner=false] {
-        justify-content: flex-end;
+        background-color: var(--outline-color);
+        color: white;
+        border-radius: 12px 12px 0 12px ;
+        margin-left: auto;
       }
       li[data-owner=true] {
-        justify-content: flex-start;
+        background-color: var(--button-background-color);
+        border-radius: 12px 12px 12px 0;
+        margin-right: auto;
       }
     `;
   }
