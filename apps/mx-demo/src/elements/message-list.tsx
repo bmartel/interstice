@@ -71,7 +71,7 @@ export class MessageList extends CustomElement {
       ul {
         list-style: none;
         flex: 1;
-        padding: 0 0 calc(2rem + 96px) 0;
+        padding: 0 0 calc(4rem + 96px) 0;
         margin: 0;
       }
       message-item {
@@ -84,7 +84,7 @@ export class MessageList extends CustomElement {
         width: 100%;
         background-color: var(--background-color);
         position: sticky;
-        bottom: 0;
+        bottom: 2rem;
         padding-bottom: 2rem;
       }
       form {
@@ -93,6 +93,7 @@ export class MessageList extends CustomElement {
         background-color: var(--input-background-color);
         display: flex;
         width: 100%;
+        overflow: hidden;
         transition: all 0.2s ease-out;
       }
       form:focus-within {

@@ -9,10 +9,15 @@ export abstract class BaseElement extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  protected async connect() {}
-  protected async disconnect() {}
+  protected async connected() {}
 
   protected abstract render(): VNode;
+
+  protected mounted() {}
+
+  protected async disconnected() {}
+
+  protected unmounted() {}
 
   protected forceRender() {
     if (!this._mountPoint) return;
@@ -32,12 +37,14 @@ export abstract class BaseElement extends HTMLElement {
   }
 
   async connectedCallback() {
-    await this.connect();
+    await this.connected();
     this.createMountPoint();
+    this.mounted();
   }
 
   async disconnectedCallback() {
-    await this.disconnect();
+    await this.disconnected();
     this.destroyMountPoint();
+    this.unmounted();
   }
 }

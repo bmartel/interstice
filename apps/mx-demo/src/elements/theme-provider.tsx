@@ -11,7 +11,7 @@ export class ThemeProvider extends CustomElement {
     super.updateStyles();
   }
 
-  async connect() {
+  async connected() {
     if (typeof this.darkMode !== "boolean") {
       this.darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
     }

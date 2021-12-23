@@ -27,8 +27,8 @@ define('mx-link')(
       window.addEventListener(MX_NAVIGATION_EVENT, this.updateActive);
     }
 
-    async disconnect(): Promise<void> {
-      await super.disconnect();
+    async disconnected(): Promise<void> {
+      await super.disconnected();
       if (this._mountPoint) {
         this._mountPoint.removeEventListener('click', this.navigate);
       }

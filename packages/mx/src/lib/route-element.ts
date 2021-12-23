@@ -103,21 +103,21 @@ export abstract class RouteElement extends CustomElement {
   };
 
   async connectedCallback() {
-    await this.connect();
+    await this.connected();
     if (this._matched) {
       this.setAttribute('active', '');
       this.createMountPoint();
     }
   }
 
-  protected async connect(): Promise<void> {
-    await super.connect();
+  protected async connected(): Promise<void> {
+    await super.connected();
     this.parseMatch();
     window.addEventListener(MX_NAVIGATION_EVENT, this.updateAndRender);
   }
 
-  protected async disconnect(): Promise<void> {
-    await super.disconnect();
+  protected async disconnected(): Promise<void> {
+    await super.disconnected();
     window.removeEventListener(MX_NAVIGATION_EVENT, this.updateAndRender);
   }
 }

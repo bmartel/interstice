@@ -34,20 +34,23 @@ export abstract class CustomElement extends BaseElement {
   }
 
   async connectedCallback() {
-    await this.connect();
+    await this.connected();
     if (!this.__elements) {
       await this.elements();
     }
     this.__elements = true;
     this.createStyles();
     this.createMountPoint();
+    this.mounted();
   }
 
   async disconnectedCallback() {
-    await this.disconnect();
-    this.destroyMountPoint();
-    this.__scoped = {};
+    await this.disconnected();
     this.removeEventListeners();
+    this.destroyMountPoint();
+    this.destroyStyles();
+    this.__scoped = {};
+    this.unmounted();
   }
 
   private removeEventListeners() {
@@ -65,6 +68,13 @@ export abstract class CustomElement extends BaseElement {
       this.shadowRoot && this.shadowRoot.appendChild(this._styles);
     }
   }
+
+  protected destroyStyles() {
+    if (!this._styles) return;
+    this.shadowRoot && this.shadowRoot.removeChild(this._styles!);
+    this._styles = null;
+  }
+
   protected updateStyles() {
     if (!this._styles) return;
     this._styles.innerHTML = this.styles();
