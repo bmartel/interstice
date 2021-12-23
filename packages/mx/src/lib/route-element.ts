@@ -94,7 +94,6 @@ export abstract class RouteElement extends CustomElement {
   updateAndRender = () => {
     this.parseMatch();
     if (this._matched) {
-      this.setAttribute('active', '');
       this.createMountPoint();
       this.forceRender();
     } else {

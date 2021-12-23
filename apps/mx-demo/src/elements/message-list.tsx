@@ -1,10 +1,12 @@
 import {
   CustomElement,
   MXElement,
+  On,
   Param,
   State,
   Storage,
 } from "@interstice/mx";
+import { Message } from "@/store";
 
 @MXElement({
   tag: "message-list",
@@ -25,7 +27,7 @@ export class MessageList extends CustomElement {
   @State()
   messages: any = [];
 
-  submitMessage = (e: any) => {
+  addMessage = (e: any) => {
     e.preventDefault();
     const form = new FormData(e.target);
     e.target.reset();
@@ -37,6 +39,19 @@ export class MessageList extends CustomElement {
         email: "user@example.com",
       },
       createdAt: new Date().toISOString(),
+    });
+  };
+
+  @On("updateMessage")
+  updateMessage = (e: CustomEvent<Partial<Message>>) => {
+    this.messages = this.messages.map((m: any) => {
+      if (m.id === e.detail.id) {
+        return {
+          ...m,
+          ...e.detail,
+        };
+      }
+      return m;
     });
   };
 
@@ -136,11 +151,11 @@ export class MessageList extends CustomElement {
           ))}
         </ul>
         <div class="form-wrapper">
-          <form onSubmit={this.submitMessage}>
+          <form onSubmit={this.addMessage}>
             <textarea
               name="content"
               placeholder="Type a message here"
-              rows={2}
+              rows="2"
             ></textarea>
             <button type="submit">✉️</button>
           </form>

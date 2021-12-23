@@ -31,6 +31,13 @@ export function proxyProperty(
   target.__proxyOrder[propertyName] = target.__proxyOrder[propertyName] || [];
   target.__proxy[propertyName] = target.__proxy[propertyName] || {};
 
+  target.__scoped = target.__scoped || {};
+  if (scopeKey) {
+    target.__scoped[propertyName] = {
+      propertyType: target.__proxyOrder[propertyName][0],
+      defaultValue,
+    };
+  }
   if (target.__proxyOrder[propertyName].indexOf(type) === -1) {
     target.__proxyOrder[propertyName].push(type);
   }

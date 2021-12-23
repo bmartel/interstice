@@ -2,7 +2,8 @@ import { BaseElement } from './base-element';
 
 export abstract class CustomElement extends BaseElement {
   private __removeListeners: Array<() => void> = [];
-  private __elements: boolean = false
+  private __scoped: any = {};
+  private __elements: boolean = false;
 
   protected async elements(): Promise<void> {}
 
@@ -20,10 +21,22 @@ export abstract class CustomElement extends BaseElement {
     return true;
   }
 
+  resetScoped() {
+    Object.entries(this.__scoped).forEach(
+      ([key, { propertyType, defaultValue }]: [string, any]) => {
+        // reset to the default for that propertyType
+        (this as any).__proxy[key][propertyType] = defaultValue;
+        // retrigger the getter
+        // @ts-ignore
+        (this as any)[key]; // eslint-disable
+      }
+    );
+  }
+
   async connectedCallback() {
     await this.connect();
     if (!this.__elements) {
-      await this.elements()
+      await this.elements();
     }
     this.__elements = true;
     this.createStyles();
@@ -33,6 +46,7 @@ export abstract class CustomElement extends BaseElement {
   async disconnectedCallback() {
     await this.disconnect();
     this.destroyMountPoint();
+    this.__scoped = {};
     this.removeEventListeners();
   }
 
