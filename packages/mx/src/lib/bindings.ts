@@ -149,7 +149,10 @@ export function proxyProperty(
         propValue = e;
         return found;
       });
-      return propValue;
+
+      return propValue === undefined || propValue === null
+        ? defaultValue
+        : propValue;
     },
     set(nextValue: any) {
       this.__proxyOrder[propertyName].forEach((key: string) => {
