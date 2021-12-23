@@ -1,8 +1,16 @@
 import { storage } from './storage';
 import { addQueryParam, parseProperty, isEmpty } from './utils';
-import { PropertyBindingArgs } from './types';
+import { PropertyBindingArgs, PropertyKeyScope } from './types';
 
 const memory = storage('memory');
+
+function scopePropertyKey(t: any, scopeKey?: PropertyKeyScope): string {
+  return !scopeKey
+    ? ''
+    : typeof scopeKey === 'string'
+    ? `${scopeKey}:`
+    : `${scopeKey(t)}:`;
+}
 
 export function proxyProperty(
   target: any,
@@ -54,12 +62,12 @@ export function proxyProperty(
           break;
         case 'storage':
           value = storage(storageType).getItem(
-            `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`
+            `${scopePropertyKey(target, scopeKey)}${lookupKey}`
           ) as any;
           break;
         case 'cookie':
           value = storage('cookie').getItem(
-            `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`
+            `${scopePropertyKey(target, scopeKey)}${lookupKey}`
           ) as any;
           break;
         case 'cssProp':
@@ -117,14 +125,14 @@ export function proxyProperty(
         case 'storage':
           value = newValue;
           storage(storageType).setItem(
-            `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`,
+            `${scopePropertyKey(target, scopeKey)}${lookupKey}`,
             value
           );
           return;
         case 'cookie':
           value = newValue;
           storage(storageType).setItem(
-            `${scopeKey ? `${scopeKey}:` : ''}${lookupKey}`,
+            `${scopePropertyKey(target, scopeKey)}${lookupKey}`,
             value,
             expiry
           );

@@ -1,9 +1,9 @@
 import {
   CustomElement,
-  Dispatch,
   MXElement,
   Param,
   State,
+  Storage,
 } from "@interstice/mx";
 
 @MXElement({
@@ -12,39 +12,40 @@ import {
 })
 export class MessageList extends CustomElement {
   async elements() {
-    await import("./message-item")
+    await import("./message-item");
   }
 
   @Param({ key: "channelId" })
   channelId: number | null = null;
 
+  @Storage({
+    key: "channelMessages",
+    scope: (c: MessageList) => `channel:${c.channelId}`,
+  })
   @State()
   messages: any = [];
 
-  @Dispatch("addMessage")
   submitMessage = (e: any) => {
     e.preventDefault();
     const form = new FormData(e.target);
     e.target.reset();
 
-    return {
+    this.messages = this.messages.concat({
       id: Date.now(),
       content: form.get("content") as string,
       user: {
         email: "user@example.com",
       },
       createdAt: new Date().toISOString(),
-    };
+    });
   };
 
   styles() {
     return `
       ${super.styles()}
       .container {
-        display: grid;
-        margin: 0 auto;
-        max-width: 1200px;
-        grid-template-columns: 320px 1fr;
+        display: flex;
+        flex: 1;
       }
       ul {
         list-style: none;
@@ -55,11 +56,6 @@ export class MessageList extends CustomElement {
   render() {
     return (
       <div class="container">
-        {this.channelId}
-        <form onSubmit={this.submitMessage}>
-          <input name="content" type="text" placeholder="message" />
-          <button type="submit">Submit</button>
-        </form>
         <ul>
           {this.messages.map((m: any) => (
             <message-item
@@ -69,6 +65,10 @@ export class MessageList extends CustomElement {
             ></message-item>
           ))}
         </ul>
+        <form onSubmit={this.submitMessage}>
+          <input name="content" type="text" placeholder="message" />
+          <button type="submit">Submit</button>
+        </form>
       </div>
     );
   }
