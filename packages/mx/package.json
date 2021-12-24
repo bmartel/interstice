@@ -1,5 +1,5 @@
 {
-  "version": "0.0.31",
+  "version": "0.0.33",
   "license": "MIT",
   "publicAccess": true,
   "description": "Simple WebComponents powered by Million vDOM",
@@ -55,6 +55,9 @@
   "dependencies": {
     "js-cookie": "^3.0.1",
     "million": "^1.0.2"
+  },
+  "peerDependencies": {
+    "gun": "^0.2020.1235"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.4",

@@ -1,64 +1,42 @@
-import Cookie from 'js-cookie';
 import { StorageType } from './types';
-import { parseProperty } from './utils';
+import {
+  BaseStorageAdapter,
+  registerAdapter,
+  useAdapter,
+} from './storage/adapter';
+import { MemoryStorage } from './storage/memory';
+import { RouteStorage } from './storage/route';
+import { LocalStorage } from './storage/local';
+import { SessionStorage } from './storage/session';
+import { CookieStorage } from './storage/cookie';
 
-export const memoryStorage = new Map<any, any>();
+// default Storage Adapters
+registerAdapter(MemoryStorage);
+registerAdapter(RouteStorage);
+registerAdapter(LocalStorage);
+registerAdapter(SessionStorage);
+registerAdapter(CookieStorage);
 
-class MultiStorage {
+class MultiStorage extends BaseStorageAdapter {
   type: StorageType;
+  adapter: BaseStorageAdapter;
+
   constructor(type?: StorageType) {
+    super();
     this.type = type || 'local';
+    this.adapter = useAdapter(this.type);
   }
 
-  setItem(key: string, value: any, expires?: string | number) {
-    let _value: any;
-    switch (this.type) {
-      case 'memory':
-        memoryStorage.set(key, value);
-        break;
-      case 'route':
-        _value = memoryStorage.get('route') || {};
-        memoryStorage.set(key, {
-          ..._value,
-          [key]: value,
-        });
-        break;
-      case 'cookie':
-        Cookie.set(key, value, {
-          expires: !expires ? undefined : +expires,
-          sameSite: 'strict',
-        });
-        break;
-      case 'session':
-        sessionStorage.setItem(key, JSON.stringify(value));
-        break;
-      case 'local':
-      default:
-        localStorage.setItem(key, JSON.stringify(value));
-    }
+  getItem(key: string) {
+    return this.adapter.getItem(key);
   }
 
-  getItem(key: string): any {
-    let value: any;
-    switch (this.type) {
-      case 'memory':
-        value = memoryStorage.get(key);
-        break;
-      case 'route':
-        value = memoryStorage.get('route');
-        value = value && value[key];
-        break;
-      case 'cookie':
-        value = Cookie.get(key);
-        break;
-      case 'session':
-        value = parseProperty(sessionStorage.getItem(key));
-        break;
-      case 'local':
-      default:
-        value = parseProperty(localStorage.getItem(key));
-    }
-    return value;
+  setItem(key: string, value: any, options?: any) {
+    this.adapter.setItem(key, value, options);
+  }
+
+  removeItem(key: string, value: any, options?: any) {
+    this.adapter.setItem(key, value, options);
   }
 }
 export function storage(storageType?: StorageType): MultiStorage {
