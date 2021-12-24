@@ -872,3 +872,35 @@ export class MyApp extends CustomElement {
 }
 ```
 
+### navigate
+
+It is possible to navigate in code using the same underlying function as is used in `mx-link`, `navigate`.
+
+```tsx
+import {CustomElement, MXElement, navigate} from "@interstice/mx";
+
+@MXElement({tag: "my-app"})
+export class MyApp extends CustomElement {
+    selectedId: number = 1
+    
+    loadSelectedDetails = (e: any) => {
+        e.preventDefault()
+        navigate(e.target.href)
+    }
+
+    render() {
+        return (
+            <div>
+                <nav>
+                    <mx-link href="/" root="">Home</mx-link>
+                    <mx-link href="/details">Details</mx-link>
+                    <a href={`/details/${this.selectedId}`} onClick={this.loadSelectedDetails}>Selected Details</a>
+                </nav>
+                <page-index>
+                    <page-details></page-details>
+                </page-index>
+            </div>
+        );
+    }
+}
+```
