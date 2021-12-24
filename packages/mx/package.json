@@ -1,7 +1,16 @@
 {
-  "version": "0.0.28",
+  "version": "0.0.29",
   "license": "MIT",
   "publicAccess": true,
+  "description": "Simple WebComponents powered by Million vDOM",
+  "keywords": [
+    "WebComponents",
+    "CustomElements",
+    "library",
+    "million",
+    "vdom",
+    "jsx"
+  ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
