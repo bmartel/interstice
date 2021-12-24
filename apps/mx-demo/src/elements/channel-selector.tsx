@@ -3,8 +3,7 @@ import { CustomElement, MXElement, On, State, Storage } from "@interstice/mx";
 @MXElement({ tag: "channel-selector" })
 export class ChannelSelector extends CustomElement {
   async elements() {
-    await import("./channel-item");
-    await import("./message-list");
+    await Promise.all([import("./channel-item"), import("./message-list")]);
   }
 
   @Storage({ key: "channels" })

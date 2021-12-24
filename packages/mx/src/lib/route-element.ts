@@ -105,6 +105,7 @@ export abstract class RouteElement extends CustomElement {
   async connectedCallback() {
     await this.connected();
     if (this._matched) {
+      await this.loadElements();
       this.setAttribute('active', '');
       this.createMountPoint();
     }

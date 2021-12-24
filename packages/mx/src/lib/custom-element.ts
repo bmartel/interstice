@@ -33,12 +33,16 @@ export abstract class CustomElement extends BaseElement {
     );
   }
 
-  async connectedCallback() {
-    await this.connected();
+  async loadElements() {
     if (!this.__elements) {
       await this.elements();
     }
     this.__elements = true;
+  }
+
+  async connectedCallback() {
+    await this.connected();
+    await this.loadElements();
     this.createStyles();
     this.createMountPoint();
     this.mounted();

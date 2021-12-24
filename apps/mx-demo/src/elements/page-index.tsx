@@ -3,10 +3,6 @@ import { PageElement } from "./page-element";
 
 @MXElement({ tag: "page-index", route: "^/$" })
 export class PageIndex extends PageElement {
-  async elements() {
-    await import("./message-list");
-  }
-
   @QueryParam({ key: "clicked" })
   @Storage({ key: "clicked" })
   @State()
