@@ -460,9 +460,9 @@ class MyButton extends CustomElement {
 ## Styles
 
 To more easily streamline styling, any string that is returned from a CustomElement `styles` method will be inserted into the ShadowDOM of the element.
-Styling native WebComponents can be done in any possible way that leads to the `styles` property returning a string, babel macros or other solutions may be possible here as decorated functionality though no explicitly supported.
+Styling native WebComponents can be done in any possible way that leads to the `styles` property returning a string, babel macros or other solutions may be possible here as decorated functionality though not explicitly supported.
 
-For Design system's and theming management check out the [OpenProps](https://open-props.style/) project.
+For Design systems and theming management check out the [OpenProps](https://open-props.style/) project.
 
 ```tsx
 import { MXElement, CustomElement } from '@interstice/mx'
