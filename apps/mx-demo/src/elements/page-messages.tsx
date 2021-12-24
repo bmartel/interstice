@@ -3,7 +3,7 @@ import { PageElement } from "./page-element";
 
 @MXElement({
   tag: "page-messages",
-  route: `^\/channels\/?<channelId>(\\d+)?(\/messages)?$`,
+  route: "^\/channels\/?<channelId>(\\d+)?(\/messages)?$",
 })
 export class PageMessages extends PageElement {
   async elements() {

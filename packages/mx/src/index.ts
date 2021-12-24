@@ -8,4 +8,5 @@ export * from './lib/custom-element';
 export * from './lib/route-element';
 export * from './lib/link-element';
 export * from './lib/class-decorators';
+export * from './lib/property-decorators';
 export * from './lib/method-decorators';
