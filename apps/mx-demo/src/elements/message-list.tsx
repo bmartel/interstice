@@ -66,7 +66,7 @@ export class MessageList extends CustomElement {
         display: flex;
         flex-direction: column;
         flex: 1;
-        padding: 2rem;
+        padding:  2rem 2rem 0;
       }
       ul {
         list-style: none;
@@ -78,16 +78,39 @@ export class MessageList extends CustomElement {
         display: flex;
         width: 100%;
       }
+      .form-opacity-wrapper {
+        z-index: 2;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: hsl(var(--hsl-background-color), 0.8);
+        padding-bottom: 1px;
+      }
       .form-wrapper {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        width: 100%;
-        background-color: var(--background-color);
+        justify-content: center;
         position: sticky;
-        bottom: 2rem;
-        padding-bottom: 2rem;
+        bottom: 0;
       }
+      .form-wrapper:before {
+        content: '';
+        height: 3.4rem;
+        width: 100%;
+        background: linear-gradient(hsl(var(--hsl-background-color), 0), hsl(var(--hsl-background-color), 0.6));
+      }
+      .form-wrapper:after {
+        content: '';
+        height: 2rem;
+        width: 100%;
+        background: linear-gradient(hsl(var(--hsl-background-color), 0.83), hsl(var(--hsl-background-color)));
+      }
+
       form {
+        z-index: 2;
+        position: relative;
         border-radius: 6px;
         align-items: center;
         background-color: var(--input-background-color);
@@ -143,6 +166,7 @@ export class MessageList extends CustomElement {
     return (
       <div class="container">
         <ul>
+          <li class="top-sentinel"></li>
           {this.messages.map((m: any) => (
             <message-item
               key={m.id}
@@ -150,16 +174,19 @@ export class MessageList extends CustomElement {
               content={m.content}
             ></message-item>
           ))}
+          <li className="bottom-sentinel"></li>
         </ul>
         <div class="form-wrapper">
-          <form onSubmit={this.addMessage}>
-            <textarea
-              name="content"
-              placeholder="Type a message here"
-              rows="2"
-            ></textarea>
-            <button type="submit">✉️</button>
-          </form>
+          <div class="form-opacity-wrapper">
+            <form onSubmit={this.addMessage}>
+              <textarea
+                name="content"
+                placeholder="Type a message here"
+                rows="2"
+              ></textarea>
+              <button type="submit">✉️</button>
+            </form>
+          </div>
         </div>
       </div>
     );
