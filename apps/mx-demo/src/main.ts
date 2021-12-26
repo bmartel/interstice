@@ -1,9 +1,13 @@
+import "./registerSw";
 import "./style.css";
 import "./elements/theme-provider";
 import "./elements/navigation-tabs";
 import "./elements/page-index";
 import "./elements/page-counter";
 import "./elements/page-messages";
+
+// TODO: add worker support
+// import "./worker?worker"
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
