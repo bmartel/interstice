@@ -16,4 +16,10 @@ Web component library which uses decorators and jsx to author custom elements ba
 
 [Getting started](./packages/mx/README.md)
 
+### Capsular
+
+A fetch-like api for performing off main thread remote data syncing.
+
+[Getting started](./packages/capsular/README.md)
+
 

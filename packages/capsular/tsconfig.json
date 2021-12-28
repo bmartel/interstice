@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist",
+    "lib": ["es2015", "es2016", "dom", "esnext.asynciterable"]
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts"]
+}

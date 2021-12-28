@@ -1,0 +1,81 @@
+{
+  "name": "@interstice/capsular",
+  "version": "0.0.1",
+  "description": "An offline first approach to remote data",
+  "module": "dist/index.mjs",
+  "main": "dist/index.cjs",
+  "browser": "dist/index.js",
+  "types": "dist/src/index.d.ts",
+  "license": "MIT",
+  "author": "Brandon Martel",
+  "binEntry": "bin/index.js",
+  "bin": "capsular.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmartel/interstice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bmartel/interstice/issues"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0"
+  },
+  "directories": {
+    "lib": "dist"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "scripts",
+    "capsular.js",
+    "worker.js"
+  ],
+  "scripts": {
+    "build:src": "rollup -c",
+    "transpile:scripts": "babel scripts -d scriptsbin",
+    "bundle:scripts": "ncc build scriptsbin/index.js -m -o bin",
+    "build:scripts": "yarn transpile:scripts && yarn bundle:scripts && cp -R ./stubs ./bin/",
+    "test:src": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\",\"target\":\"es2015\"}' ava",
+    "test:scripts": "ava --config scripts-tests.config.js",
+    "build": "npm run build:src && npm run build:scripts",
+    "test": "npm run test:src && npm run test:scripts"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/runtime-corejs3": "^7.12.5",
+    "@martel/hyperapp-scripts-snowpack": "^0.1.2",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@types/sinon": "^9.0.8",
+    "@vercel/ncc": "^0.25.1",
+    "ava": "^3.15.0",
+    "browser-env": "^3.3.0",
+    "chalk": "^4.1.0",
+    "check-node-version": "^4.0.3",
+    "core-js": "^3.7.0",
+    "esm": "^3.2.25",
+    "execa": "^4.1.0",
+    "listr": "^0.14.3",
+    "lodash": "^4.17.20",
+    "rollup": "^2.33.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "sinon": "^9.2.1",
+    "tmp": "^0.2.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4",
+    "yargs": "^16.1.0"
+  },
+  "dependencies": {
+    "idb": "^7.0.0"
+  }
+}
