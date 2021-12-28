@@ -560,7 +560,7 @@ import {
 } from "@interstice/mx";
 
 @MXElement({ tag: "theme-toggle" })
-export class DarkModeToggle extends CustomElement {
+export class ThemeToggle extends CustomElement {
     @Storage({ key: "darkMode" })
     @State()
     enabled: boolean | undefined = undefined;
