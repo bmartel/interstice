@@ -1,5 +1,14 @@
 import { BaseElement } from './base-element';
 
+const defaultStyles = `
+  :host {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+`;
+
 export abstract class CustomElement extends BaseElement {
   private __removeListeners: Array<() => void> = [];
   private __scoped: any = {};
@@ -8,14 +17,10 @@ export abstract class CustomElement extends BaseElement {
   protected async elements(): Promise<void> {}
 
   protected styles(): string {
-    return `
-      :host {
-        box-sizing: border-box;
-      }
-      *, *:before, *:after {
-        box-sizing: inherit;
-      }
-    `;
+    return defaultStyles;
+  }
+  protected loadingStyles(): string {
+    return defaultStyles;
   }
   protected shouldUpdate(_previous: any, _next: any) {
     return true;
@@ -41,6 +46,7 @@ export abstract class CustomElement extends BaseElement {
   }
 
   async connectedCallback() {
+    this.createLoadingStyles();
     await this.connected();
     await this.loadElements();
     this.createStyles();
@@ -64,7 +70,19 @@ export abstract class CustomElement extends BaseElement {
     this.__removeListeners = [];
   }
 
+  private createLoadingStyles() {
+    const styles = this._mountedLoading && this.loadingStyles();
+    if (this._styles || !styles) return;
+    this._styles = document.createElement('style');
+    this._styles.innerHTML = styles;
+    this.shadowRoot && this.shadowRoot.appendChild(this._styles);
+  }
+
   private createStyles() {
+    if (this._styles) {
+      this.updateStyles();
+      return;
+    }
     const styles = this.styles();
     if (styles) {
       this._styles = document.createElement('style');
@@ -86,7 +104,7 @@ export abstract class CustomElement extends BaseElement {
 
   maybeRender(oldValue: any, newValue: any) {
     if (this._mountPoint && this.shouldUpdate(oldValue, newValue)) {
-      requestAnimationFrame(() => this.forceRender());
+      requestAnimationFrame(this.forceRender);
     }
   }
 
