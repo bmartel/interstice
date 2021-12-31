@@ -35,8 +35,8 @@ class MultiStorage extends BaseStorageAdapter {
     this.adapter.setItem(key, value, options);
   }
 
-  removeItem(key: string, value: any, options?: any) {
-    this.adapter.setItem(key, value, options);
+  removeItem(key: string, options?: any) {
+    this.adapter.removeItem(key, options);
   }
 }
 export function storage(storageType?: StorageType): MultiStorage {
