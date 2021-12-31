@@ -47,6 +47,7 @@ export abstract class CustomElement extends BaseElement {
 
   async connectedCallback() {
     this.createLoadingStyles();
+    this.createLoadingMountPoint();
     await this.connected();
     await this.loadElements();
     this.createStyles();
@@ -71,7 +72,8 @@ export abstract class CustomElement extends BaseElement {
   }
 
   private createLoadingStyles() {
-    const styles = this._mountedLoading && this.loadingStyles();
+    this._mountedLoading = this._mountedLoading || this.loading();
+    const styles = !!this._mountedLoading && this.loadingStyles();
     if (this._styles || !styles) return;
     this._styles = document.createElement('style');
     this._styles.innerHTML = styles;

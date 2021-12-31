@@ -2,7 +2,7 @@ import { createElement, VNode, DOMNode, patch } from 'million';
 
 export abstract class BaseElement extends HTMLElement {
   protected _mountPoint: DOMNode | null = null;
-  protected _mountedLoading: boolean = false;
+  protected _mountedLoading: VNode | null = null;
   protected _styles: HTMLStyleElement | null = null;
 
   constructor() {
@@ -29,27 +29,29 @@ export abstract class BaseElement extends HTMLElement {
   };
 
   protected createLoadingMountPoint() {
-    const loading = this.loading();
-    if (this._mountPoint || !loading) return;
-    this._mountedLoading = true;
-    this._mountPoint = createElement(loading);
+    this._mountedLoading = this._mountedLoading || this.loading();
+    if (this._mountPoint || !this._mountedLoading) return;
+    this._mountPoint = createElement(this._mountedLoading);
     this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
   }
 
   protected createMountPoint() {
     if (this._mountPoint) {
-      this.forceRender();
-    } else {
-      this._mountPoint = createElement(this.render());
-      this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
+      this.removeMountPoint();
     }
+    this._mountPoint = createElement(this.render());
+    this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
   }
 
-  protected destroyMountPoint() {
+  protected removeMountPoint() {
     if (!this._mountPoint) return;
     this.shadowRoot && this.shadowRoot.removeChild(this._mountPoint!);
     this._mountPoint = null;
-    this._mountedLoading = false;
+  }
+
+  protected destroyMountPoint() {
+    this.removeMountPoint();
+    this._mountedLoading = null;
   }
 
   async connectedCallback() {

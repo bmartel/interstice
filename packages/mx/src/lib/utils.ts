@@ -10,6 +10,14 @@ export function addQueryParam(key: string, value: any) {
   window.history.pushState({}, '', url.toString());
 }
 
+export function decodeString(value: string) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
 export function parseProperty(newValue: any): any {
   return typeof newValue === 'string'
     ? ['{', '['].indexOf(newValue && newValue.charAt(0)) > -1 &&
@@ -27,7 +35,7 @@ export function parseProperty(newValue: any): any {
       ? null
       : /^\d+(\.\d+)?$/.test(newValue)
       ? Number(newValue)
-      : decodeURIComponent(newValue)
+      : decodeString(newValue)
     : newValue;
 }
 
