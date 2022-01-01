@@ -33,7 +33,7 @@ export function parseProperty(newValue: any): any {
       ? undefined
       : newValue === 'null'
       ? null
-      : /^\d+(\.\d+)?$/.test(newValue)
+      : !isNaN(newValue as any)
       ? Number(newValue)
       : decodeString(newValue)
     : newValue;
