@@ -20,7 +20,7 @@ export abstract class CustomElement extends BaseElement {
     return defaultStyles;
   }
   protected loadingStyles(): string {
-    return defaultStyles;
+    return '';
   }
   protected shouldUpdate(_previous: any, _next: any) {
     return true;
@@ -58,6 +58,7 @@ export abstract class CustomElement extends BaseElement {
   async disconnectedCallback() {
     await this.disconnected();
     this.removeEventListeners();
+    this.destroyLoadingMountPoint();
     this.destroyMountPoint();
     this.destroyStyles();
     this.__scoped = {};
@@ -72,7 +73,7 @@ export abstract class CustomElement extends BaseElement {
   }
 
   private createLoadingStyles() {
-    const styles = !!this._loadingMountPoint && this.loadingStyles();
+    const styles = this.loadingStyles();
     if (!styles) return;
     if (this._styles) {
       this.updateStyles(styles);
@@ -83,9 +84,15 @@ export abstract class CustomElement extends BaseElement {
 
   private createStyles() {
     if (this._styles) {
-      this.updateStyles();
+      this.updateStyles(`
+        ${this.loadingStyles()}
+        ${this.styles()}
+      `);
     } else {
-      this.mountStyles(this.styles());
+      this.mountStyles(`
+        ${this.loadingStyles()}
+        ${this.styles()}
+      `);
     }
   }
 
@@ -111,7 +118,7 @@ export abstract class CustomElement extends BaseElement {
   }
 
   maybeRender(oldValue: any, newValue: any) {
-    if (this._mountPoint && this.shouldUpdate(oldValue, newValue)) {
+    if (this.shouldUpdate(oldValue, newValue)) {
       requestAnimationFrame(this.forceRender);
     }
   }

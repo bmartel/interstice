@@ -94,26 +94,29 @@ export abstract class RouteElement extends CustomElement {
   updateAndRender = () => {
     this.parseMatch();
     if (this._matched) {
-      this.createMountPoint();
-      this.forceRender();
+      this.setAttribute('active', '');
+      requestAnimationFrame(() => {
+        this.createMountPoint();
+        this.forceRender();
+      });
     } else {
       this.removeAttribute('active');
-      this.destroyMountPoint();
+      requestAnimationFrame(() => {
+        this.destroyMountPoint();
+      });
     }
   };
 
   async connectedCallback() {
-    await this.connected();
-    if (this._matched) {
-      await this.loadElements();
-      this.setAttribute('active', '');
-      this.createMountPoint();
-    }
-  }
-
-  protected async connected(): Promise<void> {
-    await super.connected();
     this.parseMatch();
+    if (this._matched) {
+      this.setAttribute('active', '');
+      await this.connected();
+      await this.loadElements();
+      requestAnimationFrame(() => {
+        this.createMountPoint();
+      });
+    }
     window.addEventListener(MX_NAVIGATION_EVENT, this.updateAndRender);
   }
 

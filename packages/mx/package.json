@@ -1,5 +1,5 @@
 {
-  "version": "0.0.42",
+  "version": "0.0.47",
   "license": "MIT",
   "publicAccess": true,
   "description": "Simple WebComponents powered by Million vDOM",

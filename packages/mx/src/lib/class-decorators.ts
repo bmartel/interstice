@@ -86,15 +86,17 @@ export function MXElement(options: { tag: string; route?: string | RegExp }) {
             this.route = options.route as any;
           }
 
-          updateAndRenderChildren() {
-            if (this._mountPoint) {
+          updateAndRenderChildren = () => {
+            requestAnimationFrame(() => {
               (this._mountPoint as any).resetScoped();
               (this._mountPoint as any).forceRender();
-            }
-          }
+            });
+          };
 
           render() {
-            this.updateAndRenderChildren();
+            if (this._mountPoint) {
+              this.updateAndRenderChildren();
+            }
             // @ts-ignore
             return m(mxTag);
           }

@@ -4,6 +4,7 @@ export abstract class BaseElement extends HTMLElement {
   protected _mountPoint: DOMNode | null = null;
   protected _loadingMountPoint: DOMNode | null = null;
   protected _styles: HTMLStyleElement | null = null;
+  protected _mountedLoading: boolean = false;
 
   constructor() {
     super();
@@ -36,13 +37,14 @@ export abstract class BaseElement extends HTMLElement {
   protected createLoadingMountPoint() {
     const loading = this.loading();
     if (this._loadingMountPoint || !loading) return;
+    this._mountedLoading = true;
     this._loadingMountPoint = createElement(loading);
     this.shadowRoot && this.shadowRoot.appendChild(this._loadingMountPoint);
   }
 
   protected destroyLoadingMountPoint() {
     if (this._loadingMountPoint) {
-      this.shadowRoot && this.shadowRoot.removeChild(this._loadingMountPoint!);
+      this._mountedLoading = false;
       this._loadingMountPoint = null;
     }
   }
@@ -50,7 +52,16 @@ export abstract class BaseElement extends HTMLElement {
   protected createMountPoint() {
     if (!this._mountPoint) {
       this._mountPoint = createElement(this.render());
-      this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
+      if (this._mountedLoading) {
+        this.shadowRoot &&
+          this.shadowRoot.replaceChild(
+            this._mountPoint,
+            this._loadingMountPoint!
+          );
+      } else {
+        this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
+      }
+      this._mountedLoading = false;
     }
   }
 
