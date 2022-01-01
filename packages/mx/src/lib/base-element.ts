@@ -2,7 +2,7 @@ import { createElement, VNode, DOMNode, patch } from 'million';
 
 export abstract class BaseElement extends HTMLElement {
   protected _mountPoint: DOMNode | null = null;
-  protected _mountedLoading: VNode | null = null;
+  protected _loadingMountPoint: DOMNode | null = null;
   protected _styles: HTMLStyleElement | null = null;
 
   constructor() {
@@ -28,30 +28,37 @@ export abstract class BaseElement extends HTMLElement {
     patch(this._mountPoint, this.render());
   };
 
+  protected forceLoading = () => {
+    if (!this._loadingMountPoint || !this.loading()) return;
+    patch(this._loadingMountPoint, this.loading()!);
+  };
+
   protected createLoadingMountPoint() {
-    this._mountedLoading = this._mountedLoading || this.loading();
-    if (this._mountPoint || !this._mountedLoading) return;
-    this._mountPoint = createElement(this._mountedLoading);
-    this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
+    const loading = this.loading();
+    if (this._loadingMountPoint || !loading) return;
+    this._loadingMountPoint = createElement(loading);
+    this.shadowRoot && this.shadowRoot.appendChild(this._loadingMountPoint);
+  }
+
+  protected destroyLoadingMountPoint() {
+    if (this._loadingMountPoint) {
+      this.shadowRoot && this.shadowRoot.removeChild(this._loadingMountPoint!);
+      this._loadingMountPoint = null;
+    }
   }
 
   protected createMountPoint() {
-    if (this._mountPoint) {
-      this.removeMountPoint();
+    if (!this._mountPoint) {
+      this._mountPoint = createElement(this.render());
+      this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
     }
-    this._mountPoint = createElement(this.render());
-    this.shadowRoot && this.shadowRoot.appendChild(this._mountPoint);
-  }
-
-  protected removeMountPoint() {
-    if (!this._mountPoint) return;
-    this.shadowRoot && this.shadowRoot.removeChild(this._mountPoint!);
-    this._mountPoint = null;
   }
 
   protected destroyMountPoint() {
-    this.removeMountPoint();
-    this._mountedLoading = null;
+    if (this._mountPoint) {
+      this.shadowRoot && this.shadowRoot.removeChild(this._mountPoint!);
+      this._mountPoint = null;
+    }
   }
 
   async connectedCallback() {
@@ -64,6 +71,7 @@ export abstract class BaseElement extends HTMLElement {
   async disconnectedCallback() {
     await this.disconnected();
     this.destroyMountPoint();
+    this.destroyLoadingMountPoint();
     this.unmounted();
   }
 }

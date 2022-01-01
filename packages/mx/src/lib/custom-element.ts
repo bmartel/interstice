@@ -72,8 +72,7 @@ export abstract class CustomElement extends BaseElement {
   }
 
   private createLoadingStyles() {
-    this._mountedLoading = this._mountedLoading || this.loading();
-    const styles = !!this._mountedLoading && this.loadingStyles();
+    const styles = !!this._loadingMountPoint && this.loadingStyles();
     if (!styles) return;
     if (this._styles) {
       this.updateStyles(styles);
