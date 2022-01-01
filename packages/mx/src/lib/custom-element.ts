@@ -74,18 +74,23 @@ export abstract class CustomElement extends BaseElement {
   private createLoadingStyles() {
     this._mountedLoading = this._mountedLoading || this.loading();
     const styles = !!this._mountedLoading && this.loadingStyles();
-    if (this._styles || !styles) return;
-    this._styles = document.createElement('style');
-    this._styles.innerHTML = styles;
-    this.shadowRoot && this.shadowRoot.appendChild(this._styles);
+    if (!styles) return;
+    if (this._styles) {
+      this.updateStyles(styles);
+    } else {
+      this.mountStyles(styles);
+    }
   }
 
   private createStyles() {
     if (this._styles) {
       this.updateStyles();
-      return;
+    } else {
+      this.mountStyles(this.styles());
     }
-    const styles = this.styles();
+  }
+
+  protected mountStyles(styles: string) {
     if (styles) {
       this._styles = document.createElement('style');
       this._styles.innerHTML = styles;
@@ -94,14 +99,16 @@ export abstract class CustomElement extends BaseElement {
   }
 
   protected destroyStyles() {
-    if (!this._styles) return;
-    this.shadowRoot && this.shadowRoot.removeChild(this._styles!);
-    this._styles = null;
+    if (this._styles) {
+      this.shadowRoot && this.shadowRoot.removeChild(this._styles!);
+      this._styles = null;
+    }
   }
 
-  protected updateStyles() {
-    if (!this._styles) return;
-    this._styles.innerHTML = this.styles();
+  protected updateStyles(styles?: string) {
+    if (this._styles) {
+      this._styles.innerHTML = styles || this.styles();
+    }
   }
 
   maybeRender(oldValue: any, newValue: any) {
